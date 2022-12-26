@@ -1,0 +1,3 @@
+# https://www.fontsquirrel.com/tools/webfont-generator
+
+{"mode":"expert","formats":["woff"],"tt_instructor":"keep","fix_vertical_metrics":"N","metrics_ascent":"","metrics_descent":"","metrics_linegap":"","fallback":"none","fallback_custom":"100","options_subset":"advanced","subset_custom":"LOADING","subset_custom_range":"","subset_ot_features_list":"","base64":"Y","css_stylesheet":"stylesheet.css","filename_suffix":"-webfont","spacing_adjustment":"0","rememberme":"Y"}

@@ -1,0 +1,422 @@
+ID  Title             Example       Use   * Groups            Animated?
+ 0  Sprite (Spells)   SP01_.DEF     Batl  0                   Yes
+    this includes combat effects (like high morale, mine explosion), missiles
+    and hero flags (CMFLAGL/R)
+ 1  Spritedef         ?
+ 2  Creature          SMTENT.DEF    Batl% 0 Moving            Yes
+                                        % 1 Mouse Over        Yes
+                                          2 Standing          Yes
+                                          3 Getting Hit       Yes
+                                          4 Defend            Yes
+                                          5 Death             Yes
+            called DEATH_RANGED         % 6 (Unused Death - from DefPreview strings)
+                                        % 7 Turn Left         Yes
+                                        % 8 Turn Right        Yes
+                                        % 9 dup. of 7         Yes
+                                        % 10 dup. of 8        Yes
+                                        % 11 Attack Up        Yes
+                                        % 12 Attack Straight  Yes
+                                        % 13 Attack Down      Yes
+                                        % 14 Shoot Up         Yes
+                                        % 15 Shoot Straight   Yes
+                                        % 16 Shoot Down       Yes
+            called CAST_UP              % 17 2-Hex Attack Up  Yes
+            called CAST_FRONT           % 18 2-Hex Attack Straight  Yes
+            called CAST_DOWN            % 19 2-Hex Attack Down      Yes
+                                        % 20 Start Moving     Yes
+                                        % 21 Stop Moving      Yes
+            +22 DEAD?
+            +23 DEAD_RANGED?
+ 3  Adventure Object  MUDDELT3.DEF  Map   0                   Yes
+                                    & Inventory
+ 4  Hero *5           AH00_.DEF     Map   0 Up                Yes
+                                          1 Up-Right          Yes
+                                       *9 2 Right             Yes
+                                          3 Down-Right        Yes
+                                          4 Down              Yes
+                                          5 Move Up           Yes
+                                          6 Move Up-Right     Yes
+                                          7 Move Right        Yes
+                                          8 Move Down-Right   Yes
+                                          9 Move Down         Yes
+                                          other directions are mirrored
+ 5  Terrain           TSHRE.DEF     Map   0                   Using palette *2
+ 6  Cursor            CRSPELL.DEF   -     0                   Some *3
+ 7  Interface         VWMAG1.DEF    -     0                   No *4
+ 8  Sprite Frame      ?
+ 9  Combat Hero       CH00.DEF      Batl  0 Standing           Always single frame
+                                          1 Shuffle            Yes
+                                          2 Failure            Yes
+                                          3 Victory            Yes
+                                          4 Cast Spell         Yes
+
+(%) These groups may be missing in some DEF.
+    HDL doesn't tell which groups are missing or present (indexes are sequential).
+
+    For all $42 DEF except SMBAT/SMCART/SMCATA/SMTENT:
+    - 14/15/16 (Shoot*) are either all missing or all present
+    - 17/18/19 (2-Hex*) are either all missing or all present, except in
+      CEFREE/CEFRES/CENCH/CHARPH/CPFOE only 18 is present while 17/19 are not
+    - these may be missing individually: 20 (e.g. CHALF has 20 but not 21),
+      21 (e.g. CBTREE has 21 but not 20), 8 (Turn Right, only missing in CROGUE
+      while still having 7; in-game Rogue turns instantly with no animation)
+
+    SMBAT/SMCART/SMCATA/SMTENT are all missing 0/1/7/8/11/12/13/17/18/19/20/21,
+    and SMCART/SMTENT are additionally missing 14/15/16. In other words, only
+    2/3/4/5 + 14/15/16 are present.
+
+ID            #FS   Frame's special colors (from DefTool *6)  Shadow's special
+ 0 Spell      1+-   Transparent #00FFFF cyan                  Cannot have shadow
+-1 Spritedef  1     Transparent #00FFFF cyan                  Cannot have shadow
+-             2     Faint shadow #FF96FF pale pink
+-             3     Light shadow #FF64FF pink
+-             4     Medium shadow #FF32FF pink
+-             5     Deep shadow #FF00FF pink
+-             6     Selection #FFFF00 yellow
+-             7     Selection + deep shadow #B400FF violet
+-             8     Selection + faint shadow #00FF00 green
+ 2 Creature   1++   Transparent #00FFFF cyan                  Same as frame's
+              2-+   Faint shadow #FF96FF pale pink
+              5-+   Deep shadow #FF00FF pink
+           *7 6-+   Selection #FFFF00 yellow
+           *7 7-+   Selection + deep shadow #B400FF violet
+           *7 8-+   Selection + faint shadow #00FF00 green
+ 3 Adv. obj.  1++   Transparent #00FFFF cyan                  Same as frame's
+              2-+   Faint shadow #FF96FF pale pink
+              5-+   Deep shadow #FF00FF pink
+           *8 6++   Flag color #FFFF00 yellow
+ 4 Hero        =3   = 3                                       = 3
+ 5 Terrain    1+-   Transparent #00FFFF cyan                  Cannot have shadow
+              2--   Faint shadow #FF96FF pale pink
+              3+-   Light shadow #FF64FF pink
+              4+-   Medium shadow #FF32FF pink
+              5+-   Deep shadow #FF00FF pink
+ 6 Cursor     1+-   Transparent #00FFFF cyan                  Cannot have shadow
+ 7 Interface  1+-   Transparent #00FFFF cyan                  Cannot have shadow
+              2+-   Faint shadow #FF96FF pale pink
+              5--   Deep shadow #FF00FF pink
+              -     Player's colors * 32
+-8 Sprite frame = 1                                           = 1
+ 9 Combat hero 1++  Transparent #00FFFF cyan                  Same as frame's
+              2-+   Faint shadow #FF96FF pale pink
+              5-+   Deep shadow #FF00FF pink
+
+ (?) have no such DEFs in LOD
+ (*) group number as displayed in DefPreview (in HDL it counts from 0)
+(*2) frame number = subclass in the array of tiles, not animation sequence;
+     terrain animation does exist but it's palette-based (?)
+(*3) of 4 cursors in SoD, CRADVNTR, CRCOMBAT, CRDEFLT are not animated (single
+     group's frames are used in different contexts) while CRSPELL is animated
+(*4) group's frames are used in different contexts
+(*5) heroes in .h3m are AHnn_E.DEF while in-game they have no E (AH00_.DEF);
+     _E's single group's single frame matches non-_E's group 2 (Right)
+(*6) by default, for Frame's colors DefTool enables only the Transparent checkbox
+     while for Shadow's it enables all checkboxes
+ (#) order in HDL's [Shadow]ColorsBox.Colors list (1-based);
+(F)(S) F - color is present in normal frames, S - in shadow (find-special.php)
+(*7) normally Selection = Transparent and Selection + <...> shadow = that shadow;
+     during that creature's combat turn a yellow (#FFFF00) outline is pulsating
+     on top of these pixels; when hovering over a creature which doesn't have
+     the turn a cyan (#00FFFF) outline is used instead
+(*8) sometimes flag color should not be treated specially - see the section below
+(*9) group used after moving garrisoned hero to visiting
+
+"Type" as displayed in DefPreview is "$4" + ID, e.g. $45 for Terrain.
+
+-- $43 DEF with flag color (flagColor) --
+The info below was gathered using find-special.php. According to it,
+flagColor is special in some DEF and not in others (for example, in AVA0037.DEF).
+Overall, it's always special in shadow frames but normal frames are put on top of
+them so a more complex logic is required to determine how to treat flagColor
+(e.g. if both the shadow and normal frames have flagColor in the same spot).
+
+Flags for heroes (AH*) and boats (AB*) are drawn without flagColor using AF*/ABF*.
+Heroes ($43/$44) don't normally contain flagColor but some do; SoD renders
+such pixels as transparent: AH05_/AH05_E/AH16_/AH16_E/AH17_/AH17_E (present in
+both normal and shadow frames).
+
+DEFs from OBJECTS.TXT (1305) that must be drawn using flagColor:
+
+  AVC*
+  AVG*
+    except AVGREFG0
+    except AVGSIEG0
+    note: avgair0/avgelem0/avgerth0/avgfire0/avgwatr0 (Conflux dwellings) are
+          ownable but don't have flagColor and SoD doesn't draw the owner's flag
+    note: 5 dwellings above have duplicates: AVG2ela/AVG2ele/AVG2elf/AVG2elw
+          that do have flagColor; SoD editor allows placing all 8 dwellings,
+          they look differently but seem to have the same effect
+  AVM*
+    except AVMLEAN0
+    except AVMWM*
+    except AVMWW*
+  AVR*
+  AVXABND0
+  AVXAM*
+    note: these 7 Abandoned Mine images are ownable but don't have flagColor
+  AVXLTHS0
+  AVXSHYD0
+
+DEFs of type $43 not mentioned in OBJECTS.TXT except AF*/AH* (48) using flagColor:
+
+  note: ADVMWIND is not ownable but has flagColor
+  AVC*
+    except AVCNEUT0
+  AVG2ANG0
+  note: AVGNOLL is ownable but doesn't have flagColor
+  AVMGES*
+
+  Examined:
+
+    adcfra0.def
+    advmwind.def
+    arrow.def
+    ava0002.def
+    ava0003.def
+    ava0004.def
+    ava0005.def
+    ava0006.def
+    ava0142.def
+    ava0143.def
+    ava0144.def
+    avartif.def
+    avccast0.def
+    avccasz0.def
+    avcdung0.def
+    avcdunz0.def
+    avcforz0.def
+    avcftrc0.def
+    avcftrt0.def
+    avchfor0.def
+    avchforz.def
+    avcinfc0.def
+    avcinft0.def
+    avcinfz0.def
+    avcnecr0.def
+    avcnecz0.def
+    avcneut0.def
+    avcramp0.def
+    avcramz0.def
+    avcrand0.def
+    avcranz0.def
+    avcstro0.def
+    avcstrz0.def
+    avctowr0.def
+    avctowz0.def
+    avg2ang0.def
+    avgnoll.def
+    avlholu0.def
+    avloc4g0.def
+    avlstg11.def
+    avlxsw12.def
+    avmgesd0.def
+    avmgesu0.def
+    avmgesw0.def
+    avwattak.def
+    avxmktt0.def
+    avxoblr.def
+    avxthrn.def
+
+Full list of DEFs using flagColor:
+
+  AVCCAST0
+  AVCCASX0
+  AVCCASZ0
+  AVCDUNG0
+  AVCDUNX0
+  AVCDUNZ0
+  AVCFORZ0
+  AVCFTRC0
+  AVCFTRT0
+  AVCFTRX0
+  AVCGAR10
+  AVCGAR20
+  AVCHFOR0
+  AVCHFORX
+  AVCHFORZ
+  AVCINFC0
+  AVCINFT0
+  AVCINFX0
+  AVCINFZ0
+  AVCNECR0
+  AVCNECX0
+  AVCNECZ0
+  AVCRAMP0
+  AVCRAMX0
+  AVCRAMZ0
+  AVCRAND0
+  AVCRANX0
+  AVCRANZ0
+  AVCSTRO0
+  AVCSTRX0
+  AVCSTRZ0
+  AVCTOWR0
+  AVCTOWX0
+  AVCTOWZ0
+  AVCVGARM
+  AVCVGR
+
+  AVG2ANG0
+  AVG2ELA
+  AVG2ELE
+  AVG2ELF
+  AVG2ELW
+  AVG2UNI
+  AVGANGL0
+  AVGAZUR
+  AVGBASL0
+  AVGBHLD0
+  AVGBHMT0
+  AVGBKNI0
+  AVGBOAR
+  AVGBONE0
+  AVGCAVL0
+  AVGCDRG
+  AVGCENT0
+  AVGCROS0
+  AVGCYCL0
+  AVGDEMN0
+  AVGDEVL0
+  AVGDFLY0
+  AVGDWRF0
+  AVGEFRE0
+  AVGELF0
+  AVGELP
+  AVGENCH
+  AVGFBRD
+  AVGFDRG
+  AVGGARG0
+  AVGGDRG0
+  AVGGENI0
+  AVGGNLL0
+  AVGGOBL0
+  AVGGOGS0
+  AVGGOLM0
+  AVGGORG0
+  AVGGREM0
+  AVGGRFF0
+  AVGHALF
+  AVGHARP0
+  AVGHELL0
+  AVGHYDR0
+  AVGIMP0
+  AVGLICH0
+  AVGLZRD0
+  AVGMAGE0
+  AVGMANT0
+  AVGMDSA0
+  AVGMINO0
+  AVGMONK0
+  AVGMUMY
+  AVGNAGA0
+  AVGNOMD
+  AVGOGRE0
+  AVGORCG0
+  AVGPEAS
+  AVGPEGA0
+  AVGPIKE0
+  AVGPIT0
+  AVGPIXIE
+  AVGRDRG0
+  AVGROCS0
+  AVGROG
+  AVGRUST
+  AVGSHRP
+  AVGSKEL0
+  AVGSWOR0
+  AVGTITN0
+  AVGTREE0
+  AVGTRLL
+  AVGTROG0
+  AVGUNIC0
+  AVGVAMP0
+  AVGWGHT0
+  AVGWOLF0
+  AVGWYVN0
+  AVGZOMB0
+
+  AVMABMG
+  AVMALCH0
+  AVMALCS0
+  AVMCRDR0
+  AVMCRDS0
+  AVMCRGR0
+  AVMCRRF0
+  AVMCRSN0
+  AVMCRSU0
+  AVMCRSW0
+  AVMCRVO0
+  AVMCRYS0
+  AVMGEDR0
+  AVMGELV0
+  AVMGEMS0
+  AVMGERF0
+  AVMGESD0
+  AVMGESN0
+  AVMGESU0
+  AVMGESW0
+  AVMGODR0
+  AVMGODS0
+  AVMGOGR0
+  AVMGOLD0
+  AVMGORF0
+  AVMGOSB0
+  AVMGOSN0
+  AVMGOSW0
+  AVMGOVO0
+  AVMORDR0
+  AVMORDS0
+  AVMORE0
+  AVMORLV0
+  AVMORRO0
+  AVMORSB0
+  AVMORSN0
+  AVMORSW0
+  AVMSAWD0
+  AVMSAWG0
+  AVMSAWL0
+  AVMSAWR0
+  AVMSULF0
+  AVMSWDS0
+  AVMSWSN0
+
+  AVRCGEN0
+  AVRCGEN1
+  AVRCGEN2
+  AVRCGEN3
+  AVRCGEN4
+  AVRCGEN5
+  AVRCGEN6
+  AVRCGEN7
+  AVRCGN00
+  AVRCGN01
+  AVRCGN02
+  AVRCGN03
+  AVRCGN04
+  AVRCGN05
+  AVRCGN06
+  AVRCGN07
+  AVRCGN08
+
+  AVXABND0
+  AVXLTHS0
+  AVXSHYD0
+
+Full list of DEFs where flagColor needs other handling or is normal:
+
+  ADVMWIND
+  AH05_E
+  AH16_E
+  AH17_E
+  AVA0037 (F)
+  AVGFIRE0 (F)
+  AVLAUTR0 (F)
+  AVLAUTR1 (F)
+  AVLAUTR2 (F)
+  AVLAUTR3 (F)
+  AVLAUTR4 (F)
+  AVLAUTR5 (F)
+  AVLAUTR6 (F)
+  AVLAUTR7 (F)
+  AVSFNTN0 (F)
+  DEFAULT

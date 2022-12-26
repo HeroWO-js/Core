@@ -1,0 +1,2565 @@
+AB01_	 $44  transparent faintShadow(S) deepShadow(S) 
+AB02_	 $44  transparent faintShadow(S) deepShadow(S) 
+AB03_	 $44  transparent faintShadow(S) deepShadow(S) 
+ABF01B	 $44  transparent 
+ABF01D	 $44  transparent 
+ABF01G	 $44  transparent 
+ABF01K	 $44  transparent 
+ABF01L	 $44  transparent 
+ABF01P	 $44  transparent 
+ABF01R	 $44  transparent 
+ABF01W	 $44  transparent 
+ABF02B	 $44  transparent 
+ABF02D	 $44  transparent 
+ABF02G	 $44  transparent 
+ABF02K	 $44  transparent 
+ABF02L	 $44  transparent 
+ABF02P	 $44  transparent 
+ABF02R	 $44  transparent 
+ABF02W	 $44  transparent 
+ABF03B	 $44  transparent 
+ABF03D	 $44  transparent 
+ABF03G	 $44  transparent 
+ABF03K	 $44  transparent 
+ABF03L	 $44  transparent 
+ABF03P	 $44  transparent 
+ABF03R	 $44  transparent 
+ABF03W	 $44  transparent 
+ABM01_	 $44  transparent 
+ABM02_	 $44  transparent 
+ABM03_	 $44  transparent 
+ADAG	 $45  transparent(F) deepShadow(F) 
+ADCFRA	 $43  transparent faintShadow(S) deepShadow(S) 
+ADCFRA0	 $43  transparent faintShadow(S) deepShadow(S) 
+ADOPB1B	 $47  
+ADOPB1G	 $47  
+ADOPB1O	 $47  
+ADOPB1P	 $47  
+ADOPB1R	 $47  
+ADOPB1S	 $47  
+ADOPB1T	 $47  
+ADOPB1Y	 $47  
+ADOPB2B	 $47  
+ADOPB2G	 $47  
+ADOPB2O	 $47  
+ADOPB2P	 $47  
+ADOPB2R	 $47  
+ADOPB2S	 $47  
+ADOPB2T	 $47  
+ADOPB2Y	 $47  
+ADOPLFA	 $47  transparent(F) 
+ADOPRTA	 $47  transparent(F) 
+ADVDIG	 $47  
+ADVINFO	 $47  
+ADVMWIND	 $43  transparent faintShadow(S) deepShadow(S) selection 
+ADVPUZ	 $47  
+ADVTURN	 $47  
+ADVVIEW	 $47  
+AF00	 $44  transparent 
+AF00E	 $43  transparent 
+AF01	 $44  transparent 
+AF01E	 $43  transparent 
+AF02	 $44  transparent 
+AF02E	 $43  transparent 
+AF03	 $44  transparent 
+AF03E	 $43  transparent 
+AF04	 $44  transparent 
+AF04E	 $43  transparent 
+AF05	 $44  transparent 
+AF05E	 $43  transparent 
+AF06	 $44  transparent 
+AF06E	 $43  transparent 
+AF07	 $44  transparent 
+AF07E	 $43  transparent 
+AGEMLL	 $47  transparent(F) 
+AGEMLR	 $47  transparent(F) 
+AGEMUL	 $47  transparent(F) 
+AGEMUR	 $47  transparent(F) 
+AH00_	 $44  transparent deepShadow(S) 
+AH00_E	 $43  transparent deepShadow(S) 
+AH01_	 $44  transparent deepShadow(S) 
+AH01_E	 $43  transparent deepShadow(S) 
+AH02_	 $44  transparent deepShadow(S) 
+AH02_E	 $43  transparent deepShadow(S) 
+AH03_	 $44  transparent deepShadow(S) 
+AH03_E	 $43  transparent deepShadow(S) 
+AH04_	 $44  transparent deepShadow(S) 
+AH04_E	 $43  transparent deepShadow(S) 
+AH05_	 $44  transparent deepShadow(S) selection 
+AH05_E	 $43  transparent deepShadow(S) selection 
+AH06_	 $44  transparent deepShadow(S) 
+AH06_E	 $43  transparent deepShadow(S) 
+AH07_	 $44  transparent deepShadow(S) 
+AH07_E	 $43  transparent deepShadow(S) 
+AH08_	 $44  transparent deepShadow(S) 
+AH08_E	 $43  transparent deepShadow(S) 
+AH09_	 $44  transparent deepShadow(S) 
+AH09_E	 $43  transparent deepShadow(S) 
+AH10_	 $44  transparent deepShadow(S) 
+AH10_E	 $43  transparent deepShadow(S) 
+AH11_	 $44  transparent deepShadow(S) 
+AH11_E	 $43  transparent deepShadow(S) 
+AH12_	 $44  transparent deepShadow(S) 
+AH12_E	 $43  transparent deepShadow(S) 
+AH13_	 $44  transparent deepShadow(S) 
+AH13_E	 $43  transparent deepShadow(S) 
+AH14_	 $44  transparent deepShadow(S) 
+AH14_E	 $43  transparent deepShadow(S) 
+AH15_	 $44  transparent deepShadow(S) 
+AH15_E	 $43  transparent deepShadow(S) 
+AH16_	 $44  transparent faintShadow(S) deepShadow(S) selection 
+AH16_E	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AH17_	 $44  transparent faintShadow(S) deepShadow(S) selection 
+AH17_E	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AHPLACE	 $43  transparent deepShadow(S) 
+AHRANDOM	 $43  transparent deepShadow(S) 
+ALTARMY	 $47  
+ALTART	 $47  
+ALTEMBK	 $47  
+ALTFILL	 $47  
+ALTSACC	 $47  
+ALTSACR	 $47  
+AOFLGBB	 $47  
+AOFLGBG	 $47  
+AOFLGBO	 $47  
+AOFLGBP	 $47  
+AOFLGBR	 $47  
+AOFLGBS	 $47  
+AOFLGBT	 $47  
+AOFLGBY	 $47  
+APHLF1G	 $47  
+APHLF1R	 $47  
+APHLF1Y	 $47  
+APHLF4G	 $47  
+APHLF4R	 $47  
+APHLF4Y	 $47  
+ARROW	 $43  transparent 
+ARTIFACT	 $47  transparent(F) 
+ARTIFBON	 $47  transparent(F) 
+AUIDAT	 $47  
+AUIRES	 $47  
+AVA0001	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0002	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0003	 $43  
+AVA0004	 $43  
+AVA0005	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0006	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0007	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0008	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0009	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0010	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0011	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0012	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0013	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0014	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0015	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0016	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0017	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0018	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0019	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0020	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0021	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0022	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0023	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0024	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0025	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0026	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0027	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0028	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0029	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0030	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0031	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0032	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0033	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0034	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0035	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0036	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0037	 $43  transparent faintShadow(S) deepShadow(S) selection(F) 
+AVA0038	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0039	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0040	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0041	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0042	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0043	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0044	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0045	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0046	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0047	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0048	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0049	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0050	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0051	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0052	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0053	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0054	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0055	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0056	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0057	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0058	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0059	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0060	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0061	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0062	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0063	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0064	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0065	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0066	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0067	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0068	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0069	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0070	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0071	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0072	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0073	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0074	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0075	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0076	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0077	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0078	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0079	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0080	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0081	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0082	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0083	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0084	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0085	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0086	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0087	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0088	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0089	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0090	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0091	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0092	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0093	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0094	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0095	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0096	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0097	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0098	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0099	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0100	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0101	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0102	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0103	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0104	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0105	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0106	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0107	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0108	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0109	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0110	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0111	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0112	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0113	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0114	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0115	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0116	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0117	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0118	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0119	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0120	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0121	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0122	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0123	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0124	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0125	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0126	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0127	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0128	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0129	 $43  transparent faintShadow(S) deepShadow(S) selectionDeepShadow(F) 
+AVA0130	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0131	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0132	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0133	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0134	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0135	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0136	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0137	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0138	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0139	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0140	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0141	 $43  transparent faintShadow(S) deepShadow(S) 
+AVA0142	 $43  transparent 
+AVA0143	 $43  transparent 
+AVA0144	 $43  transparent 
+AVADLIC0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVAFLOT0	 $43  transparent 
+AVARAND	 $43  transparent faintShadow(S) deepShadow(S) 
+AVARND1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVARND2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVARND3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVARND4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVARTIF	 $43  transparent faintShadow(S) deepShadow(S) 
+AVASURV0	 $43  transparent 
+AVAWRE20	 $43  transparent faintShadow(S) deepShadow(S) 
+AVAWREK0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVCCAST0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCCASX0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCCASZ0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCDUNG0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCDUNX0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCDUNZ0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCFORZ0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCFTRC0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCFTRT0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCFTRX0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCGAR10	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCGAR20	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCHFOR0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCHFORX	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCHFORZ	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCINFC0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCINFT0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCINFX0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCINFZ0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCNECR0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCNECX0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCNECZ0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCNEUT0	 $43  transparent 
+AVCRAMP0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCRAMX0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCRAMZ0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCRAND0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCRANX0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCRANZ0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCSTRO0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCSTRX0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCSTRZ0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCTOWR0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCTOWX0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCTOWZ0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCVGARM	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVCVGR	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVG2ANG0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVG2ELA	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVG2ELE	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVG2ELF	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVG2ELW	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVG2UNI	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGAIR0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVGANGL0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGAZUR	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGBASL0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGBHLD0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGBHMT0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGBKNI0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGBOAR	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGBONE0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGCAVL0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGCDRG	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGCENT0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGCROS0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGCYCL0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGDEMN0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGDEVL0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGDFLY0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGDWRF0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGEFRE0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGELEM0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVGELF0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGELP	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGENCH	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGERTH0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVGFBRD	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGFDRG	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGFIRE0	 $43  transparent faintShadow(S) deepShadow(S) selection(F) 
+AVGGARG0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGGDRG0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGGENI0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGGNLL0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGGOBL0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGGOGS0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGGOLM0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGGORG0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGGREM0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGGRFF0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGHALF	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGHARP0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGHELL0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGHYDR0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGIMP0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGLICH0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGLZRD0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGMAGE0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGMANT0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGMDSA0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGMINO0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGMONK0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGMUMY	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGNAGA0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGNOLL	 $43  transparent faintShadow(S) lightShadow deepShadow(S) 
+AVGNOMD	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGOGRE0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGORCG0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGPEAS	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGPEGA0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGPIKE0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGPIT0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGPIXIE	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGRDRG0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGREFG0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVGROCS0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGROG	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGRUST	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGSHRP	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGSIEG0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVGSKEL0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGSWOR0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGTITN0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGTREE0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGTRLL	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGTROG0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGUNIC0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGVAMP0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGWATR0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVGWGHT0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGWOLF0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGWYVN0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVGZOMB0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVLAUTR0	 $43  transparent faintShadow(S) deepShadow(S) selection(F) 
+AVLAUTR1	 $43  transparent faintShadow(S) deepShadow(S) selection(F) 
+AVLAUTR2	 $43  transparent faintShadow(S) deepShadow(S) selection(F) 
+AVLAUTR3	 $43  transparent faintShadow(S) deepShadow(S) selection(F) 
+AVLAUTR4	 $43  transparent faintShadow(S) deepShadow(S) selection(F) 
+AVLAUTR5	 $43  transparent faintShadow(S) deepShadow(S) selection(F) 
+AVLAUTR6	 $43  transparent faintShadow(S) deepShadow(S) selection(F) 
+AVLAUTR7	 $43  transparent faintShadow(S) deepShadow(S) selection(F) 
+AVLBUZR0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLC10L0	 $43  transparent 
+AVLC11L0	 $43  transparent 
+AVLC12L0	 $43  transparent 
+AVLC13L0	 $43  transparent 
+AVLC14L0	 $43  transparent 
+AVLCA010	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLCA020	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLCA030	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLCA040	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLCA050	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLCA060	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLCA070	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLCA080	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLCA090	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLCA100	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLCA110	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLCA120	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLCA130	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLCA1R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLCA2R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLCT1D0	 $43  transparent 
+AVLCT1G0	 $43  transparent 
+AVLCT1L0	 $43  transparent 
+AVLCT1R0	 $43  transparent 
+AVLCT1U0	 $43  transparent 
+AVLCT2D0	 $43  transparent 
+AVLCT2G0	 $43  transparent 
+AVLCT2L0	 $43  transparent 
+AVLCT2R0	 $43  transparent 
+AVLCT2U0	 $43  transparent 
+AVLCT3D0	 $43  transparent 
+AVLCT3G0	 $43  transparent 
+AVLCT3L0	 $43  transparent 
+AVLCT3R0	 $43  transparent 
+AVLCT3U0	 $43  transparent 
+AVLCT4D0	 $43  transparent 
+AVLCT4G0	 $43  transparent 
+AVLCT4L0	 $43  transparent 
+AVLCT4R0	 $43  transparent 
+AVLCT4U0	 $43  transparent 
+AVLCT5D0	 $43  transparent 
+AVLCT5G0	 $43  transparent 
+AVLCT5L0	 $43  transparent 
+AVLCT5R0	 $43  transparent 
+AVLCT5U0	 $43  transparent 
+AVLCT6G0	 $43  transparent 
+AVLCT6L0	 $43  transparent 
+AVLCT6R0	 $43  transparent 
+AVLCT7L0	 $43  transparent 
+AVLCT7R0	 $43  transparent 
+AVLCT8L0	 $43  transparent 
+AVLCT8R0	 $43  transparent 
+AVLCT9L0	 $43  transparent 
+AVLCT9R0	 $43  transparent 
+AVLCTDS0	 $43  transparent 
+AVLCTRD0	 $43  transparent 
+AVLCTRG0	 $43  transparent 
+AVLCTRL0	 $43  transparent 
+AVLCTRR0	 $43  transparent 
+AVLCTRS0	 $43  transparent 
+AVLCTSN0	 $43  transparent 
+AVLD1SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLD2SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLD3SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLD4SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLD5SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLD6SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLD7SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLD8SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLD9SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDDSN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDDSN1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDDSN2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDDSN3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDDSN4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDDSN5	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDDSN6	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDDSN7	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDEAD0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDEAD1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDEAD2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDEAD3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDEAD4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDEAD5	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDEAD6	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDEAD7	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDLOG	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDT1S0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDT2S0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDT3S0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDUN10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDUN20	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLDUN30	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLF01G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLF02G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLF03G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLF04G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLF05G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLF06G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLF07G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLF08G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLF09G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLF10G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLF11G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLF12G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLFL1D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLFL2D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLFL3D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLFL4D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLFL5D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLFL6D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLFL7D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLFL8D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLFL9D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLFLK10	 $43  transparent 
+AVLFLK20	 $43  transparent 
+AVLFLK30	 $43  transparent 
+AVLGLLY0	 $43  transparent 
+AVLHLDS0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLHLSN0	 $43  transparent 
+AVLHOLD0	 $43  transparent 
+AVLHOLG0	 $43  transparent 
+AVLHOLL0	 $43  transparent 
+AVLHOLR0	 $43  transparent 
+AVLHOLS0	 $43  transparent 
+AVLHOLU0	 $43  transparent 
+AVLHOLX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLKLP10	 $43  transparent 
+AVLKLP20	 $43  transparent 
+AVLLAV10	 $43  transparent 
+AVLLAV20	 $43  transparent 
+AVLLAV30	 $43  transparent 
+AVLLAV40	 $43  transparent 
+AVLLAV50	 $43  transparent 
+AVLLAV60	 $43  transparent 
+AVLLAV70	 $43  transparent 
+AVLLAV80	 $43  transparent 
+AVLLAV90	 $43  transparent 
+AVLLK1D0	 $43  transparent 
+AVLLK1G0	 $43  transparent 
+AVLLK1R	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLLK1S0	 $43  transparent 
+AVLLK1U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLLK2D0	 $43  transparent 
+AVLLK2G0	 $43  transparent 
+AVLLK2S0	 $43  transparent 
+AVLLK2U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLLK3D0	 $43  transparent 
+AVLLK3G0	 $43  transparent 
+AVLLK3S0	 $43  transparent 
+AVLLK3U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLLLK10	 $43  transparent 
+AVLLLK20	 $43  transparent 
+AVLLV100	 $43  transparent 
+AVLLV110	 $43  transparent 
+AVLLV120	 $43  transparent 
+AVLLV130	 $43  transparent 
+AVLLV140	 $43  transparent 
+AVLLV150	 $43  transparent 
+AVLLV160	 $43  transparent 
+AVLLV170	 $43  transparent 
+AVLLV180	 $43  transparent 
+AVLLV190	 $43  transparent 
+AVLLV1U0	 $43  transparent 
+AVLLV200	 $43  transparent 
+AVLLV210	 $43  transparent 
+AVLLV220	 $43  transparent 
+AVLLV230	 $43  transparent 
+AVLLV240	 $43  transparent 
+AVLLV250	 $43  transparent 
+AVLLV260	 $43  transparent 
+AVLLV2U0	 $43  transparent 
+AVLLV3U0	 $43  transparent 
+AVLMAN10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMAN20	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMAN30	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMAN40	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMAN50	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMD1D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMD1G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMD1R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMD2D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMD2G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMD2R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMD3R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMOSS0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMS010	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMS020	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMS030	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMS040	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMS050	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMS060	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMS070	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMS080	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMS090	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMS100	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMS110	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMS120	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTDR1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTDR2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTDR3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTDR4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTDR5	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTDR6	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTDR7	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTDR8	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTDS1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTDS2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTDS3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTDS4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTDS5	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTDS6	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTGN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTGN1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTGN2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTGN3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTGN4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTGN5	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTGR1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTGR2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTGR3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTGR4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTGR5	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTGR6	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTRF1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTRF2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTRF3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTRF4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTRF5	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTRF6	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTSB0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTSB1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTSB2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTSB3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTSB4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTSB5	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTSN1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTSN2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTSN3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTSN4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTSN5	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTSN6	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTSW1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTSW2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTSW3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTSW4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTSW5	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTSW6	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTVO1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTVO2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTVO3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTVO4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTVO5	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLMTVO6	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLO1SN0	 $43  transparent 
+AVLO2SN0	 $43  transparent 
+AVLO3SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLOC1D0	 $43  transparent 
+AVLOC1G0	 $43  transparent 
+AVLOC1R0	 $43  transparent 
+AVLOC1U0	 $43  transparent 
+AVLOC2D0	 $43  transparent 
+AVLOC2G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLOC2R0	 $43  transparent 
+AVLOC2U0	 $43  transparent 
+AVLOC3D0	 $43  transparent 
+AVLOC3G0	 $43  transparent 
+AVLOC3R0	 $43  transparent 
+AVLOC3U0	 $43  transparent 
+AVLOC4G0	 $43  transparent 
+AVLOC4R0	 $43  transparent 
+AVLOC4U0	 $43  transparent 
+AVLP1SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLP2SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLPLM10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLPLM20	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLPLM30	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLPLM40	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLPLM50	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLPNTR0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLPNTR1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLPNTR2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLPNTR3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLPNTR4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLPNTR5	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLPNTR6	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLPNTR7	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR01U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR02R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR02U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR03R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR03U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR04R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR04U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR05U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR06R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR06U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR07R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR07U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR08R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR08U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR09R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR09U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR10R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR10U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR11R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR11U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR12R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR12U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR13R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR13U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR14R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR14U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR15R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR15U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR16U0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR1SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR2SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR3SN0	 $43  transparent 
+AVLR4SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR5SN0	 $43  transparent 
+AVLR6SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR7SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLR8SN0	 $43  transparent 
+AVLRD01	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRD02	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRD04	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLREF10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLREF20	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLREF30	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLREF40	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLREF50	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLREF60	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRG01	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRG02	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRG03	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRG04	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRG05	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRG06	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRG07	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRG08	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRG09	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRG10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRG11	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRK1S0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRK1W0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRK2S0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRK2W0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRK3D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRK3S0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRK3W0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRK4S0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRK4W0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRK5D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLROUG0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLROUG1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLROUG2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRR01	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLRR05	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLS01S0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLS02S0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLS03S0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLS04S0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLS05S0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLS06S0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLS07S0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLS08S0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLS09S0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLS10S0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLS11S0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLS1SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLS2SN0	 $43  transparent 
+AVLS3SN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH1D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH1G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH1R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH2D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH2G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH2R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH3D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH3G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH3R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH4D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH4G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH4R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH5D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH5G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH5R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH6D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH6G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH6R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH7D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH7R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH8D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH8R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSH9R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSKUL0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSNTR0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSNTR1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSNTR2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSNTR3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSNTR4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSNTR5	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSNTR6	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSNTR7	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSPIT0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSPTR0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSPTR1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSPTR2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSPTR3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSPTR4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSPTR5	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSPTR6	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSPTR7	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSPTR8	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSTG10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSTG11	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSTG20	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSTG30	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSTG40	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSTG50	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSTG60	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSTM1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSTM2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSTM3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWMP0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWMP1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWMP2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWMP3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWMP4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWMP5	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWMP6	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWMP7	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWP10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWP20	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWP30	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWP40	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWP50	 $43  transparent 
+AVLSWP60	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWP70	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT00	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT01	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT02	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT03	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT04	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT05	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT06	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT07	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT08	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT09	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT11	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT12	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT13	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT14	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT15	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT16	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT17	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT18	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWT19	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWTR0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWTR1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWTR2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWTR3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWTR4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWTR5	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWTR6	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWTR7	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWTR8	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLSWTR9	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTR1D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTR2D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTR3D0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRO00	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRO01	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRO02	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRO03	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRO04	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRO05	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRO06	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRO07	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRO08	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRO09	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRO10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRO11	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRO12	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRRO0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRRO1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRRO2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRRO3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRRO4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRRO5	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRRO6	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLTRRO7	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLVOL10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLVOL20	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLVOL30	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLVOL40	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLVOL50	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLWLW10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLWLW20	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLWLW30	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDS01	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDS02	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDS03	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDS04	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDS05	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDS06	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDS07	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDS08	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDS09	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDS10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDS11	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDS12	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDT00	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDT01	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDT02	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDT03	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDT04	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDT05	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDT06	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDT07	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDT08	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDT09	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDT10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXDT11	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXGR01	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXGR02	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXGR03	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXGR04	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXGR05	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXGR06	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXGR07	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXGR08	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXGR09	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXGR10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXGR11	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXGR12	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXRO01	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXRO02	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXRO03	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXRO04	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXRO05	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXRO06	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXRO07	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXRO08	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXRO09	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXRO10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXRO11	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXRO12	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSU01	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSU02	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSU03	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSU04	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSU05	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSU06	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSU07	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSU08	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSU09	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSU10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSU11	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSU12	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSW01	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSW02	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSW03	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSW04	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSW05	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSW06	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSW07	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSW08	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSW09	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSW10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSW11	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLXSW12	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLYUC10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLYUC20	 $43  transparent faintShadow(S) deepShadow(S) 
+AVLYUC30	 $43  transparent faintShadow(S) deepShadow(S) 
+AVMABMG	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMALCH0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMALCS0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMCRDR0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMCRDS0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMCRGR0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMCRRF0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMCRSN0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMCRSU0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMCRSW0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMCRVO0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMCRYS0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMGEDR0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMGELV0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMGEMS0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMGERF0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMGESD0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMGESN0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMGESU0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMGESW0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMGODR0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMGODS0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMGOGR0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMGOLD0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMGORF0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMGOSB0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMGOSN0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMGOSW0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMGOVO0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMLEAN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVMORDR0	 $43  transparent selection 
+AVMORDS0	 $43  transparent selection 
+AVMORE0	 $43  transparent selection 
+AVMORLV0	 $43  transparent selection 
+AVMORRO0	 $43  transparent selection 
+AVMORSB0	 $43  transparent selection 
+AVMORSN0	 $43  transparent selection 
+AVMORSW0	 $43  transparent selection 
+AVMSAWD0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMSAWG0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMSAWL0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMSAWR0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMSULF0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMSWDS0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMSWSN0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVMWMSN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVMWNDD0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVMWWHL0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVMWWSN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVRCGEN0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVRCGEN1	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVRCGEN2	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVRCGEN3	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVRCGEN4	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVRCGEN5	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVRCGEN6	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVRCGEN7	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVRCGN00	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVRCGN01	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVRCGN02	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVRCGN03	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVRCGN04	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVRCGN05	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVRCGN06	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVRCGN07	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVRCGN08	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVSARNA0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVSAXIS0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVSBUOY0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVSCLVD0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVSCLVG0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVSCLVS0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVSFNTN0	 $43  transparent faintShadow(S) deepShadow(S) selection(F) 
+AVSGRDN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVSGZBO0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVSIDOL0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVSLIBR0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVSMARL	 $43  transparent faintShadow(S) deepShadow(S) 
+AVSMERC0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVSRING0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVSSCHM0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVSTMPL0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVSUNIV0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVSUTOP0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVSWAR20	 $43  transparent faintShadow(S) deepShadow(S) 
+AVSWTCH0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVTCAVE	 $43  transparent deepShadow(S) 
+AVTCHST0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVTCRYS0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVTGEMS0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVTGOLD0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVTMERC0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVTMYST0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVTORE0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVTRNDM0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVTSULF0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVTWAGN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVTWOOD0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWANGL	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWARCH	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWATTAK	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWAZURE	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWBASL	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWBEHL0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWBEHX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWBHMT0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWBHMX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWBKNI0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWBKNX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWBOAR	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWBONE0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWBONX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWCDRG	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWCENT0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWCENX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWCVLR0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWCVLX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWCYCL0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWCYCX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWDDRX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWDEMN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWDEMX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWDEVL0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWDEVX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWDFIR	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWDFLY	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWDRAG0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWDRAX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWDWRF0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWDWRX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWEFRE0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWEFRX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWELFW0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWELFX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWELMA0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWELME0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWELMF0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWELMW0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWENCH	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWFBIRD	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWFDRG	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGARG0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGARX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGBAS	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGENI0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGENX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGLMD0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGLMG0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGNLL0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGNLX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGOBL0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGOBX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGOG0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGOGX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGOLM0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGOLX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGORG	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGORX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGREM0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGREX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGRIF	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWGRIX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWHALF	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWHARP0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWHARX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWHCRS	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWHOUN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWHOUX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWHYDR	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWHYDX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWICEE	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWIMP0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWIMPX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWINFR	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWLCRS	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWLICH0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWLICX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWLIZR	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWLIZX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMAGE0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMAGEL	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMAGX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMANT0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMANX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMEDS	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMEDX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMINO	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMINX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMON1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMON2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMON3	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMON4	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMON5	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMON6	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMON7	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMONK	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMONX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMRND0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWMUMY	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWNAGA0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWNAGX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWNOMD	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWNRG	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWOGRE0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWOGRX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWORC0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWORCX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWPEAS	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWPEGA0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWPEGX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWPHX	 $43  transparent 
+AVWPIKE	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWPIKX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWPITF0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWPITX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWPIXIE	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWPSYE	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWRDRG	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWROC0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWROCX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWROG	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWRUST	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWSHARP	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWSKEL0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWSKEX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWSPRIT	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWSTONE	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWSTORM	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWSWRD0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWSWRX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWTITN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWTITX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWTREE0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWTREX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWTRLL	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWTROG0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWUNIC0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWUNIX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWVAMP0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWVAMX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWWIGH	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWWIGX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWWOLF0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWWOLX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWWYVR	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWWYVX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWZOMB0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVWZOMX0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXABND0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVXALTAR	 $43  transparent deepShadow(S) 
+AVXAMDS	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXAMGR	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXAMLV	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXAMRO	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXAMSN	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXAMSU	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXAMSW	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBGT00	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBGT10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBGT20	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBGT30	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBGT40	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBGT50	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBGT60	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBGT70	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBNK10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBNK20	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBNK30	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBNK40	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBNK50	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBNK60	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBNK70	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBOAT0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBOAT1	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBOAT2	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBOR00	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBOR10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBOR20	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBOR30	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBOR40	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBOR50	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBOR60	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBOR70	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBOR80	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXBTTL0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXCCHT0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXCF0	 $43  transparent 
+AVXCF1	 $43  transparent 
+AVXCF2	 $43  transparent 
+AVXCF3	 $43  transparent 
+AVXCF4	 $43  transparent 
+AVXCF5	 $43  transparent 
+AVXCF6	 $43  transparent 
+AVXCF7	 $43  transparent selectionFaintShadow(F) 
+AVXCFDS0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXCFLV0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXCFSN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXCG1	 $43  transparent 
+AVXCG2	 $43  transparent 
+AVXCG3	 $43  transparent 
+AVXCG4	 $43  transparent 
+AVXCG5	 $43  transparent 
+AVXCG6	 $43  transparent 
+AVXCG7	 $43  transparent 
+AVXCOVR0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXCRSD0	 $43  transparent 
+AVXDEND0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXDENT	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXEF0	 $43  transparent 
+AVXEF1	 $43  transparent 
+AVXEF2	 $43  transparent 
+AVXEF3	 $43  transparent 
+AVXEF4	 $43  transparent 
+AVXEF5	 $43  transparent 
+AVXEF6	 $43  transparent 
+AVXEF7	 $43  transparent 
+AVXEYEM0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXFF0	 $43  transparent 
+AVXFF1	 $43  transparent 
+AVXFF2	 $43  transparent 
+AVXFF3	 $43  transparent 
+AVXFF4	 $43  transparent 
+AVXFF5	 $43  transparent 
+AVXFF6	 $43  transparent 
+AVXFF7	 $43  transparent 
+AVXFGLD	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXFW0	 $43  transparent 
+AVXFW1	 $43  transparent 
+AVXFW2	 $43  transparent 
+AVXFW3	 $43  transparent 
+AVXFW4	 $43  transparent 
+AVXFW5	 $43  transparent 
+AVXFW6	 $43  transparent 
+AVXFW7	 $43  transparent 
+AVXFYTH0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXGYDS0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXGYNE0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXGYSN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXHG0	 $43  transparent lightShadow deepShadow(S) 
+AVXHG1	 $43  transparent 
+AVXHG2	 $43  transparent 
+AVXHG3	 $43  transparent 
+AVXHG4	 $43  transparent 
+AVXHG5	 $43  transparent 
+AVXHG6	 $43  transparent deepShadow(S) 
+AVXHG7	 $43  transparent deepShadow(S) 
+AVXHILD0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXHILG0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXHUTM0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXKEY00	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXKEY10	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXKEY20	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXKEY30	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXKEY40	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXKEY50	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXKEY60	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXKEY70	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXL1SH0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXL2SH0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXL3SH0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXLP0	 $43  transparent 
+AVXLP1	 $43  transparent 
+AVXLP2	 $43  transparent 
+AVXLP3	 $43  transparent 
+AVXLP4	 $43  transparent 
+AVXLP5	 $43  transparent 
+AVXLP6	 $43  transparent 
+AVXLP7	 $43  transparent 
+AVXLTHS0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVXMAGS0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMAPS0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMAPU0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMAPW0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMC0	 $43  transparent 
+AVXMC1	 $43  transparent 
+AVXMC2	 $43  transparent 
+AVXMC3	 $43  transparent 
+AVXMC4	 $43  transparent 
+AVXMC5	 $43  transparent 
+AVXMC6	 $43  transparent 
+AVXMC7	 $43  transparent 
+AVXMERM0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMKTB0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMKTT0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN1B0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN1R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN1Y0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN2G0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN2O0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN2P0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN4B0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN4I0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN4O0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN5B0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN5I0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN5O0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN6B0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN6I0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN6O0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN7B0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN7I0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN7O0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN8B0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN8I0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMN8O0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMP1	 $43  transparent 
+AVXMP2	 $43  transparent 
+AVXMP3	 $43  transparent 
+AVXMP4	 $43  transparent 
+AVXMP5	 $43  transparent 
+AVXMP6	 $43  transparent 
+AVXMP7	 $43  transparent 
+AVXMX1B0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMX1R0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXMX1Y0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXOBLB	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXOBLG	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXOBLK	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXOBLO	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXOBLP	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXOBLR	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXOBLW	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXOBLY	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXOSIS0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXPLLR0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXPLNS0	 $43  transparent 
+AVXPOST0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXPRMD0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXPRSN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXPSSN	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXPSTR0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXREDS0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXREDW	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXRK0	 $43  transparent 
+AVXRK1	 $43  transparent 
+AVXRK2	 $43  transparent 
+AVXRK3	 $43  transparent 
+AVXRK4	 $43  transparent 
+AVXRK5	 $43  transparent 
+AVXRK6	 $43  transparent 
+AVXRK7	 $43  transparent 
+AVXRLLY0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXSANC0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXSCHL0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXSEEB0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXSEER0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXSEEY0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXSHYD0	 $43  transparent faintShadow(S) deepShadow(S) selection 
+AVXSIRN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXSKDS0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXSNDG0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXSNDS0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXSNLV0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXSNSN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXSNSW0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXSTBL0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXTHRN	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXTOMB0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXTREK0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXTVRN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXWELG0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXWELR0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXWHRL0	 $43  transparent 
+AVXWLSN0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVXWTRH0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVZEVNT0	 $43  transparent faintShadow(S) deepShadow(S) 
+AVZGRAIL	 $43  transparent faintShadow(S) deepShadow(S) 
+BORES	 $47  
+C01SPA0	 $40  transparent(F) 
+C01SPE0	 $40  transparent(F) 
+C01SPF	 $40  transparent(F) 
+C01SPF0	 $40  transparent(F) 
+C01SPW	 $40  transparent(F) 
+C01SPW0	 $40  transparent(F) 
+C02SPA0	 $40  transparent(F) 
+C02SPE0	 $40  transparent(F) 
+C02SPF0	 $40  transparent(F) 
+C03SPA0	 $40  transparent(F) 
+C03SPA1	 $40  transparent(F) 
+C03SPW	 $40  transparent(F) 
+C03SPW0	 $40  transparent(F) 
+C04SPA0	 $40  transparent(F) 
+C04SPE0	 $40  transparent(F) 
+C04SPF0	 $40  transparent(F) 
+C04SPW	 $40  transparent(F) 
+C04SPW0	 $40  transparent(F) 
+C05SPE0	 $40  transparent(F) 
+C05SPF0	 $40  transparent(F) 
+C05SPW	 $40  transparent(F) 
+C05SPW0	 $40  transparent(F) 
+C06SPF0	 $40  transparent(F) 
+C06SPW	 $40  transparent(F) 
+C06SPW0	 $40  transparent(F) 
+C07SPA0	 $40  transparent(F) 
+C07SPA1	 $40  transparent(F) 
+C07SPE0	 $40  transparent(F) 
+C07SPF0	 $40  transparent(F) 
+C07SPF1	 $40  transparent(F) 
+C07SPF10	 $40  transparent(F) 
+C07SPF11	 $40  transparent(F) 
+C07SPF2	 $40  transparent(F) 
+C07SPF3	 $40  transparent(F) 
+C07SPF4	 $40  transparent(F) 
+C07SPF5	 $40  transparent(F) 
+C07SPF6	 $40  transparent(F) 
+C07SPF60	 $40  transparent(F) 
+C07SPF61	 $40  transparent(F) 
+C07SPF62	 $40  transparent(F) 
+C07SPF7	 $40  transparent(F) 
+C07SPF8	 $40  transparent(F) 
+C07SPF9	 $40  transparent(F) 
+C07SPW	 $40  transparent(F) 
+C07SPW0	 $40  transparent(F) 
+C08SPE0	 $40  transparent(F) 
+C08SPF0	 $40  transparent(F) 
+C08SPW0	 $40  transparent(F) 
+C08SPW1	 $40  transparent(F) 
+C08SPW2	 $40  transparent(F) 
+C08SPW3	 $40  transparent(F) 
+C08SPW4	 $40  transparent(F) 
+C08SPW5	 $40  transparent(F) 
+C09SPA0	 $40  transparent(F) 
+C09SPE0	 $40  transparent(F) 
+C09SPF0	 $40  transparent(F) 
+C09SPF1	 $40  transparent(F) 
+C09SPF2	 $40  transparent(F) 
+C09SPF3	 $40  transparent(F) 
+C09SPW0	 $40  transparent(F) 
+C0ACID	 $40  transparent(F) 
+C0FEAR	 $40  transparent(F) 
+C10SPA0	 $40  transparent(F) 
+C10SPF0	 $40  transparent(F) 
+C10SPW	 $40  transparent(F) 
+C11SPA0	 $40  transparent(F) 
+C11SPA1	 $40  transparent(F) lightShadow(F) 
+C11SPE0	 $40  transparent(F) 
+C11SPF0	 $40  transparent(F) 
+C11SPW0	 $40  transparent(F) 
+C12SPA0	 $40  transparent(F) 
+C12SPE0	 $40  transparent(F) 
+C12SPF0	 $40  transparent(F) 
+C12SPF1	 $40  transparent(F) 
+C13SPA0	 $40  transparent(F) 
+C13SPE0	 $40  transparent(F) 
+C13SPF	 $40  transparent(F) 
+C13SPF0	 $40  transparent(F) 
+C13SPW0	 $40  transparent(F) 
+C14SPA0	 $40  transparent(F) 
+C14SPE0	 $40  transparent(F) 
+C15SPA0	 $40  transparent(F) 
+C15SPE0	 $40  transparent(F) 
+C15SPE1	 $40  transparent(F) 
+C15SPE10	 $40  transparent(F) 
+C15SPE11	 $40  transparent(F) 
+C15SPE2	 $40  transparent(F) 
+C15SPE3	 $40  transparent(F) 
+C15SPE4	 $40  transparent(F) 
+C15SPE5	 $40  transparent(F) 
+C15SPE6	 $40  transparent(F) 
+C15SPE7	 $40  transparent(F) 
+C15SPE8	 $40  transparent(F) 
+C15SPE9	 $40  transparent(F) 
+C16SPE	 $40  transparent(F) 
+C16SPE0	 $40  transparent(F) 
+C17SPE0	 $40  transparent(F) 
+C17SPE1	 $40  transparent(F) 
+C17SPE2	 $40  transparent(F) 
+C17SPW0	 $40  transparent(F) 
+C18SPW0	 $40  transparent(F) 
+C20SPX	 $40  transparent(F) 
+C20SPX0	 $40  transparent(F) 
+C20SPX1	 $40  transparent(F) 
+C20SPX2	 $40  transparent(F) 
+C20SPX3	 $40  transparent(F) 
+C20SPX4	 $40  transparent(F) 
+CABEHE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CADEVL	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CADRGN	 $42  transparent faintShadow(S) lightShadow deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CAELEM	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CALIZA	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CAMAGE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CAMCUSL	 $47  
+CAMCUSM	 $47  
+CAMPCAN	 $47  
+CAMPCHK	 $47  
+CAMPCN	 $47  
+CAMPLD	 $47  
+CAMPRST	 $47  
+CAMPSTAR	 $47  
+CAMPVID	 $47  
+CANGEL	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CAPEGS	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CBASIL	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CBBEGIB	 $47  
+CBCANCB	 $47  
+CBDRGN	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CBDWAR	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CBEHOL	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CBGOG	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CBKNIG	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CBLORD	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CBOAR	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CBRESTB	 $47  
+CBTREE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CBVIDEB	 $47  
+CBWLFR	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CCAVLR	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CCDRGN	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CCENTR	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CCERBU	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CCGORG	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CCHAMP	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CCHYDR	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CCMCOR	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CCRUSD	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CCYCLLOR	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CCYCLR	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CDDRAG	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CDEVIL	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CDGOLE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CDRFIR	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CDRFLY	 $42  transparent faintShadow(S) deepShadow(S) selection(S) 
+CDWARF	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CECENT	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CEELEM	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CEFREE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CEFRES	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CELF	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CENCH	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CEVEYE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CFAMIL	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CFBIRD	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CFDRGN	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CFELEM	 $42  transparent selection(S) 
+CGARGO	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CGBASI	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CGDRAG	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CGENIE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CGGOLE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CGNOLL	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CGNOLM	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CGOBLI	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CGOG	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CGRELF	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CGREMA	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CGREMM	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CGRIFF	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CGTITA	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CH00	 $49  transparent faintShadow(S) deepShadow(S) 
+CH01	 $49  transparent faintShadow(S) deepShadow(S) 
+CH010	 $49  transparent faintShadow(S) deepShadow(S) 
+CH012	 $49  transparent faintShadow(S) deepShadow(S) 
+CH013	 $49  transparent faintShadow(S) deepShadow(S) 
+CH014	 $49  transparent faintShadow(S) deepShadow(S) 
+CH015	 $49  transparent faintShadow(S) deepShadow(S) 
+CH02	 $49  transparent faintShadow(S) deepShadow(S) 
+CH03	 $49  transparent faintShadow(S) deepShadow(S) 
+CH04	 $49  transparent faintShadow(S) deepShadow(S) 
+CH05	 $49  transparent faintShadow(S) deepShadow(S) 
+CH06	 $49  transparent faintShadow(S) deepShadow(S) 
+CH07	 $49  transparent faintShadow(S) deepShadow(S) 
+CH08	 $49  transparent faintShadow(S) deepShadow(S) 
+CH09	 $49  transparent faintShadow(S) deepShadow(S) 
+CH11	 $49  transparent faintShadow(S) deepShadow(S) 
+CH16	 $49  transparent faintShadow(S) deepShadow(S) 
+CH17	 $49  transparent faintShadow(S) deepShadow(S) 
+CHALBD	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CHALF	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CHARPH	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CHARPY	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CHCBOW	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CHDRGN	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CHGOBL	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CHHOUN	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CHYDRA	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CICEE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CIGOLE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CIMP	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CITROG	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CLCBOW	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CLICH	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CLRDELT1	 $43  transparent 
+CLRDELT2	 $43  transparent 
+CLRDELT3	 $43  transparent 
+CLRDELT4	 $43  transparent 
+CLRRVR	 $45  transparent(F) 
+CLTITA	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CMAGE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CMAGEL	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CMAGOG	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CMCORE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CMEDUQ	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CMEDUS	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CMFLAGL	 $40  transparent(F) 
+CMFLAGR	 $40  transparent(F) 
+CMINOK	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CMINOT	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CMLMINE	 $47  selectionFaintShadow(F) 
+CMONKK	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CMPSCAN	 $47  
+CMQSAND	 $47  selectionFaintShadow(F) 
+CMUMMY	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CNAGA	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CNAGAG	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CNDRGN	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CNOMAD	 $42  transparent faintShadow(S) lightShadow deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CNOSFE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CNRG	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+COBBRD	 $45  transparent(F) 
+CODEFAUL	 $47  
+COGARG	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+COGMAG	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+COGRE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+COHDEM	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+COMSLIDE	 $47  
+CORC	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CORCCH	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CPEAS	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CPEGAS	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CPFIEN	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CPFOE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CPHX	 $42  transparent selection(S) 
+CPIXIE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CPKMAN	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CPLICH	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CPLIZA	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CPRGOGX	 $40  transparent(F) selection(F) 
+CPRGRE	 $40  transparent(F) 
+CPRGTIX	 $40  transparent(F) selection(F) 
+CPRSMALL	 $47  transparent(F) 
+CPRZEAX	 $40  transparent(F) 
+CPSYEL	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CRADVNTR	 $46  transparent(F) 
+CRANGL	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CRCOMBAT	 $46  transparent(F) 
+CRDEFLT	 $46  transparent(F) 
+CRDRGN	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CREST58	 $47  
+CRGRIF	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CROC	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CROGUE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CRSDGN	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CRSPELL	 $46  transparent(F) 
+CSGOLE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CSGRCK	 $40  transparent(F) 
+CSHARP	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CSKELE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CSPRITE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CSSARM	 $47  transparent(F) 
+CSSCUS	 $47  transparent(F) 
+CSSEXIT	 $47  transparent(F) 
+CSSROE	 $47  transparent(F) 
+CSSSOD	 $47  transparent(F) 
+CSTONE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CSTORM	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CSULTA	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CSWORD	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CTBIRD	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CTHDEM	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CTREE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CTROGL	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CTROLL	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CUNICO	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CUWLFR	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CVAMP	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CWELEM	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CWIGHT	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CWRAIT	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CWSKEL	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CWUNIC	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CWYVER	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CWYVMN	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CYBEHE	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CZEALT	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CZOMBI	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+CZOMLO	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+DEFAULT	 $43  selection 
+DIALGBOX	 $47  transparent(F) 
+DIRTRD	 $45  transparent(F) 
+DIRTTL	 $45  
+EDG	 $45  
+FLAGPORT	 $47  faintShadow(F) lightShadow(F) mediumShadow(F) 
+GRASTL	 $45  
+GRAVRD	 $45  transparent(F) 
+GSPBGIN	 $47  
+GSPBUT2	 $47  
+GSPBUT3	 $47  
+GSPBUT4	 $47  
+GSPBUT5	 $47  
+GSPBUT6	 $47  
+GSPBUT7	 $47  
+GSPBUTT	 $47  
+GSPEXIT	 $47  
+GTBACK	 $47  transparent(F) 
+GTCAMPN	 $47  transparent(F) 
+GTMULTI	 $47  transparent(F) 
+GTSINGL	 $47  transparent(F) 
+GTTUTOR	 $47  transparent(F) 
+HALLCSTL	 $47  
+HALLDUNG	 $47  
+HALLELEM	 $47  
+HALLFORT	 $47  
+HALLINFR	 $47  
+HALLNECR	 $47  
+HALLRAMP	 $47  transparent(F) 
+HALLSTRN	 $47  transparent(F) 
+HALLTOWR	 $47  
+HISCCAM	 $47  
+HISCEXT	 $47  
+HISCRES	 $47  
+HISCSTA	 $47  
+HOURGLAS	 $47  transparent(F) 
+HOURSAND	 $47  transparent(F) 
+HSBTNS	 $47  
+HSBTNS2	 $47  
+HSBTNS3	 $47  
+HSBTNS4	 $47  
+HSBTNS5	 $47  
+HSBTNS6	 $47  
+HSBTNS7	 $47  
+HSBTNS8	 $47  
+HSBTNS9	 $47  
+IAM000	 $47  
+IAM001	 $47  
+IAM002	 $47  
+IAM003	 $47  
+IAM004	 $47  
+IAM005	 $47  
+IAM006	 $47  
+IAM007	 $47  
+IAM008	 $47  
+IAM009	 $47  
+IAM010	 $47  
+IAM011	 $47  
+IAM012	 $47  
+IAM013	 $47  
+IAM014	 $47  
+IAM015	 $47  
+IBUY30	 $47  
+IBY6432	 $47  
+ICANCEL	 $47  
+ICEDELT1	 $43  transparent 
+ICEDELT2	 $43  transparent 
+ICEDELT3	 $43  transparent 
+ICEDELT4	 $43  transparent 
+ICM001	 $47  
+ICM002	 $47  
+ICM003	 $47  
+ICM004	 $47  
+ICM005	 $47  
+ICM006	 $47  
+ICM007	 $47  
+ICM008	 $47  
+ICM009	 $47  
+ICM010	 $47  
+ICM011	 $47  
+ICM012	 $47  
+ICN6432	 $47  
+ICYRVR	 $45  transparent(F) 
+IDV6432	 $47  
+IGPCRDIV	 $47  
+IHM000	 $47  
+IHM001	 $47  
+IHM002	 $47  
+ILCK22	 $47  
+ILCK30	 $47  
+ILCK42	 $47  
+ILCK82	 $47  
+ILCKB	 $47  
+ILCKS	 $47  
+IMANA	 $47  
+IMOBIL	 $47  
+IMRL22	 $47  
+IMRL30	 $47  
+IMRL42	 $47  
+IMRL82	 $47  
+IMRLB	 $47  
+IMRLS	 $47  
+IOK6432	 $47  
+IOKAY	 $47  
+IOKAY32	 $47  
+IRCBTNS	 $47  
+ISAVE	 $47  
+ITGFLAGS	 $47  transparent(F) 
+ITMCL	 $47  
+ITMCLS	 $47  transparent(F) 
+ITMTL	 $47  
+ITMTLS	 $47  transparent(F) 
+ITPA	 $47  transparent(F) 
+ITPT	 $47  
+IVIEWCR	 $47  
+IVIEWCR2	 $47  
+LAVATL	 $45  
+LAVDELT1	 $43  transparent 
+LAVDELT2	 $43  transparent 
+LAVDELT3	 $43  transparent 
+LAVDELT4	 $43  transparent 
+LAVRVR	 $45  transparent(F) 
+LOADPROG	 $47  
+MMENUCR	 $47  transparent(F) 
+MMENUHS	 $47  transparent(F) 
+MMENULG	 $47  transparent(F) 
+MMENUNG	 $47  transparent(F) 
+MMENUQT	 $47  transparent(F) 
+MUBCANC	 $47  
+MUBCHCK	 $47  
+MUBDRCT	 $47  
+MUBEXIT	 $47  
+MUBHOST	 $47  
+MUBHOT	 $47  
+MUBIPX	 $47  
+MUBJOIN	 $47  
+MUBMODM	 $47  
+MUBONL	 $47  
+MUBSRCH	 $47  
+MUBTCP	 $47  
+MUDDELT1	 $43  transparent 
+MUDDELT2	 $43  transparent 
+MUDDELT3	 $43  transparent 
+MUDDELT4	 $43  transparent 
+MUDRVR	 $45  transparent(F) 
+MUGSTAT	 $47  
+NEWDAY	 $47  transparent(F) 
+NEWWEEK1	 $47  transparent(F) 
+NEWWEEK2	 $47  transparent(F) 
+NEWWEEK3	 $47  transparent(F) 
+NEWWEEK4	 $47  transparent(F) 
+OBBDT01	 $47  transparent(F) 
+OBBHS02	 $47  transparent(F) 
+OBBHS03	 $47  transparent(F) 
+OBBHS04	 $47  transparent(F) 
+OBBHS11A	 $47  transparent(F) 
+OBBHS12B	 $47  transparent(F) 
+OBBHS14B	 $47  transparent(F) 
+OBBHS16A	 $47  transparent(F) 
+OBBTS04	 $47  transparent(F) 
+OBCFS00	 $47  transparent(F) 
+OBCFS01	 $47  transparent(F) 
+OBCFS02	 $47  transparent(F) 
+OBCFS03	 $47  transparent(F) 
+OBDINO1	 $47  transparent(F) 
+OBDINO2	 $47  transparent(F) 
+OBDINO3	 $47  transparent(F) 
+OBDRK01	 $47  transparent(F) 
+OBDRK02	 $47  transparent(F) 
+OBDRK03	 $47  transparent(F) 
+OBDRK04	 $47  transparent(F) 
+OBDSH01	 $47  transparent(F) 
+OBDSM01	 $47  transparent(F) 
+OBDSM02	 $47  transparent(F) 
+OBDSS02	 $47  transparent(F) 
+OBDSS17	 $47  transparent(F) 
+OBDTF03	 $47  transparent(F) 
+OBDTS03	 $47  transparent(F) 
+OBDTS04	 $47  transparent(F) 
+OBDTS14	 $47  transparent(F) 
+OBDTS15	 $47  transparent(F) 
+OBEFS00	 $47  transparent(F) 
+OBEFS01	 $47  transparent(F) 
+OBEFS02	 $47  transparent(F) 
+OBEFS03	 $47  transparent(F) 
+OBEFS04	 $47  transparent(F) 
+OBFFS00	 $47  transparent(F) 
+OBFFS01	 $47  transparent(F) 
+OBFFS02	 $47  transparent(F) 
+OBFFS03	 $47  transparent(F) 
+OBFFS04	 $47  transparent(F) 
+OBGLG01	 $47  transparent(F) 
+OBGRK01	 $47  transparent(F) 
+OBGRK02	 $47  transparent(F) 
+OBGRS01	 $47  transparent(F) 
+OBGRS02	 $47  transparent(F) 
+OBGRS03	 $47  transparent(F) 
+OBGST01	 $47  transparent(F) 
+OBHGS00	 $47  transparent(F) 
+OBHGS01	 $47  transparent(F) 
+OBHGS02	 $47  transparent(F) 
+OBHGS03	 $47  transparent(F) 
+OBHGS04	 $47  transparent(F) 
+OBLPS00	 $47  transparent(F) 
+OBLPS01	 $47  transparent(F) 
+OBLPS02	 $47  transparent(F) 
+OBLPS03	 $47  transparent(F) 
+OBLVS01	 $47  transparent(F) 
+OBLVS02	 $47  transparent(F) 
+OBLVS03	 $47  transparent(F) 
+OBLVS04	 $47  transparent(F) 
+OBLVS09	 $47  transparent(F) 
+OBLVS17	 $47  transparent(F) 
+OBLVS22	 $47  transparent(F) 
+OBMCS00	 $47  transparent(F) 
+OBMCS01	 $47  transparent(F) 
+OBMCS02	 $47  transparent(F) 
+OBRGS01	 $47  transparent(F) 
+OBRGS02	 $47  transparent(F) 
+OBRGS03	 $47  transparent(F) 
+OBRGS04	 $47  transparent(F) 
+OBRGS05	 $47  transparent(F) 
+OBRGS06	 $47  transparent(F) 
+OBRLS00	 $47  transparent(F) 
+OBRLS01	 $47  transparent(F) 
+OBRLS02	 $47  transparent(F) 
+OBRLS03	 $47  transparent(F) 
+OBSKEL1	 $47  transparent(F) 
+OBSKEL2	 $47  transparent(F) 
+OBSNS01	 $47  transparent(F) 
+OBSNS02	 $47  transparent(F) 
+OBSNS03	 $47  transparent(F) 
+OBSNS04	 $47  transparent(F) 
+OBSNS05	 $47  transparent(F) 
+OBSNS06	 $47  transparent(F) 
+OBSNS07	 $47  transparent(F) 
+OBSNS08	 $47  transparent(F) 
+OBSNS09	 $47  transparent(F) 
+OBSNS10	 $47  transparent(F) 
+OBSUS01	 $47  transparent(F) 
+OBSUS02	 $47  transparent(F) 
+OBSUS11B	 $47  transparent(F) 
+OBSWS01	 $47  transparent(F) 
+OBSWS02	 $47  transparent(F) 
+OBSWS03	 $47  transparent(F) 
+OBSWS04	 $47  transparent(F) 
+OBSWS11B	 $47  transparent(F) 
+OBSWS13A	 $47  transparent(F) 
+OVARTSLT	 $47  
+OVBUTN1	 $47  
+OVBUTN2	 $47  
+OVBUTN3	 $47  
+OVBUTN4	 $47  
+OVBUTN5	 $47  
+OVBUTN6	 $47  
+OVMINES	 $47  transparent(F) 
+OVSLOT	 $47  
+OVTITLE	 $47  
+PCYCLBX	 $40  transparent(F) 
+PELFX	 $40  transparent(F) 
+PHALF	 $40  transparent(F) 
+PICEE	 $40  transparent(F) 
+PLCBOWX	 $40  transparent(F) 
+PLICH	 $40  transparent(F) 
+PMAGEX	 $40  transparent(F) 
+PMEDUSX	 $40  transparent(F) 
+POOF	 $40  transparent(F) 
+PORCHX	 $40  transparent(F) 
+PPLIZAX	 $40  transparent(F) 
+PRSTRIPS	 $47  
+PSKIL32	 $47  
+PSKIL42	 $47  
+PSKILBON	 $47  
+PSKILL	 $47  
+QLEXIT	 $47  
+RADAR	 $47  transparent(F) 
+RANISLD	 $47  
+RANNONE	 $47  
+RANNORM	 $47  
+RANNUM0	 $47  
+RANNUM1	 $47  
+RANNUM2	 $47  
+RANNUM3	 $47  
+RANNUM4	 $47  
+RANNUM5	 $47  
+RANNUM6	 $47  
+RANNUM7	 $47  
+RANNUM8	 $47  
+RANRAND	 $47  
+RANSHOW	 $47  
+RANSIZL	 $47  
+RANSIZM	 $47  
+RANSIZS	 $47  
+RANSIZX	 $47  
+RANSTRG	 $47  
+RANUNDR	 $47  
+RANWEAK	 $47  
+RESOUR82	 $47  
+RESOURCE	 $47  transparent(F) 
+ROCKTL	 $45  
+ROUGTL	 $45  
+SANDTL	 $45  
+SCALBUT	 $47  
+SCBUTCP	 $47  
+SCBUTT1	 $47  
+SCBUTT2	 $47  
+SCBUTT3	 $47  
+SCBUTT4	 $47  
+SCBUTT5	 $47  
+SCHOOLS	 $47  transparent(F) 
+SCLGBUT	 $47  
+SCMDBUT	 $47  
+SCNRALL	 $47  
+SCNRBACK	 $47  
+SCNRBDN	 $47  
+SCNRBEG	 $47  
+SCNRBLF	 $47  
+SCNRBRT	 $47  
+SCNRBSL	 $47  
+SCNRBUP	 $47  
+SCNREXI	 $47  
+SCNRLOD	 $47  
+SCNRLOSS	 $47  transparent(F) 
+SCNRMPSZ	 $47  
+SCNRNEX	 $47  
+SCNRSAV	 $47  
+SCNRSTAR	 $47  
+SCNRVICT	 $47  transparent(F) 
+SCNRVL	 $47  transparent(F) 
+SCRNHRL	 $47  transparent(F) 
+SCRNHRR	 $47  transparent(F) 
+SCSELC	 $47  transparent(F) 
+SCSMBUT	 $47  
+SCXLBUT	 $47  
+SECSK32	 $47  
+SECSK82	 $47  
+SECSKILL	 $47  
+SGEXPL	 $40  transparent(F) 
+SGTWMTA	 $40  transparent(F) 
+SGTWMTB	 $40  transparent(F) selection(F) 
+SLIDBACK	 $47  selectionFaintShadow(F) 
+SLIDBUH	 $47  
+SLIDBUV	 $47  
+SLIDEBUH	 $47  
+SLIDEBUV	 $47  
+SLIDKNOB	 $47  
+SMALRES	 $47  transparent(F) 
+SMBAL	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+SMBALX	 $40  transparent(F) 
+SMCART	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+SMCATA	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+SMCATX	 $40  transparent(F) 
+SMTENT	 $42  transparent faintShadow(S) deepShadow(S) selection(S) selectionDeepShadow(S) selectionFaintShadow(S) 
+SNOWTL	 $45  
+SOLOAD	 $47  
+SOMAIN	 $47  
+SOQUIT	 $47  
+SORETRN	 $47  
+SORSTRT	 $47  
+SOSAVE	 $47  
+SP01_	 $40  transparent(F) 
+SP02_	 $40  transparent(F) 
+SP03_	 $40  transparent(F) 
+SP04_	 $40  transparent(F) 
+SP05_	 $40  transparent(F) 
+SP06_	 $40  transparent(F) 
+SP07_A	 $40  transparent(F) 
+SP07_B	 $40  transparent(F) 
+SP08_	 $40  transparent(F) 
+SP09_	 $40  transparent(F) 
+SP10_	 $40  transparent(F) 
+SP11_	 $40  transparent(F) 
+SP12_	 $40  transparent(F) 
+SP13_	 $40  transparent(F) lightShadow(F) 
+SPELLBON	 $47  transparent(F) 
+SPELLINT	 $47  transparent(F) 
+SPELLS	 $47  transparent(F) lightShadow(F) mediumShadow(F) 
+SPELLSCR	 $47  transparent(F) 
+SPELTAB	 $47  transparent(F) 
+SPLEVA	 $47  transparent(F) 
+SPLEVE	 $47  transparent(F) 
+SPLEVF	 $47  transparent(F) 
+SPLEVW	 $47  transparent(F) 
+SSKILBON	 $47  transparent(F) 
+SUBBTL	 $45  
+SWMPTL	 $45  
+SYSLB	 $47  
+SYSOB10	 $47  
+SYSOB11	 $47  
+SYSOB12	 $47  
+SYSOB13	 $47  
+SYSOPB1	 $47  
+SYSOPB2	 $47  
+SYSOPB3	 $47  
+SYSOPB4	 $47  
+SYSOPB5	 $47  
+SYSOPB6	 $47  
+SYSOPB7	 $47  
+SYSOPB8	 $47  
+SYSOPB9	 $47  
+SYSOPCHK	 $47  
+TBCSBLAK	 $47  transparent(F) 
+TBCSBOAT	 $47  transparent(F) 
+TBCSCAS2	 $47  transparent(F) 
+TBCSCAS3	 $47  transparent(F) 
+TBCSCSTL	 $47  transparent(F) 
+TBCSDOCK	 $47  transparent(F) 
+TBCSDW_0	 $47  transparent(F) 
+TBCSDW_1	 $47  transparent(F) 
+TBCSDW_2	 $47  transparent(F) 
+TBCSDW_3	 $47  transparent(F) 
+TBCSDW_4	 $47  transparent(F) 
+TBCSDW_5	 $47  transparent(F) 
+TBCSDW_6	 $47  transparent(F) 
+TBCSEXT0	 $47  transparent(F) 
+TBCSEXT1	 $47  transparent(F) selectionFaintShadow(F) 
+TBCSEXT2	 $47  
+TBCSHAL2	 $47  transparent(F) 
+TBCSHAL3	 $47  transparent(F) selectionFaintShadow(F) 
+TBCSHAL4	 $47  transparent(F) selectionFaintShadow(F) 
+TBCSHALL	 $47  transparent(F) 
+TBCSHOLY	 $47  transparent(F) 
+TBCSHRD1	 $47  transparent(F) 
+TBCSHRD2	 $47  transparent(F) 
+TBCSMAG2	 $47  transparent(F) 
+TBCSMAG3	 $47  transparent(F) 
+TBCSMAG4	 $47  transparent(F) 
+TBCSMAGE	 $47  transparent(F) 
+TBCSMARK	 $47  transparent(F) 
+TBCSSILO	 $47  transparent(F) 
+TBCSSPEC	 $47  transparent(F) 
+TBCSTVRN	 $47  transparent(F) 
+TBCSUP_0	 $47  transparent(F) 
+TBCSUP_1	 $47  transparent(F) 
+TBCSUP_2	 $47  transparent(F) 
+TBCSUP_3	 $47  transparent(F) 
+TBCSUP_4	 $47  transparent(F) 
+TBCSUP_5	 $47  transparent(F) 
+TBCSUP_6	 $47  transparent(F) 
+TBDNBLAK	 $47  transparent(F) 
+TBDNCAS2	 $47  transparent(F) 
+TBDNCAS3	 $47  transparent(F) 
+TBDNCSTL	 $47  transparent(F) 
+TBDNDW_0	 $47  transparent(F) 
+TBDNDW_1	 $47  
+TBDNDW_2	 $47  transparent(F) 
+TBDNDW_3	 $47  
+TBDNDW_4	 $47  transparent(F) 
+TBDNDW_5	 $47  transparent(F) 
+TBDNDW_6	 $47  transparent(F) 
+TBDNEXT0	 $47  
+TBDNEXT1	 $47  transparent(F) 
+TBDNEXT2	 $47  transparent(F) 
+TBDNHAL2	 $47  transparent(F) 
+TBDNHAL3	 $47  transparent(F) 
+TBDNHAL4	 $47  transparent(F) 
+TBDNHALL	 $47  transparent(F) 
+TBDNHOLY	 $47  transparent(F) 
+TBDNHRD1	 $47  transparent(F) 
+TBDNHRD2	 $47  transparent(F) 
+TBDNMAG2	 $47  
+TBDNMAG3	 $47  
+TBDNMAG4	 $47  
+TBDNMAG5	 $47  
+TBDNMAGE	 $47  
+TBDNMARK	 $47  transparent(F) 
+TBDNSILO	 $47  
+TBDNSPEC	 $47  
+TBDNTVRN	 $47  transparent(F) 
+TBDNUP_0	 $47  transparent(F) 
+TBDNUP_1	 $47  
+TBDNUP_2	 $47  transparent(F) 
+TBDNUP_3	 $47  
+TBDNUP_4	 $47  transparent(F) 
+TBDNUP_5	 $47  transparent(F) 
+TBDNUP_6	 $47  transparent(F) 
+TBELBLAK	 $47  transparent(F) 
+TBELBOAT	 $47  transparent(F) 
+TBELCAS2	 $47  transparent(F) 
+TBELCAS3	 $47  transparent(F) 
+TBELCSTL	 $47  transparent(F) 
+TBELDOCK	 $47  transparent(F) 
+TBELDW_0	 $47  transparent(F) 
+TBELDW_1	 $47  
+TBELDW_2	 $47  transparent(F) 
+TBELDW_3	 $47  transparent(F) selection(F) 
+TBELDW_4	 $47  transparent(F) 
+TBELDW_5	 $47  transparent(F) 
+TBELDW_6	 $47  transparent(F) 
+TBELEXT1	 $47  transparent(F) 
+TBELEXT2	 $47  transparent(F) 
+TBELEXT3	 $47  transparent(F) 
+TBELEXT4	 $47  transparent(F) 
+TBELEXT5	 $47  transparent(F) 
+TBELEXT6	 $47  transparent(F) 
+TBELHAL2	 $47  transparent(F) 
+TBELHAL3	 $47  transparent(F) 
+TBELHAL4	 $47  transparent(F) 
+TBELHALL	 $47  transparent(F) 
+TBELHOLY	 $47  
+TBELHRD1	 $47  transparent(F) 
+TBELHRD2	 $47  transparent(F) 
+TBELMAG2	 $47  transparent(F) 
+TBELMAG3	 $47  transparent(F) 
+TBELMAG4	 $47  transparent(F) 
+TBELMAG5	 $47  transparent(F) 
+TBELMAGE	 $47  transparent(F) 
+TBELMARK	 $47  transparent(F) 
+TBELSILO	 $47  transparent(F) 
+TBELSPEC	 $47  transparent(F) 
+TBELTVRN	 $47  transparent(F) 
+TBELUP_0	 $47  transparent(F) 
+TBELUP_1	 $47  
+TBELUP_2	 $47  transparent(F) 
+TBELUP_3	 $47  transparent(F) selection(F) 
+TBELUP_4	 $47  transparent(F) 
+TBELUP_5	 $47  transparent(F) 
+TBELUP_6	 $47  transparent(F) 
+TBFRBLAK	 $47  transparent(F) 
+TBFRBOAT	 $47  transparent(F) 
+TBFRCAS2	 $47  transparent(F) 
+TBFRCAS3	 $47  transparent(F) 
+TBFRCSTL	 $47  transparent(F) 
+TBFRDOCK	 $47  transparent(F) 
+TBFRDW_0	 $47  transparent(F) 
+TBFRDW_1	 $47  transparent(F) 
+TBFRDW_2	 $47  transparent(F) 
+TBFRDW_3	 $47  transparent(F) 
+TBFRDW_4	 $47  transparent(F) 
+TBFRDW_5	 $47  transparent(F) 
+TBFRDW_6	 $47  transparent(F) 
+TBFREXT0	 $47  transparent(F) 
+TBFREXT1	 $47  transparent(F) 
+TBFREXT2	 $47  
+TBFRHAL2	 $47  transparent(F) 
+TBFRHAL3	 $47  transparent(F) 
+TBFRHAL4	 $47  transparent(F) 
+TBFRHALL	 $47  transparent(F) 
+TBFRHOLY	 $47  transparent(F) 
+TBFRHRD1	 $47  transparent(F) 
+TBFRHRD2	 $47  transparent(F) 
+TBFRMAG2	 $47  transparent(F) 
+TBFRMAG3	 $47  transparent(F) 
+TBFRMAGE	 $47  transparent(F) 
+TBFRMARK	 $47  transparent(F) 
+TBFRSILO	 $47  transparent(F) 
+TBFRSPEC	 $47  transparent(F) 
+TBFRTVRN	 $47  transparent(F) 
+TBFRUP_0	 $47  transparent(F) 
+TBFRUP_1	 $47  transparent(F) 
+TBFRUP_2	 $47  transparent(F) 
+TBFRUP_3	 $47  transparent(F) 
+TBFRUP_4	 $47  transparent(F) 
+TBFRUP_5	 $47  transparent(F) 
+TBFRUP_6	 $47  transparent(F) 
+TBFRWTRW	 $47  transparent(F) 
+TBINBLAK	 $47  transparent(F) 
+TBINCAS2	 $47  transparent(F) 
+TBINCAS3	 $47  transparent(F) 
+TBINCSTL	 $47  transparent(F) 
+TBINDW_0	 $47  transparent(F) 
+TBINDW_1	 $47  transparent(F) 
+TBINDW_2	 $47  transparent(F) 
+TBINDW_3	 $47  transparent(F) 
+TBINDW_4	 $47  transparent(F) 
+TBINDW_5	 $47  transparent(F) 
+TBINDW_6	 $47  transparent(F) 
+TBINEXT0	 $47  transparent(F) 
+TBINEXT1	 $47  transparent(F) 
+TBINEXT2	 $47  transparent(F) selection(F) 
+TBINHAL2	 $47  transparent(F) 
+TBINHAL3	 $47  transparent(F) 
+TBINHAL4	 $47  transparent(F) 
+TBINHALL	 $47  transparent(F) 
+TBINHOLY	 $47  transparent(F) 
+TBINHRD1	 $47  transparent(F) 
+TBINHRD2	 $47  transparent(F) 
+TBINHRD3	 $47  transparent(F) 
+TBINHRD4	 $47  transparent(F) 
+TBINMAG2	 $47  transparent(F) 
+TBINMAG3	 $47  transparent(F) 
+TBINMAG4	 $47  transparent(F) 
+TBINMAG5	 $47  transparent(F) 
+TBINMAGE	 $47  transparent(F) 
+TBINMARK	 $47  transparent(F) 
+TBINSILO	 $47  transparent(F) 
+TBINTVRN	 $47  transparent(F) 
+TBINUP_0	 $47  transparent(F) 
+TBINUP_1	 $47  transparent(F) 
+TBINUP_2	 $47  transparent(F) 
+TBINUP_3	 $47  transparent(F) 
+TBINUP_4	 $47  transparent(F) 
+TBINUP_5	 $47  transparent(F) 
+TBINUP_6	 $47  transparent(F) 
+TBNCBLAK	 $47  transparent(F) 
+TBNCBOAT	 $47  transparent(F) 
+TBNCCAS2	 $47  transparent(F) 
+TBNCCAS3	 $47  transparent(F) 
+TBNCCSTL	 $47  transparent(F) 
+TBNCDOCK	 $47  transparent(F) 
+TBNCDW_0	 $47  transparent(F) 
+TBNCDW_1	 $47  transparent(F) 
+TBNCDW_2	 $47  transparent(F) 
+TBNCDW_3	 $47  transparent(F) 
+TBNCDW_4	 $47  transparent(F) 
+TBNCDW_5	 $47  transparent(F) 
+TBNCDW_6	 $47  transparent(F) 
+TBNCEXT0	 $47  transparent(F) 
+TBNCEXT1	 $47  transparent(F) 
+TBNCEXT2	 $47  transparent(F) 
+TBNCEXT3	 $47  transparent(F) 
+TBNCEXT4	 $47  transparent(F) 
+TBNCEXT5	 $47  transparent(F) 
+TBNCHAL2	 $47  transparent(F) 
+TBNCHAL3	 $47  transparent(F) 
+TBNCHAL4	 $47  transparent(F) 
+TBNCHALL	 $47  transparent(F) 
+TBNCHOLY	 $47  transparent(F) 
+TBNCHRD1	 $47  transparent(F) 
+TBNCHRD2	 $47  transparent(F) 
+TBNCMAG2	 $47  transparent(F) 
+TBNCMAG3	 $47  transparent(F) 
+TBNCMAG4	 $47  transparent(F) 
+TBNCMAG5	 $47  transparent(F) 
+TBNCMAGE	 $47  transparent(F) 
+TBNCMARK	 $47  transparent(F) 
+TBNCSILO	 $47  transparent(F) 
+TBNCSPEC	 $47  transparent(F) 
+TBNCTVRN	 $47  transparent(F) 
+TBNCUP_0	 $47  transparent(F) 
+TBNCUP_1	 $47  transparent(F) 
+TBNCUP_2	 $47  transparent(F) 
+TBNCUP_3	 $47  transparent(F) 
+TBNCUP_4	 $47  transparent(F) 
+TBNCUP_5	 $47  transparent(F) 
+TBNCUP_6	 $47  transparent(F) 
+TBRMBLAK	 $47  transparent(F) 
+TBRMCAS2	 $47  transparent(F) 
+TBRMCAS3	 $47  transparent(F) 
+TBRMCSTL	 $47  transparent(F) 
+TBRMDW_0	 $47  transparent(F) 
+TBRMDW_1	 $47  transparent(F) 
+TBRMDW_2	 $47  transparent(F) 
+TBRMDW_3	 $47  transparent(F) 
+TBRMDW_4	 $47  transparent(F) 
+TBRMDW_5	 $47  transparent(F) 
+TBRMDW_6	 $47  transparent(F) 
+TBRMEXT0	 $47  transparent(F) 
+TBRMEXT1	 $47  
+TBRMEXT2	 $47  transparent(F) 
+TBRMEXT3	 $47  transparent(F) 
+TBRMEXT4	 $47  transparent(F) 
+TBRMEXT5	 $47  transparent(F) 
+TBRMHAL2	 $47  transparent(F) 
+TBRMHAL3	 $47  transparent(F) 
+TBRMHAL4	 $47  transparent(F) 
+TBRMHALL	 $47  transparent(F) 
+TBRMHOLY	 $47  transparent(F) 
+TBRMHRD1	 $47  transparent(F) 
+TBRMHRD2	 $47  transparent(F) 
+TBRMHRD3	 $47  transparent(F) 
+TBRMHRD4	 $47  transparent(F) 
+TBRMMAG2	 $47  transparent(F) 
+TBRMMAG3	 $47  transparent(F) 
+TBRMMAG4	 $47  transparent(F) 
+TBRMMAG5	 $47  transparent(F) 
+TBRMMAGE	 $47  transparent(F) 
+TBRMMARK	 $47  transparent(F) 
+TBRMSILO	 $47  transparent(F) 
+TBRMSPEC	 $47  transparent(F) 
+TBRMTVRN	 $47  transparent(F) 
+TBRMUP_0	 $47  transparent(F) 
+TBRMUP_1	 $47  transparent(F) 
+TBRMUP_2	 $47  transparent(F) 
+TBRMUP_3	 $47  transparent(F) 
+TBRMUP_4	 $47  transparent(F) 
+TBRMUP_5	 $47  transparent(F) 
+TBRMUP_6	 $47  transparent(F) 
+TBSTBLAK	 $47  transparent(F) 
+TBSTCAS2	 $47  transparent(F) 
+TBSTCAS3	 $47  transparent(F) 
+TBSTCSTL	 $47  transparent(F) 
+TBSTDW_0	 $47  transparent(F) 
+TBSTDW_1	 $47  transparent(F) 
+TBSTDW_2	 $47  transparent(F) 
+TBSTDW_3	 $47  transparent(F) 
+TBSTDW_4	 $47  transparent(F) 
+TBSTDW_5	 $47  transparent(F) 
+TBSTDW_6	 $47  transparent(F) 
+TBSTEXT0	 $47  transparent(F) 
+TBSTEXT1	 $47  transparent(F) 
+TBSTEXT2	 $47  transparent(F) 
+TBSTEXT3	 $47  
+TBSTHAL2	 $47  transparent(F) 
+TBSTHAL3	 $47  transparent(F) 
+TBSTHAL4	 $47  transparent(F) 
+TBSTHALL	 $47  transparent(F) 
+TBSTHOLY	 $47  transparent(F) 
+TBSTHRD1	 $47  transparent(F) 
+TBSTHRD2	 $47  transparent(F) 
+TBSTMAG2	 $47  transparent(F) 
+TBSTMAG3	 $47  transparent(F) 
+TBSTMAGE	 $47  transparent(F) 
+TBSTMARK	 $47  transparent(F) 
+TBSTSILO	 $47  transparent(F) 
+TBSTSPEC	 $47  transparent(F) 
+TBSTTVRN	 $47  transparent(F) 
+TBSTUP_0	 $47  transparent(F) 
+TBSTUP_1	 $47  transparent(F) 
+TBSTUP_2	 $47  transparent(F) 
+TBSTUP_3	 $47  transparent(F) 
+TBSTUP_4	 $47  transparent(F) 
+TBSTUP_5	 $47  transparent(F) 
+TBSTUP_6	 $47  transparent(F) 
+TBTWBLAK	 $47  transparent(F) 
+TBTWCAS2	 $47  transparent(F) 
+TBTWCAS3	 $47  transparent(F) 
+TBTWCSTL	 $47  transparent(F) 
+TBTWDW_0	 $47  transparent(F) 
+TBTWDW_1	 $47  transparent(F) 
+TBTWDW_2	 $47  transparent(F) 
+TBTWDW_3	 $47  transparent(F) 
+TBTWDW_4	 $47  transparent(F) 
+TBTWDW_5	 $47  transparent(F) 
+TBTWDW_6	 $47  transparent(F) 
+TBTWEXT0	 $47  transparent(F) 
+TBTWEXT1	 $47  transparent(F) 
+TBTWEXT2	 $47  transparent(F) 
+TBTWHAL2	 $47  transparent(F) 
+TBTWHAL3	 $47  transparent(F) 
+TBTWHAL4	 $47  transparent(F) 
+TBTWHALL	 $47  selectionFaintShadow(F) 
+TBTWHOLY	 $47  transparent(F) 
+TBTWHRD1	 $47  transparent(F) 
+TBTWHRD2	 $47  transparent(F) 
+TBTWMAG2	 $47  transparent(F) 
+TBTWMAG3	 $47  transparent(F) 
+TBTWMAG4	 $47  transparent(F) 
+TBTWMAG5	 $47  transparent(F) 
+TBTWMAGE	 $47  transparent(F) 
+TBTWMARK	 $47  transparent(F) 
+TBTWSILO	 $47  transparent(F) 
+TBTWSPEC	 $47  transparent(F) 
+TBTWTVRN	 $47  transparent(F) 
+TBTWUP_0	 $47  transparent(F) 
+TBTWUP_1	 $47  transparent(F) 
+TBTWUP_2	 $47  transparent(F) 
+TBTWUP_3	 $47  transparent(F) 
+TBTWUP_4	 $47  transparent(F) 
+TBTWUP_5	 $47  transparent(F) 
+TBTWUP_6	 $47  transparent(F) 
+TPMAGE1	 $47  
+TPMAGES	 $47  transparent(F) 
+TPMRKB	 $47  
+TPMRKBU1	 $47  
+TPMRKBU2	 $47  
+TPMRKBU3	 $47  
+TPMRKBU4	 $47  
+TPMRKBU5	 $47  
+TPMRKBU6	 $47  
+TPMRKPL	 $47  selectionFaintShadow(F) 
+TPMRKR	 $47  
+TPMRKR3	 $47  transparent(F) 
+TPMRKS	 $47  
+TPTAV01	 $47  
+TPTAV02	 $47  
+TPTHBAR	 $47  
+TPTHCHK	 $47  transparent(F) 
+TRRECB	 $47  
+TSBTNS	 $47  
+TSHRC	 $45  
+TSHRE	 $45  transparent(F) lightShadow(F) mediumShadow(F) 
+TSRESOUR	 $47  
+TWCRPORT	 $47  transparent(F) lightShadow(F) mediumShadow(F) 
+UN32	 $47  transparent(F) lightShadow(F) mediumShadow(F) 
+UN44	 $47  transparent(F) lightShadow(F) mediumShadow(F) 
+UNGLDBAR	 $47  
+UNIVCOLR	 $47  
+VWMAG1	 $47  
+VWMAG2	 $47  
+VWMAG4	 $47  
+VWMAGALL	 $47  
+VWPUZ	 $47  
+VWSYMBOL	 $47  transparent(F) 
+WATRTL	 $45  

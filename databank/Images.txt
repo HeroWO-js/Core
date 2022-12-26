@@ -1,0 +1,1705 @@
+(*) not used in HeroWO
+
+-- BIK/SMK --
+(A)udio channel   (CD)-ROM   (looped) indicates infinite repetitions, else 1
+BIRTH.BIK         (*) "new campaign" image for Birth of a Barbarian (loops)
+CEVIL1.BIK        -n- for Dungeons and Devils
+CEVIL2.BIK        -n- for ???
+CGOOD1.BIK        -n- for Long Live the Queen
+CGOOD2.BIK        -n- for ???
+CGOOD3.BIK        -n- for ???
+CNEUTRAL.BIK      -n- for Spoils of War
+CSECRET.BIK       -n- for ???
+ELIXIR.BIK        -n- for Elixir of Life
+HACK.BIK          -n- for Hack and Slash
+NEW.BIK           -n- for New Beginning
+RISE.BIK          -n- for ???
+SPECTRE.BIK       -n- for ???
+UNHOLY.BIK        -n- for ???
+3DOLOGO.SMK       (A) 3DO logo in credits
+CREDITS.BIK       main menu animation (looped)
+CREDITS.SMK       (*) same as CREDITS.BIK but slightly different colors
+HSLOOP.SMK        (*) (A) played alone (if have no CD-ROM) or after HSANIM.SMK
+                  (looped in any case)
+DEFENDALL.BIK     combat: own town defended animation + DEFENDLOOP.BIK
+DEFENDLOOP.BIK    played after DEFENDALL.BIK (looped)
+LBSTART.BIK       combat: own hero defeated animation + LBLOOP.BIK
+LBLOOP.BIK        played after LBSTART.BIK (looped)
+LOSECSTL.BIK      combat: own town defeated animation + LOSECSLP.BIK
+LOSECSLP.BIK      played after LOSECSTL.BIK (looped)
+RTSTART.BIK       combat: own hero retreated animation + RTLOOP.BIK
+RTLOOP.BIK        played after RTSTART.BIK (looped)
+SURRENDER.BIK     combat: own hero surrendered animation (looped)
+WIN3.BIK          combat: own hero won animation (looped)
+PGTRNLFT.SMK      spell book page turn to previous page
+PGTRNRGH.SMK      -n- to next page
+PROGRESSBAR.SMK   (*) retort-style vertical progress bar
+TAVERN.BIK        tavern window's animation (looped)
+H3*.BIK           (CD) campaign mission movies
+H3*.SMK           (CD) (A) -n-
+ENDGAME.BIK       (*) (CD) Shadow of Death's campaign end move
+ENDGAME.SMK       (*) (CD) (A) -n- (added sound)
+EVIL??.SMK        (*) (CD) (A) (EVIL [123] [ABCD]) compaign movies
+GOOD??.SMK        (*) (CD) (A) -n-
+EVIL2AP?.SMK      (*) (CD) (A) -n-
+NEUTRAL?.SMK      (*) (CD) (A) -n-
+SECRET?.SMK       (*) (CD) (A) -n-
+HSANIM.SMK        (*) (CD) (A) game won (high score entry) + HSLOOP.SMK
+LOSEGAME.SMK      (*) (CD) (A) game lost
+NWCLOGO.BIK       (*) (CD) New World Computing logo in credits after 3DOLOGO.SMK
+NWCLOGO.SMK       (*) (CD) (A) -n-
+TESTING.BIK       (*) (CD) rotating "testing" text and a globe, appearing on
+                  first game launch before 3DOLOGO
+
+-- BMP --
+DEFAULT       apparently a placeholder for "invalid/no object", OBJECTS.TXT index 0
+OVERVIEW      kingdom window
+MAINMENU      part of main menu's background
+GAMSELBK      main menu's background
+GAMSELB0      mission selection background
+GAMSELB1      -n-
+NEWGAME       main menu button
+LOADGAME      -n-
+SCSELBCK      map list
+ADVOPTBK      map's advanced options
+ADOPRPNL      player's entry in ADVOPTBK, for Red
+ADOPBPNL      -n-, for Blue
+ADOPYPNL      -n-, for Tan
+ADOPGPNL      -n-, for Green
+ADOPOPNL      -n-, for Orange
+ADOPPPNL      -n-, for Purple
+ADOPTPNL      -n-, for Teal
+ADOPSPNL      -n-, for Pink
+HPSRAND       (*) ?
+HPSRAND0      random town selection used in ADVOPTBK
+HPSRAND1      random hero selection used in ADVOPTBK
+HPSRAND2      (*) ?
+HPSRAND3      (*) ?
+HPSRAND4      (*) ?
+HPSRAND5      (*) ?
+HPSRAND6      "None" hero selection used in ADVOPTBK
+HPSXXX        (*) background for selectors used in ADVOPTBK?
+HPSYYY        (*) outline of HPSXXX
+GSELPOP1      map's info
+LOADBAR       loading screen
+ADVMAP        adventure map UI
+ARESBAR       resource status bar used in ADVMAP and TOWNSCRN
+TOWNSCRN      town screen's bottom panel
+ADSTATIN      kingdom info panel used in ADVMAP
+ADSTATHR      hero info panel used in ADVMAP
+ADSTATCS      town info panel used in ADVMAP
+TOWNQKGH      icon indicating garrisoned hero used in ADSTATCS
+HEROQVBK      variant of ADSTATHR used in right click
+TOWNQVBK      variant of ADSTATCS used in right click
+HPS*          hero faces used in lists (ADVOPTBK, etc.)
+HPL*          -n- in info windows and TPTAVERN/CPRESULT//LVLUPBKG
+AISHIELD      mini-map placeholder shown during other player's turn in ADVMAP
+TBCSBACK      Castle's screen background
+TBRMBACK      Rampart's -n-
+TBTWBACK      Tower's -n-
+TBINBACK      Inferno's -n-
+TBNCBACK      Necropolis' -n-
+TBDNBACK      Dungeon's -n-
+TBSTBACK      Stronghold's -n-
+TBFRBACK      Fortress' -n-
+TBELBACK      Conflux' -n-
+CRBKGCAS      background for creature combat images (CPKMAN, etc.)
+CRBKGDUN      Dungeon's -n-
+CRBKGELE      Conflux' -n-
+CRBKGFOR      Fortress' -n-
+CRBKGINF      Inferno's -n-
+CRBKGNEC      Necropolis' -n-
+CRBKGRAM      Rampart's -n-
+CRBKGNEU      neutral creatures' -n-
+CRBKGSTR      Stronghold's -n-
+CRBKGTOW      Tower's -n-
+ADOPFLGY      (*) large tan (2) player's flag
+ADOPFLGT      teal (6) -n-
+ADOPFLGS      pink (7) -n-
+ADOPFLGR      red (0) -n-
+ADOPFLGP      purple (5) -n-
+ADOPFLGO      orange (4) -n-
+ADOPFLGG      green (3) -n-
+ADOPFLGB      blue (1) -n-
+CRSTKPU       creature info window (both for left and right clicks)
+TPCASTL7      Fort window's background for 7 dwellings
+TPCASTL8      -n- for 8 dwellings
+KRESBAR       resource status bar used in TPCASTL7, TPTHBKCS, TPMAGE
+TPTHBKCS      background for Hall window of Castle
+TPTHBKDG      -n- of Dungeon
+TPTHBKFR      -n- of Fortress
+TPTHBKIN      -n- of Inferno
+TPTHBKNC      -n- of Necropolis
+TPTHBKRM      -n- of Rampart
+TPTHBKST      (*) -n- of Stronghold (invalid; must be the same as TPTHBKTW)
+TPTHBKTW      -n- of Tower
+TPTHBKEL      (*) -n- of Conflux (not part of SoD, added in Complete; same as TPTHBKFR/ST/RM)
+TPTHBRRM      (*) looks like an unused variant of TPTHBKRM
+???_????      (*) there are nearly 2300 images for drawing country maps in
+              campaign window; names of most match this mask
+????_???      -n-
+??_BG         (*) backgrounds for country map pieces
+SPELBACK      background for Spell Book
+SPELTRNL      left page corner used in SPELBACK
+SPELTRNR      right -n-
+QUESTLOG      (*) background for Quest
+PUZZLE        (*) background for Puzzle
+PUZCAS??      (*) pieces for drawing Puzzle map for Castle (00-47)
+PUZDUN??      -n- for Dungeon (00-47)
+PUZELE??      -n- for Conflux (00-47)
+PUZFOR??      -n- for Fortress (00-47)
+PUZINF??      -n- for Inferno (00-48!)
+PUZNIC??      -n- for Necropolis (00-47)
+PUZRAM??      -n- for Rampart (00-47)
+PUZSTR??      -n- for Stronghold (00-47)
+PUZTOW??      -n- for Tower (00-47)
+OB*           obstacles used in combat window; see below
+BO*           66x32 building icons (where used?); while town prefixes and building names
+              are the same for TO*, TZ*, etc., in BO most are different (e.g.
+              Conflux' prefix is E, not EL; Dungeon's mage guild is MAGE1, not MAG1)
+CSL*          (*) compaign backgrounds
+CAMP*         -n-
+CMBK*         background for combat window, terrain-specific (below)
+CMBKBCH       -n- when adjacent to Water terrain ("BeaCH")
+CMBKBOAT      -n- two boats  ?
+CMBKCF        -n- Clover Field object
+CMBKCUR       -n- Cursed Ground object
+CMBKDECK      -n- one boat  ?
+CMBKDES       -n- Desert terrain
+CMBKDRDD      -n- Dirt terrain + when near a Dead Vegetation object
+              (from the swamp group in the editor); prevails over CMBKDRMT
+CMBKDRMT      -n- Dirt terrain + when near a Mountain object
+              (even if that object isn't of a dirt type)
+CMBKDRTR      -n- Dirt terrain
+CMBKEF        -n- Evil Fog object
+CMBKFF        -n- Fiery Fields object
+CMBKFW        -n- Favorable Winds object
+CMBKGRMT      -n- Grass terrain + when near a Mountain object
+              (even if that object isn't of a grass type)
+CMBKGRTR      -n- Grass terrain
+CMBKHG        -n- Holy Ground object
+CMBKLAVA      -n- Lava terrain
+CMBKLP        -n- Lucid Pools object
+CMBKMAG       -n- Magic Plains object
+CMBKMC        -n- Magic Clouds object
+CMBKRGH       -n- Rough terrain
+CMBKRK        -n- Rocklands object
+CMBKSNMT      -n- Snow terrain + when near a Mountain object
+              (even if that object isn't of a snow type)
+CMBKSNTR      -n- Snow terrain
+CMBKSUB       -n- Subterranean terrain
+CMBKSWMP      -n- Swamp terrain
+TZCS*         building masks for Castle used on TBCSBACK (disregard pixel colors)
+TZD*          -n- for Dungeon
+TZEL*         -n- for Conflux
+TZF*          -n- for Fortress
+TZI*          -n- for Inferno
+TZN*          -n- for Necropolis
+TZR*          -n- for Rampart
+TZS*          -n- for Stronghold
+TZT*          -n- for Tower
+TOCS*         building outlines for Castle used on TBCSBACK; '*' part matches '*' in TZCS*;
+              has 2 extra files: TOCSC101/TOCSC201 which seem to be unused
+TOD*          -n- for Dungeon; '*' matches
+TOEL*         -n- for Conflux; '*' matches
+TOF*          -n- for Fortress; '*' matches
+TOI*          -n- for Inferno; '*' matches
+TON*          -n- for Necropolis; '*' matches
+TOR*          -n- for Rampart; '*' matches
+TOS*          -n- for Stronghold; '*' matches
+TZT*          -n- for Tower; '*' matches
+TPCAINFO      vertical stat icons used in TPCASTL7 (6: attack, etc.)
+TPMAGE        background for Mage Guild
+TPMAGECS      view from the window in Castle's Mage Guild
+TPMAGEDN      -n- in Dungeon's
+TPMAGEEL      -n- in Conflux'
+TPMAGEFR      -n- in Fortress'
+TPMAGEIN      -n- in Inferno's
+TPMAGENC      -n- in Necropolis'
+TPMAGERM      -n- in RAmpart's
+TPMAGEST      -n- in Stronghold's
+TPMAGETW      -n- in Tower's
+TPSMITH       Blacksmith
+TPSMITBK      background used in TPSMITH
+TPSHIP        Shipyard
+TPSHIPBK      background used in TPSHIP
+TPTAVERN      (*) Tavern
+TPUBUILD      construct building window (both for left and right clicks)
+CRESTBK       (*) an empty box similar to TWCRPORT frame 0, seems to be unused
+BOX64X30      1px solid #a88d44 outline used around IBUY30, ICANCEL, IOKAY
+BOX64X32      1px solid #ad8e42 outline used around IRCBTNS, IBY6432, ICN6432
+BOX66X32      (*) larger BOX64X30
+BOX46X32      larger BOX64X30 used around IVIEWCR2
+TPRCRT        hire creature window
+DIBOX128      background for a generic dialog box (DIALBOX)
+DIBOXBCK      (*) -n-
+TPMRKSE1      2px solid #ffe794 outline around selected resource used in TPMRKS
+CBAR          status bar used in combat window
+COPLACBR      -n- during tactics phase
+CCELLGRD      hex cell used in combat map, outline only
+CCELLSHD      -n- filled (shadow)
+CCRPOP        background for on-hover "full" creature info used in combat window
+SPELLINF      -n- for "only spells" creature info, used with SPELLINT
+CHRPOP        -n- for hero info
+COMOPBCK      background for combat options window
+CMNUMWIN      border and background for creature count box used in combat
+              window; gray, colored on run-time
+MUMAP         (*) background used in multi-player window
+SYSOPBCK      background for main (ADVMAP) options window
+TPTAVERN      background for tavern window
+LVLUPBKG      background for level-up window
+CPRESULT      background for combat results window
+HEROBAR       (*) used as help bar in HEROSCR3/HEROSCR4?
+HEROSCR4      background for hero info window with 5 misc slots (5th appeared in SoD?)
+HEROSCR3      (*) -n- with 4 misc slots
+TRADE2        background for hero trade window with 5 misc slots
+TRADE         (*) -n- with 4 misc slots
+TPRANK        (*) background for thieves' guild window
+PUZZLE        (*) background for view puzzle window
+INTRORIM      (*) background for campaign's intro movie (RoE)
+INTRORM2      -n- (AB)
+HISCORE       (*) background for high scores (maps)
+HISCORE2      -n- (campaign)
+GPUCRDIV      (*) background for divide creatures window
+ADVOPTS       (*) background for adventure commands window (view world, etc.)
+SPELROLL      (*) help status bar for SPELBACK?
+TRADESEL      outline around selected creature in garrison of TRADE/TRADE2
+GARRISON      garrison gate encounter window
+GARRIPOP      (*) right-click -n- (unused? game uses TOWNQVBK)
+SG*           combat images used during siege; (G) = only one from group is
+              rendered (all items same Z); prefixes: CS DN EL FR IN NC RM ST TW
+SG??BACK      background (overrides detected by terrain); Z = 0
+SG??ARCH      central gates and a piece of lower wall, broken (same as
+              SG??WA33); Z = 34
+SG??DRW1      (4) gates in half-open state; Z = 42
+SG??DRW2      (4) gates in open state
+SG??DRW3      (4) gates in open state, broken
+SG??DRWC      (*) bottom rope attached to SG??DRW3; shown together (unused); Z = 43
+SG??MAN1      (5) main arrow tower; Z = 38
+SG??MAN2      (5) main arrow tower, broken
+SG??MANC      part of SG??MAN1; shown together with SG??MAN1; Z = 40;
+              archer's Z = 39
+SG??MLIP      trenches outline; none for TW; unused in RM NC ST; Z = 20
+SG??MOAT      trenches; none for TW; Z = 22
+SG??TPWL      top wall; only for: CS EL FR IN TW; Z = 36
+SG??TPW1      top wall; only for: DN NC RM ST; Z = 36
+SG??TW21      (8) top tower (includes SG??TW2C); Z = 24
+SG??TW22      (8) top tower, broken
+SG??TW2C      bottom half of the top tower; shown together with SG??TW21;
+              Z = 26; archer's Z = 25
+SG??TW11      (1) bottom tower (includes SG??TW1C); Z = 50
+SG??TW12      (1) bottom tower, broken
+SG??TW1C      (1) bottom half of the bottom tower
+SG??WA61      (7) upper wall segment; Z = 28
+SG??WA62      (7) upper wall segment, damaged
+SG??WA63      (7) upper wall segment, broken
+SG??WA41      (6) wall segment above gates; Z = 32
+SG??WA42      (6) wall segment above gates, damaged
+SG??WA43      (6) wall segment above gates, broken
+SG??WA5       wall segment above gates, broken (unlike SG??WA41 and SG??WA43
+              includes part of the upper segment); Z = 30
+SG??WA31      (2) wall segment below gates; Z = 44
+SG??WA32      (2) wall segment below gates, damaged
+SG??WA33      (2) wall segment below gates, broken (can be ignored because
+              it's included in always-shown SG??ARCH)
+SG??WA2       bottom wall segment, broken (unlike SG??WA11 and SG??WA13
+              includes part of the upper segment and is always shown); Z = 46
+SG??WA11      (3) bottom wall segment; Z = 48
+SG??WA12      (3) bottom wall segment, damaged
+SG??WA13      (3) bottom wall segment, broken (can be ignored because
+              it's included in always-shown SG??WA2)
+SGCSMNBR      (*) upper part of SGCSMAN2
+SGCSMNOK      (*) copy of SGCSMAN1
+
+-- DEF --
+DEFAULT       not used, apparently a placeholder for "invalid/no object"
+ADOPB1?       (*) ? = BGOPRSTY; player-colored boxes, possibly for ADVOPTBK
+ADOPB2?       (*) -n-
+ADOPLFA       left arrow button switching town/hero/bonus in ADVOPTBK
+ADOPRTA       right arrow button -n-
+AOFLGBR       button showing large red (0) player flag used in ADVOPTBK
+AOFLGBB       blue (1) -n-
+AOFLGBY       tan (2) -n-
+AOFLGBG       green (3) -n-
+AOFLGBO       orange (4) -n-
+AOFLGBP       purple (5) -n-
+AOFLGBT       teal (6) -n-
+AOFLGBS       pink (7) -n-
+UNIVCOLR      (*) used in University's encounter window; frame = orange green red
+TPTHBAR       building "constructability" used in TPTHBKCS; frame =
+              already built, can build, unable, unable (insurmountable)
+TPTHCHK       iconic indicator similar to TPTHBAR; frame = built, unable other,
+              unable resources
+SMALRES       resource icons (20x18) used in ADSTATCS; frame = RESTYPES.TXT
+              index (0-6) = wood mercury ore sulfur crystal gems gold
+RESOURCE      resource icons (32x32) used in TPUBUILD, TPRCRT, market windows
+RESOUR82      (*) resource icons (82x93)
+TSRESOUR      (*) small resource icons on black background
+BORES         (*) resource icons on gradient background
+NEWWEEK1      animation when day 1 of week 1 of any month except 1 dawns, used in day info panel in ADVMAP
+NEWWEEK2      -n- of week 2
+NEWWEEK3      -n- of week 3
+NEWWEEK4      -n- of week 4
+NEWDAY        -n- when d1w1m1 or d2-7w*m*
+ITGFLAGS      player flags used in GSELPOP1 and ADSTATIN; frame = PLCOLORS.TXT
+              index: red blue tan green orange purple teal pink
+CREST58       player flags used in TOWNSCRN/TPMRKPTS; frame = PLCOLORS.TXT;
+              frame 8 = neutral
+SCNRMPSZ      map size icons used in SCSELBCK; frame = S M L XL All
+SCSMBUT       small map size button used in SCSELBCK
+SCMDBUT       medium -n-
+SCLGBUT       large -n-
+SCXLBUT       extra large -n-
+SCALBUT       all -n-
+SCSELC        map origin icons used in SCSELBCK; frame = RoE AB SoD
+SCBUTT1       clickable number of players column (button) used in SCSELBCK
+SCBUTT2       map size -n-
+SCBUTT3       scenario name -n-
+SCBUTT4       victory conditions -n-
+SCBUTT5       loss conditions -n-
+SCBUTCP       map origin -n-
+GSPBUTT       wide button used in GSELPOP1
+GSPBUT3       easy difficulty button used in GSELPOP1
+GSPBUT4       normal -n-
+GSPBUT5       hard -n-
+GSPBUT6       expert -n-
+GSPBUT7       insane -n-
+SCNRBEG       begin scenario button used in GSELPOP1
+SCNRBACK      back button -n-
+SCNRLOD       load button -n-
+SCNRSAV       save button -n-
+SCNREXI       (*) exit button probably used in GSELPOP1
+SCNRNEX       (*) next button -n-
+SCNRVL        (*) some masks used in GSELPOP1?
+SCRNHRL       (*) left button taller than ADOPLFA used in GSELPOP1?
+SCRNHRR       (*) right button -n-
+SCNRVICT      map's victory conditions used in SCSELBCK; frame = own artifact [or regular], accumulate creature [or regular], accumulate resource [or regular], build graal [or regular], capture town [or regular], defeat hero [or regular], capture town [or regular], defeat monster [or regular], flag dwelling [or regular], flag mine [or regular], transport artifact [or regular], regular
+SCNRLOSS      map's loss conditions used in SCSELBCK; frame = lose town, lose hero, time expires, regular
+SCNRSTAR      starting bonus selection used in ADVOPTBK; frame = TOWNTYPE.TXT index (except Conflux/8 uses frame 3): wood/ore, crystal, gems, mercury (Inferno, Conflux), wood/ore, sulfur, wood/ore, wood/ore, gold, random artifact, random
+CRDEFLT       basic cursors; frame = default, unused, hourglass
+CRADVNTR      cursors used in normal mode (adventure map); frame = default, hourglass, hero, town, (go horse, combat, go ship, disembark, trade) * 4 (1T, 2T, 3T, 4+T), go ship actionable * 4, arrow T, arrow TR, arrow R, arrow BR, arrow B, arrow BL, arrow L, arrow TL, unused, teleport, scuttle
+CRCOMBAT      cursors used in combat mode; frame = deny walk fly shoot helm
+              help default melee-TR melee-R melee-BR melee-BL melee-L melee-TL
+              melee-T melee-B shoot-50% catapult heal revive teleport
+CRSPELL       (the only) animated cursor ($46), used when choosing target for spell in combat
+LOADPROG      horizontal progress bar used in LOADBAR; frame = box * 20
+AGEMUL        top-left corner around adventure map; frame = PLCOLORS.TXT index
+AGEMUR        top-right -n-
+AGEMLL        bottom-left -n-
+AGEMLR        bottom-right -n-
+ITMTL         hall level icons used in ADSTATIN; frame = hall, town hall, city hall, capitol
+ITMTLS        -n- used in ADSTATCS
+ITMCL         fort level icons; frame = fort, town fort, city fort, capitol
+ITMCLS        -n- used in ADSTATCS
+SCNRBSL       slider's thumb button used in ADVOPTBK and SCSELBCK
+SCNRBUP       up button -n-
+SCNRBDN       down button -n-
+SCNRBLF       left button -n-
+SCNRBRT       right button -n-
+IAM012        up button used in hero list in ADVMAP
+IAM013        down button -n-
+IAM014        up button used in town list in ADVMAP
+IAM015        down button -n-
+IAM002        kingdom window button used in ADVMAP
+IAM003        overground -n-
+IAM010        underground -n-
+IAM005        hero tent (put to rest) -n-
+IAM011        hero trumpet (wake from rest) -n-
+IAM000        select next hero -n-
+IAM001        end turn -n-
+IAM004        quest log -n-
+IAM006        go by the path -n-
+IAM007        spell book -n-
+IAM008        adventure menu -n-
+IAM009        game options -n-
+IRCBTNS       maximize count button used in TPRCRT
+IDV6432       split button used in GARRISON
+IBY6432       confirm trade button used in TPRCRT
+ICN6432       cancel button used in TPRCRT
+IOK6432       close button used in TPMRKS
+IOKAY         close button used in CRSTKPU/CPRESULT/LVLUPBKG,
+              combined with BOX64X30 (but in generic dialog box color is #ad8e42)
+IVIEWCR2      dismiss button used in CRSTKPU, combined with BOX46X32
+IVIEWCR       upgrade button -n-
+IBUY30        confirm trade button used in TPUBUILD/TPSMITH, combined with BOX64X30
+ICANCEL       cancel button used in TPUBUILD/TPSMITH/TPTAVERN
+CPRSMALL      creature faces used in ADSTATHR/ADSTATCS/CPRESULT; frame = none,
+              outline (however, in TRADE/TRADE2 the game is using TRADESEL.BMP instead of this), CRTRAITS.TXT index * 149
+TWCRPORT      creature faces used in large garrison lists and CPRESULT (in
+              combats against monsters); frame = none, outline, CRTRAITS.TXT index * 149
+IMRL22        morale icons used in ADSTATHR; frame = -3 -2 -1 0 +1 +2 +3
+ILCK22        luck icons used in ADSTATHR; frame = -3 -2 -1 0 +1 +2 +3
+IMOBIL        hero's action points bar used in ADVMAP's hero list; frame = bar * 26
+IMANA         hero's spell points -n-
+ITPA          town faces used in lists (ADVOPTBK, etc.); frame = none, outline, (Castle, Castle with cross) * 9 (per each TOWNTYPE.TXT), (Castle without fort, with cross) * 9, random
+ITPT          large -n- used in CPRESULT; frame = (Castle, with cross) * 9, (without fort, with cross) * 9
+TSBTNS        town screen's buttons; frame = split pressed disabled hover close pressed
+HSBTNS        close button used in hero info window
+HSBTNS2       dismiss button -n-
+HSBTNS3       backpack scroll to the left button -n-
+HSBTNS5       backpack scroll to the right button -n-
+HSBTNS4       quests button -n-
+HSBTNS6       loose formation button -n-
+HSBTNS7       tight formation button -n-
+HSBTNS8       tactics button -n-
+HSBTNS9       split button -n-
+TPMAGE1       close button used in various windows (TPCASTL7, TPTHBKCS)
+TPMAGES       scroll image used in TPMAGE; frame = opened closed
+TPMRKR3       single frame, copy of TPMRKSE1
+TPMRKB        market buttons similar to IBY6432 and IRCBTNS;
+              frame = (confirm) * 3, (maximize count) * 3
+TPMRKBU1      switch to transfer button used in market; frame = normal pressed
+TPMRKBU2      (*) some button used in market; frame = normal pressed
+TPMRKBU3      (*) some button used in market; frame = normal pressed
+TPMRKBU4      (*) some button used in market; frame = normal pressed
+TPMRKBU5      switch to trading button used in market; frame = normal pressed
+TPMRKBU6      (*) some button used in market; frame = normal pressed
+TPMRKS        market backgrounds; frame = trade (TPMRKRES)
+              transfer (TPMRKPTS) ? (TPMRKABS) ? (TPMRKASS) ? (TPMRKCRS)
+TPTAV01       large confirm hire button used in TPTAVERN
+TPTAV02       open thieves' guild button used in TPTAVERN
+AH*_          heroes' animations on ADVMAP; type = $44
+AH*_E         static hero image on ADVMAP, facing right
+AF*           flags for AH*_, animated separately; group = group in AH*_;
+              file name = AF0n where n = 0-based PLCOLORS.TXT index
+AF*E          static flag for AH*_E; single group; file name as AF*
+AB*_          boats on ADVMAP; type = $44
+ABF*_         flags for AB*_, used for boats with a hero inside, animated
+              separately; group = group in AB*_; file name = ABF0nc where
+              n = n in AB*_, c = player color:
+              1 L Red
+              2 G Blue
+              3 R Tan
+              4 D Green
+              5 B Orange
+              6 P Purple
+              7 W Teal
+              8 K Pink
+DIRTTL        dirt tiles on ADVMAP; frame = tile * 46
+SANDTL        sand -n-; 24
+GRASTL        grass -n-; 79
+SNOWTL        snow -n-; 79
+SWMPTL        swamp -n-; 79
+ROUGTL        rough -n-; 79
+SUBBTL        subterranean -n-; 79
+LAVATL        lava -n-; 79
+WATRTL        water -n-; 33
+ROCKTL        rock (underground) -n-; 48
+CLRRVR        clear river on ADVMAP; frame = tile * 13
+ICYRVR        icy -n-
+MUDRVR        muddy -n-
+LAVRVR        lava -n-
+DIRTRD        dirt road on ADVMAP; frame = tile * 17
+GRAVRD        gravel -n-
+COBBRD        cobblestone -n-
+$40 SP*_*     animations of combat spells cast by/abilities of creatures
+$40 C0????    (C [a-z]{4}) -n-
+$40 SG*       combat animations used during siege
+$40 SM*       missile animations of artifact-produced creatures used in combat
+$40 CPR*      missile animations of creatures used in combat
+$40 P*        -n- (except POOF)
+$40 CS*       ?
+$40 C??SP???  (C 00..20 SP [aefw] \d [016]?[012]?) animation of combat spell
+              casting by hero, or creature casting regular spell (i.e. not exclusive
+              to creatures as SP*), or in-combat effect (good luck = Fortune
+              casting); letter in the end stands for spell school (Air, Earth,
+              Fire, Water) but is wrong sometimes; numbers are random
+$40 C20SPX?   (C 20 SP [01234]?) Magic Arrow casting
+SP01_         -n- Age (Ghost Dragon) ?
+SP02_         -n- Bind (Dendroid)
+SP03_         -n- Death Blow (Dark Knight)
+SP04_         -n- Death Cloud (Lich)
+SP05_         -n- Disease (Walking Dead)
+SP06_         -n- Drain Life (Vampire) ?
+SP10_         -n- Acid Breath (Scorpicore) ?
+SP11_         -n- Poison (Wyvern) ?
+SP12_         -n- Healing (Wight)
+SP08_         animation played on spell points steal (Wight) ?
+SP09_         -n- natural spell evasion/resistance (Dwarf) ?
+C0ACID        -n- poison (Dragonfly)
+C0FEAR        -n- fear (Ghost Dragon)
+C01SPA0       (Air) Air Shield casting
+C01SPE0       (Earth) ?
+C01SPF        (Fire) ?
+C01SPF0       (Fire) ?
+C01SPW        (Water) Bless casting
+C01SPW0       (Water) -n-
+C02SPA0       (Air) ?
+C02SPE0       (Earth) Anti-Magic casting
+C02SPF0       (Fire) Blind casting by hero and Unicorn
+C03SPA0       (Air) ?
+C03SPA1       (Air) ?
+C03SPW        (Water) Cure casting
+C03SPW0       (Water) -n-
+C04SPA0       (Air) Counterstrike casting
+C04SPE0       (Earth) Death Ripple casting
+C04SPF0       (Fire) Inferno casting
+C04SPW        (Water) Curse casting by hero and Death Knight
+C04SPW0       (Water) -n-
+C05SPE0       (Earth) Implosion casting
+C05SPF0       (Fire) Fire shield casting and response to attacking a creature protected by it
+C05SPW        (Water) Dispel casting
+C05SPW0       (Water) -n-
+C06SPF0       (Fire) Armageddon casting
+C06SPW        (Water) Forgetfulness casting
+C06SPW0       (Water) -n-
+C07SPA0       (Air) Disrupting Ray in-flight animation (any direction)
+C07SPA1       (Air) Disrupting Ray impact animation (half-transparent)
+C07SPE0       (Earth) ?
+C07SPF0       (Fire) ?
+C07SPF1       (Fire) ?
+C07SPF10      (Fire) ?
+C07SPF11      (Fire) ?
+C07SPF2       (Fire) ?
+C07SPF3       (Fire) ?
+C07SPF4       (Fire) ?
+C07SPF5       (Fire) ?
+C07SPF6       (Fire) ?
+C07SPF60      (Fire) ?
+C07SPF61      (Fire) animation of a standing one Fire Wall segment (cell)
+C07SPF62      (Fire) ?
+C07SPF7       (Fire) ?
+C07SPF8       (Fire) ?
+C07SPF9       (Fire) ?
+C07SPW        (Water) Frost Ring casting
+C07SPW0       (Water) -n-
+C08SPE0       (Earth) Meteor Shower casting
+C08SPF0       (Fire) Frenzy casting
+C08SPW0       (Water) Ice Bolt in-flight animation (left-to-right)
+C08SPW1       (Water) -n- (slightly downwards)
+C08SPW2       (Water) -n- (to bottom right corner)
+C08SPW3       (Water) -n- (slightly more to the left)
+C08SPW4       (Water) -n- (top-to-bottom)
+C08SPW5       (Water) Ice Bolt impact animation
+C09SPA0       (Air) high luck (animation of Fortune casting or in-combat effect)
+C09SPE0       (Earth) Slow casting
+C09SPF0       (Fire) ?
+C09SPF1       (Fire) ?
+C09SPF2       (Fire) ?
+C09SPF3       (Fire) ?
+C09SPW0       (Water) high morale (animation of Mirth casting or in-combat effect)
+C10SPA0       (Air) Hypnotize casting
+C10SPF0       (Fire) low luck (animation of Misfortune casting or in-combat effect)
+C10SPW        (Water) Prayer casting
+C11SPA0       (Air) Lightning Bolt in-flight animation (from above creature);
+              also used for Thunderbird
+C11SPA1       (Air) Lightning Bolt and Titan's Lightning Bolt impact animation
+              (half-transparent); Titan's has no in-flight animation;
+              also used for Thunderbird
+C11SPE0       (not Earth but Air) Protection from Air casting
+C11SPF0       (not Fire but Water) Protection from Water casting
+C11SPW0       (not Water but Fire) Protection from Fire casting
+C12SPA0       (Air) Precision casting
+C12SPE0       (Earth) ?
+C12SPF0       (Fire) ?
+C12SPF1       (Fire) ?
+C13SPA0       (not Air but Earth) Protection from Earth casting
+C13SPE0       (Earth) Shield casting
+C13SPF        (Fire) Fireball casting
+C13SPF0       (Fire) ?
+C13SPW0       (not Water but Fire) Slayer casting
+C14SPA0       (Air) Destroy Undead casting (half-transparent)
+C14SPE0       (Earth) low morale (animation of Sorrow casting or in-combat effect)
+C15SPA0       (Air) Haste casting
+C15SPE0       (Earth) ?
+C15SPE1       (Earth) animation of a standing one Force Field segment (cell)
+C15SPE10      (Earth) ?
+C15SPE11      (Earth) ?
+C15SPE2       (Earth) ?
+C15SPE3       (Earth) ?
+C15SPE4       (Earth) ?
+C15SPE5       (Earth) ?
+C15SPE6       (Earth) ?
+C15SPE7       (Earth) ?
+C15SPE8       (Earth) ?
+C15SPE9       (Earth) ?
+C16SPE        (Earth) Stone Skin casting
+C16SPE0       (Earth) -n-
+C17SPE0       (Earth) ?
+C17SPE1       (Earth) animation of a standing one Quicksand segment (cell)
+C17SPE2       (Earth) ?
+C17SPW0       (Water) Weakness casting
+C18SPW0       (Water) ?
+C20SPX0       Magic Arrow in-flight animation (left-to-right)
+C20SPX1       -n- (slightly downwards)
+C20SPX2       -n- (to bottom right corner)
+C20SPX3       -n- (slightly more to the left)
+C20SPX4       -n- (top-to-bottom)
+C20SPX        Magic Arrow impact animation
+SPELLSCR      spell faces used in message box when encountering a scroll;
+              frame = SPTRAITS.TXT index up to Summon Air Elemental,
+              frame 70 replaces all icons in Mage Guild screen if Aurora Borealis is built
+SPELLBON      spell faces; frame = SPTRAITS.TXT index up to Summon Air Elemental
+SPELLINT      spell faces used in creature info window (list of bufs);
+              frame = none (used on top of SPELLINF), SPTRAITS.TXT index up to
+              Age, frames 77, 78 = unused
+SPELLS        spell faces used in spell book; frame = SPTRAITS.TXT index up to
+              Summon Air Elemental
+SPELTAB       spell book tabs varied by "pressed"; frame = air, fire, water,
+              earth, all
+SPLEVA        air spell mastery corners; frame = none, basic, advanced, expert
+SPLEVE        earth -n-
+SPLEVF        fire -n-
+SPLEVW        water -n-
+SCHOOLS       large spell school logo; frame = air, fire, water, earth
+SSKILBON      skill faces; frame = SSTRAITS.TXT index * 3 (basic, advanced, expert)
+SECSKILL      -n- used in info window (list of skills);
+              frame = none, none, none, SSTRAITS.TXT index * 3 (as SSKILBON)
+SECSK32       -n-
+SECSK82       -n-
+PSKIL32       stat icons used in OVERVIEW; frame = attack, defense, power,
+              knowledge, experience, spell points
+PSKIL42       -n- used in LVLUPBKG; frame = attack, defense, power,
+              spell points, experience, knowledge
+PSKILBON      stat icons; frame = attack, defense, power, knowledge
+PSKILL        stat icons; frame = attack, defense, power, knowledge, experience,
+              spell points
+UN32          hero specialty icons; frames (HEROSPEC.TXT index) =
+              archery, archers, griffins, navigation, estates, swordsmen,
+              ballista, cavaliers, first aid, bless, weakness, frost ring,
+              monks, eagle eye, prayer, gold mine, armorer, dwarves, gold mine
+              (duplicate), dendroids, resistance, elves, unicorns, logistics,
+              slayer, cure, intelligence, first aid (d), eagle eye (d),
+              fortune, ice bolt, pegasi, gargoyles, genies, golems, armorer (d),
+              ballista (d), nagas, mercury mine, genies (d), hypnotize,
+              mysticism, eagle eye (d), fortune (d), magi, chain lightning,
+              haste, gold mine (d), hell hounds, efreet, demons, imps, gold mine (d),
+              gogs, ballista (d), pit fiends (d), intelligence (d),
+              inferno, mysticism (d), weakness (d), sulfur mine, bloodlust,
+              sorcery, fireball, walking dead, vampires, liches, wights, black
+              knights, necromancy, gold mine (d), skeletons, death ripple,
+              meteor shower, sorcery (d), eagle eye (d), animate dead, stone
+              skin, necromancy (d), gold mine (d), harpies, ballista (d),
+              minotaurs, beholders, gold mine (d), logistics (d), manticores,
+              troglodytes, animate dead (d), mysticism (d), sorcery (d),
+              animate dead (d), eagle eye (d), meteor shower (d), crystal mine,
+              stone skin (d), cyclopes, ballista (d), orcs, rocs, goblins, ogres,
+              offense, wolf riders, sorcery (d), ogres (d),
+              logistics (d), haste (d), precision, offense (d), eagle eye (d), gems
+              mine, basilisks, gnolls, lizardmen, armorer, gorgons, serpent
+              flies, ballista (d), wyverns, weakness (d), mysticism (d),
+              navigation (d), first aid (d), stone skin (d), sorcery (d),
+              intelligence (d), eagle eye (d), psychic elementals, earth
+              elementals, fire elementals, water elementals, psychic elementals (d),
+              earth elementals (d), fire elementals (d), water elementals (d),
+              fire wall, haste (d), magic arrow, stone skin (d), bloodlust (d),
+              disrupting ray, gold mine (d), gold mine (d), boots of speed,
+              fire magic, swordsmen (d), enchanters, sharpshooters, (ancient)
+              behemoths, black knights (d), (crystal) dragons, swordsmen (d),
+              (crystal) dragons (d), ogres (d), devils
+UN44          -n-
+HALLCSTL      building faces used in Castle's Hall and Fort screens; frames in
+              random order
+HALLRAMP      Rampart's -n-
+HALLTOWR      Tower's -n-
+HALLDUNG      Dungeon's -n-
+HALLELEM      Conflux' -n-
+HALLFORT      Fortress' -n-
+HALLINFR      Inferno's -n-
+HALLNECR      Necropolis' -n-
+HALLSTRN      Stronghold's -n-
+TB*HALL       hall's image used on top of TB*BACK
+TB*HAL2       town hall's -n-
+TB*HAL3       city hall's -n-
+TB*HAL4       capitol's -n-
+TB*CSTL       fort's -n-
+TB*CAS2       citadel's -n-
+TB*CAS3       castle's -n-
+TB*TVRN       tavern's -n-
+TB*BLAK       blacksmith's -n-
+TB*MARK       marketplace's -n-
+TB*SILO       resource silo's -n-
+TB*MAGE       mage guild 1's -n-
+TB*MAG2       mage guild 2's -n-
+TB*MAG3       mage guild 3's -n-
+TB*MAG4       mage guild 4's -n-
+TB*MAG5       mage guild 5's -n-
+TB*BOAT       different shipyard used when a ship is present; only for CS NC FR
+              EL (unlike others, Conflux also has a different outline used in
+              this case: TZELBOAT/TOELBOAT)
+TBCSSPEC      lighthouse's image; animated
+TBCSEXT0      stables' image
+TBCSEXT1      brotherhood of the sword's image
+TBCSEXT2      waterfall's image (Castle decoration); animated
+TBRMEXT2      houses (Rampart decoration)
+TBRMEXT3      -n-
+TBRMEXT4      -n-
+TBRMEXT5      -n-
+TBELEXT1      houses and roads (Conflux decoration)
+TBELEXT2      -n-
+TBELEXT3      -n-
+TBELEXT4      -n-
+TBELEXT5      waterfall's image (Conflux decoration); animated
+TBFREXT2      duckweed's image (Fortress decoration); animated
+TBFRWTRW      (*) waterwheel's image (Fortress decoration, unused); animated
+TBNCEXT2      graveyard's image (Necropolis decoration)
+TBNCEXT3      -n-
+TBNCEXT4      -n-
+TBNCEXT5      -n-
+TBSTEXT3      waterfall's image (Stronghold decoration); animated
+TBCSHRD1      griffin's bastion's image
+TBCSHRD2      upgraded -n-
+TBRMSPEC      mystic pond's image; animated
+TBRMEXT0      fountain of fortune's -n-; animated
+TBRMEXT1      treasury's -n-
+TBRMHRD1      miner guild's -n-
+TBRMHRD2      upgraded -n-
+TBRMHRD3      dendroid saplings' -n-
+TBRMHRD4      upgraded -n-
+TB*DW_*       images for dwellings per each creature level (0-6) on top of background (Fortress exceptions: _2 = Gorgon L5, _3 = Fly L3, _4 = Basilisk L4)
+TB*UP_*       upgraded -n- (same Fortress exceptions)
+CPKMAN        creature's combat image; type = $42
+CHALBD        -n-
+CLCBOW        -n-
+CHCBOW        -n-
+CGRIFF        -n-
+CRGRIF        -n-
+CSWORD        -n-
+CCRUSD        -n-
+CMONKK        -n-
+CZEALT        -n-
+CCAVLR        -n-
+CCHAMP        -n-
+CANGEL        -n-
+CRANGL        -n-
+CCENTR        -n-
+CECENT        -n-
+CDWARF        -n-
+CBDWAR        -n-
+CELF          -n-
+CGRELF        -n-
+CPEGAS        -n-
+CAPEGS        -n-
+CTREE         -n-
+CBTREE        -n-
+CUNICO        -n-
+CWUNIC        -n-
+CGDRAG        -n-
+CDDRAG        -n-
+CGREMA        -n-
+CGREMM        -n-
+CGARGO        -n-
+COGARG        -n-
+CSGOLE        -n-
+CIGOLE        -n-
+CMAGE         -n-
+CAMAGE        -n-
+CGENIE        -n-
+CSULTA        -n-
+CNAGA         -n-
+CNAGAG        -n-
+CLTITA        -n-
+CGTITA        -n-
+CIMP          -n-
+CFAMIL        -n-
+CGOG          -n-
+CMAGOG        -n-
+CHHOUN        -n-
+CCERBU        -n-
+COHDEM        -n-
+CTHDEM        -n-
+CPFIEN        -n-
+CPFOE         -n-
+CEFREE        -n-
+CEFRES        -n-
+CDEVIL        -n-
+CADEVL        -n-
+CSKELE        -n-
+CWSKEL        -n-
+CZOMBI        -n-
+CZOMLO        -n-
+CWIGHT        -n-
+CWRAIT        -n-
+CVAMP         -n-
+CNOSFE        -n-
+CLICH         -n-
+CPLICH        -n-
+CBKNIG        -n-
+CBLORD        -n-
+CNDRGN        -n-
+CHDRGN        -n-
+CTROGL        -n-
+CITROG        -n-
+CHARPY        -n-
+CHARPH        -n-
+CBEHOL        -n-
+CEVEYE        -n-
+CMEDUS        -n-
+CMEDUQ        -n-
+CMINOT        -n-
+CMINOK        -n-
+CMCORE        -n-
+CCMCOR        -n-
+CRDRGN        -n-
+CBDRGN        -n-
+CGOBLI        -n-
+CHGOBL        -n-
+CBWLFR        -n-
+CUWLFR        -n-
+CORC          -n-
+CORCCH        -n-
+COGRE         -n-
+COGMAG        -n-
+CROC          -n-
+CTBIRD        -n-
+CCYCLR        -n-
+CCYCLL        -n-
+CYBEHE        -n-
+CABEHE        -n-
+CGNOLL        -n-
+CGNOLM        -n-
+CPLIZA        -n-
+CALIZA        -n-
+CCGORG        -n-
+CBGOG         -n-
+CDRFLY        -n-
+CDRFIR        -n-
+CBASIL        -n-
+CGBASI        -n-
+CWYVER        -n-
+CWYVMN        -n-
+CHYDRA        -n-
+CCHYDR        -n-
+CAELEM        -n-
+CEELEM        -n-
+CFELEM        -n-
+CWELEM        -n-
+CGGOLE        -n-
+CDGOLE        -n-
+CPIXIE        -n-
+CSPRIT        -n-
+CPSYEL        -n-
+CMAGEL        -n-
+CICEE         -n-
+CSTONE        -n-
+CSTORM        -n-
+CNRG          -n-
+CFBIRD        -n-
+CPHX          -n-
+CADRGN        -n-
+CCDRGN        -n-
+CFDRGN        -n-
+CRSDGN        -n-
+CENCH         -n-
+CSHARP        -n-
+CHALF         -n-
+CPEAS         -n-
+CBOAR         -n-
+CMUMMY        -n-
+CNOMAD        -n-
+CROGUE        -n-
+CTROLL        -n-
+SMCATA        -n-
+SMBAL         -n-
+SMTENT        -n-
+SMCART        -n-
+CH*           heroes' combat images; type = $49
+CH00          -n- of Knight/Cleric male
+CH01          -n- of Knight/Cleric female
+CH02          -n- of Ranger/Druid male
+CH03          -n- of Ranger/Druid female
+CH04          -n- of Alchemist/Wizard female
+CH05          -n- of Alchemist/Wizard male
+CH06          -n- of Demoniac/Heretic male
+CH07          -n- of Demoniac/Heretic female
+CH08          -n- of Death Knight/Necromancer male
+CH09          -n- of Death Knight/Necromancer female
+CH010         -n- of Overlord/Warlock male
+CH11          -n- of Overlord/Warlock female
+CH012         -n- of Barbarian/Battle Mage female
+CH013         -n- of Barbarian/Battle Mage male
+CH014         -n- of Beastmaster male (no Beastmaster female in SoD)
+CH015         -n- of Witch female (no Witch male in SoD)
+CH16          -n- of Elementalist (?)
+CH17          -n- of Planeswalker (?)
+CMFLAGL       flag animation for CH* on the left edge; type = $40
+CMFLAGR       -n- on the right edge
+MMENUHS       high scores main menu button
+MMENULG       load game -n-
+MMENUNG       new game -n-
+MMENUCR       credits -n-
+MMENUQT       quit -n-
+GTSINGL       single player -n-
+GTMULTI       multi player -n-
+GTCAMPN       campaign -n-
+GTTUTOR       tutorial -n-
+GTBACK        back -n-
+DIALBOX       corners used to border a generic dialog box similarly to AGEMUL;
+              frames = TL TR BL BR L R T B BL* BR* B* (* if drawing help bar)
+IGPCRDIV      horizontal scrollbar buttons used in TPRCRT/TPMRKS; frame = left pressed
+              right pressed thumb; disabled states are likely run-time generated
+              with 50% opacity
+OVBUTN2       (*) vertical -n-
+SLIDBUH       (*) blue horizontal -n-
+SLIDBUV       (*) blue vertical -n-
+SLIDEBUH      (*) copy of SLIDBUH
+SLIDEBUV      (*) copy of SLIDBUV
+ARTIFACT      artifact icons used in message boxes (including CPRESULT's);
+              frame = index in ARTRAITS.TXT (141-143 are placeholders),
+              outline (144), lock (145)
+ARTIFBON      artifact icons on gradient background; frame = as 0-143 in ARTIFACT
+TPMRKABS      copy of frame 2 in TPMRKS
+TPMRKASS      -n- of frame 3
+TPMRKCRS      -n- frame 4
+TPMRKPTS      -n- frame 1
+TPMRKRES      -n- frame 0
+ICM001        surrender button used in combat window
+ICM002        flee -n-
+ICM003        combat options -n-
+ICM004        auto-combat -n-
+ICM005        spell book -n-
+ICM006        wait -n-
+ICM007        defend -n-
+ICM008        (*) arrow up button -n-
+ICM010        (*) arrow down button -n-
+ICM009        (*) empty space (???)
+ICM011        next creature button used in combat window during tactics phase
+ICM012        start combat button -n-
+COMSLIDE      vertical scrollbar buttons used in combat log (CBAR); frame = up
+              pressed down pressed duplicate (= down-pressed, unused)
+RADAR         mini-map outline (dashed box), of different sizes; frame 0 = none
+CPRGOGX       missile of Gog
+cprgre        -n- of Master Gremlin
+CPRGTIX       -n- of Titan
+CPRZEAX       -n- of Monk
+PCYCLBX       -n- of Cyclops; also used when attacking walls
+PELFX         -n- of Elf
+Phalf         -n- of Halfling
+Picee         -n- of Ice Elemental
+PLCBOWX       -n- of Archer
+PLICH         -n- of Lich
+PMAGEX        -n- of Mage
+PMEDUSX       -n- of Medusa
+porchx        -n- of Orc
+PPLIZAX       -n- of Lizardman
+SMBALX        -n- of Ballista
+SMCatx        -n- of Catapult
+POOF          (*) land mine explosion during combat?
+CSGRCK        Catapult's no-damage impact
+SGEXPL        Catapult's and Cyclop's boulder impact
+SGTWMTA       (*) still Tower's siege Land Mine
+SGTWMTB       (*) Tower's siege Land Mine explosion during combat?
+CODEFAUL      restore defaults button used in COMOPBCK; frame = pressed, normal
+SOLOAD        load game button used in SYSOPBCK; frame = as CODEFAUL
+SOMAIN        main menu -n-
+SOQUIT        quit to desktop -n-
+SORSTRT       restart scenario -n-
+SOSAVE        save game -n-
+SORETRN       return to game button used in SYSOPBCK/COMOPBCK; frame = as CODEFAUL
+SYSOB10       medium map scroll speed button-switch used in SYSOPBCK and
+              medium animation speed button-switch used in COMOPBCK;
+              frame = normal, pressed, active
+SYSOB11       fastest map/animation -n-
+SYSOPB9       slowest map/animation -n-
+SYSOB12       high quality button-switch used in SYSOPBCK; frame = as SYSOB10
+SYSOB13       low quality -n-
+SYSOPB1       slowest hero speed -n-
+SYSOPB2       medium -n-
+SYSOPB3       fastest -n-
+SYSOPB4       instant -n-
+SYSOPB5       slowest enemy speed -n-
+SYSOPB6       fastest -n-
+SYSOPB7       instant -n-
+SYSOPB8       hide enemy movement -n-
+SYSOPCHK      checkbox used in SYSOPBCK/COMOPBCK; frame = unchecked, checked
+SYSLB         music/effects slider used in SYSOPBCK/COMOPBCK; frame = 0-9 from
+              silent to loudest, pressed state (unpressed is baked into *BCK)
+OB*           obstacles used in combat window, all single-frame; see below
+AVWATTAK      (*) the only $43-typed DEF not part of OBJECTS.TXT/HEROES.TXT;
+              replaces normal AVW* on map when hero is encountering a monster;
+              frame = OBJECTS.TXT index * 2 (+0 = right-facing, +1 = left)
+EDG           border image shown around adventure map when scrolling too far;
+              type 5 (terrain), not animated, constructed from frames like so:
+
+                EDG17-20 - corner images
+                EDG21-24 - top edge images, where 21 is left-most (near EDG17),
+                           24 is right-most (near EDG18)
+                EDG25-28 - right edge images, where 25 is top-most, 28 is bottom-most
+                EDG29-32 - bottom edge images, where 29 is left-most, 32 is right-most
+                EDG33-36 - left edge images, where 33 is top-most, 36 is bottom-most
+                EDG1-16  - images comprising a square repeated 4x4 tile, where 1
+                           is top-left corner, 4 is top-right corner, 13 is
+                           bottom-left corner, 16 is bottom-right corner
+
+                large tile  left edge      right edge
+                ,---------, v              v
+                01 02 03 04 17 25 26 27 28 18 < top edge
+                05 06 07 08 33 etc.
+                09 10 11 12 34
+                13 14 15 16 35
+
+              By comparing with in-game screenshots, if starting tiling with the
+              large tile from top-left corner then the first column (EDG1, 5, 9, 13)
+              is left out (so EDG02 appears in top-left corner of the screen. If
+              starting tiling from bottom-right corner then only the first
+              column is left, i.e. EDG13 appears in bottom-right corner of the
+              screen. However, note that the overall screen border (bright
+              yellow with gems) is overlaid on left side of EDG but not on top
+              side. Therefore the large tile appears cropped on left but not on
+              top. Yet, all in all it seems irrelevant how the large tile is
+              positioned in relation to the edge box. If pixel to pixel match is
+              not required, the tile can fill the background however because the
+              edge image has no connection to the tile around it (the emboss is
+              a clear border; a tile is mirrored inside it is only seemingly).
+
+ADAG          arrows indicating hero's path used on ADVMAP; frame = 25 * 2 where
+              1st set is green, 2nd is red, otherwise both are identical:
+
+               0 = cross (destination)
+               1 = move from BL to T
+               2 = move from L to TR
+               3 = move from TL to R
+               4 = move from T to BR
+               5 = move from TR to B
+               6 = move from R to BL
+               7 = move from BR to L
+               8 = move from B to TL
+               9 = move from B to T
+              10 = move from BL to TR
+              11 = move from L to R
+              12 = move from TL to BR
+              13 = move from T to B
+              14 = move from TR to BL
+              15 = move from R to L
+              16 = move from BR to TL
+              17 = move from BR to T
+              18 = move from B to TR
+              19 = move from BL to R
+              20 = move from L to BR
+              21 = move from TL to B
+              22 = move from T to BL
+              23 = move from TR to L
+              24 = move from R to TL
+
+                            +-+-+-+
+                TL--T--TR   | |D| |   (D)estination
+                |       |   +-+^+-+
+                L       R   | |m| |   <- though this cell move is from BL to T
+                |       |   +-/-+-+
+                BL--B--BR   |H| | |   (H)ero
+                            +-+-+-+
+
+              It is easy to see that moves happen from one of 8 points to one
+              of 3 points on the opposite side of the square: TR to BL/B/BR,
+              L to TR/R/BR, etc. - hence ADAG has 8*3=24 variations in total.
+              But this doesn't cover all combinations: 8*8 = 64 minus 8 clearly
+              meaningless (to self, e.g. T to T) = 56. This includes 8*2 (to
+              adjacent: L to TL) and 8 (diagonal: T to L) = 24, of which some
+              are not meaningless because SoD disallows entering actionable
+              spot from top or leaving it to top so seemingly irrational detours
+              (o) are required when moving D to H (TL to L) or H to D as below.
+
+                +-+-+-+     move from T to/from TL = meaningless
+                |D| | |     move from T to/from TR = meaningless
+                +-\-+-+     move from R to TR = 18
+                |H-o| |     move from TR to R = 3
+                +-+-+-+     move from L to TL = 8
+                | | | |     move from TL to L = 23
+                +-+-+-+     move from B to/from BL = meaningless
+                adjacent    move from B to/from BR = meaningless
+                            move from R to/from BR = meaningless
+                            move from L to/from BL = meaningless
+
+                +-+-+-+     move from T to L = 23
+                | |H| |     move from L to T = 1
+                +-+v+-+     move from T to R = 3
+                |D<o| |     move from R to T = 17
+                +-+-+-+     move from B to/from L = meaningless
+                | | | |     move from B to/from R = meaningless
+                +-+-+-+
+                diagonal
+
+                This makes for 24+8*2+8 = 48; remaining 64-8 = 8 are:
+
+                +-+-+-+     move from BL to TL = 8
+                |D| | |     move from BR to TR = 18
+                +-\-+-+     move from TL to BL = 22
+                | |o| |     move from TR to BR = 4
+                +-/-+-+     move from BR to BL = 6
+                |H| | |     move from TR to TL = 24
+                +-+-+-+     move from BL to BR = 20
+                BL to TL    move from TL to TR = 2
+
+TSHRC         ADVMAP's shroud, repeated background; a row's (horizontal)
+              background depends on X and Y only (is not unique per map or
+              under/overground); the first tile (X=0) is unique per row while
+              subsequent are repeated in groups of 3:               +-------
+                                                                    |0123123
+              |        | Y%4=0    | Y%4=1    | Y%4=2    | Y%4=3     |1032032
+              | frames | 0 (123)+ | 1 (032)+ | 2 (301)+ | 3 (210)+  |2301301
+                                                                    |3210210
+TSHRE         ADVMAP's shroud cornering visible tiles in various combinations
+
+              According to my in-game tests with SoD, visual inspection of
+              TSHRE frames and intuition, an invisible tile's frame depends on
+              visibility of 8 adjacent tiles. It doesn't depend on the tile
+              itself since no matter of the sides' visibility, if the center
+              is visible then the tile is shown without shroud.
+
+              Given the above, there are 2 ^ 8 = 256 combinations. However,
+              TSHRE has much fewer frames. I formed a hypothesis that
+              visibility of a corner is irrelevant if any adjacent side is
+              visible (for example, if a frame shows Top as visible then it
+              handles Top, Top/Top-Left, Top/Top-Right, Top/Top-Left/Top-Right).
+              This gives 47 combinations.
+
+              1. Most frames are used for specific combinations, either
+                 verbatim (e.g. 06) or horizontally flipped (e.g. 22).
+              2. 4 combinations have multiple frames (same images); which
+                 one is used depends on coordinates of the tile being concealed
+                 (e.g. 04/05) - 0-based, from top-left corner.
+              3. Other 4 combinations having multiple frames select one by
+                 states of corners (even in presence of a visible side) - if
+                 any corner is visible, one frame is used (e.g. 12) and if none
+                 are, another is used (14). These are marked with the
+                 disjunction operator (V).
+              4. When checking state of tile (_) outside of map boundaries, it
+                 +--_--+  seems fit to assume state of the adjacent border tile
+                 |  T  |  (T). For corners (+), always assume "not visible".
+                 _T   T_
+                 |  T  |
+                 +--_--+
+
+              TL T  TR L  R  BL B  BR   TSHRE frame number
+              ---------------------------------------------------------------
+                                        (no sides visible)
+                                   ↘    22
+                             *  ↓  *    04 (even X), 05 (odd X)
+                             ↙          flip X 22
+                             ↙     ↘    23
+                    *     →        *    02 (even Y), 03 (odd Y)
+                    V     →  V  ↓  *    12
+                          →     ↓  *    14
+                    *     →  ↙     *    25
+              *        ←     *          flip X 02 (even Y), flip X 03 (odd Y)
+              *        ←     *     ↘    flip X 25
+              V        ←     *  ↓  V    flip X 12
+                       ←     *  ↓       flip X 14
+              *     *  ←  →  *     *    09
+              *     *  ←  →  *  ↓  *    06
+                    ↗                   15
+                    ↗              ↘    16
+                    ↗        *  ↓  *    30
+                    ↗        ↙          17
+                    ↗        ↙     ↘    19
+              *     ↗  ←     *          flip X 26
+              *     ↗  ←     *     ↘    32
+              *     ↗  ←     *  ↓  *    flip X 28
+              *  ↑  *                   00 (even X), 01 (odd X)
+              *  ↑  *              ↘    24
+              *  ↑  *        *  ↓  *    29
+              *  ↑  *        ↙          flip X 24
+              *  ↑  *        ↙     ↘    33
+              V  ↑  *     →        V    11
+                 ↑  *     →             13
+              *  ↑  *     →  *  ↓  *    flip X 07
+              *  ↑  *     →  ↙     *    27
+              V  ↑  *  ←     *     V    flip X 11
+                 ↑  *  ←     *          flip X 13
+              *  ↑  *  ←     *     ↘    flip X 27
+              *  ↑  *  ←     *  ↓  *    07
+              *  ↑  *  ←  →  *     *    08
+              *  ↑  *  ←  →  *  ↓  *    10
+              ↖                         flip X 15
+              ↖                    ↘    flip X 17
+              ↖              *  ↓  *    flip X 30
+              ↖              ↙          flip X 16
+              ↖              ↙     ↘    flip X 19
+              ↖     *     →        *    26
+              ↖     *     →  *  ↓  *    28
+              ↖     *     →  ↙     *    flip X 32
+              ↖     ↗                   18
+              ↖     ↗              ↘    20
+              ↖     ↗        *  ↓  *    31
+              ↖     ↗        ↙          flip X 20
+              ↖     ↗        ↙     ↘    21
+
+-- DEF from OBJECTS.TXT --
+adc*          ADCFRA             bonfire (unused?)
+              ADCFRA0            dark bonfire (unused?)
+ahp*          AHPLACE            hero placeholder
+ava*          AVA0*              001-144, index in ARTRAITS.TXT plus 1
+              AVARAND            random artifact
+              AVARND*            1-4, treasure/minor/major/relic
+              AVARTIF            School of Magic
+              AVADLIC0           derelict ship
+              AVAFLOT0           flotsam
+              AVAWRE*            shipwreck
+              AVASURV0           water survivor
+avc*          TOWNS AND GATES
+              AVCGAR*            horizontal gates
+              AVCVGR*            vertical gates
+              AVCNEUT0           dummy
+              AVCRAN*            random towns
+              other AVC*         9 towns, with 2 unused images
+              SoD has multiple DEFs for random and regular towns but OBJECTS.TXT
+              lists only one for each (there are 1+9 town entries); unlisted DEF
+              are unused town-with-fort variations (notably those with a 3rd
+              flag graphic, like AVCCASZ0) and without-fort used in game:
+                without fort     with fort         file name     OBJECTS.TXT
+                AVCRAN D0        AVCRAN X0         AVCRAND0.DEF  AVCRANX0.DEF
+              0 AVCCAS T0        AVCCAS X0         AVCCAST0.DEF  AVCCASX0.DEF
+              5 AVCDUN G0        AVCDUN X0         AVCDUNG0.DEF  AVCDUNX0.DEF
+              7 AVCFTR T0        AVCFTR X0         AVCFTRT0.DEF  AVCFTRX0.DEF
+              8 AVCHFO R0        AVCHFO RX         AVCHFOR0.DEF  AVCHFORX.DEF
+              3 AVCINF T0        AVCINF X0         AVCINFT0.DEF  AVCINFX0.DEF
+              4 AVCNEC R0        AVCNEC X0         AVCNECR0.DEF  AVCNECX0.DEF
+              1 AVCRAM P0        AVCRAM X0         AVCRAMP0.DEF  AVCRAMX0.DEF
+              6 AVCSTR O0        AVCSTR X0         AVCSTRO0.DEF  AVCSTRX0.DEF
+              2 AVCTOW R0        AVCTOW X0         AVCTOWR0.DEF  AVCTOWX0.DEF
+avg*          DWELLINGS
+              AVGREFG0           refugee camp
+              AVGSIEG0           Blacksmith
+avl*          obstacles (trees, mountains, etc.)
+avm*          MINES
+              AVMABMG            abandoned
+              AVMALC*            alchemist
+              AVMCR*             crystal
+              AVMGE*             gems
+              AVMGO*             gold
+              AVMLEAN0           lean-to
+              AVMOR*             ore
+              AVMSAW*/AVMSW*     sawmill
+              AVMSULF0           sulfur
+              AVMWM*             wind mill (there's also an unlisted ADVMWIND)
+              AVMWW*             water wheel
+avr*          AVRCGEN*/AVRCGN*   random dwelling
+avs*          VARIOUS ENCOUNTERS
+              AVSARNA0          arena
+              AVSAXIS0          star axis
+              AVSBUOY0          buoy
+              AVSCLV*           swan pond
+              AVSFNTN0          fountain
+              AVSGRDN0          garden
+              AVSGZBO0          learning stone
+              AVSIDOL0          idol
+              AVSLIBR0          library
+              AVSMARL           Marletto's
+              AVSMERC0          mercenary camp
+              AVSRING0          fairy ring
+              AVSSCHM0          school of magic
+              AVSTMPL0          temple
+              AVSUNIV0          university
+              AVSUTOP0          Utopia
+              AVSWAR20          war academy
+              AVSWTCH0          witch's hut
+avt*          VARIOUS ENCOUNTERS
+              AVTCAVE           passage to underground
+              AVTMYST0          mystical garden
+              AVTWAGN0          broken wagon
+              AVTCHST0          chest
+              AVTCRYS0          crystal pile
+              AVTGEMS0          gems pile
+              AVTGOLD0          gold pile
+              AVTMERC0          mercury pile
+              AVTORE0           ore pile
+              AVTRNDM0          random pile
+              AVTSULF0          sulfur pile
+              AVTWOOD0          wood pile
+avw*          MONSTERS
+              AVWMRND0          random
+              AVWMON*           1-7, by level
+avx*          VARIOUS ENCOUNTERS
+              AVXABND0/AVXAM*   abandoned mine
+              AVXALTAR          Altar of Sacrifice
+              AVXBGT*0          border gate, 0-7, blue/green/red/navy/orange/purple/white/black
+              AVXBNK*0          bank, 1-7, in order of lines in CRBANKS.TXT
+              AVXBOAT*          0-2, boats
+              AVXBOR*0          border guard, 0-8, as in AVXBGT*, 8 = quest
+              AVXBTTL0          water bottle
+              AVXCCHT0          water chest
+              AVXCF*            clover field, where * = number
+              AVXCF??0          bonfire
+              AVXCG*/AVXCRSD0   cursed ground
+              AVXCOVR0          cover of darkness
+              AVXDEN*           den of thieves
+              AVXEF*            evil fog
+              AVXEYEM0          magi's eye
+              AVXFF*            fiery fields
+              AVXFGLD           freelancers' guild
+              AVXFW*            favorable winds
+              AVXFYTH0          fountain of youth
+              AVXGY*            crypt
+              AVXHG*            holy ground
+              AVXHIL*           fort
+              AVXHUTM0          magi's hut
+              AVXKEY*0          keymaster's tent, 0-7
+              AVXL*SH0          spell shrine, 1-3, by level
+              AVXLP*            lucid pools
+              AVXLTHS0          lighthouse
+              AVXMAGS0          magic spring
+              AVXMAP*           cartographer
+              AVXMC*            magic clouds
+              AVXMERM0          mermaids
+              AVXMKTB0          black market
+              AVXMKTT0          market of time?
+              AVXMN*/AVXMX*     monolith
+              AVXMP*/AVXPLNS0   magic plains
+              AVXOBL*           obelisk
+              AVXOSIS0          oasis
+              AVXPLLR0          fire pillar
+              AVXPOST0/AVXPS*   trading post
+              AVXPRMD0          pyramid
+              AVXPRSN0          jail
+              AVXRED*           redwood observatory
+              AVXRK*            rockland
+              AVXRLLY0          rally flag
+              AVXSANC0          sanctuary
+              AVXSCHL0          scholar
+              AVXSEE*           seer's hut
+              AVXSHYD0          shipyard
+              AVXSIRN0          sirens
+              AVXSKDS0          skeleton
+              AVXSN*            sign
+              AVXSTBL0          stables
+              AVXTHRN           Utopia
+              AVXTOMB0          warrior's tomb
+              AVXTREK0          tree of knowledge
+              AVXTVRN0          tavern
+              AVXWEL*/AVXWLSN0  magic well
+              AVXWHRL0          whirlpool
+              AVXWTRH0          watering hole
+avz*          AVZEVNT0          event
+              AVZGRAIL          grail artifact
+clr*          CLRDELT*          clear delta
+              CLRRVR            clear river tiles
+def*          default           dummy
+ice*          ICEDELT           ice delta
+lav*          lavatl            lava tiles
+              lavdelt           lava delta
+              lavrvr            lava river tiles
+mud*          muddelt*          muddy delta
+              mudrvr            muddy river tiles
+
+-- OB* - combat obstacles --
+Terrain types
+
+  Desert
+  Dirt
+  Grass
+  Lava
+  Rock - N/A
+  Rough
+  Snow
+  Subterranean
+  Swamp
+  Water - N/A
+
+Special objects
+
+  Clover Field
+  Cursed Ground
+  Evil Fog
+  Favorable Winds
+  Fiery Fields
+  Holy Ground
+  Lucid Pools
+  Magic Clouds
+  Magic Plains
+  Rocklands
+
+Combat backgrounds
+
+  CMBKBCH       adjacent to Water
+  CMBKBOAT      two boats
+  CMBKCF        Clover Field
+  CMBKCUR       Cursed Ground
+  CMBKDECK      one boat
+  CMBKDES       Desert
+  CMBKDRDD      Dirt + Dead Vegetation
+  CMBKDRMT      Dirt + Mountain
+  CMBKDRTR      Dirt
+  CMBKEF        Evil Fog
+  CMBKFF        Fiery Fields
+  CMBKFW        Favorable Winds
+  CMBKGRMT      Grass + Mountain
+  CMBKGRTR      Grass
+  CMBKHG        Holy Ground
+  CMBKLAVA      Lava
+  CMBKLP        Lucid Pools
+  CMBKMAG       Magic Plains
+  CMBKMC        Magic Clouds
+  CMBKRGH       Rough
+  CMBKRK        Rocklands
+  CMBKSNMT      Snow + Mountain
+  CMBKSNTR      Snow
+  CMBKSUB       Subterranean
+  CMBKSWMP      Swamp
+
+Conventions
+
+  OB l ll dd  - generic objects used on more than one terrain, where "l"
+                indicates terrain group ("D" for dirt/etc., "G" for grass/etc.)
+                and "ll" is the object's name ("RK" for rock)
+
+  OB ll l dd  - terrain-specific objects, where "ll" indicates the terrain ("SW"
+                for swamp) and "l" is either L (large) or S (small)
+
+  [terrain]   - where this object has appeared during playtesting
+
+  Groups marked with (?) are used in multiple terrain types and it's worth
+  rechecking if those types are correct, especially "D" ones
+  (desert/dirt/rough/subterranean; "D" for "dead"?)
+
+desert & dirt & rough & subterranean & beach (?)
+OBDINO1.def   OB DINO 1.def     DINOsaur
+OBDINO2.def   OB DINO 2.def     -n- [subterranean] [beach] [desert]
+OBDINO3.def   OB DINO 3.def     -n-
+OBSKEL1.def   OB SKEL 1.def     SKELeton [rough] [dirt veg] [dirt]
+OBSKEL2.def   OB SKEL 2.def     -n- [beach]
+
+unknown (?)
+OBBDT01.def   OB B DT 01.def    Dead Tree - never seen
+
+desert & dirt (?)
+OBDRK01.def   OB D RK 01.def    RocK
+OBDRK02.def   OB D RK 02.def    -n-
+OBDRK03.def   OB D RK 03.def    -n-
+OBDRK04.def   OB D RK 04.def    -n- [dirt]
+OBDSH01.def   OB D SH 01.def    SHrub
+OBDSM01.def   OB D SM 01.def    SMall [desert]
+OBDSM02.def   OB D SM 02.def    -n- [desert]
+
+[BH] beach
+OBBHL02.bmp   OB BH L 02.bmp    Large or ("OBB" + "H"ull "L"arge) [beach]
+OBBHL03.bmp   OB BH L 03.bmp    -n-
+OBBHL05.bmp   OB BH L 05.bmp    -n-
+OBBHL06.bmp   OB BH L 06.bmp    -n-
+OBBHL14.bmp   OB BH L 14.bmp    -n-
+OBBHL16.bmp   OB BH L 16.bmp    -n-
+OBBHS02.def   OB BH S 02.def    Small [beach]
+OBBHS03.def   OB BH S 03.def    -n- [beach]
+OBBHS04.def   OB BH S 04.def    -n-
+OBBHS11A.def  OB BH S 11A.def   -n- [beach]
+OBBHS12B.def  OB BH S 12B.def   -n- [beach]
+OBBHS14B.def  OB BH S 14B.def   -n- [beach]
+OBBHS16A.def  OB BH S 16A.def   -n-
+
+[BT] boat
+OBBTS04.def   OB BT S 04.def    Small
+
+[DT] dirt & Cursed Ground
+OBDTF03.def   OB DT F 03.def     ?
+OBDTL02.bmp   OB DT L 02.bmp     Large
+OBDTL03.bmp   OB DT L 03.bmp     -n- [dirt veg]
+OBDTL04.bmp   OB DT L 04.bmp     -n-
+OBDTL06.bmp   OB DT L 06.bmp     -n-
+OBDTL10.bmp   OB DT L 10.bmp     -n-
+OBDTS03.def   OB DT S 03.def     Small [dirt mnt] [Cursed Ground]
+OBDTS04.def   OB DT S 04.def     -n- [dirt mnt] [dirt]
+OBDTS14.def   OB DT S 14.def     -n-
+OBDTS15.def   OB DT S 15.def     -n- [dirt veg] [Cursed Ground]
+
+[DS] desert
+OBDSS02.def   OB DS S 02.def     Small [desert]
+OBDSS17.def   OB DS S 17.def     -n- [desert]
+
+grass & Magic Plains & swamp (?)
+OBGLG01.def   OB G LG 01.def     LoG [grass] [swamp]
+OBGRK01.def   OB G RK 01.def     RocK [Magic Plains] [swamp]
+OBGRK02.def   OB G RK 02.def     -n- [grass mnt] [grass]
+OBGST01.def   OB G ST 01.def     Small Tree [grass] [swamp]
+
+[GR] grass & Magic Plains
+OBGRL01.bmp   OB GR L 01.bmp     Large [grass]
+OBGRL02.bmp   OB GR L 02.bmp     -n- [grass] [grass mnt]
+OBGRS01.def   OB GR S 01.def     Small [grass] [grass mnt] [Magic Plains]
+OBGRS02.def   OB GR S 02.def     -n-
+OBGRS03.def   OB GR S 03.def     -n-
+
+[CF] Clover Field
+OBCFL00.bmp   OB CF L 00.bmp    Large [Clover Field]
+OBCFS00.def   OB CF S 00.def    Small [Clover Field]
+OBCFS01.def   OB CF S 01.def    -n- [Clover Field]
+OBCFS02.def   OB CF S 02.def    -n-
+OBCFS03.def   OB CF S 03.def    -n- [Clover Field]
+
+[EF] Evil Fog
+OBEFS00.def   OB EF S 00.def     Small
+OBEFS01.def   OB EF S 01.def     -n- [Evil Fog]
+OBEFS02.def   OB EF S 02.def     -n- [Evil Fog]
+OBEFS03.def   OB EF S 03.def     -n- [Evil Fog]
+OBEFS04.def   OB EF S 04.def     -n- [Evil Fog]
+
+[FF] Fiery Fields
+OBFFL00.bmp   OB FF L 00.bmp     Large
+OBFFS00.def   OB FF S 00.def     Small
+OBFFS01.def   OB FF S 01.def     -n- [Fiery Fields]
+OBFFS02.def   OB FF S 02.def     -n- [Fiery Fields]
+OBFFS03.def   OB FF S 03.def     -n- [Fiery Fields]
+OBFFS04.def   OB FF S 04.def     -n- [Fiery Fields]
+
+[HG] Holy Ground
+OBHGS00.def   OB HG S 00.def     Small
+OBHGS01.def   OB HG S 01.def     -n- [Holy Ground]
+OBHGS02.def   OB HG S 02.def     -n-
+OBHGS03.def   OB HG S 03.def     -n- [Holy Ground]
+OBHGS04.def   OB HG S 04.def     -n- [Holy Ground]
+
+[LP] Lucid Pools
+OBLPL00.bmp   OB LP L 00.bmp     Large [Lucid Pools]
+OBLPS00.def   OB LP S 00.def     -n- [Lucid Pools]
+OBLPS01.def   OB LP S 01.def     -n- [Lucid Pools]
+OBLPS02.def   OB LP S 02.def     -n- [Lucid Pools]
+OBLPS03.def   OB LP S 03.def     -n- [Lucid Pools]
+
+[MC] Magic Clouds
+OBMCL00.bmp   OB MC L 00.bmp     Large [Magic Clouds]
+OBMCS00.def   OB MC S 00.def     Small [Magic Clouds]
+OBMCS01.def   OB MC S 01.def     -n- [Magic Clouds]
+OBMCS02.def   OB MC S 02.def     -n- [Magic Clouds]
+
+[RL] Rocklands
+OBRLL00.bmp   OB RL L 00.bmp     Large [Rocklands]
+OBRLS00.def   OB RL S 00.def     Small [Rocklands]
+OBRLS01.def   OB RL S 01.def     -n-
+OBRLS02.def   OB RL S 02.def     -n- [Rocklands]
+OBRLS03.def   OB RL S 03.def     -n- [Rocklands]
+
+[LV] lava
+OBLVL01.bmp   OB LV L 01.bmp     Large [lava]
+OBLVL02.bmp   OB LV L 02.bmp     -n-
+OBLVS01.def   OB LV S 01.def     Small
+OBLVS02.def   OB LV S 02.def     -n-
+OBLVS03.def   OB LV S 03.def     -n-
+OBLVS04.def   OB LV S 04.def     -n-
+OBLVS09.def   OB LV S 09.def     -n-
+OBLVS17.def   OB LV S 17.def     -n- [lava]
+OBLVS22.def   OB LV S 22.def     -n- [lava]
+
+[RG] rough & Cursed Ground
+OBRGL01.bmp   OB RG L 01.bmp     Large
+OBRGL02.bmp   OB RG L 02.bmp     -n-
+OBRGL03.bmp   OB RG L 03.bmp     -n-
+OBRGL04.bmp   OB RG L 04.bmp     -n- [rough]
+OBRGL05.bmp   OB RG L 05.bmp     -n- [rough]
+OBRGL06.bmp   OB RG L 06.bmp     -n-
+OBRGL15.bmp   OB RG L 15.bmp     -n-
+OBRGL22.bmp   OB RG L 22.bmp     -n-
+OBRGS01.def   OB RG S 01.def     Small [rough] [Cursed Ground]
+OBRGS02.def   OB RG S 02.def     -n- [rough] [Cursed Ground]
+OBRGS03.def   OB RG S 03.def     -n- [rough] [Cursed Ground]
+OBRGS04.def   OB RG S 04.def     -n-
+OBRGS05.def   OB RG S 05.def     -n-
+OBRGS06.def   OB RG S 06.def     -n-
+
+[SN] snow
+OBSNL01.bmp   OB SN L 01.bmp     Large
+OBSNL14.bmp   OB SN L 14.bmp     -n- [snow mnt] [snow]
+OBSNS01.def   OB SN S 01.def     Small [snow]
+OBSNS02.def   OB SN S 02.def     -n- [snow]
+OBSNS03.def   OB SN S 03.def     -n-
+OBSNS04.def   OB SN S 04.def     -n- [snow]
+OBSNS05.def   OB SN S 05.def     -n- [snow]
+OBSNS06.def   OB SN S 06.def     -n- [snow] [snow mnt]
+OBSNS07.def   OB SN S 07.def     -n-
+OBSNS08.def   OB SN S 08.def     -n-
+OBSNS09.def   OB SN S 09.def     -n- [snow]
+OBSNS10.def   OB SN S 10.def     -n- [snow mnt]
+
+[SU] subterranean
+OBSUS01.def   OB SU S 01.def     Small [subterranean]
+OBSUS02.def   OB SU S 02.def     -n-
+OBSUS11B.def  OB SU S 11B.def    -n- [subterranean]
+
+[SW] swamp
+OBSWL14.bmp   OB SW L 14.bmp     Large
+OBSWL15.bmp   OB SW L 15.bmp     -n-
+OBSWL22.bmp   OB SW L 22.bmp     -n-
+OBSWS01.def   OB SW S 01.def     Small [swamp]
+OBSWS02.def   OB SW S 02.def     -n-
+OBSWS03.def   OB SW S 03.def     -n- [swamp]
+OBSWS04.def   OB SW S 04.def     -n- [swamp]
+OBSWS11B.def  OB SW S 11B.def    -n- [swamp]
+OBSWS13A.def  OB SW S 13A.def    -n-
+
+-- BMP affected by PLAYERS.PAL --
+By comparing last 32 colors in 256 color long palettes with Blue's palette
+group шт PLAYERS.PAL as done by bmp2png.php, one can determine the following
+images that need to be recolored:
+
+ADVMAP
+ADVOPTS
+ALTARART
+ALTARMON
+ALTRART2
+APHLFTBK
+ARESBAR
+CBAR
+CCRPOP
+CHRPOP
+COMOPBCK
+COPLACBR
+CPRESULT
+CRSTKPU
+CRTOINFO
+FLAGBACK
+GARRIPOP
+GARRISON
+GPUCRDIV
+HEROQVBK
+HEROSCR3
+HEROSCR4
+HPSXXX
+KRESBAR
+LVLUPBKG
+OVCAST
+OVTITLE
+PUZZLE
+RECQ160
+SKTRNBK
+SPELBACK
+SPELLINF
+SYSOPBCK
+TOWNQVBK
+TOWNSCRN
+TPCASTL7
+TPCASTL8
+TPDATCLR
+TPGATE
+TPMRKABS
+TPMRKASS
+TPMRKCRS
+TPMRKPTS
+TPMRKRES
+TPRANK
+TPRCRT
+TPSHIP
+TPSMITH
+TPTAVDES
+TPTAVERN
+TPTAVROL
+TPTHBKCS
+TPTHBKDG
+TPTHBKFR
+TPTHBKIN
+TPTHBKNC
+TPTHBKRM
+TPTHBKST
+TPTHBKTW
+TPUBUILD
+TRADE
+TRADE2
+TRARROWL
+TRARROWR
+TRESBAR
+UNIVERS1
+UNIVERS2
+
+-- DEF affected by PLAYERS.PAL --
+CMFLAGL
+CMFLAGR
+DIALGBOX
+IAM000
+IAM001
+IAM002
+IAM003
+IAM004
+IAM005
+IAM006
+IAM007
+IAM008
+IAM009
+IAM010
+IAM011
+TPMRKS

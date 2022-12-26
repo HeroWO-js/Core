@@ -1,0 +1,38 @@
+#loadingAnimation {
+  animation: 5s -2.5s linear infinite loading-animation;
+}
+
+@keyframes loading-animation {
+  from { transform: scale(0.75) translateX(-100%); }
+  50%  { transform: scale(1); }
+  to   { transform: scale(0.75) translateX(100%); }
+}
+
+.HLgi,
+.HLp {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.HLgi {
+  right: 0;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDkiIGhlaWdodD0iNDkiIHZpZXdCb3g9IjAgMCA0OSA0OSI+PHJlY3Qgc3Ryb2tlPSIjZmZmIiBzdHJva2Utb3BhY2l0eT0iLjMiIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIvPjwvc3ZnPg==);
+  animation: .25s infinite linear loading-grid;
+}
+
+@keyframes loading-grid {
+  to { background-position: -50px 0; }
+}
+
+.HLp {
+  width: 1em;
+  animation: infinite loading-pillar;
+}
+
+@keyframes loading-pillar {
+  from { transform: scale(0.75); left: calc(100% - 1em); }
+  50%  { transform: scale(2, 1); }
+  to   { transform: scale(0.75); }
+}

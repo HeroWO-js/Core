@@ -1,0 +1,836 @@
+ARTRAITS.TXT
+
+	XXX-COMPATIBILITY,Unused:ART art0  :	Spell Book
+	XXX+COMPATIBILITY:ART art1  :	Spell Scroll
+	XXX-COMPATIBILITY:ART art2  :	The Grail (grl)
+	XXX+COMPATIBILITY:ART art3  :	Catapult
+	XXX+COMPATIBILITY:ART art4  :	Ballista
+	XXX+COMPATIBILITY:ART art5  :	Ammo Cart
+	XXX=COMPATIBILITY:ART art6  :	First Aid Tent
+	XXX+COMPATIBILITY,Common:ART art7  :	Centaurs Axe
+	XXX+COMPATIBILITY,Minor:ART art8  :	Blackshard of the Dead Knight
+	XXX+COMPATIBILITY,Minor:ART art9  :	Greater Gnoll's Flail
+	XXX+COMPATIBILITY,Major:ART art10 :	Ogre's Club of Havoc
+	XXX+COMPATIBILITY,Major:ART art11 :	Sword of Hellfire
+	XXX+COMPATIBILITY,Relic:ART art12 :	Titan's Gladius
+	XXX+COMPATIBILITY,Common:ART art13 :	Shield of the Dwarven Lords
+	XXX+COMPATIBILITY,Minor:ART art14 :	Shield of the Yawning Dead
+	XXX+COMPATIBILITY,Minor:ART art15 :	Buckler of the Gnoll King
+	XXX+COMPATIBILITY,Major:ART art16 :	Targ of the Rampaging Ogre
+	XXX+COMPATIBILITY,Major:ART art17 :	Shield of the Damned
+	XXX+COMPATIBILITY,Relic:ART art18 :	Sentinel's Shield
+	XXX+COMPATIBILITY,Common:ART art19 :	Helm of the Alabaster Unicorn
+	XXX+COMPATIBILITY,Common:ART art20 :	Skull Helmet
+	XXX+COMPATIBILITY,Minor:ART art21 :	Helm of Chaos
+	XXX+COMPATIBILITY,Minor:ART art22 :	Crown of the Supreme Magi
+	XXX+COMPATIBILITY,Major:ART art23 :	Hellstorm Helmet
+	XXX+COMPATIBILITY,Relic:ART art24 :	Thunder Helmet
+	XXX+COMPATIBILITY,Common:ART art25 :	Breastplate of Petrified Wood
+	XXX+COMPATIBILITY,Minor:ART art26 :	Rib Cage
+	XXX+COMPATIBILITY,Minor:ART art27 :	Scales of the Greater Basilisk
+	XXX+COMPATIBILITY,Major:ART art28 :	Tunic of the Cyclops King
+	XXX+COMPATIBILITY,Major:ART art29 :	Breastplate of Brimstone
+	XXX+COMPATIBILITY,Relic:ART art30 :	Titan's Cuirass
+	XXX+COMPATIBILITY,Minor:ART art31 :	Armor of Wonder
+	XXX+COMPATIBILITY,Relic:ART art32 :	Sandals of the Saint
+	XXX+COMPATIBILITY,Relic:ART art33 :	Celestial Necklace of Bliss
+	XXX+COMPATIBILITY,Relic:ART art34 :	Lion's Shield of Courage
+	XXX+COMPATIBILITY,Relic:ART art35 :	Sword of Judgement
+	XXX+COMPATIBILITY,Relic:ART art36 :	Helm of Heavenly Enlightenment
+	XXX+COMPATIBILITY,Common:ART art37 :	Quiet Eye of the Dragon
+	XXX+COMPATIBILITY,Minor:ART art38 :	Red Dragon Flame Tongue
+	XXX+COMPATIBILITY,Major:ART art39 :	Dragon Scale Shield
+	XXX+COMPATIBILITY,Relic:ART art40 :	Dragon Scale Armor
+	XXX+COMPATIBILITY,Common:ART art41 :	Dragonbone Greaves
+	XXX+COMPATIBILITY,Minor:ART art42 :	Dragon Wing Tabard
+	XXX+COMPATIBILITY,Major:ART art43 :	Necklace of Dragonteeth
+	XXX+COMPATIBILITY,Relic:ART art44 :	Crown of Dragontooth
+	XXX+COMPATIBILITY,Common:ART art45 :	Still Eye of the Dragon
+	XXX+COMPATIBILITY,Common:ART art46 :	Clover of Fortune
+	XXX+COMPATIBILITY,Common:ART art47 :	Cards of Prophecy
+	XXX+COMPATIBILITY,Common:ART art48 :	Ladybird of Luck
+	XXX+COMPATIBILITY,Common:ART art49 :	Badge of Courage
+	XXX+COMPATIBILITY,Common:ART art50 :	Crest of Valor
+	XXX+COMPATIBILITY,Common:ART art51 :	Glyph of Gallantry
+	XXX+COMPATIBILITY,Common:ART art52 :	Speculum
+	XXX+COMPATIBILITY,Common:ART art53 :	Spyglass
+	XXX+COMPATIBILITY,Common:ART art54 :	Amulet of the Undertaker
+	XXX+COMPATIBILITY,Minor:ART art55 :	Vampire's Cowl
+	XXX+COMPATIBILITY,Major:ART art56 :	Dead Man's Boots
+	XXX+COMPATIBILITY,Major:ART art57 :	Garniture of Interference
+	XXX+COMPATIBILITY,Major:ART art58 :	Surcoat of Counterpoise
+	XXX+COMPATIBILITY,Relic:ART art59 :	Boots of Polarity
+	XXX+COMPATIBILITY,Common:ART art60 :	Bow of Elven Cherrywood
+	XXX+COMPATIBILITY,Minor:ART art61 :	Bowstring of the Unicorn's Mane
+	XXX+COMPATIBILITY,Major:ART art62 :	Angel Feather Arrows
+	XXX+COMPATIBILITY,Common:ART art63 :	Bird of Perception
+	XXX+COMPATIBILITY,Common:ART art64 :	Stoic Watchman
+	XXX+COMPATIBILITY,Minor:ART art65 :	Emblem of Cognizance
+	XXX+COMPATIBILITY,Major:ART art66 :	Statesman's Medal
+	XXX+COMPATIBILITY,Major:ART art67 :	Diplomat's Ring
+	XXX+COMPATIBILITY,Major:ART art68 :	Ambassador's Sash
+	XXX+COMPATIBILITY,Major:ART art69 :	Ring of the Wayfarer
+	XXX+COMPATIBILITY,Minor:ART art70 :	Equestrian's Gloves
+	XXX+COMPATIBILITY,Major:ART art71 :	Necklace of Ocean Guidance
+	XXX+COMPATIBILITY,Relic:ART art72 :	Angel Wings
+	XXX+COMPATIBILITY,Common:ART art73 :	Charm of Mana
+	XXX+COMPATIBILITY,Common:ART art74 :	Talisman of Mana
+	XXX+COMPATIBILITY,Common:ART art75 :	Mystic Orb of Mana
+	XXX+COMPATIBILITY,Common:ART art76 :	Collar of Conjuring
+	XXX+COMPATIBILITY,Common:ART art77 :	Ring of Conjuring
+	XXX+COMPATIBILITY,Common:ART art78 :	Cape of Conjuring
+	XXX+COMPATIBILITY,Major:ART art79 :	Orb of the Firmament
+	XXX+COMPATIBILITY,Major:ART art80 :	Orb of Silt
+	XXX+COMPATIBILITY,Major:ART art81 :	Orb of Tempestuous Fire
+	XXX+COMPATIBILITY,Major:ART art82 :	Orb of Driving Rain
+	XXX+COMPATIBILITY,Major:ART art83 :	Recanter's Cloak
+	XXX+COMPATIBILITY,Common:ART art84 :	Spirit of Oppression
+	XXX+COMPATIBILITY,Common:ART art85 :	Hourglass of the Evil Hour
+	XXX+COMPATIBILITY,Relic:ART art86 :	Tome of Fire Magic
+	XXX+COMPATIBILITY,Relic:ART art87 :	Tome of Air Magic
+	XXX+COMPATIBILITY,Relic:ART art88 :	Tome of Water Magic
+	XXX+COMPATIBILITY,Relic:ART art89 :	Tome of Earth Magic
+	XXX+COMPATIBILITY,Relic:ART art90 :	Boots of Levitation
+	XXX+COMPATIBILITY,Major:ART art91 :	Golden Bow
+	XXX+COMPATIBILITY,Major:ART art92 :	Sphere of Permanence
+	XXX+COMPATIBILITY,Relic:ART art93 :	Orb of Vulnerability
+	XXX+COMPATIBILITY,Common:ART art94 :	Ring of Vitality
+	XXX+COMPATIBILITY,Minor:ART art95 :	Ring of Life
+	XXX+COMPATIBILITY,Major:ART art96 :	Vial of Lifeblood
+	XXX+COMPATIBILITY,Common:ART art97 :	Necklace of Swiftness
+	XXX+COMPATIBILITY,Minor:ART art98 :	Boots of Speed
+	XXX+COMPATIBILITY,Major:ART art99 :	Cape of Velocity
+	XXX+COMPATIBILITY,Common:ART art100:	Pendant of Dispassion
+	XXX+COMPATIBILITY,Major:ART art101:	Pendant of Second Sight
+	XXX+COMPATIBILITY,Common:ART art102:	Pendant of Holiness
+	XXX+COMPATIBILITY,Common:ART art103:	Pendant of Life
+	XXX+COMPATIBILITY,Common:ART art104:	Pendant of Death
+	XXX+COMPATIBILITY,Common:ART art105:	Pendant of Free Will
+	XXX+COMPATIBILITY,Major:ART art106:	Pendant of Negativity
+	XXX+COMPATIBILITY,Common:ART art107:	Pendant of Total Recall
+	XXX+COMPATIBILITY,Major:ART art108:	Pendant of Courage
+	XXX+COMPATIBILITY,Major:ART art109:	Everflowing Crystal Cloak
+	XXX+COMPATIBILITY,Major:ART art110:	Ring of Infinite Gems
+	XXX+COMPATIBILITY,Major:ART art111:	Everpouring Vial of Mercury
+	XXX+COMPATIBILITY,Minor:ART art112:	Inexhaustible Cart of Ore
+	XXX+COMPATIBILITY,Major:ART art113:	Eversmoking Ring of Sulfur
+	XXX+COMPATIBILITY,Minor:ART art114:	Inexhaustible Cart of Lumber
+	XXX+COMPATIBILITY,Relic:ART art115:	Endless Sack of Gold
+	XXX+COMPATIBILITY,Major:ART art116:	Endless Bag of Gold
+	XXX+COMPATIBILITY,Major:ART art117:	Endless Purse of Gold
+	XXX+COMPATIBILITY,Common:ART art118:	Legs of Legion
+	XXX+COMPATIBILITY,Minor:ART art119:	Loins of Legion
+	XXX+COMPATIBILITY,Minor:ART art120:	Torso of Legion
+	XXX+COMPATIBILITY,Major:ART art121:	Arms of Legion
+	XXX+COMPATIBILITY,Major:ART art122:	Head of Legion
+	XXX+COMPATIBILITY,Relic:ART art123:	Sea Captain's Hat
+	XXX+COMPATIBILITY,Relic:ART art124:	Spellbinder's Hat
+	XXX+COMPATIBILITY,Major:ART art125:	Shackles of War
+	XXX+COMPATIBILITY,Relic:ART art126:	Orb of Inhibition
+	XXX+COMPATIBILITY,Relic:ART art127:	Vial of Dragon Blood
+	XXX+COMPATIBILITY,Relic:ART art128:	Armageddon's Blade
+	XXX-COMPATIBILITY,Relic:ART art129:	Angelic Alliance
+	XXX-COMPATIBILITY,Relic:ART art130:	Cloak of the Undead King
+	XXX-COMPATIBILITY,Relic:ART art131:	Elixir of Life
+	XXX+COMPATIBILITY,Relic:ART art132:	Armor of the Damned
+	XXX+COMPATIBILITY,Relic:ART art133:	Statue of Legion
+	XXX+COMPATIBILITY,Relic:ART art134:	Power of the Dragon Father
+	XXX-COMPATIBILITY,Relic:ART art135:	Titan's Thunder
+	XXX=COMPATIBILITY,Relic:ART art136:	Admiral's Hat (hoshi)
+	XXX+COMPATIBILITY,Relic:ART art137:	Bow of the Sharpshooter
+	XXX+COMPATIBILITY,Relic:ART art138:	Wizard's Well
+	XXX+COMPATIBILITY,Relic:ART art139:	Ring of the Magi
+	XXX+COMPATIBILITY,Relic:ART art140:	Cornucopia
+	XXX+COMPATIBILITY,Unused:ART art141:	Diplomat's Suit
+	XXX+COMPATIBILITY,Unused:ART art142:	Mired in Neutrality
+	XXX+COMPATIBILITY,Unused:ART art143:	Ironfist of the Ogre
+
+databank/buildings.json, BLDGNEUT.TXT, BLDGSPEC.TXT, DWELLING.TXT
+
+	XXX+COMPATIBILITY:BLD:	Village Hall
+	XXX+COMPATIBILITY:BLD:	Town Hall
+	XXX+COMPATIBILITY:BLD:	City Hall
+	XXX+COMPATIBILITY:BLD:	Capitol
+	XXX+COMPATIBILITY:BLD:	Fort
+	XXX+COMPATIBILITY:BLD:	Citadel
+	XXX+COMPATIBILITY:BLD:	Castle
+	XXX+COMPATIBILITY:BLD:	Tavern
+	XXX+COMPATIBILITY:BLD:	Blacksmith
+	XXX+COMPATIBILITY:BLD:	Marketplace
+	XXX+COMPATIBILITY,Conflux,Fortress,Necropolis,Castle:BLD:	Shipyard
+	XXX+COMPATIBILITY,Castle:BLD:	Lighthouse
+	XXX+COMPATIBILITY,Conflux,Dungeon,Tower:BLD:	Artifact Merchants
+	XXX+COMPATIBILITY,Fortress,Stronghold,Necropolis,Castle:BLD:	Resource Silo
+	XXX+COMPATIBILITY,Rampart:BLD:	Resource Silo
+	XXX+COMPATIBILITY,Tower:BLD:	Resource Silo
+	XXX+COMPATIBILITY,Conflux,Inferno:BLD:	Resource Silo
+	XXX+COMPATIBILITY,Dungeon:BLD:	Resource Silo
+	XXX+COMPATIBILITY:BLD:	Mage Guild Level 1
+	XXX+COMPATIBILITY:BLD:	Mage Guild Level 2
+	XXX+COMPATIBILITY:BLD:	Mage Guild Level 3
+	XXX+COMPATIBILITY,Conflux,Dungeon,Necropolis,Inferno,Tower,Rampart,Castle:BLD:	Mage Guild Level 4
+	XXX+COMPATIBILITY,Conflux,Dungeon,Necropolis,Inferno,Tower,Rampart:BLD:	Mage Guild Level 5
+	XXX+COMPATIBILITY,Castle:BLD:	Brotherhood of the Sword
+	XXX+COMPATIBILITY,Castle:BLD:	Stables
+	XXX+COMPATIBILITY,Castle:BLD:	Griffin Bastion
+	XXX+COMPATIBILITY,Castle:BLD:	Guardhouse
+	XXX+COMPATIBILITY,Castle:BLD:	Upg. Guardhouse
+	XXX+COMPATIBILITY,Castle:BLD:	Archers' Tower
+	XXX+COMPATIBILITY,Castle:BLD:	Upg. Archers' Tower
+	XXX+COMPATIBILITY,Castle:BLD:	Griffin Tower
+	XXX+COMPATIBILITY,Castle:BLD:	Upg. Griffin Tower
+	XXX+COMPATIBILITY,Castle:BLD:	Barracks
+	XXX+COMPATIBILITY,Castle:BLD:	Upg. Barracks
+	XXX+COMPATIBILITY,Castle:BLD:	Monastery
+	XXX+COMPATIBILITY,Castle:BLD:	Upg. Monastery
+	XXX+COMPATIBILITY,Castle:BLD:	Training Grounds
+	XXX+COMPATIBILITY,Castle:BLD:	Upg. Training Grounds
+	XXX+COMPATIBILITY,Castle:BLD:	Portal of Glory
+	XXX+COMPATIBILITY,Castle:BLD:	Upg. Portal of Glory
+	XXX-COMPATIBILITY,Rampart:BLD:	Mystic Pond
+	XXX+COMPATIBILITY,Rampart:BLD:	Fountain of Fortune
+	XXX-COMPATIBILITY,Rampart:BLD:	Treasury
+	XXX+COMPATIBILITY,Rampart:BLD:	Miners' Guild
+	XXX+COMPATIBILITY,Rampart:BLD:	Dendroid Saplings
+	XXX+COMPATIBILITY,Rampart:BLD:	Centaur Stables
+	XXX+COMPATIBILITY,Rampart:BLD:	Upg. Centaur Stables
+	XXX+COMPATIBILITY,Rampart:BLD:	Dwarf Cottage
+	XXX+COMPATIBILITY,Rampart:BLD:	Upg. Dwarf Cottage
+	XXX+COMPATIBILITY,Rampart:BLD:	Homestead
+	XXX+COMPATIBILITY,Rampart:BLD:	Upg. Homestead
+	XXX+COMPATIBILITY,Rampart:BLD:	Enchanted Spring
+	XXX+COMPATIBILITY,Rampart:BLD:	Upg. Enchanted Spring
+	XXX+COMPATIBILITY,Rampart:BLD:	Dendroid Arches
+	XXX+COMPATIBILITY,Rampart:BLD:	Upg. Dendroid Arches
+	XXX+COMPATIBILITY,Rampart:BLD:	Unicorn Glade
+	XXX+COMPATIBILITY,Rampart:BLD:	Upg. Unicorn Glade
+	XXX+COMPATIBILITY,Rampart:BLD:	Dragon Cliffs
+	XXX+COMPATIBILITY,Rampart:BLD:	Upg. Dragon Cliffs
+	XXX+COMPATIBILITY,Tower:BLD:	Library
+	XXX+COMPATIBILITY,Tower:BLD:	Wall of Knowledge
+	XXX+COMPATIBILITY,Tower:BLD:	Lookout Tower
+	XXX+COMPATIBILITY,Tower:BLD:	Sculptor's Wings
+	XXX+COMPATIBILITY,Tower:BLD:	Workshop
+	XXX+COMPATIBILITY,Tower:BLD:	Upg. Workshop
+	XXX+COMPATIBILITY,Tower:BLD:	Parapet
+	XXX+COMPATIBILITY,Tower:BLD:	Upg. Parapet
+	XXX+COMPATIBILITY,Tower:BLD:	Golem Factory
+	XXX+COMPATIBILITY,Tower:BLD:	Upg. Golem Factory
+	XXX+COMPATIBILITY,Tower:BLD:	Mage Tower
+	XXX+COMPATIBILITY,Tower:BLD:	Upg. Mage Tower
+	XXX+COMPATIBILITY,Tower:BLD:	Altar of Wishes
+	XXX+COMPATIBILITY,Tower:BLD:	Upg. Altar of Wishes
+	XXX+COMPATIBILITY,Tower:BLD:	Golden Pavilion
+	XXX+COMPATIBILITY,Tower:BLD:	Upg. Golden Pavilion
+	XXX+COMPATIBILITY,Tower:BLD:	Cloud Temple
+	XXX+COMPATIBILITY,Tower:BLD:	Upg. Cloud Temple
+	XXX+COMPATIBILITY,Inferno:BLD:	Order of Fire
+	XXX+COMPATIBILITY,Inferno:BLD:	Brimstone Stormclouds
+	XXX-COMPATIBILITY,Inferno:BLD:	Castle Gate
+	XXX+COMPATIBILITY,Inferno:BLD:	Birthing Pools
+	XXX+COMPATIBILITY,Inferno:BLD:	Cages
+	XXX+COMPATIBILITY,Inferno:BLD:	Imp Crucible
+	XXX+COMPATIBILITY,Inferno:BLD:	Upg. Imp Crucible
+	XXX+COMPATIBILITY,Inferno:BLD:	Hall of Sins
+	XXX+COMPATIBILITY,Inferno:BLD:	Upg. Hall of Sins
+	XXX+COMPATIBILITY,Inferno:BLD:	Kennels
+	XXX+COMPATIBILITY,Inferno:BLD:	Upg. Kennels
+	XXX+COMPATIBILITY,Inferno:BLD:	Demon Gate
+	XXX+COMPATIBILITY,Inferno:BLD:	Upg. Demon Gate
+	XXX+COMPATIBILITY,Inferno:BLD:	Hell Hole
+	XXX+COMPATIBILITY,Inferno:BLD:	Upg. Hell Hole
+	XXX+COMPATIBILITY,Inferno:BLD:	Fire Lake
+	XXX+COMPATIBILITY,Inferno:BLD:	Upg. Fire Lake
+	XXX+COMPATIBILITY,Inferno:BLD:	Forsaken Palace
+	XXX+COMPATIBILITY,Inferno:BLD:	Upg. Forsaken Palace
+	XXX+COMPATIBILITY,Necropolis:BLD:	Necromancy Amplifier
+	XXX+COMPATIBILITY,Necropolis:BLD:	Cover of Darkness
+	XXX-COMPATIBILITY,Necropolis:BLD:	Skeleton Transformer
+	XXX+COMPATIBILITY,Necropolis:BLD:	Unearthed Graves
+	XXX+COMPATIBILITY,Necropolis:BLD:	Cursed Temple
+	XXX+COMPATIBILITY,Necropolis:BLD:	Upg. Cursed Temple
+	XXX+COMPATIBILITY,Necropolis:BLD:	Graveyard
+	XXX+COMPATIBILITY,Necropolis:BLD:	Upg. Graveyard
+	XXX+COMPATIBILITY,Necropolis:BLD:	Tomb of Souls
+	XXX+COMPATIBILITY,Necropolis:BLD:	Upg. Tomb of Souls
+	XXX+COMPATIBILITY,Necropolis:BLD:	Estate
+	XXX+COMPATIBILITY,Necropolis:BLD:	Upg. Estate
+	XXX+COMPATIBILITY,Necropolis:BLD:	Mausoleum
+	XXX+COMPATIBILITY,Necropolis:BLD:	Upg. Mausoleum
+	XXX+COMPATIBILITY,Necropolis:BLD:	Hall of Darkness
+	XXX+COMPATIBILITY,Necropolis:BLD:	Upg. Hall of Darkness
+	XXX+COMPATIBILITY,Necropolis:BLD:	Dragon Vault
+	XXX+COMPATIBILITY,Necropolis:BLD:	Upg. Dragon Vault
+	XXX+COMPATIBILITY,Dungeon:BLD:	Mana Vortex
+	XXX-COMPATIBILITY,Dungeon:BLD:	Portal of Summoning
+	XXX+COMPATIBILITY,Dungeon:BLD:	Battle Scholar Academy
+	XXX+COMPATIBILITY,Dungeon:BLD:	Mushroom Rings
+	XXX+COMPATIBILITY,Dungeon:BLD:	Warren
+	XXX+COMPATIBILITY,Dungeon:BLD:	Upg. Warren
+	XXX+COMPATIBILITY,Dungeon:BLD:	Harpy Loft
+	XXX+COMPATIBILITY,Dungeon:BLD:	Upg. Harpy Loft
+	XXX+COMPATIBILITY,Dungeon:BLD:	Pillar of Eyes
+	XXX+COMPATIBILITY,Dungeon:BLD:	Upg. Pillar of Eyes
+	XXX+COMPATIBILITY,Dungeon:BLD:	Chapel of Stilled Voices
+	XXX+COMPATIBILITY,Dungeon:BLD:	Upg. Stilled Voices
+	XXX+COMPATIBILITY,Dungeon:BLD:	Labyrinth
+	XXX+COMPATIBILITY,Dungeon:BLD:	Upg. Labyrinth
+	XXX+COMPATIBILITY,Dungeon:BLD:	Manticore Lair
+	XXX+COMPATIBILITY,Dungeon:BLD:	Upg. Manticore Lair
+	XXX+COMPATIBILITY,Dungeon:BLD:	Dragon Cave
+	XXX+COMPATIBILITY,Dungeon:BLD:	Upg. Dragon Cave
+	XXX+COMPATIBILITY,Stronghold:BLD:	Hall of Valhalla
+	XXX+COMPATIBILITY,Stronghold:BLD:	Escape Tunnel
+	XXX-COMPATIBILITY,Stronghold:BLD:	Freelancer's Guild
+	XXX-COMPATIBILITY,Stronghold:BLD:	Ballista Yard
+	XXX+COMPATIBILITY,Stronghold:BLD:	Mess Hall
+	XXX+COMPATIBILITY,Stronghold:BLD:	Goblin Barracks
+	XXX+COMPATIBILITY,Stronghold:BLD:	Upg. Goblin Barracks
+	XXX+COMPATIBILITY,Stronghold:BLD:	Wolf Pen
+	XXX+COMPATIBILITY,Stronghold:BLD:	Upg. Wolf Pen
+	XXX+COMPATIBILITY,Stronghold:BLD:	Orc Tower
+	XXX+COMPATIBILITY,Stronghold:BLD:	Upg. Orc Tower
+	XXX+COMPATIBILITY,Stronghold:BLD:	Ogre Fort
+	XXX+COMPATIBILITY,Stronghold:BLD:	Upg. Ogre Fort
+	XXX+COMPATIBILITY,Stronghold:BLD:	Cliff Nest
+	XXX+COMPATIBILITY,Stronghold:BLD:	Upg. Cliff Nest
+	XXX+COMPATIBILITY,Stronghold:BLD:	Cyclops Cave
+	XXX+COMPATIBILITY,Stronghold:BLD:	Upg. Cyclops Cave
+	XXX+COMPATIBILITY,Stronghold:BLD:	Behemoth Lair
+	XXX+COMPATIBILITY,Stronghold:BLD:	Upg. Behemoth Lair
+	XXX+COMPATIBILITY,Fortress:BLD:	Cage of Warlords
+	XXX+COMPATIBILITY,Fortress:BLD:	Glyphs of Fear
+	XXX+COMPATIBILITY,Fortress:BLD:	Blood Obelisk
+	XXX+COMPATIBILITY,Fortress:BLD:	Captain's Quarters
+	XXX+COMPATIBILITY,Fortress:BLD:	Gnoll Hut
+	XXX+COMPATIBILITY,Fortress:BLD:	Upg. Gnoll Hut
+	XXX+COMPATIBILITY,Fortress:BLD:	Lizard Den
+	XXX+COMPATIBILITY,Fortress:BLD:	Upg. Lizard Den
+	XXX+COMPATIBILITY,Fortress:BLD:	Serpent Fly Hive
+	XXX+COMPATIBILITY,Fortress:BLD:	Upg. Serpent Fly Hive
+	XXX+COMPATIBILITY,Fortress:BLD:	Basilisk Pit
+	XXX+COMPATIBILITY,Fortress:BLD:	Upg. Basilisk Pit
+	XXX+COMPATIBILITY,Fortress:BLD:	Gorgon Lair
+	XXX+COMPATIBILITY,Fortress:BLD:	Upg. Gorgon Lair
+	XXX+COMPATIBILITY,Fortress:BLD:	Wyvern Nest
+	XXX+COMPATIBILITY,Fortress:BLD:	Upg. Wyvern Nest
+	XXX+COMPATIBILITY,Fortress:BLD:	Hydra Pond
+	XXX+COMPATIBILITY,Fortress:BLD:	Upg. Hydra Pond
+	XXX-COMPATIBILITY,Conflux:BLD:	Magic University
+	XXX+COMPATIBILITY,Conflux:BLD:	Garden of Life
+	XXX+COMPATIBILITY,Conflux:BLD:	Magic Lantern
+	XXX+COMPATIBILITY,Conflux:BLD:	Upg. Magic Lantern
+	XXX+COMPATIBILITY,Conflux:BLD:	Altar of Air
+	XXX+COMPATIBILITY,Conflux:BLD:	Upg. Altar of Air
+	XXX+COMPATIBILITY,Conflux:BLD:	Altar of Water
+	XXX+COMPATIBILITY,Conflux:BLD:	Upg. Altar of Water
+	XXX+COMPATIBILITY,Conflux:BLD:	Altar of Fire
+	XXX+COMPATIBILITY,Conflux:BLD:	Upg. Altar of Fire
+	XXX+COMPATIBILITY,Conflux:BLD:	Altar of Earth
+	XXX+COMPATIBILITY,Conflux:BLD:	Upg. Altar of Earth
+	XXX+COMPATIBILITY,Conflux:BLD:	Altar of Thought
+	XXX+COMPATIBILITY,Conflux:BLD:	Upg. Altar of Thought
+	XXX+COMPATIBILITY,Conflux:BLD:	Pyre
+	XXX+COMPATIBILITY,Conflux:BLD:	Upg. Pyre
+	XXX-COMPATIBILITY,Conflux:BLD:	Aurora Borealias (grl)
+	XXX-COMPATIBILITY,Fortress:BLD:	Carnivorous Plant (grl)
+	XXX-COMPATIBILITY,Castle:BLD:	Colossus (grl)
+	XXX-COMPATIBILITY,Inferno:BLD:	Deity of Fire (grl)
+	XXX-COMPATIBILITY,Dungeon:BLD:	Guardian of Earth (grl)
+	XXX-COMPATIBILITY,Tower:BLD:	Skyship (grl)
+	XXX-COMPATIBILITY,Necropolis:BLD:	Soul Prison (grl)
+	XXX-COMPATIBILITY,Rampart:BLD:	Spirit Guardian (grl)
+	XXX-COMPATIBILITY,Stronghold:BLD:	Warlords' Monument (grl)
+	XXX=COMPATIBILITY:BLD:	Moat - not done for Tower (twm)
+
+OBJNAMES.TXT
+
+	XXX+COMPATIBILITY,Unused:OBJ class0  :	Nothing
+	XXX-COMPATIBILITY:OBJ class2  :	Altar of Sacrifice
+	XXX+COMPATIBILITY:OBJ class3  :	Anchor Point
+	XXX+COMPATIBILITY:OBJ class4  :	Arena
+	XXX+COMPATIBILITY:OBJ class5  :	Artifact
+	XXX+COMPATIBILITY:OBJ class6  :	Pandora's Box
+	XXX-COMPATIBILITY:OBJ class7  :	Black Market
+	XXX+COMPATIBILITY:OBJ class8  :	Boat
+	XXX+COMPATIBILITY:OBJ class9  :	Border Guard
+	XXX+COMPATIBILITY,Actionable:OBJ class10 :	Keymaster's Tent
+	XXX+COMPATIBILITY,Actionable:OBJ class11 :	Buoy
+	XXX+COMPATIBILITY,Actionable:OBJ class12 :	Campfire
+	XXX+COMPATIBILITY,Actionable:OBJ class13 :	Cartographer
+	XXX+COMPATIBILITY,Actionable:OBJ class14 :	Swan Pond
+	XXX+COMPATIBILITY,Actionable:OBJ class15 :	Cover of Darkness
+	XXX+COMPATIBILITY,Actionable:OBJ class16 :	Creature Bank
+	XXX+COMPATIBILITY,Actionable:OBJ class17 :	Creature Generator 1
+	XXX+COMPATIBILITY,Actionable:OBJ class18 :	Creature Generator 2
+	XXX+COMPATIBILITY,Actionable:OBJ class19 :	Creature Generator 3
+	XXX+COMPATIBILITY,Actionable:OBJ class20 :	Creature Generator 4
+	XXX+COMPATIBILITY:OBJ class21 :	Cursed Ground
+	XXX+COMPATIBILITY,Actionable:OBJ class22 :	Corpse
+	XXX+COMPATIBILITY,Actionable:OBJ class23 :	Marletto Tower
+	XXX+COMPATIBILITY,Actionable:OBJ class24 :	Derelict Ship
+	XXX+COMPATIBILITY,Actionable:OBJ class25 :	Dragon Utopia
+	XXX+COMPATIBILITY,Actionable:OBJ class26 :	Event
+	XXX=COMPATIBILITY,Actionable:OBJ class27 :	Eye of the Magi (eyom)
+	XXX+COMPATIBILITY,Actionable:OBJ class28 :	Faerie Ring
+	XXX+COMPATIBILITY,Actionable:OBJ class29 :	Flotsam
+	XXX+COMPATIBILITY,Actionable:OBJ class30 :	Fountain of Fortune
+	XXX+COMPATIBILITY,Actionable:OBJ class31 :	Fountain of Youth
+	XXX+COMPATIBILITY,Actionable:OBJ class32 :	Garden of Revelation
+	XXX+COMPATIBILITY,Actionable:OBJ class33 :	Garrison
+	XXX+COMPATIBILITY,Actionable:OBJ class34 :	Hero
+	XXX-COMPATIBILITY,Actionable:OBJ class35 :	Hill Fort
+	XXX-COMPATIBILITY,Actionable:OBJ class36 :	Grail (grl)
+	XXX+COMPATIBILITY,Actionable:OBJ class37 :	Hut of the Magi
+	XXX+COMPATIBILITY,Actionable:OBJ class38 :	Idol of Fortune
+	XXX+COMPATIBILITY,Actionable:OBJ class39 :	Lean To
+	XXX+COMPATIBILITY,Actionable:OBJ class41 :	Library of Enlightenment
+	XXX+COMPATIBILITY,Actionable:OBJ class42 :	Lighthouse
+	XXX+COMPATIBILITY,Actionable:OBJ class43 :	Monolith One Way Entrance
+	XXX+COMPATIBILITY,Actionable:OBJ class44 :	Monolith One Way Exit
+	XXX+COMPATIBILITY,Actionable:OBJ class45 :	Monolith Two Way
+	XXX+COMPATIBILITY:OBJ class46 :	Magic Plains
+	XXX+COMPATIBILITY,Actionable:OBJ class47 :	School of Magic
+	XXX+COMPATIBILITY,Actionable:OBJ class48 :	Magic Spring
+	XXX+COMPATIBILITY,Actionable:OBJ class49 :	Magic Well
+	XXX-COMPATIBILITY,Actionable,Unused:OBJ class50 :	Market of Time
+	XXX+COMPATIBILITY,Actionable:OBJ class51 :	Mercenary Camp
+	XXX+COMPATIBILITY,Actionable:OBJ class52 :	Mermaids
+	XXX+COMPATIBILITY,Actionable:OBJ class53 :	Mine
+	XXX+COMPATIBILITY,Actionable:OBJ class54 :	Monster
+	XXX+COMPATIBILITY,Actionable:OBJ class55 :	Mystical Garden
+	XXX+COMPATIBILITY,Actionable:OBJ class56 :	Oasis
+	XXX-COMPATIBILITY,Actionable:OBJ class57 :	Obelisk
+	XXX+COMPATIBILITY,Actionable:OBJ class58 :	Redwood Observatory
+	XXX+COMPATIBILITY,Actionable:OBJ class59 :	Ocean Bottle
+	XXX+COMPATIBILITY,Actionable:OBJ class60 :	Pillar of Fire
+	XXX+COMPATIBILITY,Actionable:OBJ class61 :	Star Axis
+	XXX+COMPATIBILITY,Actionable:OBJ class62 :	Prison
+	XXX+COMPATIBILITY,Actionable:OBJ class63 :	Pyramid
+	XXX+COMPATIBILITY,Actionable:OBJ class64 :	Rally Flag
+	XXX+COMPATIBILITY,Actionable:OBJ class65 :	Random Artifact
+	XXX+COMPATIBILITY,Actionable:OBJ class66 :	Random Treasure Artifact
+	XXX+COMPATIBILITY,Actionable:OBJ class67 :	Random Minor Artifact
+	XXX+COMPATIBILITY,Actionable:OBJ class68 :	Random Major Artifact
+	XXX+COMPATIBILITY,Actionable:OBJ class69 :	Random Relic
+	XXX+COMPATIBILITY,Actionable:OBJ class70 :	Random Hero
+	XXX+COMPATIBILITY,Actionable:OBJ class71 :	Random Monster
+	XXX+COMPATIBILITY,Actionable:OBJ class72 :	Random Monster 1
+	XXX+COMPATIBILITY,Actionable:OBJ class73 :	Random Monster 2
+	XXX+COMPATIBILITY,Actionable:OBJ class74 :	Random Monster 3
+	XXX+COMPATIBILITY,Actionable:OBJ class75 :	Random Monster 4
+	XXX+COMPATIBILITY,Actionable:OBJ class76 :	Random Resource
+	XXX+COMPATIBILITY,Actionable:OBJ class77 :	Random Town
+	XXX-COMPATIBILITY,Actionable:OBJ class78 :	Refugee Camp
+	XXX+COMPATIBILITY,Actionable:OBJ class79 :	Resource
+	XXX+COMPATIBILITY,Actionable:OBJ class80 :	Sanctuary
+	XXX=COMPATIBILITY,Actionable:OBJ class81 :	Scholar (sclr)
+	XXX+COMPATIBILITY,Actionable:OBJ class82 :	Sea Chest
+	XXX+COMPATIBILITY,Actionable:OBJ class83 :	Seer's Hut
+	XXX+COMPATIBILITY,Actionable:OBJ class84 :	Crypt
+	XXX=COMPATIBILITY,Actionable:OBJ class85 :	Shipwreck (shwr)
+	XXX+COMPATIBILITY,Actionable:OBJ class86 :	Shipwreck Survivor
+	XXX+COMPATIBILITY,Actionable:OBJ class87 :	Shipyard
+	XXX+COMPATIBILITY,Actionable:OBJ class88 :	Shrine of Magic Incantation
+	XXX+COMPATIBILITY,Actionable:OBJ class89 :	Shrine of Magic Gesture
+	XXX+COMPATIBILITY,Actionable:OBJ class90 :	Shrine of Magic Thought
+	XXX+COMPATIBILITY,Actionable:OBJ class91 :	Sign
+	XXX-COMPATIBILITY,Actionable:OBJ class92 :	Sirens
+	XXX+COMPATIBILITY,Actionable:OBJ class93 :	Spell Scroll
+	XXX=COMPATIBILITY,Actionable:OBJ class94 :	Stables (stcv)
+	XXX+COMPATIBILITY,Actionable:OBJ class95 :	Tavern
+	XXX+COMPATIBILITY,Actionable:OBJ class96 :	Temple
+	XXX-COMPATIBILITY,Actionable:OBJ class97 :	Den of Thieves
+	XXX+COMPATIBILITY,Actionable:OBJ class98 :	Town
+	XXX-COMPATIBILITY,Actionable:OBJ class99 :	Trading Post
+	XXX+COMPATIBILITY,Actionable:OBJ class100:	Learning Stone
+	XXX+COMPATIBILITY,Actionable:OBJ class101:	Treasure Chest
+	XXX+COMPATIBILITY,Actionable:OBJ class102:	Tree of Knowledge
+	XXX+COMPATIBILITY,Actionable:OBJ class103:	Subterranean Gate
+	XXX-COMPATIBILITY,Actionable:OBJ class104:	University
+	XXX+COMPATIBILITY,Actionable:OBJ class105:	Wagon
+	XXX+COMPATIBILITY,Actionable:OBJ class106:	War Machine Factory
+	XXX+COMPATIBILITY,Actionable:OBJ class107:	School of War
+	XXX+COMPATIBILITY,Actionable:OBJ class108:	Warrior's Tomb
+	XXX+COMPATIBILITY,Actionable:OBJ class109:	Water Wheel
+	XXX+COMPATIBILITY,Actionable:OBJ class110:	Watering Hole
+	XXX+COMPATIBILITY,Actionable:OBJ class111:	Whirlpool
+	XXX+COMPATIBILITY,Actionable:OBJ class112:	Windmill
+	XXX+COMPATIBILITY,Actionable:OBJ class113:	Witch Hut
+	XXX+COMPATIBILITY,Unused:OBJ class114:	Brush
+	XXX+COMPATIBILITY,Unused:OBJ class115:	Bush
+	XXX+COMPATIBILITY:OBJ class116:	Cactus
+	XXX+COMPATIBILITY:OBJ class117:	Canyon
+	XXX+COMPATIBILITY:OBJ class118:	Crater
+	XXX+COMPATIBILITY:OBJ class119:	Dead Vegetation
+	XXX+COMPATIBILITY:OBJ class120:	Flowers
+	XXX+COMPATIBILITY:OBJ class121:	Frozen Lake
+	XXX+COMPATIBILITY,Unused:OBJ class122:	Hedge
+	XXX+COMPATIBILITY,Unused:OBJ class123:	Hill
+	XXX+COMPATIBILITY:OBJ class124:	Hole
+	XXX+COMPATIBILITY:OBJ class125:	Kelp
+	XXX+COMPATIBILITY:OBJ class126:	Lake
+	XXX+COMPATIBILITY:OBJ class127:	Lava Flow
+	XXX+COMPATIBILITY:OBJ class128:	Lava Lake
+	XXX+COMPATIBILITY:OBJ class129:	Mushrooms
+	XXX+COMPATIBILITY:OBJ class130:	Log
+	XXX+COMPATIBILITY:OBJ class131:	Mandrake
+	XXX+COMPATIBILITY:OBJ class132:	Moss
+	XXX+COMPATIBILITY:OBJ class133:	Mound
+	XXX+COMPATIBILITY:OBJ class134:	Mountain
+	XXX+COMPATIBILITY:OBJ class135:	Oak Trees
+	XXX+COMPATIBILITY:OBJ class136:	Outcropping
+	XXX+COMPATIBILITY:OBJ class137:	Pine Trees
+	XXX+COMPATIBILITY,Unused:OBJ class138:	Plant
+	XXX+COMPATIBILITY:OBJ class143:	River Delta
+	XXX+COMPATIBILITY:OBJ class147:	Rock
+	XXX+COMPATIBILITY:OBJ class148:	Sand Dune
+	XXX+COMPATIBILITY:OBJ class149:	Sand Pit
+	XXX+COMPATIBILITY:OBJ class150:	Shrub
+	XXX+COMPATIBILITY:OBJ class151:	Skull
+	XXX+COMPATIBILITY,Unused:OBJ class152:	Stalagmite
+	XXX+COMPATIBILITY:OBJ class153:	Stump
+	XXX+COMPATIBILITY,Unused:OBJ class154:	Tar Pit
+	XXX+COMPATIBILITY:OBJ class155:	Trees
+	XXX+COMPATIBILITY,Unused:OBJ class156:	Vine
+	XXX+COMPATIBILITY,Unused:OBJ class157:	Volcanic Vent
+	XXX+COMPATIBILITY:OBJ class158:	Volcano
+	XXX+COMPATIBILITY,Unused:OBJ class159:	Willow Trees
+	XXX+COMPATIBILITY,Unused:OBJ class160:	Yucca Trees
+	XXX+COMPATIBILITY:OBJ class161:	Reef
+	XXX+COMPATIBILITY,Actionable:OBJ class162:	Random Monster 5
+	XXX+COMPATIBILITY,Actionable:OBJ class163:	Random Monster 6
+	XXX+COMPATIBILITY,Actionable:OBJ class164:	Random Monster 7
+	XXX+COMPATIBILITY,Unused:OBJ class165:	Brush
+	XXX+COMPATIBILITY,Unused:OBJ class166:	Bush
+	XXX+COMPATIBILITY,Unused:OBJ class167:	Cactus
+	XXX+COMPATIBILITY,Unused:OBJ class168:	Canyon
+	XXX+COMPATIBILITY,Unused:OBJ class169:	Crater
+	XXX+COMPATIBILITY,Unused:OBJ class170:	Dead Vegetation
+	XXX+COMPATIBILITY,Unused:OBJ class171:	Flowers
+	XXX+COMPATIBILITY,Unused:OBJ class172:	Frozen Lake
+	XXX+COMPATIBILITY,Unused:OBJ class173:	Hedge
+	XXX+COMPATIBILITY,Unused:OBJ class174:	Hill
+	XXX+COMPATIBILITY,Unused:OBJ class175:	Hole
+	XXX+COMPATIBILITY,Unused:OBJ class176:	Kelp
+	XXX+COMPATIBILITY:OBJ class177:	Lake
+	XXX+COMPATIBILITY,Unused:OBJ class178:	Lava Flow
+	XXX+COMPATIBILITY,Unused:OBJ class179:	Lava Lake
+	XXX+COMPATIBILITY,Unused:OBJ class180:	Mushrooms
+	XXX+COMPATIBILITY,Unused:OBJ class181:	Log
+	XXX+COMPATIBILITY,Unused:OBJ class182:	Mandrake
+	XXX+COMPATIBILITY,Unused:OBJ class183:	Moss
+	XXX+COMPATIBILITY,Unused:OBJ class184:	Mound
+	XXX+COMPATIBILITY,Unused:OBJ class185:	Mountain
+	XXX+COMPATIBILITY,Unused:OBJ class186:	Oak Trees
+	XXX+COMPATIBILITY,Unused:OBJ class187:	Outcropping
+	XXX+COMPATIBILITY,Unused:OBJ class188:	Pine Trees
+	XXX+COMPATIBILITY,Unused:OBJ class189:	Plant
+	XXX+COMPATIBILITY,Unused:OBJ class190:	River Delta
+	XXX+COMPATIBILITY,Unused:OBJ class191:	Rock
+	XXX+COMPATIBILITY,Unused:OBJ class192:	Sand Dune
+	XXX+COMPATIBILITY,Unused:OBJ class193:	Sand Pit
+	XXX+COMPATIBILITY,Unused:OBJ class194:	Shrub
+	XXX+COMPATIBILITY,Unused:OBJ class195:	Skull
+	XXX+COMPATIBILITY,Unused:OBJ class196:	Stalagmite
+	XXX+COMPATIBILITY,Unused:OBJ class197:	Stump
+	XXX+COMPATIBILITY,Unused:OBJ class198:	Tar Pit
+	XXX+COMPATIBILITY:OBJ class199:	Trees
+	XXX+COMPATIBILITY,Unused:OBJ class200:	Vine
+	XXX+COMPATIBILITY,Unused:OBJ class201:	Volcanic Vent
+	XXX+COMPATIBILITY,Unused:OBJ class202:	Volcano
+	XXX+COMPATIBILITY,Unused:OBJ class203:	Willow Trees
+	XXX+COMPATIBILITY,Unused:OBJ class204:	Yucca Trees
+	XXX+COMPATIBILITY,Unused:OBJ class205:	Reef
+	XXX+COMPATIBILITY:OBJ class206:	Desert Hills
+	XXX+COMPATIBILITY:OBJ class207:	Dirt Hills
+	XXX+COMPATIBILITY:OBJ class208:	Grass Hills
+	XXX+COMPATIBILITY:OBJ class209:	Rough Hills
+	XXX+COMPATIBILITY:OBJ class210:	Subterranean Rocks
+	XXX+COMPATIBILITY:OBJ class211:	Swamp Foliage
+	XXX+COMPATIBILITY,Actionable:OBJ class212:	Border Gate
+	XXX-COMPATIBILITY,Actionable:OBJ class213:	Freelancer's Guild
+	XXX-COMPATIBILITY,Actionable:OBJ class214:	Hero Placeholder
+	XXX+COMPATIBILITY,Actionable:OBJ class215:	Quest Guard
+	XXX+COMPATIBILITY,Actionable:OBJ class216:	Random Dwelling
+	XXX+COMPATIBILITY,Actionable:OBJ class219:	Garrison
+	XXX+COMPATIBILITY,Actionable:OBJ class220:	Mine
+	XXX+COMPATIBILITY,Actionable:OBJ class221:	Trading Post
+	XXX+COMPATIBILITY:OBJ class222:	Clover Field
+	XXX+COMPATIBILITY:OBJ class223:	Cursed Ground
+	XXX+COMPATIBILITY:OBJ class224:	Evil Fog
+	XXX+COMPATIBILITY:OBJ class225:	Favorable Winds
+	XXX+COMPATIBILITY:OBJ class226:	Fiery Fields
+	XXX+COMPATIBILITY:OBJ class227:	Holy Ground
+	XXX+COMPATIBILITY:OBJ class228:	Lucid Pools
+	XXX+COMPATIBILITY:OBJ class229:	Magic Clouds
+	XXX+COMPATIBILITY:OBJ class230:	Magic Plains
+	XXX+COMPATIBILITY:OBJ class231:	Rocklands
+
+CRTRAITS.TXT
+
+	XXX+COMPATIBILITY,L1,Castle:CR cr0  :	Pikeman
+	XXX+COMPATIBILITY,L1,Castle:CR cr1  :	Halberdier
+	XXX+COMPATIBILITY,L2,Castle:CR cr2  :	Archer
+	XXX+COMPATIBILITY,L2,Castle:CR cr3  :	Marksman
+	XXX+COMPATIBILITY,L3,Castle:CR cr4  :	Griffin
+	XXX+COMPATIBILITY,L3,Castle:CR cr5  :	Royal Griffin
+	XXX+COMPATIBILITY,L4,Castle:CR cr6  :	Swordsman
+	XXX+COMPATIBILITY,L4,Castle:CR cr7  :	Crusader
+	XXX+COMPATIBILITY,L5,Castle:CR cr8  :	Monk
+	XXX+COMPATIBILITY,L5,Castle:CR cr9  :	Zealot
+	XXX=COMPATIBILITY,L6,Castle:CR cr10 :	Cavalier (dcj)
+	XXX=COMPATIBILITY,L6,Castle:CR cr11 :	Champion (dcj)
+	XXX+COMPATIBILITY,L7,Castle:CR cr12 :	Angel
+	XXX+COMPATIBILITY,L7,Castle:CR cr13 :	Archangel
+	XXX+COMPATIBILITY,L1,Rampart:CR cr14 :	Centaur
+	XXX+COMPATIBILITY,L1,Rampart:CR cr15 :	Centaur Captain
+	XXX+COMPATIBILITY,L2,Rampart:CR cr16 :	Dwarf
+	XXX+COMPATIBILITY,L2,Rampart:CR cr17 :	Battle Dwarf
+	XXX+COMPATIBILITY,L3,Rampart:CR cr18 :	Wood Elf
+	XXX+COMPATIBILITY,L3,Rampart:CR cr19 :	Grand Elf
+	XXX+COMPATIBILITY,L4,Rampart:CR cr20 :	Pegasus
+	XXX+COMPATIBILITY,L4,Rampart:CR cr21 :	Silver Pegasus
+	XXX+COMPATIBILITY,L5,Rampart:CR cr22 :	Dendroid Guard
+	XXX+COMPATIBILITY,L5,Rampart:CR cr23 :	Dendroid Soldier
+	XXX=COMPATIBILITY,L6,Rampart:CR cr24 :	Unicorn (no ability)
+	XXX=COMPATIBILITY,L6,Rampart:CR cr25 :	War Unicorn (no ability)
+	XXX+COMPATIBILITY,L7,Rampart:CR cr26 :	Green Dragon
+	XXX+COMPATIBILITY,L7,Rampart:CR cr27 :	Gold Dragon
+	XXX+COMPATIBILITY,L1,Tower:CR cr28 :	Gremlin
+	XXX+COMPATIBILITY,L1,Tower:CR cr29 :	Master Gremlin
+	XXX+COMPATIBILITY,L2,Tower:CR cr30 :	Stone Gargoyle
+	XXX+COMPATIBILITY,L2,Tower:CR cr31 :	Obsidian Gargoyle
+	XXX+COMPATIBILITY,L3,Tower:CR cr32 :	Stone Golem
+	XXX+COMPATIBILITY,L3,Tower:CR cr33 :	Iron Golem
+	XXX+COMPATIBILITY,L4,Tower:CR cr34 :	Mage
+	XXX+COMPATIBILITY,L4,Tower:CR cr35 :	Arch Mage
+	XXX+COMPATIBILITY,L5,Tower:CR cr36 :	Genie
+	XXX+COMPATIBILITY,L5,Tower:CR cr37 :	Master Genie
+	XXX+COMPATIBILITY,L6,Tower:CR cr38 :	Naga
+	XXX+COMPATIBILITY,L6,Tower:CR cr39 :	Naga Queen
+	XXX+COMPATIBILITY,L7,Tower:CR cr40 :	Giant
+	XXX+COMPATIBILITY,L7,Tower:CR cr41 :	Titan
+	XXX+COMPATIBILITY,L1,Inferno:CR cr42 :	Imp
+	XXX=COMPATIBILITY,L1,Inferno:CR cr43 :	Familiar (no ability)
+	XXX+COMPATIBILITY,L2,Inferno:CR cr44 :	Gog
+	XXX+COMPATIBILITY,L2,Inferno:CR cr45 :	Magog
+	XXX+COMPATIBILITY,L3,Inferno:CR cr46 :	Hell Hound
+	XXX+COMPATIBILITY,L3,Inferno:CR cr47 :	Cerberus
+	XXX+COMPATIBILITY,L4,Inferno:CR cr48 :	Demon
+	XXX+COMPATIBILITY,L4,Inferno:CR cr49 :	Horned Demon
+	XXX+COMPATIBILITY,L5,Inferno:CR cr50 :	Pit Fiend
+	XXX+COMPATIBILITY,L5,Inferno:CR cr51 :	Pit Lord
+	XXX+COMPATIBILITY,L6,Inferno:CR cr52 :	Efreeti
+	XXX=COMPATIBILITY,L6,Inferno:CR cr53 :	Efreet Sultan (no ability)
+	XXX+COMPATIBILITY,L7,Inferno:CR cr54 :	Devil
+	XXX+COMPATIBILITY,L7,Inferno:CR cr55 :	Arch Devil
+	XXX+COMPATIBILITY,L1,Necropolis:CR cr56 :	Skeleton
+	XXX+COMPATIBILITY,L1,Necropolis:CR cr57 :	Skeleton Warrior
+	XXX+COMPATIBILITY,L2,Necropolis:CR cr58 :	Walking Dead
+	XXX=COMPATIBILITY,L2,Necropolis:CR cr59 :	Zombie (no ability)
+	XXX+COMPATIBILITY,L3,Necropolis:CR cr60 :	Wight
+	XXX=COMPATIBILITY,L3,Necropolis:CR cr61 :	Wraith (no ability)
+	XXX+COMPATIBILITY,L4,Necropolis:CR cr62 :	Vampire
+	XXX+COMPATIBILITY,L4,Necropolis:CR cr63 :	Vampire Lord
+	XXX+COMPATIBILITY,L5,Necropolis:CR cr64 :	Lich
+	XXX+COMPATIBILITY,L5,Necropolis:CR cr65 :	Power Lich
+	XXX=COMPATIBILITY,L6,Necropolis:CR cr66 :	Black Knight (no ability)
+	XXX=COMPATIBILITY,L6,Necropolis:CR cr67 :	Dread Knight (no ability)
+	XXX+COMPATIBILITY,L7,Necropolis:CR cr68 :	Bone Dragon
+	XXX=COMPATIBILITY,L7,Necropolis:CR cr69 :	Ghost Dragon (no ability)
+	XXX+COMPATIBILITY,L1,Dungeon:CR cr70 :	Troglodyte
+	XXX+COMPATIBILITY,L1,Dungeon:CR cr71 :	Infernal Troglodyte
+	XXX+COMPATIBILITY,L2,Dungeon:CR cr72 :	Harpy
+	XXX+COMPATIBILITY,L2,Dungeon:CR cr73 :	Harpy Hag
+	XXX+COMPATIBILITY,L3,Dungeon:CR cr74 :	Beholder
+	XXX+COMPATIBILITY,L3,Dungeon:CR cr75 :	Evil Eye
+	XXX=COMPATIBILITY,L4,Dungeon:CR cr76 :	Medusa (no ability)
+	XXX=COMPATIBILITY,L4,Dungeon:CR cr77 :	Medusa Queen (no ability)
+	XXX+COMPATIBILITY,L5,Dungeon:CR cr78 :	Minotaur
+	XXX+COMPATIBILITY,L5,Dungeon:CR cr79 :	Minotaur King
+	XXX+COMPATIBILITY,L6,Dungeon:CR cr80 :	Manticore
+	XXX=COMPATIBILITY,L6,Dungeon:CR cr81 :	Scorpicore (no ability)
+	XXX+COMPATIBILITY,L7,Dungeon:CR cr82 :	Red Dragon
+	XXX+COMPATIBILITY,L7,Dungeon:CR cr83 :	Black Dragon
+	XXX+COMPATIBILITY,L1,Stronghold:CR cr84 :	Goblin
+	XXX+COMPATIBILITY,L1,Stronghold:CR cr85 :	Hobgoblin
+	XXX+COMPATIBILITY,L2,Stronghold:CR cr86 :	Wolf Rider
+	XXX+COMPATIBILITY,L2,Stronghold:CR cr87 :	Wolf Raider
+	XXX+COMPATIBILITY,L3,Stronghold:CR cr88 :	Orc
+	XXX+COMPATIBILITY,L3,Stronghold:CR cr89 :	Orc Chieftain
+	XXX+COMPATIBILITY,L4,Stronghold:CR cr90 :	Ogre
+	XXX+COMPATIBILITY,L4,Stronghold:CR cr91 :	Ogre Mage
+	XXX+COMPATIBILITY,L5,Stronghold:CR cr92 :	Roc
+	XXX=COMPATIBILITY,L5,Stronghold:CR cr93 :	Thunderbird (no ability)
+	XXX+COMPATIBILITY,L6,Stronghold:CR cr94 :	Cyclops
+	XXX+COMPATIBILITY,L6,Stronghold:CR cr95 :	Cyclops King
+	XXX+COMPATIBILITY,L7,Stronghold:CR cr96 :	Behemoth
+	XXX+COMPATIBILITY,L7,Stronghold:CR cr97 :	Ancient Behemoth
+	XXX+COMPATIBILITY,L1,Fortress:CR cr98 :	Gnoll
+	XXX+COMPATIBILITY,L1,Fortress:CR cr99 :	Gnoll Marauder
+	XXX+COMPATIBILITY,L2,Fortress:CR cr100:	Lizardman
+	XXX+COMPATIBILITY,L2,Fortress:CR cr101:	Lizard Warrior
+	XXX+COMPATIBILITY,L5,Fortress:CR cr102:	Gorgon
+	XXX=COMPATIBILITY,L5,Fortress:CR cr103:	Mighty Gorgon (no ability)
+	XXX+COMPATIBILITY,L3,Fortress:CR cr104:	Serpent Fly
+	XXX+COMPATIBILITY,L3,Fortress:CR cr105:	Dragon Fly
+	XXX=COMPATIBILITY,L4,Fortress:CR cr106:	Basilisk (no ability)
+	XXX=COMPATIBILITY,L4,Fortress:CR cr107:	Greater Basilisk (no ability)
+	XXX+COMPATIBILITY,L6,Fortress:CR cr108:	Wyvern
+	XXX=COMPATIBILITY,L6,Fortress:CR cr109:	Wyvern Monarch (no ability)
+	XXX+COMPATIBILITY,L7,Fortress:CR cr110:	Hydra
+	XXX+COMPATIBILITY,L7,Fortress:CR cr111:	Chaos Hydra
+	XXX+COMPATIBILITY,L2,Conflux:CR cr112:	Air Elemental
+	XXX+COMPATIBILITY,L5,Conflux:CR cr113:	Earth Elemental
+	XXX+COMPATIBILITY,L4,Conflux:CR cr114:	Fire Elemental
+	XXX+COMPATIBILITY,L3,Conflux:CR cr115:	Water Elemental
+	XXX+COMPATIBILITY,L4,Neutral:CR cr116:	Gold Golem
+	XXX+COMPATIBILITY,L5,Neutral:CR cr117:	Diamond Golem
+	XXX+COMPATIBILITY,L1,Conflux:CR cr118:	Pixie
+	XXX+COMPATIBILITY,L1,Conflux:CR cr119:	Sprite
+	XXX+COMPATIBILITY,L6,Conflux:CR cr120:	Psychic Elemental
+	XXX+COMPATIBILITY,L6,Conflux:CR cr121:	Magic Elemental
+	XXX+COMPATIBILITY,L0,Neutral:CR cr122:	NOT USED (1)
+	XXX+COMPATIBILITY,L3,Conflux:CR cr123:	Ice Elemental
+	XXX+COMPATIBILITY,L0,Neutral:CR cr124:	NOT USED (2)
+	XXX+COMPATIBILITY,L5,Conflux:CR cr125:	Magma Elemental
+	XXX+COMPATIBILITY,L0,Neutral:CR cr126:	NOT USED (3)
+	XXX+COMPATIBILITY,L2,Conflux:CR cr127:	Storm Elemental
+	XXX+COMPATIBILITY,L0,Neutral:CR cr128:	NOT USED (4)
+	XXX+COMPATIBILITY,L4,Conflux:CR cr129:	Energy Elemental
+	XXX+COMPATIBILITY,L7,Conflux:CR cr130:	Firebird
+	XXX=COMPATIBILITY,L7,Conflux:CR cr131:	Phoenix (no ability)
+	XXX=COMPATIBILITY,L10,Neutral:CR cr132:	Azure Dragon (no ability)
+	XXX+COMPATIBILITY,L10,Neutral:CR cr133:	Crystal Dragon
+	XXX+COMPATIBILITY,L8,Neutral:CR cr134:	Faerie Dragon
+	XXX+COMPATIBILITY,L10,Neutral:CR cr135:	Rust Dragon
+	XXX+COMPATIBILITY,L6,Neutral:CR cr136:	Enchanter
+	XXX+COMPATIBILITY,L4,Neutral:CR cr137:	Sharpshooter
+	XXX+COMPATIBILITY,L1,Neutral:CR cr138:	Halfling
+	XXX+COMPATIBILITY,L1,Neutral:CR cr139:	Peasant
+	XXX+COMPATIBILITY,L2,Neutral:CR cr140:	Boar
+	XXX+COMPATIBILITY,L3,Neutral:CR cr141:	Mummy
+	XXX+COMPATIBILITY,L3,Neutral:CR cr142:	Nomad
+	XXX+COMPATIBILITY,L2,Neutral:CR cr143:	Rogue
+	XXX+COMPATIBILITY,L5,Neutral:CR cr144:	Troll
+	XXX+COMPATIBILITY,L0,Neutral:CR cr145:	Catapult
+	XXX+COMPATIBILITY,L0,Neutral:CR cr146:	Ballista
+	XXX+COMPATIBILITY,L0,Neutral:CR cr147:	First Aid Tent
+	XXX+COMPATIBILITY,L0,Neutral:CR cr148:	Ammo Cart
+	XXX+COMPATIBILITY,L0,Neutral:CR cr149:	Arrow Tower
+
+SSTRAIT.TXT
+
+	XXX+COMPATIBILITY:SK sk0 :	Pathfinding
+	XXX+COMPATIBILITY:SK sk1 :	Archery
+	XXX+COMPATIBILITY:SK sk2 :	Logistics
+	XXX+COMPATIBILITY:SK sk3 :	Scouting
+	XXX=COMPATIBILITY:SK sk4 :	Diplomacy (affects only surrender cost)
+	XXX+COMPATIBILITY:SK sk5 :	Navigation
+	XXX+COMPATIBILITY:SK sk6 :	Leadership
+	XXX+COMPATIBILITY:SK sk7 :	Wisdom
+	XXX+COMPATIBILITY:SK sk8 :	Mysticism
+	XXX+COMPATIBILITY:SK sk9 :	Luck
+	XXX+COMPATIBILITY:SK sk10:	Ballistics
+	XXX+COMPATIBILITY:SK sk11:	Eagle Eye
+	XXX+COMPATIBILITY:SK sk12:	Necromancy
+	XXX+COMPATIBILITY:SK sk13:	Estates
+	XXX+COMPATIBILITY:SK sk14:	Fire Magic
+	XXX+COMPATIBILITY:SK sk15:	Air Magic
+	XXX+COMPATIBILITY:SK sk16:	Water Magic
+	XXX+COMPATIBILITY:SK sk17:	Earth Magic
+	XXX+COMPATIBILITY:SK sk18:	Scholar
+	XXX+COMPATIBILITY:SK sk19:	Tactics
+	XXX+COMPATIBILITY:SK sk20:	Artillery
+	XXX+COMPATIBILITY:SK sk21:	Learning
+	XXX+COMPATIBILITY:SK sk22:	Offense
+	XXX+COMPATIBILITY:SK sk23:	Armorer
+	XXX+COMPATIBILITY:SK sk24:	Intelligence
+	XXX+COMPATIBILITY:SK sk25:	Sorcery
+	XXX+COMPATIBILITY:SK sk26:	Resistance
+	XXX+COMPATIBILITY:SK sk27:	First Aid
+
+SPTRAITS.TXT
+
+	XXX-COMPATIBILITY,L1,Adventure,Water:SP sp0 :	Summon Boat
+	XXX-COMPATIBILITY,L2,Adventure,Water:SP sp1 :	Scuttle Boat
+	XXX+COMPATIBILITY,L2,Adventure,Earth,Water,Fire,Air:SP sp2 :	Visions
+	XXX-COMPATIBILITY,L1,Adventure,Earth:SP sp3 :	View Earth
+	XXX-COMPATIBILITY,L2,Adventure,Air:SP sp4 :	Disguise
+	XXX-COMPATIBILITY,L1,Adventure,Air:SP sp5 :	View Air
+	XXX-COMPATIBILITY,L5,Adventure,Air:SP sp6 :	Fly
+	XXX-COMPATIBILITY,L4,Adventure,Water:SP sp7 :	Water Walk
+	XXX-COMPATIBILITY,L5,Adventure,Air:SP sp8 :	Dimension Door
+	XXX-COMPATIBILITY,L4,Adventure,Earth:SP sp9 :	Town Portal
+	XXX-COMPATIBILITY,L2,Combat,Earth:SP sp10:	Quicksand
+	XXX-COMPATIBILITY,L3,Combat,Fire:SP sp11:	Land Mine
+	XXX-COMPATIBILITY,L3,Combat,Earth:SP sp12:	Force Field
+	XXX-COMPATIBILITY,L2,Combat,Fire:SP sp13:	Fire Wall
+	XXX-COMPATIBILITY,L3,Combat,Earth:SP sp14:	Earthquake
+	XXX+COMPATIBILITY,L1,Combat,Earth,Water,Fire,Air:SP sp15:	Magic Arrow
+	XXX+COMPATIBILITY,L2,Combat,Water:SP sp16:	Ice Bolt
+	XXX+COMPATIBILITY,L2,Combat,Air:SP sp17:	Lightning Bolt
+	XXX+COMPATIBILITY,L5,Combat,Earth:SP sp18:	Implosion
+	XXX+COMPATIBILITY,L4,Combat,Air:SP sp19:	Chain Lightning
+	XXX+COMPATIBILITY,L3,Combat,Water:SP sp20:	Frost Ring
+	XXX+COMPATIBILITY,L3,Combat,Fire:SP sp21:	Fireball
+	XXX+COMPATIBILITY,L4,Combat,Fire:SP sp22:	Inferno
+	XXX+COMPATIBILITY,L4,Combat,Earth:SP sp23:	Meteor Shower
+	XXX+COMPATIBILITY,L2,Combat,Earth:SP sp24:	Death Ripple
+	XXX+COMPATIBILITY,L3,Combat,Air:SP sp25:	Destroy Undead
+	XXX+COMPATIBILITY,L4,Combat,Fire:SP sp26:	Armageddon
+	XXX+COMPATIBILITY,L1,Combat,Earth:SP sp27:	Shield
+	XXX+COMPATIBILITY,L3,Combat,Air:SP sp28:	Air Shield
+	XXX-COMPATIBILITY,L4,Combat,Fire:SP sp29:	Fire Shield
+	XXX+COMPATIBILITY,L2,Combat,Air:SP sp30:	Protection from Air
+	XXX+COMPATIBILITY,L1,Combat,Fire:SP sp31:	Protection from Fire
+	XXX+COMPATIBILITY,L1,Combat,Water:SP sp32:	Prot. from Water
+	XXX+COMPATIBILITY,L3,Combat,Earth:SP sp33:	Prot. from Earth
+	XXX+COMPATIBILITY,L3,Combat,Earth:SP sp34:	Anti-Magic
+	XXX+COMPATIBILITY,L1,Combat,Water:SP sp35:	Dispel
+	XXX-COMPATIBILITY,L5,Combat,Air:SP sp36:	Magic Mirror
+	XXX+COMPATIBILITY,L1,Combat,Water:SP sp37:	Cure
+	XXX-COMPATIBILITY,L4,Combat,Earth:SP sp38:	Resurrection
+	XXX-COMPATIBILITY,L3,Combat,Earth:SP sp39:	Animate Dead
+	XXX-COMPATIBILITY,L5,Combat,Fire:SP sp40:	Sacrifice
+	XXX+COMPATIBILITY,L1,Combat,Water:SP sp41:	Bless
+	XXX+COMPATIBILITY,L1,Combat,Fire:SP sp42:	Curse
+	XXX+COMPATIBILITY,L1,Combat,Fire:SP sp43:	Bloodlust
+	XXX+COMPATIBILITY,L2,Combat,Air:SP sp44:	Precision
+	XXX+COMPATIBILITY,L2,Combat,Water:SP sp45:	Weakness
+	XXX+COMPATIBILITY,L1,Combat,Earth:SP sp46:	Stone Skin
+	XXX+COMPATIBILITY,L2,Combat,Air:SP sp47:	Disrupting Ray
+	XXX+COMPATIBILITY,L4,Combat,Water:SP sp48:	Prayer
+	XXX+COMPATIBILITY,L3,Combat,Water:SP sp49:	Mirth
+	XXX+COMPATIBILITY,L4,Combat,Earth:SP sp50:	Sorrow
+	XXX+COMPATIBILITY,L2,Combat,Air:SP sp51:	Fortune
+	XXX+COMPATIBILITY,L3,Combat,Fire:SP sp52:	Misfortune
+	XXX+COMPATIBILITY,L1,Combat,Air:SP sp53:	Haste
+	XXX+COMPATIBILITY,L1,Combat,Earth:SP sp54:	Slow
+	XXX=COMPATIBILITY,L4,Combat,Fire:SP sp55:	Slayer (sssl)
+	XXX+COMPATIBILITY,L4,Combat,Fire:SP sp56:	Frenzy
+	XXX+COMPATIBILITY,L5,Combat,Air:SP sp57:	Titan's Lightning Bolt
+	XXX=COMPATIBILITY,L4,Combat,Air:SP sp58:	Counterstrike (sscs)
+	XXX-COMPATIBILITY,L4,Combat,Fire:SP sp59:	Berserk
+	XXX-COMPATIBILITY,L3,Combat,Air:SP sp60:	Hypnotize
+	XXX+COMPATIBILITY,L3,Combat,Water:SP sp61:	Forgetfulness
+	XXX-COMPATIBILITY,L2,Combat,Fire:SP sp62:	Blind
+	XXX-COMPATIBILITY,L3,Combat,Water:SP sp63:	Teleport
+	XXX-COMPATIBILITY,L2,Combat,Water:SP sp64:	Remove Obstacle
+	XXX-COMPATIBILITY,L4,Combat,Water:SP sp65:	Clone
+	XXX+COMPATIBILITY,L5,Combat,Fire:SP sp66:	Fire Elemental
+	XXX+COMPATIBILITY,L5,Combat,Earth:SP sp67:	Earth Elemental
+	XXX+COMPATIBILITY,L5,Combat,Water:SP sp68:	Water Elemental
+	XXX+COMPATIBILITY,L5,Combat,Air:SP sp69:	Air Elemental
+	XXX-COMPATIBILITY,L3,Creature:SP:	Stone Gaze
+	XXX-COMPATIBILITY,Creature:SP:	Poison
+	XXX-COMPATIBILITY,Creature:SP:	Bind
+	XXX-COMPATIBILITY,L2,Creature:SP:	Disease
+	XXX-COMPATIBILITY,L4,Creature:SP:	Paralyze
+	XXX-COMPATIBILITY,L5,Creature:SP:	Age
+	XXX-COMPATIBILITY,Creature:SP:	Death Cloud
+	XXX-COMPATIBILITY,Creature:SP:	Thunderbolt
+	XXX-COMPATIBILITY,Creature:SP:	Dispel Helpful Spells
+	XXX-COMPATIBILITY,Creature:SP:	Death Stare
+	XXX-COMPATIBILITY,Creature:SP:	Acid breath
