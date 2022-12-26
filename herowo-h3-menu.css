@@ -1,0 +1,1123 @@
+/*XXX=C check if this file and index.php templates use hardcoded values (flag images, etc.) rather than relying on databank */
+
+/* H3.DOM.MainMenu */
+
+.Hh3-menu {
+  z-index: 7;   /* overlay Hh3-loading */
+  transition: .5s filter;
+  background: url(../BMP-PNG/GAMSELB0.png);
+}
+
+.Hh3-menu_random_1 {
+  background: url(../BMP-PNG/GAMSELB1.png);
+  /* background for this and .Hh3-menu must be above .Hh3-menu_sc_s and other
+     screen-specific background-s so they take precedence. */
+}
+
+.Hcx_classic_no .Hh3-menu_loading {
+  filter: grayscale(.75);
+}
+
+.Hh3-menu__screen > *,
+.Hh3-menu-ns__left > * {
+  position: absolute;
+}
+
+/* Start screen */
+.Hh3-menu_sc_s {
+  background: url(../BMP-PNG/GAMSELBK.png);
+}
+
+.Hh3-menu-s__sect {
+  left: 114px;
+  top: 312px;
+  width: 300px;
+  height: 48px;
+}
+
+.Hh3-menu_sect_new .Hh3-menu-s__sect {
+  background: url(../BMP-PNG/NEWGAME.png);
+}
+
+.Hh3-menu_sect_load .Hh3-menu-s__sect {
+  background: url(../BMP-PNG/LOADGAME.png);
+}
+
+.Hh3-menu-s__grave {
+  left: 0px;
+  top: 370px;
+  width: 556px;
+  height: 100px;
+  background: url(../BIK-APNG/CREDITS-z2.png);
+}
+
+.Hh3-menu-plo_conf_no .Hh3-menu-plo__flag,
+.Hh3-menu-s__hisc,
+.Hh3-menu-s__camp {
+  filter: grayscale(1);
+}
+
+/* Credits */
+.Hh3-menu-s__roll-wr,
+.Hh3-menu-s__copy {
+  width: 334px;
+  right: 4px;
+  display: none;
+}
+
+.Hh3-menu-s__roll-wr {
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.Hh3-menu-s__roll {
+  position: absolute;
+  white-space: pre-wrap;
+  color: #ffe794;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-shadow: -1px -1px 1px black, 1px -1px 1px black, -1px 1px 1px black, 1px 1px 1px black;
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: 2px;
+}
+
+.Hh3-menu-s__roll b {
+  color: #efba21;
+}
+
+.Hh3-menu-s__copy {
+  color: #00ff00;
+  font-size: 0.75em;
+  text-shadow: 1px 1px 1px black;
+  line-height: 1.25;
+}
+
+.Hh3-menu-s__logo {
+  left: 94px;
+  top: 200px;
+}
+
+.Hh3-menu-s__logo img {
+  width: 266px;
+  max-height: 200px;
+}
+
+.Hh3-menu_sect_credits .Hh3-menu-s__roll {
+  /* Duration must match the timer in JS. */
+  animation: 180s 1s Hh3-menu-s__roll linear both;
+}
+
+.Hh3-menu_sect_credits .Hh3-menu-s__copy {
+  animation: 180s Hh3-menu-s__copy step-end both;
+  bottom: 10px;
+}
+
+@keyframes Hh3-menu-s__roll {
+  from { top: 600px; }
+  to   { top: -6400px; }
+}
+
+@keyframes Hh3-menu-s__copy {
+  from { bottom: 1000px; }
+  95%  { bottom: 10px; }
+}
+
+/* New/load/save single/multi [player] screen */
+.Hh3-menu-ns__left,
+.Hh3-menu-ns__right {
+  top: 6px;
+  height: 585px;
+}
+
+.Hh3-menu-ns__left {
+  left: 3px;
+  width: 575px;
+}
+
+.Hh3-menu-ns__right {
+  right: 34px;
+  width: 370px;
+}
+
+.Hcx_classic_yes .Hh3-menu:not(.Hh3-menu_sc_ns):not(.Hh3-menu_sc_nm) .Hh3-menu-ns__p5,
+.Hcx_classic_yes .Hh3-menu:not(.Hh3-menu_sc_ns):not(.Hh3-menu_sc_nm) .Hh3-menu-ns__p6,
+.Hcx_classic_yes .Hh3-menu:not(.Hh3-menu_sc_ns):not(.Hh3-menu_sc_nm) .Hh3-menu-ns__al,
+.Hcx_classic_yes .Hh3-menu:not(.Hh3-menu_sc_ns):not(.Hh3-menu_sc_nm) .Hh3-menu-ns__en,
+.Hh3-menu_sect_list.Hh3-menu_sc_ls .Hh3-menu-ns__t-list,
+.Hh3-menu_sect_list.Hh3-menu_sc_lm .Hh3-menu-ns__t-list,
+.Hh3-menu_sect_list.Hh3-menu_sc_ss .Hh3-menu-ns__t-list,
+.Hh3-menu_sect_list.Hh3-menu_sc_sm .Hh3-menu-ns__t-list,
+.Hh3-menu:not(.Hh3-menu_sect_list) .Hh3-menu-ns__list-wr,
+.Hh3-menu:not(.Hh3-menu_sect_list) .Hh3-menu-ns__list,
+.Hh3-menu:not(.Hh3-menu_sect_list) .Hh3-menu__slis,
+.Hh3-menu:not(.Hh3-menu_sect_options) .Hh3-menu-ns__opt-wr
+{
+  display: none;
+}
+
+.Hh3-menu_sect_list .Hh3-menu-ns__list-wr {
+  background: url(../BMP-PNG/SCSELBCK.png);
+}
+
+.Hh3-menu_sect_options .Hh3-menu-ns__opt-wr {
+  background: url(../BMP-PNG/ADVOPTBK.png);
+}
+
+.Hh3-menu-ns__right {
+  background: url(../BMP-PNG/GSELPOP1.png);
+}
+
+.Hh3-menu-ns__options {
+  position: absolute;
+  top: 128px;
+  left: 14px;
+  height: 400px;
+  width: 376px;
+}
+
+.Hh3-menu-ns__list {
+  position: absolute;
+  top: 123px;
+  left: 25px;
+  height: 450px;    /* 18 * 25px (height of Hh3-menu-sli) */
+  width: 370px;
+  overflow: hidden;
+}
+
+.Hslider {
+  user-select: none;
+}
+
+.Hslider_dir_hor div {
+  display: inline-block;
+}
+
+.Hslider__track,
+.Hslider__thumb {
+  position: relative;
+}
+
+.Hh3-menu__turd {
+  position: absolute;
+  left: 45px;
+  bottom: -50px;
+}
+
+.Hh3-menu__turd .Hslider__track {
+  width: 146px;
+  padding-right: 16px;
+}
+
+.Hh3-menu__slis {
+  position: absolute;
+  left: 375px;
+  top: 92px;
+}
+
+.Hh3-menu__slis .Hslider__track {
+  height: 432px;
+  padding-bottom: 16px;
+}
+
+.Hh3-menu-pll__item {
+  width: 15px;
+  height: 20px;
+  display: inline-block;
+}
+
+.Hh3-menu-plo_edit_yes .Hh3-menu-plo__handicap:not(:hover),
+.Hh3-menu__t-desc:not(:hover),
+.Hh3-menu__t-del:not(:hover),
+.Hh3-menu-ns__lobby-pub:not(:hover),
+.Hh3-menu-ns__lobby-priv:not(:hover),
+.Hh3-menu-ns__lobby-pin:not(:hover) {
+  text-decoration: underline;
+}
+
+.Hh3-menu-plo_edit_yes .Hh3-menu-plo__handicap,
+.Hh3-menu__t-desc,
+.Hh3-menu__t-del,
+.Hh3-menu-ns__lobby-pub,
+.Hh3-menu-ns__lobby-priv,
+.Hh3-menu-ns__lobby-pin {
+  cursor: pointer;
+}
+
+.Hh3-menu-pll__item_player_1 { background: url(../DEF-PNG/itgflags/0-0.png); }
+.Hh3-menu-pll__item_player_2 { background: url(../DEF-PNG/itgflags/0-1.png); }
+.Hh3-menu-pll__item_player_3 { background: url(../DEF-PNG/itgflags/0-2.png); }
+.Hh3-menu-pll__item_player_4 { background: url(../DEF-PNG/itgflags/0-3.png); }
+.Hh3-menu-pll__item_player_5 { background: url(../DEF-PNG/itgflags/0-4.png); }
+.Hh3-menu-pll__item_player_6 { background: url(../DEF-PNG/itgflags/0-5.png); }
+.Hh3-menu-pll__item_player_7 { background: url(../DEF-PNG/itgflags/0-6.png); }
+.Hh3-menu-pll__item_player_8 { background: url(../DEF-PNG/itgflags/0-7.png); }
+
+/*
+  Common text styles:
+  text1 = small gold
+  text2 = big bold gold
+  text3 = small white (= regular)
+  text4 = normal bold gold
+  text5 = smallest white
+  text6 = normal bold white
+  text7 = bold small white with black outline
+  text8 = as text7 but normal, not small
+  text9 = normal gold
+  text10 = big bold white
+  text11 = normal white
+  text12 = smallest gold
+*/
+
+.Hh3-menu__text1,
+.Hh3-menu__text2,
+.Hh3-menu__text3,
+.Hh3-menu__text4,
+.Hh3-menu__text5,
+.Hh3-menu__text6,
+.Hh3-menu__text9,
+.Hh3-menu__text10,
+.Hh3-menu__text12,
+.Hh3-menu__text11 {
+  text-shadow: 1px 1px 0 black;
+}
+
+.Hh3-menu__text7,
+.Hh3-menu__text8 {
+  text-shadow: 1px 1px 0 black, -1px -1px 0 black, -1px 1px 0 black, 1px -1px 0 black;
+  letter-spacing: 3px;
+}
+
+html .Hh3-menu-sli_cur,
+.Hh3-menu__text1,
+.Hh3-menu__text2,
+.Hh3-menu__text4,
+.Hh3-menu__text9,
+.Hh3-menu__text12 {
+  color: #efd67b;
+}
+
+.Hh3-menu__text3,
+.Hh3-menu__text5,
+.Hh3-menu__text6,
+.Hh3-menu__text7,
+.Hh3-menu__text8,
+.Hh3-menu__text10,
+.Hh3-menu__text11 {
+  color: white;
+}
+
+.Hh3-menu__text_toned.Hh3-menu__text1,
+.Hh3-menu__text_toned.Hh3-menu__text2,
+.Hh3-menu__text_toned.Hh3-menu__text4,
+.Hh3-menu__text_toned.Hh3-menu__text9,
+.Hh3-menu__text_toned.Hh3-menu__text12 {
+  color: #ffe794;
+}
+
+.Hh3-menu__text_toned.Hh3-menu__text3,
+.Hh3-menu__text_toned.Hh3-menu__text5,
+.Hh3-menu__text_toned.Hh3-menu__text6,
+.Hh3-menu__text_toned.Hh3-menu__text7,
+.Hh3-menu__text_toned.Hh3-menu__text8,
+.Hh3-menu__text_toned.Hh3-menu__text10,
+.Hh3-menu__text_toned.Hh3-menu__text11 {
+  color: #fff3de;
+}
+
+.Hh3-menu__text1,
+.Hh3-menu__text3,
+.Hh3-menu__text7 {
+  font-size: .75em;
+}
+
+.Hh3-menu__text2,
+.Hh3-menu__text10 {
+  font-size: 1.25em;
+}
+
+.Hh3-menu__text5,
+.Hh3-menu__text12 {
+  font-size: .65em;
+}
+
+.Hh3-menu__text2,
+.Hh3-menu__text4,
+.Hh3-menu__text6,
+.Hh3-menu__text7,
+.Hh3-menu__text8,
+.Hh3-menu__text10 {
+  font-weight: bold;
+}
+
+/* Start screen */
+
+.Hh3-menu-s__btn {
+  right: 157px;
+  display: none;
+}
+
+.Hh3-menu_sect_credits .Hh3-menu-s__roll-wr,
+.Hh3-menu_sect_credits .Hh3-menu-s__copy,
+.Hh3-menu_sect_ .Hh3-menu-s__new,
+.Hh3-menu_sect_ .Hh3-menu-s__load,
+.Hh3-menu_sect_ .Hh3-menu-s__hisc,
+.Hh3-menu_sect_ .Hh3-menu-s__cred,
+.Hh3-menu_sect_ .Hh3-menu-s__quit,
+.Hh3-menu_sect_new .Hh3-menu-s__single,
+.Hh3-menu_sect_new .Hh3-menu-s__multi,
+.Hh3-menu_sect_new .Hh3-menu-s__camp,
+.Hh3-menu_sect_new .Hh3-menu-s__tut,
+.Hh3-menu_sect_new .Hh3-menu-s__back,
+.Hh3-menu_sect_load .Hh3-menu-s__single,
+.Hh3-menu_sect_load .Hh3-menu-s__multi,
+.Hh3-menu_sect_load .Hh3-menu-s__camp,
+.Hh3-menu_sect_load .Hh3-menu-s__tut,
+.Hh3-menu_sect_load .Hh3-menu-s__back {
+  display: block;
+}
+
+.Hh3-menu-s__new {
+  top: 10px;
+  margin-right: -103.5px;
+}
+
+.Hh3-menu-s__load {
+  top: 132px;
+  margin-right: -115px;
+}
+
+.Hh3-menu-s__hisc {
+  top: 251px;
+  margin-right: -119.5px;
+}
+
+.Hh3-menu-s__cred {
+  top: 359px;
+  margin-right: -87px;
+}
+
+.Hh3-menu-s__quit {
+  top: 469px;
+  margin-right: -57px;
+}
+
+.Hh3-menu-s__single {
+  top: 4px;
+  margin-right: -111px;
+}
+
+.Hh3-menu-s__multi {
+  top: 120px;
+  margin-right: -87px;
+}
+
+.Hh3-menu-s__camp {
+  top: 233px;
+  margin-right: -109px;
+}
+
+.Hh3-menu-s__tut {
+  top: 358px;
+  margin-right: -107px;
+}
+
+.Hh3-menu-s__back {
+  top: 464px;
+  margin-right: -66px;
+}
+
+.Hcx_classic_no .Hh3-menu-s__single {
+  top: 8px;
+  background-image: url(custom-graphics/GTSINGL/0-0.png);
+}
+
+.Hcx_classic_no .Hh3-menu-s__single:active:hover {
+  background-image: url(custom-graphics/GTSINGL/0-1.png) !important;
+}
+
+html .Hcx_classic_no .Hh3-menu-s__single:hover {
+  background-image: url(custom-graphics/GTSINGL/0-2.png);
+}
+
+.Hcx_classic_no .Hh3-menu-s__multi {
+  top: 125px;
+}
+
+.Hcx_classic_no .Hh3-menu-s__camp {
+  top: 237px;
+}
+
+.Hcx_classic_no .Hh3-menu-s__tut {
+  top: 368px;
+}
+
+.Hcx_classic_no .Hh3-menu-s__back {
+  top: 470px;   /* align with .Hh3-menu-s__quit */
+}
+
+/* New single [player] screen */
+
+.Hh3-menu-ns__p16,
+.Hh3-menu-ns__p17 {
+  left: 23px;
+  text-align: center;
+}
+
+.Hh3-menu-ns__p16 {
+  top: 22px;
+  width: 365px;
+}
+
+.Hh3-menu-ns__p17 {
+  top: 55px;
+  width: 130px;
+}
+
+.Hh3-menu-ns__p17 input {   /* ... type="checkbox"> Flat Folder */
+  margin: 0;
+  vertical-align: top;
+}
+
+.Hh3-menu-ns__p20,
+.Hh3-menu-ns__p18,
+.Hh3-menu-ns__p19,
+.Hh3-menu-ns__p22,
+.Hh3-menu-ns__p23 {
+  left: 50px;
+  width: 317px;
+  text-align: center;
+}
+
+.Hh3-menu-ns__p22,
+.Hh3-menu-ns__p23 {
+  margin-left: 9px;
+}
+
+.Hh3-menu-ns__p19,
+.Hh3-menu-ns__p18 {
+  position: absolute;
+  top: -103px;
+  left: 50px;
+}
+
+.Hh3-menu-ns__p19 {
+  top: -78px;
+}
+
+.Hh3-menu-ns__p20 {
+  bottom: 39px;
+  width: 334px;
+}
+
+.Hh3-menu-ns__p21 {
+  left: 240px;
+  bottom: -45px;
+  width: 135px;
+  text-align: center;
+}
+
+.Hh3-menu-ns__p22,
+.Hh3-menu-ns__p23,
+.Hh3-menu-ns__p24,
+.Hh3-menu-ns__p25,
+.Hh3-menu-ns__p26 {
+  top: 87px;
+  width: 72px;
+  text-align: center;
+}
+
+.Hh3-menu-ns__p22,
+.Hh3-menu-ns__p23 {
+  width: 97px;
+}
+
+.Hh3-menu-ns__p23 {
+  margin-top: 16px;
+}
+
+.Hh3-menu-ns__p24 {
+  left: 161px;
+}
+
+.Hh3-menu-ns__p25 {
+  left: 237px;
+}
+
+.Hh3-menu-ns__p26 {
+  left: 314px;
+}
+
+.Hh3-menu-ns__btn {
+  right: 186px;
+  padding-left: 26px;
+  padding-top: 2px;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.Hh3-menu-ns__btn:active:hover {
+  padding-left: 27px;
+  padding-top: 3px;
+}
+
+.Hh3-menu-ns__t-list {
+  top: 81px;
+}
+
+.Hh3-menu-ns__t-opt {
+  bottom: 71px;
+}
+
+.Hh3-menu-ns__mdi {
+  right: 57px;
+  top: 28px;
+  width: 29px;
+  height: 23px;
+}
+
+.Hh3-menu-ns__mdi_dim_s {
+  background: url(../DEF-PNG/ScnrMpSz/0-0.png);
+}
+
+.Hh3-menu-ns__mdi_dim_m {
+  background: url(../DEF-PNG/ScnrMpSz/0-1.png);
+}
+
+.Hh3-menu-ns__mdi_dim_l {
+  background: url(../DEF-PNG/ScnrMpSz/0-2.png);
+}
+
+.Hh3-menu-ns__mdi_dim_xl {
+  background: url(../DEF-PNG/ScnrMpSz/0-3.png);
+}
+
+.Hh3-menu-ns > .Hh3-menu__text1,
+.Hh3-menu-ns__p10,
+.Hh3-menu-ns__p11,
+.Hh3-menu-ns__p5,
+.Hh3-menu-ns__vci,
+.Hh3-menu-ns__lci {
+  left: 421px;
+}
+
+.Hh3-menu-ns__p1 {
+  top: 29px;
+}
+
+.Hh3-menu-ns__p10 {
+  top: 46px;
+  width: 290px;
+}
+
+.Hh3-menu-ns__p2 {
+  top: 139px;
+}
+
+.Hh3-menu-ns__p11 {
+  top: 156px;
+  width: 319px;
+  height: 112px;
+  overflow: auto;
+  line-height: 1.3;
+}
+
+.Hh3-menu__t-desc {
+  padding-right: .5em;
+}
+
+.Hh3-menu-ns__p3 {
+  top: 290px;
+}
+
+.Hh3-menu-ns__p4 {
+  top: 346px;
+}
+
+.Hh3-menu-ns__vci,
+.Hh3-menu-ns__lci {
+  margin-left: -1px;
+}
+
+.Hh3-menu-ns__vci {
+  top: 308px;
+}
+
+.Hh3-menu-ns__lci {
+  top: 365px;
+}
+
+.Hh3-menu-ns__p12,
+.Hh3-menu-ns__p13 {
+  left: 456px;
+}
+
+.Hh3-menu-ns__p12 {
+  top: 314px;
+}
+
+.Hh3-menu-ns__p13 {
+  top: 373px;
+}
+
+.Hh3-menu-ns__p5,
+.Hh3-menu-ns__p6 {
+  top: 407px;
+}
+
+.Hh3-menu-ns__al,
+.Hh3-menu-ns__en {
+  position: absolute;
+  left: 470px;
+  top: 405px;
+}
+
+.Hh3-menu-ns__en {
+  left: 633px;
+}
+
+.Hh3-menu-ns__p6 {
+  left: 567px;
+}
+
+.Hh3-menu-ns__p7,
+.Hh3-menu-ns__p8,
+.Hh3-menu-ns__p9,
+.Hh3-menu-ns__p14,
+.Hh3-menu-ns__p15 {
+  top: 437px;
+  text-align: center;
+}
+
+.Hh3-menu-ns__p7,
+.Hh3-menu-ns__p9,
+.Hh3-menu-ns__p14,
+.Hh3-menu-ns__p15 {
+  width: 88px;
+}
+
+.Hh3-menu-ns__p14,
+.Hh3-menu-ns .Hh3-menu-ns__p7 {
+  left: 415px;
+}
+
+.Hh3-menu-ns .Hh3-menu-ns__p8 {
+  left: 505px;
+  width: 160px;
+}
+
+.Hh3-menu-ns__p15,
+.Hh3-menu-ns .Hh3-menu-ns__p9 {
+  left: 664px;
+}
+
+.Hh3-menu-ns__p14,
+.Hh3-menu-ns__p15 {
+  top: 471px;
+}
+
+.Hh3-menu-ns__begin,
+.Hh3-menu-ns__back {
+  bottom: 25px;
+}
+
+.Hh3-menu-ns__begin {
+  right: 220px;
+}
+
+.Hh3-menu-ns__back {
+  right: 50px;
+}
+
+.Hh3-menu-ns__s-btn {
+  top: 46px;
+}
+
+.Hh3-menu-ns__s-btn[data-Hsize="s"] {
+  left: 158px;
+}
+
+.Hh3-menu-ns__s-btn[data-Hsize="m"] {
+  left: 205px;
+}
+
+.Hh3-menu-ns__s-btn[data-Hsize="l"] {
+  left: 252px;
+}
+
+.Hh3-menu-ns__s-btn[data-Hsize="xl"] {
+  left: 299px;
+}
+
+.Hh3-menu-ns__s-btn[data-Hsize=""] {
+  left: 346px;
+}
+
+.Hh3-menu-ns__options .Hh3-menu-ns__p15,
+.Hh3-menu-ns__options .Hh3-menu-ns__d-btn {
+  margin: -128px 0 0 -14px;
+}
+
+.Hh3-menu-ns__d-btn {
+  top: 456px;
+}
+
+.Hh3-menu-ns__d-btn[data-Hdiff="0"] {
+  left: 506px;
+}
+
+.Hh3-menu-ns__d-btn[data-Hdiff="1"] {
+  left: 538px;
+}
+
+.Hh3-menu-ns__d-btn[data-Hdiff="2"] {
+  left: 570px;
+}
+
+.Hh3-menu-ns__d-btn[data-Hdiff="3"] {
+  left: 602px;
+}
+
+.Hh3-menu-ns__d-btn[data-Hdiff="4"] {
+  left: 634px;
+}
+
+.Hh3-menu-ns__t-btn {
+  top: 86px;
+}
+
+.Hh3-menu-ns__t-btn[data-Hcol="playerCount"] {
+  left: 23px;
+  width: 31px;
+}
+
+.Hh3-menu-ns__t-btn[data-Hcol="width"] {
+  left: 55px;
+}
+
+.Hh3-menu-ns__t-btn[data-Hcol="origin"] {
+  left: 88px;
+}
+
+.Hh3-menu-ns__t-btn[data-Hcol="title"] {
+  left: 121px;
+  width: 184px;
+}
+
+.Hh3-menu-ns__t-btn[data-Hcol="victoryType"] {
+  left: 306px;
+}
+
+.Hh3-menu-ns__t-btn[data-Hcol="lossType"] {
+  left: 339px;
+}
+
+.Hh3-menu-sl {
+  border-collapse: collapse;
+  table-layout: fixed;
+    /* Isn't required but supposedly faster since we specify width for all columns anyway. */
+}
+
+.Hcx_classic_no .Hh3-menu-sli:hover {
+  color: #fea;
+}
+
+.Hh3-menu-sli * {
+  text-align: center;
+  padding: 1px 0 0;
+}
+
+.Hh3-menu-sli__playerCount,
+.Hh3-menu-sli__size {
+  width: 32px;
+}
+
+.Hh3-menu-sli__origin,
+.Hh3-menu-sli__victory {
+  padding-left: 2px;
+}
+
+.Hh3-menu-sli__loss {
+  padding-left: 1px;
+}
+
+.Hh3-menu-ns__vci,
+.Hh3-menu-ns__lci,
+.Hh3-menu-sli__origin,
+.Hh3-menu-sli__victory,
+.Hh3-menu-sli__loss {
+  width: 32px;
+  height: 24px;
+  background: no-repeat right 0;
+}
+
+.Hh3-menu-sli__title {
+  width: 176px;
+  max-width: 176px;
+    /* Without max-width the cell always expands: https://stackoverflow.com/a/4185876 */
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.Hcx_classic_no .Hh3-menu-sli__title-wrap_long {
+  font-size: .83em;   /* 10px / Hh3-menu__text3 font-size of 12px */
+  /*
+    Map and folder names may be quite long and they are already ellipsized but
+    for WebKit we ellipsize on the second line, improving readability.
+
+    Doing so with the default font-size of 12px causes the cell to be taller
+    than others, shifting cells below it; to avoid that, we reduce "long"
+    (measureText()) cells' font-size to 10px as it doesn't cause shifting.
+
+    Wrapping in a <div> is required to vertically center the text since
+    -webkit-line-clamp requires display: -webkit-box.
+  */
+}
+
+.Hh3-menu-sli__origin_id_folder {
+  background-image: url(custom-graphics/menu/folder.png);
+}
+
+.Hh3-menu-sli__origin_id_folder-up {
+  background-image: url(custom-graphics/menu/folder-up.png);
+}
+
+.Hh3-menu-sli__origin_id_upload {
+  background-image: url(custom-graphics/menu/move_to_folder.png);
+}
+
+.Hh3-menu-sli__origin_id_join {
+  background-image: url(custom-graphics/menu/key_solid.png);
+}
+
+.Hh3-menu-sli__origin_id_create {
+  background-image: url(custom-graphics/menu/plus.png);
+}
+
+.Hh3-menu-sli__origin_id_saveFile {
+  background-image: url(custom-graphics/menu/mark_to_download.png);
+}
+
+.Hh3-menu-sli__origin_id_url {
+  background-image: url(custom-graphics/menu/internet_explorer.png);
+}
+
+.Hh3-menu-sli__origin_id_folder,
+.Hh3-menu-sli__origin_id_folder-up,
+.Hh3-menu-sli__origin_id_upload,
+.Hh3-menu-sli__origin_id_join,
+.Hh3-menu-sli__origin_id_create,
+.Hh3-menu-sli__origin_id_saveFile,
+.Hh3-menu-sli__origin_id_url {
+  background-position: center center;
+}
+
+.Hh3-menu-sli__origin_id_RoE {
+  background-image: url(../DEF-PNG/ScSelC/0-0.png);
+}
+
+.Hh3-menu-sli__origin_id_AB {
+  background-image: url(../DEF-PNG/ScSelC/0-1.png);
+}
+
+.Hh3-menu-sli__origin_id_SoD {
+  background-image: url(../DEF-PNG/ScSelC/0-2.png);
+}
+
+.Hh3-menu-sli__victory_type_- {
+  background-image: url(../DEF-PNG/SCNRVICT/0-11.png);
+}
+
+.Hh3-menu-sli__victory_type_oa,
+.Hh3-menu-sli__victory_type_oa- {
+  background-image: url(../DEF-PNG/SCNRVICT/0-0.png);
+}
+
+.Hh3-menu-sli__victory_type_ta,
+.Hh3-menu-sli__victory_type_ta- {
+  background-image: url(../DEF-PNG/SCNRVICT/0-10.png);
+}
+
+.Hh3-menu-sli__victory_type_oc,
+.Hh3-menu-sli__victory_type_oc- {
+  background-image: url(../DEF-PNG/SCNRVICT/0-1.png);
+}
+
+.Hh3-menu-sli__victory_type_or,
+.Hh3-menu-sli__victory_type_or- {
+  background-image: url(../DEF-PNG/SCNRVICT/0-2.png);
+}
+
+.Hh3-menu-sli__victory_type_gt,
+.Hh3-menu-sli__victory_type_gt- {
+  background-image: url(../DEF-PNG/SCNRVICT/0-4.png);
+}
+
+.Hh3-menu-sli__victory_type_ut,
+.Hh3-menu-sli__victory_type_ut- {
+  background-image: url(../DEF-PNG/SCNRVICT/0-3.png);
+}
+
+.Hh3-menu-sli__victory_type_dh,
+.Hh3-menu-sli__victory_type_dh- {
+  background-image: url(../DEF-PNG/SCNRVICT/0-5.png);
+}
+
+.Hh3-menu-sli__victory_type_dt,
+.Hh3-menu-sli__victory_type_dt- {
+  background-image: url(../DEF-PNG/SCNRVICT/0-6.png);
+}
+
+.Hh3-menu-sli__victory_type_dm,
+.Hh3-menu-sli__victory_type_dm- {
+  background-image: url(../DEF-PNG/SCNRVICT/0-7.png);
+}
+
+.Hh3-menu-sli__victory_type_od,
+.Hh3-menu-sli__victory_type_od- {
+  background-image: url(../DEF-PNG/SCNRVICT/0-8.png);
+}
+
+.Hh3-menu-sli__victory_type_om,
+.Hh3-menu-sli__victory_type_om- {
+  background-image: url(../DEF-PNG/SCNRVICT/0-9.png);
+}
+
+.Hh3-menu-sli__loss_type_- {
+  background-image: url(../DEF-PNG/SCNRLOSS/0-3.png);
+}
+
+.Hh3-menu-sli__loss_type_lt- {
+  background-image: url(../DEF-PNG/SCNRLOSS/0-0.png);
+}
+
+.Hh3-menu-sli__loss_type_lh- {
+  background-image: url(../DEF-PNG/SCNRLOSS/0-1.png);
+}
+
+.Hh3-menu-sli__loss_type_te- {
+  background-image: url(../DEF-PNG/SCNRLOSS/0-2.png);
+}
+
+.Hh3-menu-plo__item {
+  position: relative;
+  width: 400px;
+  height: 50px;
+  background: no-repeat 43px 0;
+}
+
+.Hh3-menu-plo__player_1 {
+  background-image: url(../BMP-PNG/ADOPRPNL.png);
+}
+
+.Hh3-menu-plo__player_2 {
+  background-image: url(../BMP-PNG/ADOPBPNL.png);
+}
+
+.Hh3-menu-plo__player_3 {
+  background-image: url(../BMP-PNG/ADOPYPNL.png);
+}
+
+.Hh3-menu-plo__player_4 {
+  background-image: url(../BMP-PNG/ADOPGPNL.png);
+}
+
+.Hh3-menu-plo__player_5 {
+  background-image: url(../BMP-PNG/ADOPOPNL.png);
+}
+
+.Hh3-menu-plo__player_6 {
+  background-image: url(../BMP-PNG/ADOPPPNL.png);
+}
+
+.Hh3-menu-plo__player_7 {
+  background-image: url(../BMP-PNG/ADOPTPNL.png);
+}
+
+.Hh3-menu-plo__player_8 {
+  background-image: url(../BMP-PNG/ADOPSPNL.png);
+}
+
+.Hh3-menu-plo__item > * {
+  position: absolute;
+}
+
+.Hh3-menu-plo__flag {
+  top: 2px;
+}
+
+.Hcx_classic_yes .Hh3-menu-plo__handicap,
+.Hh3-menu-plo__item:not(.Hh3-menu-plo_can_human) .Hh3-menu-plo__flag {
+  display: none;
+}
+
+.Hh3-menu-plo__controller,
+.Hh3-menu-plo__controllers-wr,
+.Hh3-menu-plo__handicap {
+  left: 48px;
+  height: 24px;
+  text-align: center;
+}
+
+.Hh3-menu-plo__controller {
+  top: 3px;
+  width: 97px;
+  white-space: nowrap;  /* if over 9 players are on one slot, better overflow text a bit than wrap it */
+}
+
+.Hh3-menu-plo__handicap,
+.Hh3-menu-plo__controllers-wr {
+  width: 45px;
+  top: 22px;
+}
+
+.Hh3-menu-plo__controllers-wr {
+  display: table;
+}
+
+.Hh3-menu-plo__controllers {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.Hh3-menu-plo__handicap {
+  left: 99px;
+  padding-top: 5px;
+}
+
+.Hh3-menu-plos_editable_no .Hh3-menu-plos__prev,
+.Hh3-menu-plos_editable_no .Hh3-menu-plos__next {
+  display: none;
+}
+
+.Hh3-menu-plos__face,
+.Hh3-menu-plos__prev,
+.Hh3-menu-plos__next {
+  display: inline-block;
+}
+
+.Hh3-menu-plos__face {
+  vertical-align: bottom;
+  margin: 0 1px;
+}
+
+.Hh3-menu-plo__town,
+.Hh3-menu-plo__bonus,
+.Hh3-menu-plo__hero {
+  width: 72px;
+  top: 2px;
+  text-align: center;
+}
+
+.Hh3-menu-plo__town {
+  left: 149px;
+}
+
+.Hh3-menu-plo__hero {
+  left: 225px;
+}
+
+.Hh3-menu-plo__bonus {
+  left: 301px;
+}

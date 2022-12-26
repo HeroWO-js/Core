@@ -1,0 +1,116 @@
+LOD - game archives. Open wth MMArchive or ResEdit2.
+
+SoD has 4 archives in Data\:
+
+  H3bitmap.lod - BMP, FNT, H3C, IFR (H3SHAD.IFR), PAL, TXT, XMI (DEFAULT.XMI)
+  H3sprite.lod - DEF, MSK
+  Heroes3.snd - WAV
+  VIDEO.VID - BIK, SMK
+
+SoD also has 2 more archives in Heroes3\Data\ on the CD-ROM:
+
+  Heroes3.snd - WAV (campaign speeches)
+  Heroes3.vid - BIK, SMK (campaign videos and VIDEO.VID's videos in higher
+                resolution and with sound)
+
+*** ATTENTION *** ResEdit2 exports BMP from H3bitmap.lod incorrectly: it draws a
+                  cyan line on the left and shifts and crops the image by 1 pixel.
+                  Use MMArchive to extract proper BMPs.
+
+FNT - Bitmap fonts. Open/create and convert to/from BMP with FNT Editor.
+      BMPs can be probably converted to FON and then converted to TTF:
+      https://stackoverflow.com/questions/3750124
+H3C - Campaign definitions. Open/create using the official compaign editor.
+IFR - ? Shadows, shaders?
+PAL - Standard RIFF palettes. Open with PaletteExplorer (needs Net) or
+      Photoshop (Image > Mode > Color Table > Load).
+      PLAYERS.PAL contains 256 colors in 8 groups, 32 colors in each; groups
+      are indexes in PLCOLORS.TXT (red blue tan green orange purple teal pink).
+      Some BMPs (ARESBAR, etc.) and DEFs (IAM000, etc.) have last 32 palette
+      indexes replaced by 32 from the appropriate PLAYERS.PAL group.
+      Basic PAL parsing is implemented in core.php's parsePAL().
+TXT - Tab-separated text data files with " quoting ("" = escaped ") that
+      can span multiple lines. Open with Txt Tables Editor or Excel.
+XMI - ?
+BIK, SMK - Old Bink video and video-with-sound format.
+
+Besides LOD, useful data is stored in MP3\ - game music at 128 Kbps, up for grabs.
+
+Info about cursors:
+
+  BMP can be converted to CUR using this Photoshop plugin:
+  http://www.telegraphics.com.au/sw/#icoformat
+
+  The game is using non-standard cursor sizes (40x40) and this can cause problems
+  in some applications like web browsers.
+
+  Most tools set CUR's central point ("hotspot") to 0x0 by default. This is
+  sometimes incorrect (most have it in the middle) and will impair the player's
+  experience. Visual Studio can reposition the hotspot but it doesn't handle all
+  CURs correctly. If there is only one cursor (size) per CUR file, use a hex
+  editor to change values at 0xA and 0xC (Little-Endian 16-bit integers), or
+  use cur-hotspot.php which does this for you. Source:
+  https://en.wikipedia.org/wiki/ICO_(file_format)#Icon_resource_structure
+
+See Images.txt for information about individual BMPs and DEFs.
+See Sounds.txt for information about individual WAVs and MP3s.
+
+WAVs are encoded using ADPCM preventing browsers from playing them.
+To convert WAV to "normal" PCM WAV Audacity can be used (batch convertion
+is possible with File > Apply Chain). Audacity can also produce MP3 and FLAC.
+Normal WAVs are 4X larger than SoD's, FLACs 3.5X, MP3 128 Kbps 1.5X, OGG 1.15X.
+Or use adpcm2pcm.exe. Use oggenc/oggenc2.exe to obtain OGG from PCM WAV.
+
+Info about BIK/SMK:
+
+  BIK usually has no sound, SMK has both sound and video.
+  Official RAD Game Tools (www.radgametools.com) can play, decode and encode them.
+  3rd party tools like https://www.nchsoftware.com/prism/ or VideoLAN can do it
+  too but are buggy (e.g. VLC crashes after playing a video, VLC convertion
+  adds random white lines, NCH audio converter chops off the beginning, etc.).
+
+  Also note that video players other than radvideo.exe and RS Bink Player,
+  as well as converted videos (WebM, etc.) will have colors slightly off due
+  to RGB/YUV convertion.
+
+  For best results:
+  - convert files to AVI and/or WAV using the official tool only:
+    binkconv foo.smk video.avi
+    binkconv foo.smk audio.wav
+  - WAV can be converted to OGG, it's smaller than MP3
+  - however note that I couldn't find a version of radtools that could open
+    SoD's BIK (SMK it opens fine), so you'll have to...
+  - extract frames using RS Bink Player (use mouse wheel to navigate files)
+  - then create APNG from frames (since this won't involve colorspace convertion)
+    using e.g. apngasm (ffmpeg can't encode APNG) - that's playable in major
+    browsers except IE, and attach the extracted <audio> nearby:
+    apngasm 3DOLOGO.png 3DOLOGO/00.png 1 15 -z2
+
+  In SoD, not on CD-ROM only 3DOLOGO.SMK and HSLOOP.SMK have audio channel;
+  on CD-ROM, all SMK have it.
+  In SoD, not on CD-ROM FPS is 15 (66.66 ms per frame) for all except
+  CREDITS.BIK/SMK (6) and HSLOOP and PROGRESSBAR (10, 100 ms per frame);
+  on CD-ROM: FPS is 10 for all except ENDGAME.BIK/SMK and H3*.SMK and
+  NWCLOGO.* and TESTING.BIK (15).
+
+Info about MSK:
+
+  Each DEF of type 3 or 4 (adventure map's objects and heroes; $43 and $44 in
+  DefPreview) is accompanied by an MSK. Additionally, the LOD has MSK for
+  RADAR.DEF (type 7) and 11 unpaired MSK (unused?):
+
+    AH01M
+    AH02F
+    AH02M
+    AVCDRGN0
+    AVGGIAN0
+    AVGGLM0
+    AVGGRM0
+    AVGNITE0
+    AVGORCS0
+    AVGUTOP0
+    AVSSCHW0
+
+  Each file is exactly 14 bytes. It's said to hold object dimensions, passability
+  and other info but it seems you can just ignore them and take all required info
+  from OBJECTS.TXT.

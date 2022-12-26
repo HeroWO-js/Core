@@ -1,0 +1,1133 @@
+-- MP3 Music and sounds --
+BladeABCampaign     ? campaign-related
+BladeDBCampaign     -n-
+BladeDSCampaign     -n-
+BladeFLCampaign     -n-
+BladeFWCampaign     -n-
+BladePFCampaign     -n-
+CampainMusic01      -n-
+CampainMusic02      -n-
+CampainMusic03      -n-
+CampainMusic04      -n-
+CampainMusic05      -n-
+CampainMusic06      -n-
+CampainMusic07      -n-
+CampainMusic08      -n-
+CampainMusic09      -n-
+CampainMusic10      -n-
+CampainMusic11      -n-
+EvilTheme           ? campaign-related
+GoodTheme           ? campaign-related
+Lose Campain        ? campaign-related
+NeutralTheme        ? campaign-related
+SecretTheme         ? campaign-related
+AITheme0            BGM played during AI turn
+AITHEME1            -n-
+AITHEME2            -n-
+COMBAT01            BGM during combat (after playing one of BATTLE*.WAV once)
+COMBAT02            -n-
+COMBAT03            -n-
+COMBAT04            -n-
+CstleTown           BGM for Castle townscape
+DUNGEON             -n- Dungeon
+ElemTown            -n- Conflux
+FortressTown        -n- Fortress
+InfernoTown         -n- Inferno
+necroTown           -n- Necropolis
+RAMPART             -n- Rampart
+StrongHold          -n- Stronghold
+TowerTown           -n- Tower
+Defend Castle       non-looped sound effect when showing combat results and
+                    player has defended his town
+LoseCastle          -n- when player's town was captured
+LoseCombat          -n- when player's hero was killed
+Retreat Battle      -n- when player's hero has fled
+Surrender Battle    -n- when player's hero has surrendered
+Win Battle          -n- when player has won in other conditions
+DIRT                BGM when actionable spot of currently focused hero/town is
+                    on a dirt terrain tile
+GRASS               -n- grass
+LAVA                -n- lava
+ROUGH               -n- rough
+SAND                -n- desert
+SNOW                -n- snow
+SWAMP               -n- swamp
+Underground         -n- subterranean
+WATER               -n- water; audibly similar to Underground
+LoopLepr            sounds just like LOOPLEPR.WAV, assuming it's a duplicate
+MAINMENU            BGM for main menu
+UltimateLose        non-looped effect for losing the game
+Win Scenario        -n- for winning
+
+-- WAV Miscellaneous (needs checking) --
+Source: empiric in-game tests
+ACID              ?
+AGE               ?
+ANIMDEAD          ?
+BACKLASH          ?
+BADLUCK           combat: bad luck on creature
+BADMRLE           combat: good morale on creature
+BATTLE00          combat: start sound played before MP3/COMBAT*
+BATTLE01          -n-
+BATTLE02          -n-
+BATTLE03          -n-
+BATTLE04          -n-
+BATTLE05          -n-
+BATTLE06          -n-
+BATTLE07          -n-
+BERSERK           ?
+BIND              ?
+BUILDTWN          map: new building constructed in town
+BUTTON            UI button click sound
+CAVEHEAD          map: entered the cave (played even if non-functional)
+CHAT              map: new chat message appeared (green text, played even if own)
+CHEST             map: picked up a treasure chest (also if artifact treasure inside), Sea Chest (played even if no reward)
+CLIMAX            x
+CLONE             ?
+COLDRAY           ?
+COLDRING          ?
+DANGER            map: entered a Whirlpool
+DEATHBLO          ?
+DEATHCLD          combat: impact sound for Lich attack (deathcloud)
+DEATHSTR          ?
+DEFAULT           unused "Oops" sound, ICQ-like
+DIGSOUND          map: using Dig menu command
+DIPMAGK           ?
+DISEASE           ?
+DISGUISE          ?
+DRAGON            map: prompt before entering Dragon Utopia (both unvisited and ransacked)
+DRAINLIF          ?
+DRAWBRG           combat: gate opening/closing
+DRGNSLAY          ?
+ERTHQUAK          ?
+EXPERNCE          map: encountered Campfire
+FEAR              ?
+FIREBALL          ?
+FIRESHIE          ?
+FIRESHLD          ?
+FIRESTRM          ?
+FIREWALL          ?
+FLAGMINE          map: owned any Mine except Abandoned
+FLYSPELL          ?
+FORCEFLD          ?
+GAZEBO            map: encountered Star Axis (both unvisited and already-visited)
+GETPROTECTION     map: encountered Sanctuary, Garden of Revelation (both unvisited and already-visited)
+GOGFLAME          ?
+GOODLUCK          combat: good luck on creature
+GOODMRLE          combat: good morale on creature
+GRAVEYARD         map: prompt before entering Warror's Tomb, Crypt
+HASTE             ?
+HORSE00           map: hero moving on dirt
+HORSE01           -n- desert
+HORSE02           -n- grass
+HORSE03           -n- snow
+HORSE04           -n- swamp
+HORSE05           -n- rough
+HORSE06           -n- subterranean
+HORSE07           -n- lava
+HORSE08           -n- water (in a ship)
+HORSE09           -n- rock (unused? impassable)
+HORSE10           -n- flying (Angel Wings on)
+HORSE20           seems to be a variant of HORSE00 but with added reverberation/echo (unused? there's no 08 too)
+HORSE21           -n-
+HORSE22           -n-
+HORSE23           -n-
+HORSE24           -n-
+HORSE25           -n-
+HORSE26           -n-
+HORSE27           -n-
+HORSE29           -n-
+HYPNOTIZ          ?
+ICERAY            ?
+KILLFADE          map: having defeated a roaming hero or monster, when dis/embarking, used Dismiss Hero
+LANDKILL          ?
+LANDMINE          ?
+LIGHTHOUSE        map: encountered Lighthouse, Redwood Observatory, Pillar of Fire, Cartographer (both on want-to-buy and already-bought), Cover of Darkness, Eye/Hut of the Magi
+LOOPAIR           map: environment sound: standing near Altar of Air
+LOOPANIM          ? sounds exactly as LOOPBEHE
+LOOPARCH          ? map: environment sound
+LOOPAREN          map: environment sound: standing near Arena, Marletto Tower
+LOOPBEHE          ? map: environment sound
+LOOPBIRD          ? map: environment sound
+LOOPBUOY          ? map: environment sound
+LOOPCAMP          map: environment sound: standing near Campfire
+LOOPCAVE          map: environment sound: standing near Abandoned Mine
+LOOPCRYS          map: environment sound: standing near Crystal Mine
+LOOPCURS          ? map: environment sound
+LOOPDEAD          ? map: environment sound
+LOOPDEN           map: environment sound: standing near Thieve's Guild (Den of Thieves)
+LOOPDEVL          ? map: environment sound
+LOOPDOG           ? map: environment sound
+LOOPDRAG          ? map: environment sound
+LOOPDWAR          map: environment sound: standing near Dwarven Treasury
+LOOPEART          ? map: environment sound
+LOOPELF           ? map: environment sound
+LOOPFACT          map: environment sound: standing near War Machine Factory
+LOOPFAER          map: environment sound: standing near Faerie Ring
+LOOPFALL          map: environment sound: standing near Magic Spring
+LOOPFIRE          map: environment sound: standing near Altar of Fire
+LOOPFLAG          map: environment sound: standing near Rally Flag
+LOOPFOUN          map: environment sound: standing near Fountain of Fortune, Fountain of Youth
+LOOPGARD          map: environment sound: standing near Garden of Revelation
+LOOPGATE          map: environment sound: standing near Subterranean Gate
+LOOPGEMP          map: environment sound: standing near Gem Mine
+LOOPGOBL          ? map: environment sound
+LOOPGREM          ? map: environment sound
+LOOPGRIF          map: environment sound: standing near Griffin Conservatory
+LOOPHARP          ? map: environment sound
+LOOPHORS          map: environment sound: standing near Stables
+LOOPHYDR          ? map: environment sound
+LOOPLEAR          map: environment sound: standing near Learning Stone
+LOOPLEPR          map: environment sound: standing near Mystical Garden
+LOOPLUMB          map: environment sound: standing near Sawmill, Shipyard
+LOOPMAGI          map: environment sound: standing near School of Magic
+LOOPMANT          ? map: environment sound
+LOOPMARK          map: environment sound: standing near Trading Post
+LOOPMEDU          ? map: environment sound
+LOOPMERC          map: environment sound: standing near Mercenary Camp
+LOOPMILL          map: environment sound: standing near Water Wheel
+LOOPMINE          map: environment sound: standing near Gold Mine
+LOOPMON1          map: environment sound: standing near Monolith One Way Entrance or Exit
+LOOPMON2          map: environment sound: standing near Monolith Two Way; looks like it isn't used in game - I don't hear it and the file also has a weird "click" at the end
+LOOPMONK          ? map: environment sound
+LOOPMONS          ? map: environment sound
+LOOPNAGA          ? map: environment sound
+LOOPOCEA          ? map: environment sound
+LOOPOGRE          ? map: environment sound
+LOOPORC           ? map: environment sound
+LOOPPEGA          ? map: environment sound
+LOOPPIKE          ? map: environment sound
+LOOPSANC          map: environment sound: standing near Temple, Sanctuary
+LOOPSHRIN         map: environment sound: standing near any Shrine
+LOOPSIRE          ? map: environment sound
+LOOPSKEL          ? map: environment sound
+LOOPSTAR          map: environment sound: standing near Star Axis
+LOOPSULF          map: environment sound: standing near Sulfur Mine
+LOOPSWAR          map: environment sound: standing near School of War
+LOOPSWOR          ? map: environment sound
+LOOPTAV           map: environment sound: standing near Tavern
+LOOPTITA          ? map: environment sound
+LOOPUNIC          ? map: environment sound
+LOOPVENT          ? map: environment sound
+LOOPVOLC          ? map: environment sound
+LOOPWHIR          map: environment sound: standing near Whirlpool
+LOOPWIND          map: environment sound: standing near Windmill
+LOOPWOLF          ? map: environment sound
+LUCK              ?
+MAGCAROW          ?
+MAGCHDRN          ?
+MAGCHFIL          ?
+MAGICRES          combat: creature resisting (evading) targeted spell
+MANADRAI          ?
+MILITARY          map: entered School of War (unvisited prompt, can't-pay, learnt)
+MIRRORIM          ?
+MNRDEATH          ?
+MORALE            ?
+MYSTERY           map: prompt sound before opening Pandora's Box (if there's a user message set then played on that message and not played on prompt), Pyramid, Abandoned Mine
+NEWDAY            map: as NEWDAY.DEF
+NEWMONTH          map: as NEWWEEK1.DEF
+NEWWEEK           map: as NEWWEEK2/3/4.DEF
+NOMAD             map: encountered Marletto Tower (both prompt and already visited), Mercenary Camp (ditto)
+NWHEROLV          map: hero received a level-up
+OBELISK           map: viewing Puzzle window (when encountered obelisk or called from menu)
+PARALYZE          ?
+PICKUP01          map: random sound when map object is disappearing (resource pile, Pandora's Box, campfire, flotsam, ocean bottle, artifact, scholar, treasure/sea chest, shipwreck survivor, quest/border guard)
+PICKUP02          -n-
+PICKUP03          -n-
+PICKUP04          -n-
+PICKUP05          -n-
+PICKUP06          -n-
+PICKUP07          -n-
+PLAYCOME          map: a player has entered a multi-player game
+PLAYEXIT          map: a player has left a multi-player game
+PLAYTURN          ?
+POISON            ?
+PROTECT           ?
+QUEST             map: visiting Seer's Hut
+QUIKSAND          ?
+REGENER           combat: regenerating hitpoints ?
+RESURECT          ?
+ROGUE             map: prompt sound before entering a bank (except Crypt and Dragon Utopia), Prison
+RSBRYFZL          ?
+SACRIF1           ?
+SACRIF2           ?
+SCUTBOAT          ?
+SUMMBOAT          ?
+SYSMSG            ?
+TELEIN            ?
+TELPTIN           ?
+TELPTOUT          map: teleport sound via monolith
+TEMPLE            map: entered Temple (both prompt and already visited), any Shrine (ditto, as well as if no spellbook/wisdom)
+TIMEOVER          map: time for taking turn has run out
+TREASURE          map: picked up an artifact (if guarded then only played on prompt)
+ULTIMATEARTIFACT  map: have dug up the Grail
+VIEW              map: using one of the View spells (View Air, etc.)
+WALLHIT           combat: catapult hitting the wall
+WALLMISS          combat: catapult missing the wall
+WATRWALK          ?
+
+-- WAV Combat spell cast sounds (incomplete) --
+Source: empiric in-game tests
+AIRSHELD
+ANTIMAGK
+ARMGEDN
+BLESS
+BLIND
+BLOODLUS
+CHAINLTE
+CURE
+CURSE
+DEATHRIP
+DECAY
+DISPELL
+DISRUPTR
+FIREBLST
+FORGET
+FORTUNE
+FRENZY
+FROSTING
+ICERAYEX
+LIGHTBLT
+MAGICBLT
+METEOR
+MIRTH
+MISFORT
+MUCKMIRE
+PRAYER
+PRECISON
+PROTECTA
+PROTECTE
+PROTECTF
+PROTECTW
+REMOVEOB
+SACBRETH
+SHIELD
+SLAYER
+SORROW
+SPONTCOMB
+SUMNELM
+TAILWIND
+TUFFSKIN
+VISIONS
+WEAKNESS
+CNTRSTRK
+
+-- WAV Combat creature sounds --
+Source: MonData.dat (MD5: 19f096a8608f3daa28346c3ce20389ad) of H3DefTool v3.2.1.0
+        with empirical fixes
+KEEPSHOT          fortification tower ranged attack
+ROGUATTK
+ROGUDFND
+ROGUKILL
+ROGUMOVE
+ROGUWNCE
+AELMWNCE
+AGRMATTK
+AGRMDFND
+AGRMKILL
+AGRMMOVE
+AGRMSHOT
+AGRMWNCE
+ALIZATTK
+ALIZDFND
+ALIZKILL
+ALIZMOVE
+ALIZSHOT
+ALIZWNCE
+AMAGATTK
+AMAGDFND
+AMAGKILL
+AMAGMOVE
+AMAGSHOT
+AMAGWNCE
+ANGLATTK
+ANGLDFND
+ANGLKILL
+ANGLMOVE
+ANGLWNCE
+APEGATTK
+APEGDFND
+APEGKILL
+APEGMOVE
+APEGWNCE
+AZURATTK
+AZURDFND
+AZURKILL
+AZURMOVE
+AZURWNCE
+BALLKILL
+BALLSHOT
+BALLWNCE
+BASLATTK
+BASLDFND
+BASLKILL
+BASLMOVE
+BASLWNCE
+BDRFATTK
+BDRFDFND
+BDRFKILL
+BDRFMOVE
+BDRFWNCE
+BGORATTK
+BGORDFND
+BGORKILL
+BGORMOVE
+BGORWNCE
+BHDRATTK
+BHDRDETH
+BHDRDFND
+BHDRKILL
+BHDRMOVE
+BHDRSHOT
+BHDRWNCE
+BKDRATTK
+BKDRDFND
+BKDRKILL
+BKDRMOVE
+BKDRWNCE
+BKNTATTK
+BKNTDFND
+BKNTKILL
+BKNTMOVE
+BKNTWNCE
+BLRDATTK
+BLRDDFND
+BLRDKILL
+BLRDMOVE
+BLRDWNCE
+BMTHATTK
+BMTHDFND
+BMTHKILL
+BMTHMOVE
+BMTHWNCE
+BOARATTK
+BOARDFND
+BOARKILL
+BOARMOVE
+BOARWNCE
+BODRATTK
+BODRDFND
+BODRKILL
+BODRMOVE
+BODRWNCE
+BTREATTK
+BTREDFND
+BTREKILL
+BTREMOVE
+BTREWNCE
+CALFATTK
+CALFDFND
+CALFKILL
+CALFMOVE
+CALFSHOT
+CALFWNCE
+CARTKILL
+CARTWNCE
+CATAKILL
+CATASHOT
+CATAWNCE
+CAVAATTK
+CAVADFND
+CAVAKILL
+CAVAMOVE
+CAVAWNCE
+CCYCATTK
+CCYCDFND
+CCYCKILL
+CCYCMOVE
+CCYCSHOT
+CCYCWNCE
+CERBATTK
+CERBDFND
+CERBKILL
+CERBMOVE
+CERBWNCE
+CGORATTK
+CGORDFND
+CGORKILL
+CGORMOVE
+CGORWNCE
+CHMPATTK
+CHMPDFND
+CHMPKILL
+CHMPMOVE
+CHMPWNCE
+CHYDATTK
+CHYDDFND
+CHYDKILL
+CHYDMOVE
+CHYDWNCE
+CNTRATTK
+CNTRDFND
+CNTRKILL
+CNTRMOVE
+CNTRSHOT
+CNTRWNCE
+CRUSATTK
+CRUSDFND
+CRUSKILL
+CRUSMOVE
+CRUSWNCE
+CRYSATTK
+CRYSDFND
+CRYSKILL
+CRYSMOVE
+CRYSWNCE
+CYCLATTK
+CYCLDFND
+CYCLKILL
+CYCLMOVE
+CYCLSHOT
+CYCLWNCE
+DEVLATTK
+DEVLDFND
+DEVLEXT1
+DEVLEXT2
+DEVLKILL
+DEVLMOVE
+DEVLWNCE
+DFLYATTK
+DFLYDFND
+DFLYKILL
+DFLYMOVE
+DFLYWNCE
+DGLMATTK
+DGLMDFND
+DGLMKILL
+DGLMMOVE
+DGLMWNCE
+DHDMATTK
+DHDMDFND
+DHDMKILL
+DHDMMOVE
+DHDMWNCE
+DWRFATTK
+DWRFDFND
+DWRFKILL
+DWRFMOVE
+DWRFWNCE
+ECNTATTK
+ECNTDFND
+ECNTKILL
+ECNTMOVE
+ECNTWNCE
+EELMATTK
+EELMDFND
+EELMKILL
+EELMMOVE
+EELMWNCE
+EFRTATTK
+EFRTDFND
+EFRTKILL
+EFRTMOVE
+EFRTWNCE
+ENCHATTK
+ENCHDFND
+ENCHKILL
+ENCHMOVE
+ENCHSHOT
+ENCHWNCE
+ENERATTK
+ENERDFND
+ENERKILL
+ENERMOVE
+ENERWNCE
+ESULATTK
+ESULDFND
+ESULKILL
+ESULMOVE
+ESULSHOT
+ESULWNCE
+EVLIATTK
+EVLIDETH
+EVLIDFND
+EVLIKILL
+EVLIMOVE
+EVLISHOT
+EVLIWNCE
+FAERATTK
+FAERDFND
+FAERIE
+FAERKILL
+FAERMOVE
+FAERSHOT
+FAERWNCE
+FAIDKILL
+FAIDWNCE
+FDFLATTK
+FDFLDFND
+FDFLKILL
+FDFLMOVE
+FDFLSHOT
+FDFLWNCE
+FELMATTK
+FELMDFND
+FELMKILL
+FELMMOVE
+FELMWNCE
+FIRBATTK
+FIRBDFND
+FIRBKILL
+FIRBMOVE
+FIRBWNCE
+FMLRATTK
+FMLRDFND
+FMLRKILL
+FMLRMOVE
+FMLRWNCE
+GBASATTK
+GBASDFND
+GBASKILL
+GBASMOVE
+GBASWNCE
+GBLNATTK
+GBLNDFND
+GBLNKILL
+GBLNMOVE
+GBLNWNCE
+GELFATTK
+GELFDFND
+GELFKILL
+GELFMOVE
+GELFSHOT
+GELFWNCE
+GENIATTK
+GENIDFND
+GENIE
+GENIKILL
+GENIMOVE
+GENIWNCE
+GGLMATTK
+GGLMDFND
+GGLMKILL
+GGLMMOVE
+GGLMWNCE
+GHDRATTK
+GHDRDFND
+GHDRKILL
+GHDRMOVE
+GHDRWNCE
+GNLMATTK
+GNLMDFND
+GNLMKILL
+GNLMMOVE
+GNLMWNCE
+GNOLATTK
+GNOLDFND
+GNOLKILL
+GNOLMOVE
+GNOLWNCE
+GODRATTK
+GODRDFND
+GODRKILL
+GODRMOVE
+GODRWNCE
+GOGGATTK
+GOGGDFND
+GOGGKILL
+GOGGMOVE
+GOGGSHOT
+GOGGWNCE
+GRDRATTK
+GRDRDFND
+GRDRKILL
+GRDRMOVE
+GRDRWNCE
+GRIFATTK
+GRIFDFND
+GRIFKILL
+GRIFMOVE
+GRIFWNCE
+GTITATTK
+GTITDFND
+GTITKILL
+GTITMOVE
+GTITSHOT
+GTITWNCE
+GWRDATTK
+GWRDDFND
+GWRDKILL
+GWRDMOVE
+GWRDWNCE
+HALBATTK
+HALBDFND
+HALBKILL
+HALBMOVE
+HALBWNCE
+HALFATTK
+HALFDFND
+HALFKILL
+HALFMOVE
+HALFSHOT
+HALFWNCE
+HARPATTK
+HARPDFND
+HARPKILL
+HARPMOVE
+HARPWNCE
+HCRSATTK
+HCRSDFND
+HCRSKILL
+HCRSMOVE
+HCRSSHOT
+HCRSWNCE
+HGOBATTK
+HGOBDFND
+HGOBKILL
+HGOBMOVE
+HGOBWNCE
+HGWRATTK
+HGWRDFND
+HGWRKILL
+HGWRMOVE
+HGWRWNCE
+HHAGATTK
+HHAGDFND
+HHAGKILL
+HHAGMOVE
+HHAGSHOT
+HHAGWNCE
+HHNDATTK
+HHNDDFND
+HHNDKILL
+HHNDMOVE
+HHNDWNCE
+HYDRATTK
+HYDRDFND
+HYDRKILL
+HYDRMOVE
+HYDRWNCE
+ICELATTK
+ICELDFND
+ICELKILL
+ICELMOVE
+ICELSHOT
+ICELWNCE
+IGLMATTK
+IGLMDFND
+IGLMKILL
+IGLMMOVE
+IGLMWNCE
+IMPPATTK
+IMPPDFND
+IMPPKILL
+IMPPMOVE
+IMPPWNCE
+ITRGATTK
+ITRGDFND
+ITRGKILL
+ITRGMOVE
+ITRGWNCE
+LCRSATTK
+LCRSDFND
+LCRSKILL
+LCRSMOVE
+LCRSSHOT
+LCRSWNCE
+LICHATK2
+LICHATTK
+LICHDFND
+LICHKILL
+LICHMOVE
+LICHSHOT
+LICHWNCE
+LTITATTK
+LTITDFND
+LTITKILL
+LTITMOVE
+LTITWNCE
+MAGEATTK
+MAGEDFND
+MAGEKILL
+MAGEMOVE
+MAGESHOT
+MAGEWNCE
+MAGMATTK
+MAGMDFND
+MAGMKILL
+MAGMMOVE
+MAGMWNCE
+MANTATTK
+MANTDFND
+MANTKILL
+MANTMOVE
+MANTSHOT
+MANTWNCE
+MEDQATTK
+MEDQDFND
+MEDQKILL
+MEDQMOVE
+MEDQSHOT
+MEDQWNCE
+MEDUATTK
+MEDUDFND
+MEDUKILL
+MEDUMOVE
+MEDUSHOT
+MEDUWNCE
+MGELATTK
+MGELDFND
+MGELKILL
+MGELMOVE
+MGELWNCE
+MGOGATTK
+MGOGDFND
+MGOGKILL
+MGOGMOVE
+MGOGSHOT
+MGOGWNCE
+MGRMATTK
+MGRMDFND
+MGRMKILL
+MGRMMOVE
+MGRMSHOT
+MGRMWNCE
+MINKATTK
+MINKDFND
+MINKKILL
+MINKMOVE
+MINKSHOT
+MINKWNCE
+MINOATTK
+MINODFND
+MINOKILL
+MINOMOVE
+MINOWNCE
+MONKATTK
+MONKDFND
+MONKKILL
+MONKMOVE
+MONKSHOT
+MONKWNCE
+MUMYATTK
+MUMYDFND
+MUMYKILL
+MUMYMOVE
+MUMYWNCE
+NGRDATTK
+NGRDDFND
+NGRDKILL
+NGRDMOVE
+NGRDWNCE
+NMADATTK
+NMADDFND
+NMADKILL
+NMADMOVE
+NMADWNCE
+NOSFATTK
+NOSFDFND
+NOSFEXT1
+NOSFEXT2
+NOSFKILL
+NOSFMOVE
+NOSFSHOT
+NOSFWNCE
+NSENATTK
+NSENDFND
+NSENKILL
+NSENMOVE
+NSENWNCE
+OGREATTK
+OGREDFND
+OGREKILL
+OGREMOVE
+OGREWNCE
+OGRGATTK
+OGRGDFND
+OGRGKILL
+OGRGMOVE
+OGRGWNCE
+OGRMATTK
+OGRMDFND
+OGRMKILL
+OGRMMOVE
+OGRMSHOT
+OGRMWNCE
+OORCATTK
+OORCDFND
+OORCKILL
+OORCMOVE
+OORCSHOT
+OORCWNCE
+ORCCATTK
+ORCCDFND
+ORCCKILL
+ORCCMOVE
+ORCCSHOT
+ORCCWNCE
+PEGAATTK
+PEGADFND
+PEGAKILL
+PEGAMOVE
+PEGAWNCE
+PFNDATTK
+PFNDDFND
+PFNDKILL
+PFNDMOVE
+PFNDWNCE
+PFOEATTK
+PFOEDFND
+PFOEKILL
+PFOEMOVE
+PFOEWNCE
+PHOEATTK
+PHOEDFND
+PHOEKILL
+PHOEMOVE
+PHOEWNCE
+PIKEATTK
+PIKEDFND
+PIKEKILL
+PIKEMOVE
+PIKEWNCE
+PIXIATTK
+PIXIDFND
+PIXIKILL
+PIXIMOVE
+PIXIWNCE
+PLCHATTK
+PLCHDFND
+PLCHKILL
+PLCHMOVE
+PLCHSHOT
+PLCHWNCE
+PLIZATTK
+PLIZDFND
+PLIZKILL
+PLIZMOVE
+PLIZSHOT
+PLIZWNCE
+PSNTATTK
+PSNTDFND
+PSNTKILL
+PSNTMOVE
+PSNTWNCE
+PSYCATTK
+PSYCDFND
+PSYCKILL
+PSYCMOVE
+PSYCWNCE
+RDDRATTK
+RDDRDFND
+RDDRKILL
+RDDRMOVE
+RDDRWNCE
+RGRFATTK
+RGRFDFND
+RGRFKILL
+RGRFMOVE
+RGRFWNCE
+ROCCATTK
+ROCCDFND
+ROCCKILL
+ROCCMOVE
+ROCCWNCE
+RUSTATTK
+RUSTDFND
+RUSTKILL
+RUSTMOVE
+RUSTWNCE
+SCRPATTK
+SCRPDFND
+SCRPKILL
+SCRPMOVE
+SCRPSHOT
+SCRPWNCE
+SGLMATTK
+SGLMDFND
+SGLMKILL
+SGLMMOVE
+SGLMWNCE
+SGRGATTK
+SGRGDFND
+SGRGKILL
+SGRGMOVE
+SGRGWNCE
+SHDMATTK
+SHDMDFND
+SHDMKILL
+SHDMMOVE
+SHDMWNCE
+SKELATTK
+SKELDFND
+SKELKILL
+SKELMOVE
+SKELWNCE
+SKLWATTK
+SKLWDFND
+SKLWKILL
+SKLWMOVE
+SKLWWNCE
+SPRTATTK
+SPRTDFND
+SPRTKILL
+SPRTMOVE
+SPRTWNCE
+STORATTK
+STORDFND
+STORE
+STORKILL
+STORM
+STORMOVE
+STORSHOT
+STORWNCE
+SWRDATTK
+SWRDDFND
+SWRDKILL
+SWRDMOVE
+SWRDWNCE
+TBRDATTK
+TBRDDFND
+TBRDKILL
+TBRDMOVE
+TBRDWNCE
+TREEATTK
+TREEDFND
+TREEKILL
+TREEMOVE
+TREEWNCE
+TRLLATTK
+TRLLDFND
+TRLLKILL
+TRLLMOVE
+TRLLWNCE
+TROGATTK
+TROGDFND
+TROGKILL
+TROGMOVE
+TROGWNCE
+UNICATTK
+UNICDFND
+UNICKILL
+UNICMOVE
+UNICWNCE
+VAMPATTK
+VAMPDFND
+VAMPEXT1
+VAMPEXT2
+VAMPKILL
+VAMPMOVE
+VAMPWNCE
+WELFATTK
+WELFDFND
+WELFKILL
+WELFMOVE
+WELFSHOT
+WELFWNCE
+WELMATTK
+WELMDFND
+WELMKILL
+WELMMOVE
+WELMWNCE
+WGHTATTK
+WGHTDFND
+WGHTKILL
+WGHTMOVE
+WGHTWNCE
+WRTHATTK
+WRTHDFND
+WRTHKILL
+WRTHMOVE
+WRTHWNCE
+WUNCATTK
+WUNCDFND
+WUNCKILL
+WUNCMOVE
+WUNCSHOT
+WUNCWNCE
+WYVMATTK
+WYVMDFND
+WYVMKILL
+WYVMMOVE
+WYVMWNCE
+WYVNATTK
+WYVNDFND
+WYVNKILL
+WYVNMOVE
+WYVNWNCE
+YBMHATTK
+YBMHDFND
+YBMHKILL
+YBMHMOVE
+YBMHWNCE
+ZELTATTK
+ZELTDFND
+ZELTKILL
+ZELTMOVE
+ZELTSHOT
+ZELTWNCE
+ZMBLATTK
+ZMBLDFND
+ZMBLKILL
+ZMBLMOVE
+ZMBLWNCE
+ZOMBATTK
+ZOMBDFND
+ZOMBKILL
+ZOMBMOVE
+ZOMBWNCE
+AAGLATTK
+AAGLDFND
+AAGLKILL
+AAGLMOVE
+AAGLWNCE
+ADVLATTK
+ADVLDFND
+ADVLEXT1
+ADVLEXT2
+ADVLKILL
+ADVLMOVE
+ADVLWNCE
+AELMATTK
+AELMDFND
+AELMKILL
+AELMMOVE
+
+-- Format of combat creature sounds --
+Source: empiric in-game tests
+
+Suffixes:
+
+ATTK              melee attack
+ATK2              -n-
+DETH              ?
+DFND              taking hit while defenting
+EXT1              ?
+EXT2              ?
+KILL              death
+MOVE              flying/moving
+SHOT              ranged attack
+STRK              ?
+WNCE              taking hit
+
+Support by creature (first line = suffix, second = base sound name of creature):
+
+ATTK DFND KILL MOVE WNCE
+AAGL AELM ANGL APEG AZUR BASL BDRF BGOR BKDR BKNT BLRD BMTH BOAR BODR BTRE CAVA CERB CGOR CHMP CHYD CRUS CRYS DFLY DGLM DHDM DWRF ECNT EELM EFRT ENER FELM FIRB FMLR GBAS GBLN GENI GGLM GHDR GNLM GNOL GODR GRDR GRIF GWRD HALB HARP HGOB HGWR HHND HYDR IGLM IMPP ITRG LTIT MAGM MGEL MINO MUMY NGRD NMAD NSEN OGRE OGRG PEGA PFND PFOE PHOE PIKE PIXI PSNT PSYC RDDR RGRF ROCC RUST SGLM SGRG SHDM SKEL SKLW SPRT SWRD TBRD TREE TRLL TROG UNIC WELM WGHT WRTH WYVM WYVN YBMH ZMBL ZOMB ROGU
+
+ATTK DFND KILL MOVE SHOT WNCE
+AGRM ALIZ AMAG CALF CCYC CYCL ENCH ESUL FAER FDFL GELF GOGG GTIT HALF HCRS HHAG ICEL LCRS MAGE MANT MEDQ MEDU MGOG MGRM MINK MONK OGRM OORC ORCC PLCH PLIZ SCRP STOR WELF WUNC ZELT
+
+ADVL DEVL VAMP
+ATTK DFND EXT1 EXT2 KILL MOVE WNCE
+
+KILL SHOT WNCE
+BALL CATA
+
+KILL WNCE
+CART FAID
+
+ATTK DETH DFND KILL MOVE SHOT WNCE
+BHDR EVLI
+
+CNTR
+ATTK DFND KILL MOVE SHOT STRK WNCE
+
+LICH
+ATK2 ATTK DFND KILL MOVE SHOT WNCE
+
+NOSF
+ATTK DFND EXT1 EXT2 KILL MOVE SHOT WNCE
+
+KEEP
+SHOT

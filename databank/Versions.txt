@@ -1,0 +1,10 @@
+Unless otherwise noted, data is based on SoD version 3.0, USA release.
+
+Data of a specific version should be marked using square brackets, with optional
+extension name (SoD if omitted). Examples:
+
+  [3.2] - Shadow of Death, version 3.2
+  [RoE-1.0] - Restoration of Erathia, version 1.0
+
+It is not indicated if other versions have this data differently, only that it
+was obtained from that version.

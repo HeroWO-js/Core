@@ -1,0 +1,5885 @@
+@import "herowo-h3-menu.css";
+@import "custom-graphics/loading/styles.css";
+
+/*
+  XXX consider contain for performance: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Containment
+*/
+
+/* XXX split CSS and templates (HTML) into individual files per module (*.js); create a common CSS file for styles shared by multiple modules (like for text-overflow: ellipsis) */
+
+body.debug {
+  background: teal;
+}
+
+body.debug .Hroot__map-wr,
+body.debug .Hroot__mmap {
+  background: cyan;
+}
+
+body.debug .Hroot__mmap-wr {
+  background: yellow;
+}
+
+body:not(.debug) .Hcx {
+  user-select: none;  /* disallow dragging buttons and use cursor: default */
+}
+
+.Hh3-tavern__rumor-w,
+.Hh3-msg,
+.Hchat-room__msgs {
+  user-select: text;
+}
+
+#log {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+noscript {
+  position: relative;  /* overlay #loading */
+  text-align: center;
+  font-size: 2em;
+  color: white;
+}
+
+.Hcx {
+  position: relative;   /* used to position MainMenu over Hsc */
+  /* .Hcx and children must have box-sizing: content-box (the default). */
+}
+
+.Hweb-gm,
+.Hchat-btn_cx,
+.Hchat-rooms_cx,
+.Hh3-loading,
+.Hh3-menu,
+.Hh3-sc {
+  font-family: Georgia, serif;
+  letter-spacing: 1px;
+}
+
+.Hroot__overlay {
+  position: absolute;
+  cursor: grabbing;
+  display: none;
+}
+
+.Hcx_scale {
+  display: inline-block;  /* can't calculate contents width as div takes it all */
+  -ms-interpolation-mode: nearest-neighbor;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  image-rendering: -moz-crisp-edges;
+  transform-origin: 0 0;
+  /* transform: scale() must be set by JS. */
+}
+
+/* Exclusive mode when Hcx is the only content (sans optional top bar). */
+.exclusive #context {
+  text-align: center;   /* needed for transform-origin: center */
+}
+
+.exclusive .Hcx {
+  text-align: left;
+}
+
+.exclusive .Hcx_scale_up {
+  transform-origin: center 0;
+}
+
+.exclusive body {
+  background: black;
+  overflow: hidden;
+  margin: 0;
+}
+
+.exclusive body > .Hweb-top__menu {
+  display: none;    /* hide HTML menu when main script starts */
+}
+
+.Hh3-menu, /* container for MainMenu */
+.Hsc /* container for all player-specific UI except Hroot */ {
+  position: relative;
+}
+
+.Hh3-win,
+.Hh3-win__win_fs,
+.Hh3-menu {
+  height: 100%;
+}
+
+/* Hroot__map children need to have negative margin if !mapMargin. */
+.Hgrid,
+.Hmaps,   /* need for margin (JS) */
+.Hmap {   /* need for z-index (JS) */
+  position: absolute;
+}
+
+.Hgrid__cell,
+.Hmap__obj {
+  position: absolute;
+}
+
+.Hgrid__cell_margin {
+  background: rgba(0, 0, 0, .75);
+}
+
+/*
+  Make object parts sticking to explored but invisible tiles grayscale, like in
+  Puzzle Map. There's no .Hcx_classic_... selector as it is fully controlled by
+  JS for performance reasons.
+
+  backdrop-filter is only supported in Chrome 76+ and Safari. For others fall
+  back to making such tiles semi-black, for somewhat similar effect.
+
+  FF 70+ allows enabling backdrop-filter via about:config:
+  https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter
+
+  XXX Chrome and FF (Safar unknown) have a weird bug. If backdrop-filter:
+  grayscale (with any argument) is applied to any node (i.e. there is at least
+  one .Hgrid__cell_fog in the document) and there is an element (such as body or
+  .Hweb-top) with background: teal then this element's content becomes blurry
+  (especially easy to notice if text color is red). Doesn't happen with white
+  instead of teal.
+
+  Test document:
+
+    <body style="color: red; background: teal">
+      <div style="backdrop-filter: grayscale(1.0)">Inside</div>
+      <div>Outside (blurry)</div>
+    </body>
+
+  If the last div is given background and backdrop-filter then it stops being
+  blurry. But it becomes blurry again if you move it on top, or if you duplicate
+  that last div (all but the last div-s will be blurry).
+
+  Same happens with the MDN sample if you append a
+  <div style="color: red; background: teal"> to body:
+  https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#result
+*/
+.Hgrid__cell_fog {
+  background: rgba(0, 0, 0, .5);
+}
+@supports (-webkit-backdrop-filter: grayscale(1)) or
+                  (backdrop-filter: grayscale(1)) {
+  .Hgrid__cell_fog {
+    background: transparent;
+    -webkit-backdrop-filter: grayscale(1);
+            backdrop-filter: grayscale(1);
+  }
+}
+
+.Hroot__map_grid .Hgrid__cell {
+  outline: 1px dashed rgba(255, 0, 0, .5);
+  outline-offset: -3px;
+}
+
+.Hgrid .Hgrid__cell_chat,
+.Hroot__map_grid .Hgrid__cell:hover {
+  outline: 1px solid blue;
+  z-index: 2;   /* show above outlines of non-:hover cells */
+}
+
+.Hgrid__cell_pass_impass {
+  background: rgba(255, 0, 0, .35);
+}
+
+.Hgrid__cell_pass_act {
+  background: rgba(0, 255, 0, .35);
+}
+
+.Hgrid .Hgrid__cell_eff,
+.Hgrid__cell_pass_hidden,
+.Hgrid__cell_pass_act:not(.Hgrid__cell_pass_impass) {   /* passable actionable */
+  outline: 2px solid red;
+}
+
+.Hgrid__cell_pass_hidden {
+  outline-color: gray;
+}
+
+.Hgrid__cell_pass_guard:before,
+.Hgrid__cell_pass_guard-t:before {
+  content: "☠";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.Hgrid__cell_pass_guard:before {
+  background: red;
+  border-radius: 100%;
+}
+
+.Hgrid__cell_path {
+  color: white;
+  font: 16px monospace;
+  text-align: center;
+}
+
+.Hmap__obj-order-text,
+.Hgrid__cell_path {
+  text-shadow: -1px -1px 0px black, 1px -1px 0px black, -1px  1px 0px black, 1px  1px 0px black;
+}
+
+.Hgrid .Hgrid__cell_path_imp-obj {
+  outline-width: 2px;
+  outline-color: red;
+}
+
+.Hgrid .Hgrid__cell_path_imp-guard {
+  outline-width: 2px;
+  outline-color: yellow;
+}
+
+.Hgrid .Hgrid__cell_path_imp-veh {
+  outline-color: lime;
+}
+
+.Hgrid .Hgrid__cell_path_imp-shr {
+  outline-color: silver;
+}
+
+.Hmap__obj_order {
+  outline: 1px dashed #f0f6;
+}
+
+.Hmap__obj-order-text {
+  position: absolute;
+  z-index: 100000000;
+  font: 12px sans-serif;
+  color: white;
+}
+
+.Hmap__obj_order-hover,
+.Hmap__obj_order-hover + .Hmap__obj-order-text {
+  outline-width: 2px;
+  outline-color: cyan;
+  color: cyan;
+  z-index: 100000001;
+}
+
+/* Every node with game animation (e.g. adventure map object or combat creature) should have this class. Animation state (paused)
+   should be controlled by other classes; don't assume .Hanim will only set
+   animation-iteration-count and nothing else - it may set something else
+   required for animation functionality. */
+.Hanim {
+  animation-iteration-count: infinite;
+}
+
+/* See def2png.php comment on animation-duration about this. */
+.Hanim_var .Hanim {
+  --Hd: unset;
+}
+
+.Hroot__map_anim_no .Hanim {
+  animation-iteration-count: 0;
+}
+
+.Hweb-top__map,
+.Hh3-ci__name,
+.Hh3-am-rp__name,
+.Hh3-hall__b-name,
+.Hh3-menu-sli__title-wrap,
+.Hh3-menu-ns__p10,
+.Hh3-hinfo__skill-mastery,
+.Hh3-hinfo__skill-name,
+.Hcontrols .cur-obj,
+.Hh3-spbki__name,
+.Hh3-cm__log-alert {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@supports (-webkit-line-clamp: 2) {
+  /* See herowo-h3-menu.css for the explanation. */
+  .Hcx_classic_no .Hh3-menu-sli__title-wrap {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: normal;
+  }
+}
+
+/* Website top bar */
+
+.Hweb-top {
+  text-align: center;
+  /* 1em is about the width of .Hweb-top__menu-label, used to better center the content. */
+  padding: .05em .25em .05em calc(.25em + 1em);
+}
+
+.Hweb-top,
+.Hweb-top__topic {
+  color: gray;
+}
+
+.Hweb-top__fullsc {
+  cursor: pointer;
+}
+
+.Hweb-top a {
+  text-decoration: none;
+}
+
+.Hweb-top__fullsc:hover,
+.Hweb-top a:hover {
+  text-decoration: underline;
+}
+
+.Hweb-top__fullsc:not(.Hweb-top__fullsc_cur) {
+  color: silver;
+}
+
+.Hweb-top__menu-label,
+.Hweb-top__menu-list a,
+.Hweb-top__lb {
+  color: #c1b279;
+}
+
+.Hweb-top__conn {
+  color: red;
+  font-weight: bold;
+}
+
+.Hweb-top__time:not(.Hweb-top__time_big) {
+  display: none;
+}
+
+.Hweb-top__clock, .Hweb-top__time {
+  white-space: nowrap;
+}
+
+.Hweb-top__map {
+  display: inline-block;
+  vertical-align: bottom;
+  max-width: calc(100% - 30em);
+}
+
+.Hweb-top__menu {
+  float: right;
+  text-align: right;
+  position: static;   /* override #loading styles */
+}
+
+.Hweb-top_playing_yes .Hweb-top__menu-label img,
+.Hweb-top__menu:not(:hover) .Hweb-top__menu-list {
+  display: none;
+}
+
+.Hweb-top_playing_no .Hweb-top__menu-label span {
+  visibility: hidden;
+}
+
+.Hweb-top__menu-label span {
+  padding-left: .5em;  /* ease of use */
+  display: inline;     /* override #loading styles */
+}
+
+.Hweb-top__menu-label img {
+  position: absolute;
+  z-index: 12;  /* overlay .Hweb-top__menu-list and .Hcx */
+}
+
+.Hweb-top__menu-list {
+  position: absolute;
+  right: 0;
+  z-index: 11;  /* overlay Hweb-gm */
+  background: #000000aa;
+  box-shadow: 0 0 2em black inset;
+  padding: .5em .75em;
+  color: silver;
+}
+
+.Hweb-top__menu-list p {
+  margin: .25em 0;
+}
+
+/* Website GrantModules */
+
+.Hweb-gm,
+.Hweb-gm-shade {
+  display: none;
+}
+
+.Hweb-gm {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 600px;
+  max-height: 80vh;
+  z-index: 10;  /* overlay Hweb-gm-shade */
+  background: #ffa;
+  border-radius: 1em;
+  padding: 0 1em;
+}
+
+.Hweb-gm-shade {
+  z-index: 9; /* overlay Hchat*_cx */
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.Hweb-gm mark {
+  background: orange;
+}
+
+.Hweb-gm th,
+.Hweb-gm td {
+  padding: .1em .5em;
+  text-align: center;
+}
+
+.Hweb-gm th {
+  border-bottom: .06em solid orange;
+}
+
+.Hweb-gm table, .Hweb-gm button {
+  margin: 1em auto;
+}
+
+.Hweb-gm button {
+  display: block;
+  font-size: 1em;
+}
+
+/* Chat.DOM */
+
+.Hchat-btn_cx,
+.Hchat-rooms_cx {
+  z-index: 8;   /* overlay Hh3-menu */
+}
+
+.Hchat-btn_cx_game {
+  z-index: 1000;  /* above Windows */
+}
+
+.Hchat-win,
+.Hchat-rooms_cx {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  width: 20em;
+  border: .2em double #f7de7b;
+  background: url(custom-graphics/CHATPLUG.png) #213973;
+}
+
+.Hchat-rooms__tabs {
+  margin: .5em .5em 0;
+}
+
+.Hchat-room__paste-wr,
+.Hchat-room__write,
+.Hchat-rooms__tab_cur_yes,
+.Hchat-room {
+  background: #0003;
+}
+
+.Hchat-room__write,
+.Hchat-rooms__tab_cur_yes,
+.Hchat-room {
+  border: .06em solid #5a6b94;
+}
+
+.Hchat-room__paste-wr > *,
+.Hchat-rooms__hide,
+.Hchat-rooms__tab {
+  display: inline-block;
+  padding: .25em .5em;
+}
+
+.Hchat-rooms__tab_cur_yes {
+  /*
+    This creates a tab visually by drawing another color over the border-top of
+    Hchat-room. border-radius creates sharp corners on the bottom:
+       +-----+
+       | tab |                                                | tab |
+     --+     +--    <- without border-radius these would be --|     |--
+  */
+  border-bottom-color: #112960;
+  border-radius: 0 0 .12em .12em;
+}
+
+.Hchat-rooms__tab_cur_no:hover {
+  text-decoration: underline;
+}
+
+.Hchat-msg__spot,
+.Hchat-room__paste:hover,
+.Hchat-btn__room:hover,
+.Hchat-rooms__hide:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.Hchat-msg__spot:hover,
+.Hchat-rooms a:hover {
+  text-decoration: none;
+}
+
+.Hchat-rooms__hide {
+  float: right;
+  padding-right: 0;
+}
+
+.Hchat-room {
+  margin-top: -.06em;   /* creates a tab; see .Hchat-rooms__tab_cur_yes */
+}
+
+.Hchat-room__msgs {
+  height: 20em;
+  overflow: auto;
+}
+
+.Hchat-msg a {
+  color: white;
+}
+
+.Hh3-menu-ns__p11,
+.Hchat-room__write,
+.Hchat-room__msgs {
+  scrollbar-color: #5a6b94 black;
+  scrollbar-width: thin;
+}
+
+.Hh3-menu-ns__p11::-webkit-scrollbar,
+.Hchat-room__write::-webkit-scrollbar,
+.Hchat-room__msgs::-webkit-scrollbar {
+  background: black;
+  width: .35em;
+}
+
+.Hh3-menu-ns__p11::-webkit-scrollbar-thumb,
+.Hchat-room__write::-webkit-scrollbar-thumb,
+.Hchat-room__msgs::-webkit-scrollbar-thumb {
+  background: #5a6b94;
+}
+
+.Hchat-btn_cx .Hchat-btn__room:before,
+.Hchat-rooms__tab_alert_yes:before,
+.Hchat-btn__alert_yes:before {
+  content: "● ";
+}
+
+.Hchat-rooms__tab_alert_yes:before,
+.Hchat-btn__alert_yes:before {
+  color: red;
+}
+
+.Hchat-rooms_hidden_yes,
+.Hchat-rooms__tab_empty_yes:not(.Hchat-rooms__tab_cur_yes) {
+  display: none;
+}
+
+.Hchat-msg b {
+  color: #efd67b;
+}
+
+.Hchat-msg_observer_yes b {
+  opacity: .65;
+}
+
+.Hchat-msg_player_red    b { color: red; }
+.Hchat-msg_player_blue   b { color: #88f; }
+.Hchat-msg_player_tan    b { color: brown; }
+.Hchat-msg_player_green  b { color: lime; }
+.Hchat-msg_player_orange b { color: orange; }
+.Hchat-msg_player_purple b { color: violet; }
+.Hchat-msg_player_teal   b { color: teal; }
+.Hchat-msg_player_pink   b { color: pink; }
+
+html .Hchat-msg_mySeat_yes b {
+  color: gray;
+}
+
+.Hchat-room__write {
+  display: block;
+  width: 100%;
+  min-height: 3em;    /* prevent cropping .Hchat-room__upload */
+  resize: vertical;
+  box-sizing: border-box;
+  padding: .25em 3em .5em .25em;
+  border-width: .06em 0 0;
+}
+
+.Hchat-room__write:focus {
+  outline: 0;   /* browser's */
+  border-color: #f7de7b;
+}
+
+.Hchat-room__write[disabled] {
+  color: silver;
+}
+
+.Hchat-rooms svg {
+  fill: #fff9;
+}
+
+.Hchat-room__upload {
+  position: absolute;
+  margin: .5em;
+  right: .5em;
+  width: 1.5em;
+  height: 1.5em;
+  overflow: hidden;   /* <input type="file"> */
+}
+
+.Hchat-room__upload svg {
+  position: absolute;
+}
+
+.Hchat-room_loading .Hchat-room__upload {
+  display: none;
+}
+
+.Hchat-room__file {
+  opacity: 0;
+  font-size: 10em;
+}
+
+.Hchat-msg {
+  margin: .5em;
+}
+
+.Hchat-msg a:hover img {
+  outline: .06em solid #f7de7b;
+  outline-offset: 1px;
+}
+
+.Hchat-msg a:hover svg,
+.Hchat-room__upload:hover svg {
+  fill: white;
+}
+
+.Hchat-msg img {
+  display: block;
+  max-width: 100%;
+  max-height: 10em;
+  margin: .15em 0;
+}
+
+.Hchat-msg svg {
+  vertical-align: bottom;
+  width: 1em;
+  margin-right: .2em;
+}
+
+.Hchat-btn_cx {
+  position: absolute;
+  top: 1em;
+  right: .6em;
+  transform: rotate(90deg) translate(100%, 100%);
+  transform-origin: right bottom;
+  border: .06em solid #ad8c42;
+  outline: .06em solid black;
+  background: #0009;
+  padding: .5em;
+}
+
+.Hchat-btn__room + .Hchat-btn__room {
+  margin-left: 1em;
+}
+
+.Hchat-btn__empty_yes {
+  color: #ad8e42;
+}
+
+/* DOM.Controls */
+
+.Hcontrols .cur-obj {
+  vertical-align: bottom;
+}
+
+.Hcontrols .cur-obj:after {
+  visibility: hidden;
+  content: "↖";   /* largest character to avoid jumps in line height */
+}
+
+.Hcontrols-mod_combat [data-Hresmap$="date"],
+.Hcontrols-mod_combat [data-Hresplayer$="team"],
+.Hcontrols-mod_current_no [data-Hresobject],
+.Hcontrols-mod_current_town [data-Hresobject$="experience"],
+.Hcontrols-mod_current_town [data-Hresobject$="artifacts"],
+.Hcontrols-mod_current_town [data-Hresobject$="Points"],
+.Hcontrols-mod:not(.Hcontrols-mod_combat) [data-Hresobject$="combatCasts"],
+.Hcontrols-mod_current_hero [data-Hresobject$="available"],
+.Hcontrols-mod_current_hero [data-Hresobject$="hasBuilt"],
+.Hcontrols-mod_combat [data-Hresobject]:not([data-Hresobject$="spellPoints"]):not([data-Hresobject$="combatCasts"]),
+.Hcontrols-mod_current_no [data-Hresgarrison],
+.Hcontrols-mod:not(.Hcontrols-mod_combat) [data-Hresgarrison]:not([data-Hresgarrison$="count"]),
+.Hcontrols-mod_master_no .res,
+.Hcontrols-mod_master_no .eff-delete,
+.Hcontrols-mod_master_no .eff-add,
+.Hcontrols-mod_master_no [data-Hedelete],
+.Hcontrols-mod_master_no [data-Hedeled],
+.Hcontrols button {
+  display: none;
+}
+
+.Hcontrols .scale,
+.Hcontrols .classic,
+.Hcontrols .log,
+.Hcontrols_state_am .anim,
+.Hcontrols_state_am .grid,
+.Hcontrols_state_am .pass,
+.Hcontrols_state_am .path,
+.Hcontrols_state_am .order,
+.Hcontrols_state_am .eff,
+.Hcontrols_state_am .margin,
+.Hcontrols_state_am .shroud,
+.Hcontrols_state_am .edge,
+.Hcontrols_state_am .spanim,
+.Hcontrols_state_combat .cgrid,
+.Hcontrols_state_combat .chlmove,
+.Hcontrols_state_combat .chlhover,
+.Hcontrols_state_combat .ccrinfo,
+.Hcontrols_state_combat .ccreff,
+.Hcontrols_state_combat .spanim {
+  display: inline;
+}
+
+.Hcontrols .effects {
+  display: none;
+  position: absolute;
+  right: 1em;
+  top: 2em;
+  z-index: 1000;  /* above Windows */
+  background: rgba(255, 255, 255, 0.85);
+  padding: .25em .5em;
+  border-radius: .3em;
+  column-count: 2;
+}
+
+.Hcontrols-mod {
+  margin: 2em 0 1em;
+}
+
+.Hcontrols-mod .res {
+  margin-bottom: 2em;
+}
+
+@media (min-width: 1000px) {
+  .Hcontrols-mod .sc {
+    float: left;
+    width: 40%;
+    margin-right: 1%;
+  }
+
+  .Hcontrols-mod .eff {
+    float: left;
+    width: 59%;
+    margin-top: 0;
+  }
+}
+
+.Hcontrols-mod .trans,
+.Hcontrols-mod .eff {
+  margin-top: 2em;
+}
+
+.Hcontrols-mod .trans .deleted > * {
+  text-decoration: underline dashed silver;
+}
+
+.Hcontrols-mod .trans .playing {
+  font-weight: bold;
+}
+
+.Hcontrols-mod .trans .aborting {
+  color: red;
+}
+
+.Hcontrols-mod td {
+  padding: .25em;
+}
+
+.Hcontrols-mod textarea {
+  margin: 1em 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 5em;
+  resize: vertical;
+}
+
+/* H3.DOM.Loading */
+
+html .Hh3-menu_loading,
+.Hh3-cm_cursor_wait,
+.Hh3-loading {
+  cursor: url(custom-graphics/DEF-CUR/CRDEFLT/CursrD02.cur), wait;
+}
+
+.Hh3-loading {
+  background: url(../BMP-PNG/LOADBAR.png);
+}
+
+.Hh3-loading__bar-o {
+  position: absolute;
+  left: 395px;
+  top: 548px;
+  width: 358px;
+}
+
+.Hh3-loading__bar-i {
+  height: 16px;
+  transition: width 0s steps(20);
+    /* Used when programmatically setting the width ("progress value") so that it crops to display full boxes only (which are 16px). */
+  animation: 30s Hh3-menu-p steps(20) alternate;    /* XXX reflect real loading progress */
+  background: 0 0 url(custom-graphics/LOADPROG.png);
+}
+
+@keyframes Hh3-menu-p {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* H3.UI - Heroes 3 User Interface */
+
+.Hh3-cm__cancel,
+.Hchat-btn_cx,
+.Hchat-rooms_cx,
+.Hh3-sc,    /* H3.DOM.UI's added class to Screen */
+.Hh3-root,  /* DOM.UI */
+.Hh3-menu {
+  cursor: url(custom-graphics/DEF-CUR/CRDEFLT/CursrD00.cur), auto;
+}
+
+.Hcx_scale,
+  /* Hh3-menu has position: absolute so DOM.Context's scale() fails to determine proper content dimensions from window.width(). */
+.Hh3-loading,
+.Hh3-root .Hroot__overlay,
+  /* Has to overlay Hroot__map-wr and Hmmap (both can be dragged). */
+.Hh3-sc,
+.Hh3-menu {
+  width: 800px;
+  height: 600px;
+}
+
+.Hh3-root {
+  position: absolute;
+  margin-top: -600px;   /* height of Hh3-sc */
+  z-index: 0;
+    /* This confines z-index of children. For example, if .Hmmap_rect had z-index > Windows' minZ then it could show on top of .Hchat-win. This value should match z-index of .Hh3-am (i.e. 0 since that Window is always first on screen). */
+}
+
+/* Window-s having no own value for position. */
+.Hh3-am,
+.Hh3-town,
+.Hh3-fort,
+.Hh3-hall,
+.Hh3-mgg,
+.Hh3-cm {
+  position: relative;
+}
+
+.Hh3-win__bk {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.Hchat-rooms_cx,
+.Hh3-win__win {
+  box-shadow: 8px 8px 1px rgba(0, 0, 0, .75);
+}
+
+/* Fallback when ResizeObserver is unavailable. */
+.Hbit-win_center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Hweb-gm-shade,
+.Hh3-win_shade .Hh3-win__bk_transp_no {
+  background: rgba(0, 0, 0, .5);
+}
+
+.Hh3-win_shade-closes .Hh3-win__bk {
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom006.cur), no-drop;
+}
+
+.Hh3-win_tooltips * {
+  cursor: none !important; /* SoD behaviour */
+}
+
+.Hh3-root .Hroot__map-wr {
+  top: 8px;
+  left: 8px;
+  width: 592px;
+  height: 544px;
+  overflow: hidden;
+  position: absolute;
+  user-select: none;    /* allow scrolling map by dragging from any spot */
+}
+
+.Hroot__edge {
+  position: absolute;
+  z-index: 7;
+}
+
+.Hroot__edge_side_0_1   { left: 0; right: 0; bottom: 0; height: 1.5%; cursor: s-resize; }
+.Hroot__edge_side_0_-1  { left: 0; right: 0; top: 0; height: 1.5%; cursor: n-resize; }
+.Hroot__edge_side_1_0   { top: 0; bottom: 0; right: 0; width: 1.5%; cursor: e-resize; }
+.Hroot__edge_side_-1_0  { top: 0; bottom: 0; left: 0; width: 1.5%; cursor: w-resize; }
+.Hroot__edge_side_-1_-1 { top: 0; left: 0; width: 1.5%; height: 1.5%; cursor: nw-resize; }
+.Hroot__edge_side_1_1   { bottom: 0; right: 0; width: 1.5%; height: 1.5%; cursor: se-resize; }
+.Hroot__edge_side_1_-1  { top: 0; right: 0; width: 1.5%; height: 1.5%; cursor: ne-resize; }
+.Hroot__edge_side_-1_1  { bottom: 0; left: 0; width: 1.5%; height: 1.5%; cursor: sw-resize; }
+
+.Hcx_classic_no .Hroot__edge_side_0_1   { height: 4%; }
+.Hcx_classic_no .Hroot__edge_side_0_-1  { height: 4%; }
+.Hcx_classic_no .Hroot__edge_side_1_0   { width: 4%; }
+.Hcx_classic_no .Hroot__edge_side_-1_0  { width: 4%; }
+.Hcx_classic_no .Hroot__edge_side_-1_-1 { width: 4%; height: 4%; }
+.Hcx_classic_no .Hroot__edge_side_1_1   { width: 4%; height: 4%; }
+.Hcx_classic_no .Hroot__edge_side_1_-1  { width: 4%; height: 4%; }
+.Hcx_classic_no .Hroot__edge_side_-1_1  { width: 4%; height: 4%; }
+
+.Hh3-sc .Hroot__edge_side_0_1   { cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA05.cur), s-resize; }
+.Hh3-sc .Hroot__edge_side_0_-1  { cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA01.cur), n-resize; }
+.Hh3-sc .Hroot__edge_side_1_0   { cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA03.cur), e-resize; }
+.Hh3-sc .Hroot__edge_side_-1_0  { cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA07.cur), w-resize; }
+.Hh3-sc .Hroot__edge_side_-1_-1 { cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA08.cur), nw-resize; }
+.Hh3-sc .Hroot__edge_side_1_1   { cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA04.cur), se-resize; }
+.Hh3-sc .Hroot__edge_side_1_-1  { cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA02.cur), ne-resize; }
+.Hh3-sc .Hroot__edge_side_-1_1  { cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA06.cur), sw-resize; }
+
+.Hroot_edge .Hroot__map {
+  position: absolute;
+  overflow: hidden;
+    /* Prevent objects on map margins from overlaying Hroot_edge's border-image or sticking out from the right/bottom sides. */
+}
+
+.Hh3-root.Hroot_edge .Hroot__map {
+  /* Width must match the edgeSize value in H3.DOM.UI.js. */
+  border: 288px solid;
+  border-image: url(custom-graphics/EDG/composed.png) repeat;
+  border-image-slice: 288;
+}
+
+.Hh3-am-combats,
+.Hh3-am__mapcor1:before,
+.Hh3-am__mapcor1:after,
+.Hh3-am__mapcor2:before,
+.Hh3-am__mapcor2:after {
+  z-index: 1;   /* overlay .Hroot */
+}
+
+.Hh3-am__mapcor1:before,
+.Hh3-am__mapcor1:after,
+.Hh3-am__mapcor2:before,
+.Hh3-am__mapcor2:after {
+  content: "";
+  position: absolute;
+  width: 46px;
+  height: 46px;
+}
+
+.Hh3-am__mapcor1:before,
+.Hh3-am__mapcor1:after {
+  top: 6px;
+}
+
+.Hh3-am__mapcor1:before,
+.Hh3-am__mapcor2:before {
+  left: 6px;
+}
+
+.Hh3-am__mapcor1:after,
+.Hh3-am__mapcor2:after {
+  left: 556px;
+}
+
+.Hh3-am__mapcor2:before,
+.Hh3-am__mapcor2:after {
+  bottom: 46px;
+}
+
+.Hsc_player_1 .Hh3-am__mapcor1:before { background: url(../DEF-PNG/agemUL/0-0.png); }
+.Hsc_player_1 .Hh3-am__mapcor1:after  { background: url(../DEF-PNG/agemUR/0-0.png); }
+.Hsc_player_1 .Hh3-am__mapcor2:before { background: url(../DEF-PNG/agemLL/0-0.png); }
+.Hsc_player_1 .Hh3-am__mapcor2:after  { background: url(../DEF-PNG/agemLR/0-0.png); }
+
+.Hsc_player_2 .Hh3-am__mapcor1:before { background: url(../DEF-PNG/agemUL/0-1.png); }
+.Hsc_player_2 .Hh3-am__mapcor1:after  { background: url(../DEF-PNG/agemUR/0-1.png); }
+.Hsc_player_2 .Hh3-am__mapcor2:before { background: url(../DEF-PNG/agemLL/0-1.png); }
+.Hsc_player_2 .Hh3-am__mapcor2:after  { background: url(../DEF-PNG/agemLR/0-1.png); }
+
+.Hsc_player_3 .Hh3-am__mapcor1:before { background: url(../DEF-PNG/agemUL/0-2.png); }
+.Hsc_player_3 .Hh3-am__mapcor1:after  { background: url(../DEF-PNG/agemUR/0-2.png); }
+.Hsc_player_3 .Hh3-am__mapcor2:before { background: url(../DEF-PNG/agemLL/0-2.png); }
+.Hsc_player_3 .Hh3-am__mapcor2:after  { background: url(../DEF-PNG/agemLR/0-2.png); }
+
+.Hsc_player_4 .Hh3-am__mapcor1:before { background: url(../DEF-PNG/agemUL/0-3.png); }
+.Hsc_player_4 .Hh3-am__mapcor1:after  { background: url(../DEF-PNG/agemUR/0-3.png); }
+.Hsc_player_4 .Hh3-am__mapcor2:before { background: url(../DEF-PNG/agemLL/0-3.png); }
+.Hsc_player_4 .Hh3-am__mapcor2:after  { background: url(../DEF-PNG/agemLR/0-3.png); }
+
+.Hsc_player_5 .Hh3-am__mapcor1:before { background: url(../DEF-PNG/agemUL/0-4.png); }
+.Hsc_player_5 .Hh3-am__mapcor1:after  { background: url(../DEF-PNG/agemUR/0-4.png); }
+.Hsc_player_5 .Hh3-am__mapcor2:before { background: url(../DEF-PNG/agemLL/0-4.png); }
+.Hsc_player_5 .Hh3-am__mapcor2:after  { background: url(../DEF-PNG/agemLR/0-4.png); }
+
+.Hsc_player_6 .Hh3-am__mapcor1:before { background: url(../DEF-PNG/agemUL/0-5.png); }
+.Hsc_player_6 .Hh3-am__mapcor1:after  { background: url(../DEF-PNG/agemUR/0-5.png); }
+.Hsc_player_6 .Hh3-am__mapcor2:before { background: url(../DEF-PNG/agemLL/0-5.png); }
+.Hsc_player_6 .Hh3-am__mapcor2:after  { background: url(../DEF-PNG/agemLR/0-5.png); }
+
+.Hsc_player_7 .Hh3-am__mapcor1:before { background: url(../DEF-PNG/agemUL/0-6.png); }
+.Hsc_player_7 .Hh3-am__mapcor1:after  { background: url(../DEF-PNG/agemUR/0-6.png); }
+.Hsc_player_7 .Hh3-am__mapcor2:before { background: url(../DEF-PNG/agemLL/0-6.png); }
+.Hsc_player_7 .Hh3-am__mapcor2:after  { background: url(../DEF-PNG/agemLR/0-6.png); }
+
+.Hsc_player_8 .Hh3-am__mapcor1:before { background: url(../DEF-PNG/agemUL/0-7.png); }
+.Hsc_player_8 .Hh3-am__mapcor1:after  { background: url(../DEF-PNG/agemUR/0-7.png); }
+.Hsc_player_8 .Hh3-am__mapcor2:before { background: url(../DEF-PNG/agemLL/0-7.png); }
+.Hsc_player_8 .Hh3-am__mapcor2:after  { background: url(../DEF-PNG/agemLR/0-7.png); }
+
+.Hh3-root_cursor_a-2 {    /* helm */
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA11.cur), pointer;
+}
+.Hh3-root_cursor_a-3 {    /* castle */
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA48.cur), pointer;
+}
+.Hh3-root_cursor_a-41 {   /* portal */
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA49.cur), pointer;
+}
+.Hh3-root_cursor_a-42 {   /* scuttle */
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA50.cur), pointer;
+}
+
+.Hh3-root_cursor_a-4 {    /* horse */
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA20.cur), pointer;
+}
+.Hh3-root_cursor_a-10 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA21.cur), pointer;
+}
+.Hh3-root_cursor_a-16 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA22.cur), pointer;
+}
+.Hh3-root_cursor_a-22 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA23.cur), pointer;
+}
+
+.Hh3-root_cursor_a-5 {    /* sword */
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA28.cur), pointer;
+}
+.Hh3-root_cursor_a-11 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA29.cur), pointer;
+}
+.Hh3-root_cursor_a-17 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA30.cur), pointer;
+}
+.Hh3-root_cursor_a-23 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA31.cur), pointer;
+}
+
+.Hh3-root_cursor_a-6 {    /* ship */
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA32.cur), pointer;
+}
+.Hh3-root_cursor_a-12 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA33.cur), pointer;
+}
+.Hh3-root_cursor_a-18 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA34.cur), pointer;
+}
+.Hh3-root_cursor_a-24 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA35.cur), pointer;
+}
+
+.Hh3-root_cursor_a-7 {    /* anchor */
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA40.cur), pointer;
+}
+.Hh3-root_cursor_a-13 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA41.cur), pointer;
+}
+.Hh3-root_cursor_a-19 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA42.cur), pointer;
+}
+.Hh3-root_cursor_a-25 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA43.cur), pointer;
+}
+
+.Hh3-root_cursor_a-8 {    /* trade */
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA44.cur), pointer;
+}
+.Hh3-root_cursor_a-14 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA45.cur), pointer;
+}
+.Hh3-root_cursor_a-20 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA46.cur), pointer;
+}
+.Hh3-root_cursor_a-26 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA47.cur), pointer;
+}
+
+.Hh3-root_cursor_a-9 {    /* horse actionable */
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA24.cur), pointer;
+}
+.Hh3-root_cursor_a-15 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA25.cur), pointer;
+}
+.Hh3-root_cursor_a-21 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA26.cur), pointer;
+}
+.Hh3-root_cursor_a-27 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA27.cur), pointer;
+}
+
+.Hh3-root_cursor_a-28 {   /* ship actionable */
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA36.cur), pointer;
+}
+.Hh3-root_cursor_a-29 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA37.cur), pointer;
+}
+.Hh3-root_cursor_a-30 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA38.cur), pointer;
+}
+.Hh3-root_cursor_a-31 {
+  cursor: url(custom-graphics/DEF-CUR/CRADVNTR/CursrA39.cur), pointer;
+}
+
+.Hh3-am__botcom {
+  position: absolute;
+  left: 4%;   /* width of .Hroot__edge_side_-1_0 */
+  bottom: 27px;
+}
+
+.Hh3-portrait_resting {
+  position: relative;
+  /* This declaration has to go before rules of specific Bitmap.Portrait (HeroPortrait) so that they can override position: absolute if needed. */
+}
+
+/** Common status bar with resources and date **/
+
+.Hh3-stbar {
+  position: absolute;
+  left: 3px;
+  bottom: 3px;
+}
+
+.Hh3-stbar__ress,
+.Hh3-stbar__date {
+  position: absolute;
+  bottom: 3px;
+  height: 15px;
+}
+
+.Hh3-stbar__ress {
+  left: 7px;
+}
+
+.Hh3-stbar__res {
+  display: inline-block;
+  width: 54px;
+  margin: 0 0 0 30px;
+}
+
+.Hh3-stbar__date {
+  left: 619px;
+  width: 176px;
+}
+
+/** UI.Bits.RightPanel.* **/
+
+.Hh3-rp__ttw,
+.Hh3-am-rp {
+  width: 176px;
+  height: 166px;
+}
+
+.Hh3-am-rp {
+  position: absolute;
+  right: 10px;
+  bottom: 34px;
+}
+
+.Hh3-rp_tooltip {
+  margin: -87px 0 0 -196px;
+    /* width / 2  + margin left + margin right - height of Hbit-ol__item / 2 */
+    /* height / 2 + margin top  + margin bottom */
+    /* note: "margins" are of .Hh3-rp__ttw */
+}
+.Hh3-rp__ttw {
+  margin: 11px 9px 9px;  /* difference between dimensions of ADSTATHR/ADSTATCS and HEROQVBK/TOWNQVBK */
+}
+
+.Hcx_classic_yes .Hh3-rp_tooltip,
+.Hcx_classic_yes .Hh3-cm-info {
+  box-shadow: none;
+}
+
+.Hh3-am-rp > *,
+.Hh3-rp__ttw > * {
+  position: absolute;
+}
+
+.Hh3-am-rp__tci {
+  top: 11px;
+}
+
+.Hh3-am-rp__tc_l_1 { left: 6px; }
+.Hh3-am-rp__tc_l_2 { left: 48px; }
+.Hh3-am-rp__tc_l_3 { left: 90px; }
+.Hh3-am-rp__tc_l_4 { left: 132px; }
+
+.Hh3-am-rp__tc {
+  width: 38px;
+  text-align: center;
+  top: 57px;
+}
+
+.Hh3-am-rp__als,
+.Hh3-am-rp__ens,
+.Hh3-am-rp__al,
+.Hh3-am-rp__en {
+  left: 10px;
+  bottom: 40px;
+}
+
+.Hh3-am-rp__al,
+.Hh3-am-rp__en {
+  padding-bottom: 7px;
+}
+
+.Hh3-am-rp__en,
+.Hh3-am-rp__ens {
+  bottom: 9px;
+}
+
+.Hh3-am-rp__als,
+.Hh3-am-rp__ens {
+  left: 67px;
+  width: 106px;   /* explicit width required for float: right of ..._won_... */
+}
+
+.Hh3-am-rp__flag {
+  display: inline-block;
+}
+
+.Hcx_classic_yes .Hh3-sc_finished_no .Hh3-am-rp__flag:not(.Hbit-player-flag_won_pending) {
+  display: none;
+}
+
+.Hcx_classic_no .Hh3-sc_finished_no .Hh3-am-rp__flag:not(.Hbit-player-flag_won_pending) {
+  float: right;
+  margin-bottom: 3px;
+}
+
+.Hcx_classic_no .Hbit-player-flag_interactive_no > :first-child,
+.Hbit-player-flag_connected_no > :first-child {
+  position: relative;
+}
+
+.Hcx_classic_no .Hbit-player-flag_interactive_no > :first-child:before,
+  /* not in classic mode, where only one player is interactive at a time */
+.Hbit-player-flag_connected_no > :first-child:before {
+  position: absolute;
+  content: "";
+  background: no-repeat url('data:image/svg+xml,<svg viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="4" r="4" fill="red" /></svg>');
+  width: 100px;
+  height: 100px;
+  max-width: 20%; /* relative since the flag can have different sizes (15..58) */
+  margin: 14px 0 0 5px;
+}
+
+.Hcx_classic_no .Hbit-player-flag_interactive_no.Hbit-player-flag_connected_yes > :first-child:before {
+  filter: drop-shadow(2px 2px 2px black);
+}
+
+.Hbit-player-flag_connected_no > :first-child:before {
+  filter: drop-shadow(-1px -1px 0px white) drop-shadow(1px 1px 0px white) drop-shadow(-1px 1px 0px white) drop-shadow(1px -1px 0px white) drop-shadow(2px 2px 2px black);
+}
+
+.Hbit-player-flag_connected_no.Hbit-player-flag_interactive_yes > :first-child:before {
+  filter: brightness(0) drop-shadow(-1px -1px 0px white) drop-shadow(1px 1px 0px white) drop-shadow(-1px 1px 0px white) drop-shadow(1px -1px 0px white) drop-shadow(2px 2px 2px black);
+}
+
+.Hh3-am-rp__anim {
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+}
+
+.Hh3-am-rp__date {
+  position: relative;
+  padding-top: 11px;
+  text-align: center;
+}
+
+.Hh3-rp_tooltip .Hh3-am-rp__bk {
+  z-index: -1;
+}
+
+.Hh3-am-rp__face {
+  left: 3px;
+  top: 2px;
+}
+
+.Hh3-am-rp__morale,
+.Hh3-am-rp__luck {
+  top: 74px;
+  left: 5px;
+}
+
+.Hh3-am-rp__luck {
+  top: 91px;
+}
+
+.Hh3-rp__ttw .Hh3-am-rp__morale,
+.Hh3-rp__ttw .Hh3-am-rp__luck,
+.Hcx_classic_no .Hh3-am-rp__morale,
+.Hcx_classic_no .Hh3-am-rp__luck {
+  margin-top: 1px;
+}
+
+.Hh3-am-rp__name {
+  top: 3px;
+  left: 66px;
+  right: 0;
+}
+
+.Hh3-am-rp__attack,
+.Hh3-am-rp__defense,
+.Hh3-am-rp__spellPower,
+.Hh3-am-rp__knowledge,
+.Hh3-am-rp__spellPoints {
+  top: 52px;
+  left: 66px;
+  width: 23px;
+  text-align: center;
+}
+
+.Hh3-am-rp__defense { left: 92px; }
+.Hh3-am-rp__spellPower { left: 120px; }
+.Hh3-am-rp__knowledge { left: 148px; }
+.Hh3-am-rp__spellPoints { top: 93px; left: 147px; }
+
+.Hh3-am-rp__income {
+  top: 54px;
+  left: 147px;
+  width: 23px;
+  text-align: center;
+}
+
+.Hh3-am-rp__income_wood,
+.Hh3-am-rp__income_mercury,
+.Hh3-am-rp__income_ore,
+.Hh3-am-rp__income_sulfur,
+.Hh3-am-rp__income_crystal,
+.Hh3-am-rp__income_gems {
+  left: 6px;
+}
+
+.Hh3-am-rp__income_wood {
+  top: 75px;
+}
+
+.Hh3-am-rp__income_ore {
+  top: 87px;
+}
+
+.Hh3-am-rp__income_mercury,
+.Hh3-am-rp__income_sulfur,
+.Hh3-am-rp__income_crystal,
+.Hh3-am-rp__income_gems {
+  top: 81px;
+}
+
+.Hh3-am-rp__hall,
+.Hh3-am-rp__fort {
+  top: 31px;
+  left: 67px;
+}
+
+.Hh3-am-rp__fort {
+  left: 105px;
+}
+
+.Hh3-am-rp__income,
+.Hh3-am-rp__spellPoints,
+.Hh3-am-rp__garrison {
+  font-size: .83em; /* Hh3-am-rp_sect_... is using text3 */
+}
+
+.Hh3-am-rp__gates {
+  right: 5px;
+  top: 76px;
+}
+
+.Hcx_classic_yes .Hh3-am-rp_sect_town .Hh3-am-rp__name,
+.Hcx_classic_yes .Hh3-rp__ttw .Hh3-am-rp__gates {
+  margin-top: -1px;
+}
+
+.Hh3-am-rp__garrison {
+  top: 73px;
+  left: 16px;
+  text-align: center;
+}
+
+.Hh3-am-rp__garrison-cr {
+  float: left;
+  margin: 0 2px 3px;
+}
+
+.Hh3-am-rp__garrison-cr:first-child {
+  margin-left: 20px;
+}
+
+.Hh3-am-rp__garrison .Hbit-cr__count {
+  display: inline-block;
+  margin-top: 2px;
+  width: 32px;    /* prevent overflow; may happen with textual approximation like "Several" */
+}
+
+/* Hide only content, allowing outline on empty slots (Hbit-ol__item_hili). */
+.Hbit-cr_empty > * {
+  visibility: hidden;
+}
+
+/** Adventure Map **/
+
+.Hh3-am-ol {
+  position: absolute;
+  top: 196px;
+  right: 127px;
+  height: 192px;
+  line-height: 0;
+}
+
+.Hh3-am-ol_town {
+  right: 5px;
+}
+
+.Hcx_classic_no .Hh3-am-ol_town .Hbit-ol__item {
+  position: relative;
+  z-index: 8;
+    /* Overlay Hroot__edge_side_1_0 (SoD's edge scroll is much slimmer;
+       we're using thicker for convenience but it gets on top of the town list). */
+}
+
+.Hh3-am-ol .Hbit-ol__scroll,
+.Hh3-town-ol .Hbit-ol__scroll {
+  position: absolute;
+  overflow: hidden;
+  top: 16px;    /* height of Hslider__btn_dir_u */
+  bottom: 16px; /* height of Hslider__btn_dir_d */
+}
+
+.Hh3-am-ol .Hslider__btn_dir_d,
+.Hh3-town-ol .Hslider__btn_dir_d {
+  position: absolute;
+  bottom: 0;
+}
+
+.Hh3-am-ol_hero .Hbit-ol__item {
+  margin-left: 1px;
+}
+
+.Hh3-am-ol_town .Hslider,
+.Hh3-town-ol .Hslider {
+  margin-left: 1px;
+}
+
+.Hh3-am-ol_hero .Hbit-ol__item > * {
+  display: inline-block;
+}
+
+.Hh3-ol__face {
+  margin: 0 1px 0 1px;
+}
+
+.Hcx_classic_no .Hh3-portrait_pending {
+  filter: grayscale(1);
+}
+
+.Hcx_classic_no .Hh3-portrait_resting:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 24px;
+  height: 28px;
+  background: url(custom-graphics/list-resting.png);
+}
+
+.Hbit-ol__item_cur .Hh3-ol__face {
+  outline: 1px solid #f7df7b;
+  outline-offset: -1px;
+}
+
+.Hh3-ol__ap, .Hh3-ol__sp {
+  margin-bottom: 1px;
+}
+
+.Hh3-am-btns {
+  position: absolute;
+  right: 51px;
+  top: 196px;
+  width: 70px;
+}
+
+.Hh3-am-btns > * {
+  float: left;
+}
+
+/*** Adventure Map - Mini-Map (in part H3-specific, in part not) ***/
+
+.Hroot__mmap-wr {
+  user-select: none;
+  overflow: hidden; /* used when Hmmap_margin */
+}
+
+.Hh3-root .Hroot__mmap-wr {
+  position: absolute;
+  left: 630px;
+  top: 26px;
+  width: 144px;
+  height: 144px;
+  font-size: 144px;
+}
+
+.Hroot__mmap,
+.Hroot__mmap > *,   /* .Hmmap_rect, <div>s with .Hmmap__cell */
+.Hmmap__cell,
+.Hmmap_rect {
+  position: absolute;
+}
+
+/* Disable negative offsets due to disabled mapMargin for showing the shield. */
+.Hmmap_hidden { position: static; }
+
+.Hmmap_hidden:before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.Hh3-root .Hmmap_hidden:before {
+  background: url(../BMP-PNG/AISHIELD.png);
+}
+
+.Hmmap_rect {
+  z-index: 1;
+  pointer-events: none;
+  border: 1px dashed #ff4b7d;   /* emulating RADAR.DEF */
+  box-sizing: border-box;   /* else border will cause the rect to be shifted downwards and not align precisely with underlying cells */
+}
+
+.Hmmap__cell {
+  width: 1em;
+  height: 1em;
+}
+
+.Hmmap__cell_empty {
+  display: none;
+}
+
+.Hmmap__cell_fog {
+  opacity: .25;
+}
+
+@supports (filter: grayscale(1)) {
+  .Hmmap__cell_fog {
+    opacity: 1;
+    filter: grayscale(1);
+  }
+}
+
+/*
+  Rules below depend on resolved constants and databank values:
+
+  ..._subtype_N_... = MiniMapTile::type:
+     [0 = passable, 1 = impassable, 2 = ownable, 3 = movable]
+
+  ..._subtype_3_N (movable) and
+  ..._subtype_2_N (ownable) = Player->$id + 1 (0 = unowned):
+     [1 red, 2 blue, 3 tan, 4 green, 5 orange, 6 purple, 7 teal, 8 pink]
+
+  ..._subtype_..._N (other) = AClass->$class + 1 for classes with $type = terrain:
+     [0 dirt, 1 desert, 2 grass, 3 snow, 4 swamp, 5 rough, 6 subterranean,
+      7 lava, 8 water, 9 rock]
+
+  Note: values listed above are subject to change.
+*/
+.Hh3-root .Hmmap__cell_subtype_0_1  { background-color: #523908; }
+.Hh3-root .Hmmap__cell_subtype_0_2  { background-color: #dece8c; }
+.Hh3-root .Hmmap__cell_subtype_0_3  { background-color: #004200; }
+.Hh3-root .Hmmap__cell_subtype_0_4  { background-color: #b5c6c6; }
+.Hh3-root .Hmmap__cell_subtype_0_5  { background-color: #4a846b; }
+.Hh3-root .Hmmap__cell_subtype_0_6  { background-color: #847331; }
+.Hh3-root .Hmmap__cell_subtype_0_7  { background-color: #843100; }
+.Hh3-root .Hmmap__cell_subtype_0_8  { background-color: #4a4a4a; }
+.Hh3-root .Hmmap__cell_subtype_0_9  { background-color: #085294; }
+.Hh3-root .Hmmap__cell_subtype_0_10 { background-color: #000000; }
+
+.Hh3-root .Hmmap__cell_subtype_1_1  { background-color: #392908; }
+.Hh3-root .Hmmap__cell_subtype_1_2  { background-color: #a59c6b; }
+.Hh3-root .Hmmap__cell_subtype_1_3  { background-color: #003100; }
+.Hh3-root .Hmmap__cell_subtype_1_4  { background-color: #8c9c9c; }
+.Hh3-root .Hmmap__cell_subtype_1_5  { background-color: #215a42; }
+.Hh3-root .Hmmap__cell_subtype_1_6  { background-color: #635221; }
+.Hh3-root .Hmmap__cell_subtype_1_7  { background-color: #5a0800; }
+.Hh3-root .Hmmap__cell_subtype_1_8  { background-color: #292929; }
+.Hh3-root .Hmmap__cell_subtype_1_9  { background-color: #00286b; }
+.Hh3-root .Hmmap__cell_subtype_1_10 { background-color: #332e2e; }
+
+.Hh3-root .Hmmap__cell_subtype_3_0,
+.Hh3-root .Hmmap__cell_subtype_2_0  { background-color: #848484; }
+.Hh3-root .Hmmap__cell_subtype_3_1,
+.Hh3-root .Hmmap__cell_subtype_2_1  { background-color: #ff0000; }
+.Hh3-root .Hmmap__cell_subtype_3_2,
+.Hh3-root .Hmmap__cell_subtype_2_2  { background-color: #3152ff; }
+.Hh3-root .Hmmap__cell_subtype_3_3,
+.Hh3-root .Hmmap__cell_subtype_2_3  { background-color: #9c7352; }
+.Hh3-root .Hmmap__cell_subtype_3_4,
+.Hh3-root .Hmmap__cell_subtype_2_4  { background-color: #429429; }
+.Hh3-root .Hmmap__cell_subtype_3_5,
+.Hh3-root .Hmmap__cell_subtype_2_5  { background-color: #ff8400; }
+.Hh3-root .Hmmap__cell_subtype_3_6,
+.Hh3-root .Hmmap__cell_subtype_2_6  { background-color: #8c29a5; }
+.Hh3-root .Hmmap__cell_subtype_3_7,
+.Hh3-root .Hmmap__cell_subtype_2_7  { background-color: #089ca5; }
+.Hh3-root .Hmmap__cell_subtype_3_8,
+.Hh3-root .Hmmap__cell_subtype_2_8  { background-color: #c67b8c; }
+
+/*** Adventure Map - CombatList ***/
+.Hh3-am-combats {
+  position: absolute;
+  top: 40px;
+  right: 196px;
+}
+
+.Hh3-am-combats__combat {
+  margin-bottom: 6px;
+  padding: .25em .5em;
+  border: 1px solid #f7df7b;
+  background: black;
+  cursor: zoom-in;
+}
+
+.Hh3-am-combats__combat:hover {
+  border-color: #a58c42;
+  outline-color: #a58c42;
+}
+
+.Hh3-am-combats_c_init {
+  opacity: .7;
+}
+
+.Hh3-am-combats_c_mine {
+  outline: 3px double orange;
+  outline-offset: -1px;
+}
+
+.Hh3-am-combats__combat * {
+  display: inline-block;
+}
+
+.Hh3-am-combats__team-sep {
+  width: 19px;
+  height: 19px;
+  background: url(custom-graphics/combat-list.png);
+  margin: 0 10px;
+}
+
+.Hh3-am-combats__flag {
+  margin-right: -6px;
+}
+
+.Hh3-am-combats__party + * {
+  margin-left: 6px;
+}
+
+.Hh3-am-combats__party_defeated {
+  text-decoration: line-through;
+}
+
+/** Townscape **/
+
+.Hh3-mgg,
+.Hh3-fort,
+.Hh3-hall,
+.Hh3-town {
+  height: 100%;
+}
+
+.Hh3-mgg > *,
+.Hh3-fort > *,
+.Hh3-hall > *,
+.Hh3-town > * {
+  position: absolute;
+}
+
+.Hh3-town__panel {
+  bottom: 0;
+}
+
+.Hh3-town__face {
+  left: 15px;
+  bottom: 149px;
+}
+
+.Hh3-town__hall,
+.Hh3-town__fort {
+  left: 80px;
+  bottom: 149px;
+}
+
+.Hh3-town__fort {
+  left: 122px;
+}
+
+.Hh3-town__name {
+  bottom: 194px;
+  left: 86px;
+}
+
+.Hh3-town__income {
+  bottom: 149px;
+  left: 184px;
+}
+
+.Hh3-town__garrisonedFace,
+.Hh3-town__garrisoned,    /* garrisoned hero's garrison */
+.Hh3-town__flag,
+.Hh3-town__garrison,      /* town's own garrison in absence of garrisoned hero */
+.Hh3-town__gates,         /* empty space when no hero is visiting */
+.Hh3-town__visitingFace,
+.Hh3-town__visiting {     /* visiting hero's garrison */
+  bottom: 149px;
+  left: 303px;
+}
+
+.Hh3-town__flag,
+.Hh3-town__garrisonedFace,
+.Hh3-town__gates,
+.Hh3-town__visitingFace {
+  margin-left: -62px;
+}
+
+.Hh3-town__gates,
+.Hh3-town__visitingFace,
+.Hh3-town__visiting {
+  bottom: 53px;
+}
+
+html .Hh3-town__gates {
+  /* The game's resources do have several likely images for this (TwCrPort frame 0, CREST bitmap) but looks like they are not used here. */
+  background-image: none;
+}
+
+.Hh3-town__gl {
+  line-height: 0;
+}
+
+.Hh3-town__gl-cr {
+  display: inline-block;
+  position: relative;
+  margin: 0 2px;
+}
+
+.Hh3-town__gl-cr .Hbit-cr__count {
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+  letter-spacing: 2px;
+}
+
+.Hh3-town__face-cur:before,
+.Hh3-town__gl .Hbit-ol__item_cur:before,
+.Hh3-town__gl .Hbit-ol__item_hili:before {
+  content: "";
+  background: url(../DEF-PNG/TwCrPort/0-1.png);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.Hh3-town__gl_small .Hbit-ol__item_cur:before,
+.Hh3-town__gl_small .Hbit-ol__item_hili:before {
+  background: url(../BMP-PNG/TRADESEL.png); /* SoD is not using CPRSMALL's frame 0 for this */
+  margin: -2px 0 0 -4px;
+  width: 36px;
+  height: 36px;
+}
+
+.Hh3-town__split {
+  bottom: 190px;
+  right: 8px;
+}
+
+.Hh3-town__close {
+  bottom: 28px;
+  right: 8px;
+}
+
+.Hh3-town__close:active:hover {
+  background-image: url(../DEF-PNG/tsbtns/0-5.png);
+}
+
+.Hh3-town-ol {
+  bottom: 58px;
+  right: 8px;
+  height: 128px;
+}
+
+.Hh3-town__buildings-map,
+.Hh3-town__buildings {
+  top: 0;
+  width: 100%;
+  height: 374px;    /* height of TBCSBACK.BMP and other backgrounds */
+}
+
+.Hh3-town__buildings-map,
+.Hh3-town__building,
+.Hh3-town__building-hover {
+  position: absolute;
+}
+
+:not(.Hh3-town__building_hover) > .Hh3-town__building-hover {
+  display: none;
+}
+
+.Hh3-town__buildings-map {
+  z-index: 100;   /* must be > than max(BuildingImage->$strideZ) */
+}
+
+.Hh3-town__growth {
+  top: 459px;
+  width: 256px;
+  left: 11px;
+}
+
+.Hh3-town__grower {
+  display: inline-block;
+  margin: 0 12px 0 11px;
+  text-align: center;
+}
+
+.Hh3-town__growth-rate {
+  margin: 1px 0;
+}
+
+.Hh3-town__bk {
+  z-index: -1;
+}
+
+/* XXX=RH practically, this stuff should be part of the databank; extract gameplay-specific rules to a separate CSS file included from the databank */
+
+/* anim2 must be used only for boat/shipyard animations */
+.Hh3-town_t_castle .Hh3-town__anim2 { left: 478px; top: 134px; z-index: 25; /* 1 + $z of the 'shipyard' Building */ }
+.Hh3-town_t_necropolis .Hh3-town__anim2 { left: 617px; top: 265px; z-index: 9; }
+.Hh3-town_t_fortress .Hh3-town__anim2 { left: 197px; top: 294px; z-index: 25; }
+.Hh3-town_t_conflux .Hh3-town__anim2 { left: 239px; top: 215px; z-index: 9; }
+
+.Hh3-town_t_castle .Hh3-town__anim  { left: 46px; top: 119px; }
+
+.Hh3-town_t_rampart .Hh3-town__anim4 { left: 295px; top: 191px; }
+.Hh3-town_t_rampart .Hh3-town__anim { left: 327px; top: 236px; }
+.Hh3-town_t_rampart .Hh3-town__anim3 { left: 293px; top: 235px; }
+.Hh3-town_t_rampart .Hh3-town__anim5 { left: 260px; top: 171px; }
+
+.Hh3-town_t_necropolis .Hh3-town__anim  { z-index: 11; left: 25px; top: 279px; }
+.Hh3-town_t_necropolis .Hh3-town__anim3 { z-index: 10; top: 251px; }
+.Hh3-town_t_necropolis .Hh3-town__anim4 { z-index: 10; left: 321px; top: 255px; }
+.Hh3-town_t_necropolis .Hh3-town__anim5 { z-index: 10; left: 475px; top: 257px; }
+
+.Hh3-town_t_stronghold .Hh3-town__anim  { left: 23px; top: 20px; }
+
+.Hh3-town_t_fortress .Hh3-town__anim  { left: 372px; top: 227px; }
+
+.Hh3-town_t_conflux .Hh3-town__anim  { z-index: 1; left: 23px; top: 218px; }
+.Hh3-town_t_conflux .Hh3-town__anim3 { z-index: 1; left: 232px; top: 205px; }
+.Hh3-town_t_conflux .Hh3-town__anim4 { z-index: 1; left: 516px; top: 223px; }
+.Hh3-town_t_conflux .Hh3-town__anim5 { z-index: 18 /*overlay Hall*/; top: 252px; }
+.Hh3-town_t_conflux .Hh3-town__anim6 { left: 682px; top: 183px; }
+
+.Hcx_classic_yes .Hh3-town_shipyard_no .Hh3-town__anim2,
+.Hh3-town_t_castle:not(.Hh3-town_ship_ship):not(.Hh3-town_ship_movable) .Hh3-town__anim2,
+.Hh3-town_t_necropolis:not(.Hh3-town_ship_ship):not(.Hh3-town_ship_movable) .Hh3-town__anim2,
+.Hh3-town_t_fortress:not(.Hh3-town_ship_ship):not(.Hh3-town_ship_movable) .Hh3-town__anim2,
+.Hh3-town_t_conflux:not(.Hh3-town_ship_ship):not(.Hh3-town_ship_movable) .Hh3-town__anim2,
+.Hh3-town_t_rampart.Hh3-town_h_0 .Hh3-town__anim4,
+.Hh3-town_t_rampart.Hh3-town_h_0 .Hh3-town__anim3,
+.Hh3-town_t_rampart.Hh3-town_h_0 .Hh3-town__anim5,
+.Hh3-town_t_rampart.Hh3-town_h_1 .Hh3-town__anim4,
+.Hh3-town_t_rampart.Hh3-town_h_1 .Hh3-town__anim5,
+.Hh3-town_t_rampart.Hh3-town_h_2 .Hh3-town__anim5,
+.Hh3-town_t_necropolis.Hh3-town_h_0 .Hh3-town__anim3,
+.Hh3-town_t_necropolis.Hh3-town_h_0 .Hh3-town__anim4,
+.Hh3-town_t_necropolis.Hh3-town_h_0 .Hh3-town__anim5,
+.Hh3-town_t_necropolis.Hh3-town_h_1 .Hh3-town__anim4,
+.Hh3-town_t_necropolis.Hh3-town_h_1 .Hh3-town__anim5,
+.Hh3-town_t_necropolis.Hh3-town_h_2 .Hh3-town__anim5,
+.Hh3-town_t_conflux.Hh3-town_h_0 .Hh3-town__anim3,
+.Hh3-town_t_conflux.Hh3-town_h_0 .Hh3-town__anim4,
+.Hh3-town_t_conflux.Hh3-town_h_0 .Hh3-town__anim5,
+.Hh3-town_t_conflux.Hh3-town_h_1 .Hh3-town__anim4,
+.Hh3-town_t_conflux.Hh3-town_h_1 .Hh3-town__anim5,
+.Hh3-town_t_conflux.Hh3-town_h_2 .Hh3-town__anim5 {
+  display: none;
+}
+
+/* H3 CreatureInfo */
+.Hh3-ci {
+  position: absolute;
+  left: 119px;
+  top: 20px;
+}
+
+.Hh3-ci > * {
+  position: absolute;
+}
+
+.Hh3-ci__name {
+  text-align: center;
+  top: 23px;
+  left: 1.25em;
+  right: 1.25em;
+}
+
+.Hh3-ci__stat,
+.Hh3-ci__l {
+  left: 154px;
+  width: 121px;
+}
+
+.Hh3-ci__l_s_attack,
+.Hh3-ci__attack {
+  top: 49px;
+}
+
+.Hh3-ci__l_s_defense,
+.Hh3-ci__defense {
+  top: 67px;
+}
+
+.Hh3-ci__l_s_shots,
+.Hh3-ci__shots {
+  top: 86px;
+}
+
+.Hh3-ci:not(.Hh3-ci_combat) .Hh3-ci__l_s_hitPointsLeft,
+.Hh3-ci_shooting_no .Hh3-ci__l_s_shots,
+.Hh3-ci_shooting_no .Hh3-ci__shots {
+  display: none;
+}
+
+.Hh3-ci__l_s_damage,
+.Hh3-ci__damage {
+  top: 105px;
+}
+
+.Hh3-ci__l_s_hitPoints,
+.Hh3-ci__hitPoints {
+  top: 124px;
+}
+
+.Hh3-ci__l_s_hitPointsLeft,
+.Hh3-ci__hitPointsLeft {
+  top: 143px;
+}
+
+.Hh3-ci__l_s_speed,
+.Hh3-ci__speed {
+  top: 162px;
+}
+
+.Hh3-ci__stat {
+  text-align: right;
+}
+
+.Hh3-ci__face {
+  top: 48px;
+  left: 21px;
+}
+
+.Hh3-bit-crob__bk,
+.Hh3-bit-crob__cr {
+  position: absolute;
+}
+
+.Hh3-blks__face,
+.Hh3-bit-crob__cr {
+  margin: -147px 0 0 -145px;
+  clip: rect(147px, 245px, 277px, 145px);
+    /* All SoD creature animations are 450x400. */
+    /* Above offset was determined empirically by comparing with the running game. */
+}
+
+.Hh3-ci__count {
+  top: 165px;
+  right: 176px;
+}
+
+.Hh3-ci__morale,
+.Hh3-ci__luck {
+  top: 189px;
+  left: 23px;
+}
+
+.Hh3-ci__luck {
+  margin-top: 1px;
+  left: 77px;
+}
+
+.Hh3-ci__bufs {
+  top: 186px;
+  left: 123px;
+}
+
+.Hh3-ci__bufs .Hh3-spafs__none {
+  display: none;
+}
+
+.Hh3-ci__bufs .Hh3-spaf {
+  display: inline-block;
+  margin-left: 4px;
+}
+
+.Hh3-spaf + .Hh3-spaf + .Hh3-spaf ~ * {
+  display: none;    /* show 3 affecting spells at most, like SoD does */
+}
+
+.Hh3-ci__upgrade,
+.Hh3-ci__dismiss,
+.Hh3-ci__close {
+  top: 237px;
+  outline: 1px solid #a88d44; /* emulating BOX64X30.BMP/BOX46X32.BMP */
+}
+
+.Hh3-ci__dismiss {
+  left: 20px;
+}
+
+.Hh3-ci__close {
+  margin-top: 1px;
+  right: 18px;
+}
+
+.Hh3-ci__upgrade {
+  left: 75px;
+}
+
+.Hh3-ci__abilities {
+  top: 233px;
+  left: 20px;
+  width: 186px;
+}
+
+.Hh3-ci__upg .Hh3-bit-res_empty {
+  display: none;
+}
+
+/*** Fort and Hall ***/
+.Hh3-hall__name,
+.Hh3-fort__name {
+  width: 100%;
+  text-align: center;
+}
+
+.Hh3-mgg__close,
+.Hh3-hall__close,
+.Hh3-fort__close {
+  right: 4px;
+  bottom: 4px;
+}
+
+.Hh3-mgg .Hh3-stbar,
+.Hh3-hall .Hh3-stbar,
+.Hh3-fort .Hh3-stbar {
+  left: 7px;
+}
+
+.Hh3-mgg .Hh3-stbar__res,
+.Hh3-hall .Hh3-stbar__res,
+.Hh3-fort .Hh3-stbar__res {
+  width: 53px;
+  margin: 0 0 0 23px;
+}
+
+.Hh3-mgg .Hh3-stbar__date,
+.Hh3-hall .Hh3-stbar__date,
+.Hh3-fort .Hh3-stbar__date {
+  left: 555px;
+  text-align: center;
+}
+
+.Hh3-fort__buildings {
+  left: 8px;
+  top: 22px;
+  text-align: center;
+}
+
+.Hh3-fort__building {
+  position: relative;
+  display: inline-block;
+  margin: 0 9px 4px 0;
+  width: 385px;
+  height: 125px;
+  text-align: left;
+}
+
+.Hh3-fort__building > * {
+  position: absolute;
+}
+
+.Hh3-fort__building_potential .Hh3-fort__b-available,
+.Hh3-fort__building_potential .Hh3-fort__l_s_growth,
+.Hh3-fort__building_potential .Hh3-fort__b-growth {
+  display: none;
+}
+
+.Hh3-fort__b-building {
+  left: 4px;
+  top: 21px;
+}
+
+.Hh3-fort__b-name,
+.Hh3-fort__b-buildingName,
+.Hh3-fort__b-available {
+  width: 157px;
+  text-align: center;
+}
+
+.Hh3-fort__b-name {
+  top: 3px;
+}
+
+.Hh3-fort__b-buildingName {
+  bottom: 16px;
+}
+
+.Hh3-fort__b-available {
+  bottom: -2px;
+}
+
+.Hh3-fort .Hh3-bit-crob__bk {
+  height: 120px;
+}
+
+.Hh3-fort__b-creature {
+  left: 159px;
+  top: 4px;
+}
+
+.Hh3-fort__b-icons {
+  left: 261px;
+  top: 3px;
+}
+
+.Hh3-fort__stat,
+.Hh3-fort__l {
+  left: 290px;
+  width: 91px;
+}
+
+.Hh3-fort__l_s_attack,
+.Hh3-fort__b-attack {
+  top: 5px;
+}
+
+.Hh3-fort__l_s_defense,
+.Hh3-fort__b-defense {
+  top: 25px;
+}
+
+.Hh3-fort__l_s_shots,
+.Hh3-fort__b-shots {
+  top: 84px;
+}
+
+.Hh3-fort__l_s_damage,
+.Hh3-fort__b-damage {
+  top: 46px;
+}
+
+.Hh3-fort__l_s_hitPoints,
+.Hh3-fort__b-hitPoints {
+  top: 66px;
+}
+
+.Hh3-fort__l_s_speed,
+.Hh3-fort__b-speed {
+  top: 87px;
+}
+
+.Hh3-fort__l_s_growth,
+.Hh3-fort__b-growth {
+  top: 107px;
+}
+
+.Hh3-fort__stat {
+  text-align: right;
+}
+
+.Hh3-hall__building {
+  position: absolute;
+  width: 154px;
+  height: 92px;
+}
+
+.Hh3-hall__building > * {
+  position: absolute;
+}
+
+.Hh3-hall__b-face {
+  margin: 2px;
+}
+
+.Hh3-hall__b-stateIcon {
+  right: 1px;
+  bottom: 20px;
+}
+
+.Hh3-hall__b-stateBar {
+  bottom: 0;
+  margin: 1px;
+}
+
+.Hh3-hall__b-name {
+  bottom: 3px;
+  left: .5em;
+  right: .5em;
+  text-align: center;
+}
+
+.Hh3-hall__building_id_hall,
+.Hh3-hall__building_id_townHall,
+.Hh3-hall__building_id_cityHall,
+.Hh3-hall__building_id_capitol {
+  left: 32px;
+  top: 35px;
+}
+
+.Hh3-hall__building_id_fort,
+.Hh3-hall__building_id_citadel,
+.Hh3-hall__building_id_castle {
+  left: 226px;
+  top: 35px;
+}
+
+.Hh3-hall__building_id_tavern,
+.Hh3-hall__building_id_brotherhoodOfSword {
+  left: 420px;
+  top: 35px;
+}
+
+.Hh3-hall__building_id_blacksmith {
+  left: 614px;
+  top: 35px;
+}
+
+.Hh3-hall_t_castle .Hh3-hall__building_id_marketplace,
+.Hh3-hall_t_castle .Hh3-hall__building_id_resourceSiloWO,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_marketplace,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_resourceSiloC,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_marketplace,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_resourceSiloWO,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_marketplace,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_resourceSiloM {
+  left: 129px;
+  top: 139px;
+}
+.Hh3-hall_t_tower .Hh3-hall__building_id_marketplace,
+.Hh3-hall_t_tower .Hh3-hall__building_id_resourceSiloJ,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_marketplace,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_resourceSiloM,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_marketplace,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_resourceSiloWO,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_marketplace,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_resourceSiloS,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_marketplace,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_resourceSiloWO {
+  left: 32px;
+  top: 139px;
+}
+.Hh3-hall__building_id_marketplace,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_bloodObelisk {
+  z-index: 2;
+}
+.Hh3-hall__building_id_marketplace.Hh3-hall__building_s_built {
+  display: none;
+    /* Resource Silo is special in SoD: it appears as a separate building on
+       Townscape but is in fact an upgrade for Marketplace. This is unlike
+       Brotherhood of the Sword and other buildings. */
+}
+
+.Hh3-hall_t_castle .Hh3-hall__building_id_mageGuild1,
+.Hh3-hall_t_castle .Hh3-hall__building_id_mageGuild2,
+.Hh3-hall_t_castle .Hh3-hall__building_id_mageGuild3,
+.Hh3-hall_t_castle .Hh3-hall__building_id_mageGuild4,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_mageGuild1,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_mageGuild2,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_mageGuild3,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_mageGuild4,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_mageGuild5,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_mageGuild1,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_mageGuild2,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_mageGuild3,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_mageGuild1,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_mageGuild2,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_mageGuild3,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_mageGuild4,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_mageGuild5 {
+  left: 323px;
+  top: 139px;
+}
+
+.Hh3-hall_t_tower .Hh3-hall__building_id_mageGuild1,
+.Hh3-hall_t_tower .Hh3-hall__building_id_mageGuild2,
+.Hh3-hall_t_tower .Hh3-hall__building_id_mageGuild3,
+.Hh3-hall_t_tower .Hh3-hall__building_id_mageGuild4,
+.Hh3-hall_t_tower .Hh3-hall__building_id_mageGuild5,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_mageGuild1,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_mageGuild2,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_mageGuild3,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_mageGuild4,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_mageGuild5,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_mageGuild1,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_mageGuild2,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_mageGuild3,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_mageGuild4,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_mageGuild5,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_mageGuild1,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_mageGuild2,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_mageGuild3,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_mageGuild4,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_mageGuild5,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_mageGuild1,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_mageGuild2,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_mageGuild3 {
+  left: 226px;
+  top: 139px;
+}
+
+.Hh3-hall_t_tower .Hh3-hall__building_id_library,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_orderOfFire,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_necromancyAmplifier,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_manaVortex,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_hallOfValhalla {
+  left: 420px;
+  top: 139px;
+}
+
+.Hh3-hall_t_tower .Hh3-hall__building_id_wallOfKnowledge,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_brimstoneStormclouds,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_shipyard,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_portalOfSummoning,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_escapeTunnel {
+  left: 614px;
+  top: 139px;
+}
+
+.Hh3-hall_t_castle .Hh3-hall__building_id_shipyard,
+.Hh3-hall_t_castle .Hh3-hall__building_id_lighthouse,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_mysticPond,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_fountainOfFortune,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_shipyard,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_shipyard {
+  left: 517px;
+  top: 139px;
+}
+
+.Hh3-hall__building_id_shipyard:not(.Hh3-hall__building_s_built) + .Hh3-hall__building_id_lighthouse {
+  display: none;
+}
+
+.Hh3-hall_t_castle .Hh3-hall__building_id_stables {
+  left: 226px;
+  top: 243px;
+}
+
+.Hh3-hall_t_castle .Hh3-hall__building_id_griffinBastion {
+  left: 420px;
+  top: 243px;
+}
+
+.Hh3-hall_t_rampart .Hh3-hall__building_id_treasury,
+.Hh3-hall_t_tower .Hh3-hall__building_id_artifactMerchants,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_castleGate,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_coverOfDarkness,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_artifactMerchants,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_freelancerGuild,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_cageOfWarlords,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_magicUniversity {
+  left: 129px;
+  top: 243px;
+}
+
+.Hh3-hall_t_rampart .Hh3-hall__building_id_dendroidSaplings,
+.Hh3-hall_t_tower .Hh3-hall__building_id_lookoutTower,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_birthingPools,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_skeletonTransformer,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_battleScholarAcademy,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_ballistaYard,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_glyphsOfFear,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_bloodObelisk,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_artifactMerchants {
+  left: 323px;
+  top: 243px;
+}
+
+.Hh3-hall_t_rampart .Hh3-hall__building_id_minerGuild,
+.Hh3-hall_t_tower .Hh3-hall__building_id_sculptorWings,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_cages,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_unearthedGraves,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_mushroomRings,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_messHall,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_captainQuarters,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_gardenOfLife {
+  left: 517px;
+  top: 243px;
+}
+
+.Hh3-hall_t_castle .Hh3-hall__building_id_guardhouse,
+.Hh3-hall_t_castle .Hh3-hall__building_id_guardhouseU,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_centaurStables,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_centaurStablesU,
+.Hh3-hall_t_tower .Hh3-hall__building_id_workshop,
+.Hh3-hall_t_tower .Hh3-hall__building_id_workshopU,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_impCrucible,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_impCrucibleU,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_cursedTemple,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_cursedTempleU,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_warren,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_warrenU,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_goblinBarracks,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_goblinBarracksU,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_gnollHut,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_gnollHutU,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_magicLantern,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_magicLanternU {
+  left: 32px;
+  top: 347px;
+}
+
+.Hh3-hall_t_castle .Hh3-hall__building_id_archerTower,
+.Hh3-hall_t_castle .Hh3-hall__building_id_archerTowerU,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_dwarfCottage,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_dwarfCottageU,
+.Hh3-hall_t_tower .Hh3-hall__building_id_parapet,
+.Hh3-hall_t_tower .Hh3-hall__building_id_parapetU,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_hallOfSins,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_hallOfSinsU,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_graveyard,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_graveyardU,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_harpyLoft,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_harpyLoftU,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_wolfPen,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_wolfPenU,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_lizardDen,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_lizardDenU,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_altarOfAir,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_altarOfAirU {
+  left: 226px;
+  top: 347px;
+}
+
+.Hh3-hall_t_castle .Hh3-hall__building_id_griffinTower,
+.Hh3-hall_t_castle .Hh3-hall__building_id_griffinTowerU,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_homestead,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_homesteadU,
+.Hh3-hall_t_tower .Hh3-hall__building_id_golemFactory,
+.Hh3-hall_t_tower .Hh3-hall__building_id_golemFactoryU,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_kennels,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_kennelsU,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_tombOfSouls,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_tombOfSoulsU,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_pillarOfEyes,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_pillarOfEyesU,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_orcTower,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_orcTowerU,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_serpentFlyHive,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_serpentFlyHiveU,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_altarOfWater,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_altarOfWaterU {
+  left: 420px;
+  top: 347px;
+}
+
+.Hh3-hall_t_castle .Hh3-hall__building_id_barracks,
+.Hh3-hall_t_castle .Hh3-hall__building_id_barracksU,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_enchantedSpring,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_enchantedSpringU,
+.Hh3-hall_t_tower .Hh3-hall__building_id_mageTower,
+.Hh3-hall_t_tower .Hh3-hall__building_id_mageTowerU,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_demonGate,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_demonGateU,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_estate,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_estateU,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_chapelOfStilledVoices,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_chapelOfStilledVoicesU,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_ogreFort,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_ogreFortU,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_basiliskPit,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_basiliskPitU,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_altarOfFire,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_altarOfFireU {
+  left: 614px;
+  top: 347px;
+}
+
+.Hh3-hall_t_castle .Hh3-hall__building_id_monastery,
+.Hh3-hall_t_castle .Hh3-hall__building_id_monasteryU,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_dendroidArches,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_dendroidArchesU,
+.Hh3-hall_t_tower .Hh3-hall__building_id_altarOfWishes,
+.Hh3-hall_t_tower .Hh3-hall__building_id_altarOfWishesU,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_hellHole,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_hellHoleU,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_mausoleum,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_mausoleumU,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_labyrinth,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_labyrinthU,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_cliffNest,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_cliffNestU,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_gorgonLair,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_gorgonLairU,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_altarOfEarth,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_altarOfEarthU {
+  left: 129px;
+  top: 451px;
+}
+
+.Hh3-hall_t_castle .Hh3-hall__building_id_trainingGrounds,
+.Hh3-hall_t_castle .Hh3-hall__building_id_trainingGroundsU,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_unicornGlade,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_unicornGladeU,
+.Hh3-hall_t_tower .Hh3-hall__building_id_goldenPavilion,
+.Hh3-hall_t_tower .Hh3-hall__building_id_goldenPavilionU,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_fireLake,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_fireLakeU,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_hallOfDarkness,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_hallOfDarknessU,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_manticoreLair,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_manticoreLairU,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_cyclopCave,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_cyclopCaveU,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_wyvernNest,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_wyvernNestU,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_altarOfThought,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_altarOfThoughtU {
+  left: 323px;
+  top: 451px;
+}
+
+.Hh3-hall_t_castle .Hh3-hall__building_id_portalOfGlory,
+.Hh3-hall_t_castle .Hh3-hall__building_id_portalOfGloryU,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_dragonCliffs,
+.Hh3-hall_t_rampart .Hh3-hall__building_id_dragonCliffsU,
+.Hh3-hall_t_tower .Hh3-hall__building_id_cloudTemple,
+.Hh3-hall_t_tower .Hh3-hall__building_id_cloudTempleU,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_forsakenPalace,
+.Hh3-hall_t_inferno .Hh3-hall__building_id_forsakenPalaceU,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_dragonVault,
+.Hh3-hall_t_necropolis .Hh3-hall__building_id_dragonVaultU,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_dragonCave,
+.Hh3-hall_t_dungeon .Hh3-hall__building_id_dragonCaveU,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_behemothLair,
+.Hh3-hall_t_stronghold .Hh3-hall__building_id_behemothLairU,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_hydraPond,
+.Hh3-hall_t_fortress .Hh3-hall__building_id_hydraPondU,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_pyre,
+.Hh3-hall_t_conflux .Hh3-hall__building_id_pyreU {
+  left: 517px;
+  top: 451px;
+}
+
+/** Construction **/
+html .Hh3-construct {
+  position: absolute;
+  left: 202px;
+  top: 40px;
+  text-align: center;
+  height: 520px;  /* cropping away some weird white line on the bottom that the LOD's BMP has */
+}
+
+.Hh3-construct > * {
+  position: absolute;
+}
+
+.Hh3-construct__name {
+  top: 20px;
+  width: 100%;
+}
+
+.Hh3-construct__face {
+  top: 49px;
+  left: 124px;
+}
+
+.Hh3-hinfo__t-quests,
+.Hh3-hinfo__t-dismiss,
+.Hh3-msg,
+.Hh3-mrk__t-memo,
+.Hh3-construct__req {
+  line-height: 1.35;
+}
+
+.Hh3-cm-res__t-outcome,
+.Hh3-mrk__t-memo,
+.Hh3-construct__desc,
+.Hh3-construct__req,
+.Hh3-construct__cost {
+  /* Great way to vertically center an element with the only downside being subpixel text rendering, but I can't notice it here, plus we'll likely switch to an aliased font to match SoD anyway.
+    https://habr.com/ru/post/238449/
+    https://habr.com/ru/company/netcracker/blog/277433/ */
+  transform: translateY(-50%);
+}
+
+.Hh3-construct__desc {
+  top: 169px;
+  left: 31px;
+  right: 31px;
+  line-height: 1.1;   /* long descriptions (like of CItadel) don't fit since our font is wider than SoD's */
+}
+
+.Hh3-construct__req {
+  top: 250px;
+  left: 40px;
+  right: 40px;
+  white-space: pre-wrap;
+}
+
+.Hh3-construct__cost {
+  top: 368px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.Hh3-construct__cost.Hh3-bit-ress_len_5 {
+  padding: 0 70px;
+}
+.Hh3-construct__cost.Hh3-bit-ress_len_6 {
+  padding: 0 50px;
+}
+.Hh3-construct__cost.Hh3-bit-ress_len_7 {
+  padding: 0 30px;
+}
+
+.Hh3-construct__res {
+  display: inline-block;
+  margin: 9px 24px;
+}
+
+.Hh3-construct__cost .Hh3-bit-res_empty {
+  display: none;
+}
+
+.Hh3-construct__cost .Hh3-bit-res__count {
+  display: block;
+  margin-top: 9px;
+}
+
+.Hh3-construct__close,
+.Hh3-construct__ok {
+  bottom: 44px;
+  outline: 1px solid #a88d44; /* emulating BOX64X30.BMP */
+}
+
+.Hh3-construct__ok {
+  left: 45px;
+}
+
+.Hh3-construct__close {
+  right: 41px;
+}
+
+/** Hire **/
+.Hh3-hire {
+  position: absolute;
+  left: 202px;
+  top: 40px;
+  text-align: center;
+}
+
+.Hh3-hire > * {
+  position: absolute;
+}
+
+.Hh3-hire__name {
+  top: 20px;
+  width: 100%;
+}
+
+.Hh3-hire__faces {
+  top: 50px;
+  width: 100%;
+}
+
+.Hh3-hire__faces > * {
+  display: inline-block;
+  width: 100px; /* of __bk */
+  margin: 0 5px;
+}
+
+.Hh3-hire .Hh3-bit-crim_hl_no .Hh3-bit-crob__bk {
+  outline: 1px solid #efd77b;
+}
+
+.Hh3-hire .Hh3-bit-crim_hl_yes .Hh3-bit-crob__bk {
+  outline: 1px solid red;
+}
+
+.Hh3-cm-res__hide,
+.Hh3-cm-res__close,
+.Hh3-msg__btn,
+.Hh3-hire__hire,
+.Hh3-hire__close,
+.Hh3-hire__max {
+  bottom: 50px;
+  outline: 1px solid #ad8e42; /* emulating BOX64X32.BMP */
+}
+
+.Hh3-hire__hire {
+  left: 212px;
+}
+
+.Hh3-hire__close {
+  left: 290px;
+}
+
+.Hh3-hire__max {
+  left: 134px;
+}
+
+.Hh3-hire__total,
+.Hh3-hire__cost {
+  top: 243px;
+  width: 97px;
+}
+
+.Hh3-hire__cost {
+  left: 65px;
+}
+
+.Hh3-hire__total {
+  left: 323px;
+}
+
+.Hh3-hire .Hh3-bit-res__count {
+  margin-top: 5px;
+}
+
+.Hh3-hire__res {
+  display: inline-block;
+  margin: 0 8px;
+}
+
+.Hh3-hire__t-cost,
+.Hh3-hire__t-av,
+.Hh3-hire__t-cur,
+.Hh3-hire__t-total {
+  top: 223px;
+  outline: 1px solid #efd77b;
+  padding-top: 3px;
+}
+
+.Hh3-hire__t-cost,
+.Hh3-hire__t-total {
+  height: 71px;
+  width: 97px;
+}
+
+.Hh3-hire__t-av,
+.Hh3-hire__t-cur {
+  height: 37px;
+}
+
+.Hh3-hire__av,
+.Hh3-hire__cur,
+.Hh3-hire__t-av,
+.Hh3-hire__t-cur {
+  width: 65px;
+}
+
+.Hh3-hire__t-cost {
+  left: 65px;
+}
+
+.Hh3-hire__av,
+.Hh3-hire__t-av {
+  left: 173px;
+}
+
+.Hh3-hire__cur,
+.Hh3-hire__t-cur {
+  left: 247px;
+}
+
+.Hh3-hire__t-total {
+  left: 323px;
+}
+
+.Hh3-hire__cur,
+.Hh3-hire__av {
+  top: 246px;
+}
+
+.Hh3-hire .Hslider {
+  bottom: 96px;
+  left: 176px;
+}
+
+.Hh3-hire .Hslider__track {
+  width: 87px;
+  text-align: left;
+}
+
+.Hh3-mrk .Hslider__btn_dir_d,
+.Hh3-hire .Hslider__btn_dir_d {
+  margin-left: 16px;
+}
+
+.Hh3-mrk .Hslider__btn_dir_u:active:hover,
+.Hh3-hire .Hslider__btn_dir_u:active:hover {
+  background-image: url(../DEF-PNG/iGPCrDiv/0-1.png);
+}
+.Hh3-mrk .Hslider__btn_dir_d:active:hover,
+.Hh3-hire .Hslider__btn_dir_d:active:hover {
+  background-image: url(../DEF-PNG/iGPCrDiv/0-3.png);
+}
+
+/* It appears the game indeed uses 50% opacity because I can't find disabled versions of slider buttons and thumb in BMP and DEF resources. */
+.Hcx_classic_no .Hh3-mrk_can_yes .Hh3-slider__dis,
+.Hh3-mrk_can_no .Hh3-slider__dis,
+.Hcx_classic_no .Hh3-hire_av_yes .Hh3-slider__dis,
+.Hh3-hire_av_no .Hh3-slider__dis {
+  opacity: .5;
+}
+
+/** Blacksmith **/
+.Hh3-blks {
+  position: absolute;
+  left: 234px;
+  top: 106px;
+  text-align: center;
+}
+
+.Hh3-blks > * {
+  position: absolute;
+}
+
+.Hh3-blks__name {
+  top: 15px;
+  width: 100%;
+}
+
+.Hh3-blks .Hh3-bit-res_empty {
+  display: none;
+}
+
+.Hh3-blks__bk,
+.Hh3-blks__face {
+  left: 64px;
+  top: 50px;
+}
+
+.Hh3-blks__t-cost,
+.Hh3-blks__cost {
+  top: 244px;
+  width: 100%;
+  text-align: center;
+}
+
+.Hh3-blks__t-cost {
+  top: 211px;
+}
+
+.Hh3-blks__res {
+  display: inline-block;
+}
+
+.Hh3-blks .Hh3-bit-res__count {
+  margin-top: 9px;
+}
+
+.Hh3-blks__buy,
+.Hh3-blks__close {
+  bottom: 46px;
+}
+
+.Hh3-blks__buy {
+  left: 42px;
+}
+
+.Hh3-blks__close {
+  right: 41px;
+}
+
+/** Shipyard **/
+.Hh3-shya {
+  position: absolute;
+  left: 235px;
+  top: 106px;
+  text-align: center;
+}
+
+.Hh3-shya > * {
+  position: absolute;
+}
+
+.Hh3-shya__name,
+.Hh3-shya__t-cost,
+.Hh3-shya__cost {
+  width: 100%;
+}
+
+.Hh3-shya__name {
+  top: 16px;
+}
+
+.Hh3-shya__bk {
+  top: 69px;
+  left: 100px;
+}
+
+.Hh3-shya__face {
+  top: 85px;
+  left: 116px;
+}
+
+.Hh3-shya__t-cost {
+  top: 210px;
+}
+
+.Hh3-shya__res.Hh3-bit-res_empty {
+  display: none;
+}
+
+.Hh3-shya__cost {
+  top: 245px;
+}
+
+.Hh3-shya__res {
+  display: inline-block;
+  margin: 0 32px 0 31px;
+}
+
+.Hh3-shya .Hh3-bit-res__count {
+  margin-top: 9px;
+}
+
+.Hh3-shya__buy,
+.Hh3-shya__close {
+  bottom: 46px;
+}
+
+.Hh3-shya__buy {
+  left: 42px;
+}
+
+.Hh3-shya__close {
+  right: 41px;
+}
+
+/** Garrison **/
+.Hh3-garr {
+  position: absolute;
+}
+
+.Hh3-garr > * {
+  position: absolute;
+}
+
+.Hh3-garr__face {
+  position: relative;
+  left: -20px;
+  margin: 50px auto;
+}
+
+.Hh3-garr__name {
+  top: 21px;
+  width: 100%;
+  text-align: center;
+}
+
+.Hh3-garr__garrison,
+.Hh3-garr__visiting {
+  left: 90px;
+}
+
+.Hh3-garr__flag,
+.Hh3-garr__visitingFace {
+  left: 28px;
+}
+
+.Hh3-garr__flag,
+.Hh3-garr__garrison {
+  top: 126px;
+}
+
+.Hh3-garr__visitingFace,
+.Hh3-garr__visiting {
+  top: 222px;
+}
+
+.Hcx_classic_no .Hh3-garr__flag,
+.Hcx_classic_no .Hh3-garr__garrison,
+.Hcx_classic_no .Hh3-garr__visitingFace,
+.Hcx_classic_no .Hh3-garr__visiting {
+  margin-top: 1px;
+}
+
+.Hh3-garr__split,
+.Hh3-garr__close {
+  bottom: 50px;
+}
+
+.Hh3-garr__split {
+  left: 88px;
+}
+
+.Hh3-garr__close {
+  right: 86px;
+}
+
+/** Mage Guild **/
+.Hh3-mgg__win {
+  left: 332px;
+  top: 76px;
+}
+
+.Hh3-mgg__sp {
+  position: absolute;
+}
+
+.Hcx_classic_no .Hh3-mgg__sp_ph {
+  display: none;
+}
+
+.Hh3-mgg__sp_l_1 { top: 445px; }
+.Hh3-mgg__sp_l_1.Hh3-mgg__sp_ln_1 { left: 222px; }
+.Hh3-mgg__sp_l_1.Hh3-mgg__sp_ln_2 { left: 312px; }
+.Hh3-mgg__sp_l_1.Hh3-mgg__sp_ln_3 { left: 402px; }
+.Hh3-mgg__sp_l_1.Hh3-mgg__sp_ln_4 { left: 520px; }
+.Hh3-mgg__sp_l_1.Hh3-mgg__sp_ln_5 { left: 610px; }
+.Hh3-mgg__sp_l_1.Hh3-mgg__sp_ln_6 { left: 700px; }
+
+.Hh3-mgg__sp_l_2 { left: 48px; }
+.Hh3-mgg__sp_l_2.Hh3-mgg__sp_ln_1 { top: 53px; }
+.Hh3-mgg__sp_l_2.Hh3-mgg__sp_ln_2 { top: 147px; }
+.Hh3-mgg__sp_l_2.Hh3-mgg__sp_ln_3 { top: 241px; }
+.Hh3-mgg__sp_l_2.Hh3-mgg__sp_ln_4 { top: 335px; }
+.Hh3-mgg__sp_l_2.Hh3-mgg__sp_ln_5 { top: 429px; }
+
+.Hh3-mgg__sp_l_3.Hh3-mgg__sp_ln_1 { left: 570px; top: 82px; }
+.Hh3-mgg__sp_l_3.Hh3-mgg__sp_ln_2 { left: 672px; top: 82px; }
+.Hh3-mgg__sp_l_3.Hh3-mgg__sp_ln_3 { left: 570px; top: 157px; }
+.Hh3-mgg__sp_l_3.Hh3-mgg__sp_ln_4 { left: 672px; top: 157px; }
+
+.Hh3-mgg__sp_l_4 { left: 183px; }
+.Hh3-mgg__sp_l_4.Hh3-mgg__sp_ln_1 { top: 42px; }
+.Hh3-mgg__sp_l_4.Hh3-mgg__sp_ln_2 { top: 148px; }
+.Hh3-mgg__sp_l_4.Hh3-mgg__sp_ln_3 { top: 253px; }
+
+.Hh3-mgg__sp_l_5 { top: 325px; }
+.Hh3-mgg__sp_l_5.Hh3-mgg__sp_ln_1 { left: 491px; }
+.Hh3-mgg__sp_l_5.Hh3-mgg__sp_ln_2 { left: 591px; }
+
+/** MessageBox **/
+.Hh3-msg {
+  position: absolute;
+  /* XXX=I in SoD width depends on amount of content; also need to add scrollbar if content is too long */
+  max-width: 274px;
+  min-width: 207px;   /* SoD's min-width (255px) - padding * 2 */
+  min-height: 80px;
+  text-align: center;
+  background: url(../BMP-PNG/DIBOX128.png);
+  padding: 24px;
+}
+
+.Hh3-msg_small {
+  min-width: 80px;    /* border-width of .Hh3-msg:before * 2 - padding * 2 */
+}
+
+.Hh3-msg:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  border: 64px solid;
+  border-image: 64 url(custom-graphics/DIALGBOX/blue.png) repeat;
+}
+
+.Hrecolor_green .Hh3-msg:before {
+  border-image-source: url(custom-graphics/DIALGBOX/green.png);
+}
+.Hrecolor_orange .Hh3-msg:before {
+  border-image-source: url(custom-graphics/DIALGBOX/orange.png);
+}
+.Hrecolor_pink .Hh3-msg:before {
+  border-image-source: url(custom-graphics/DIALGBOX/pink.png);
+}
+.Hrecolor_purple .Hh3-msg:before {
+  border-image-source: url(custom-graphics/DIALGBOX/purple.png);
+}
+.Hrecolor_red .Hh3-msg:before {
+  border-image-source: url(custom-graphics/DIALGBOX/red.png);
+}
+.Hrecolor_tan .Hh3-msg:before {
+  border-image-source: url(custom-graphics/DIALGBOX/tan.png);
+}
+.Hrecolor_teal .Hh3-msg:before {
+  border-image-source: url(custom-graphics/DIALGBOX/teal.png);
+}
+
+.Hh3-msg table, .Hh3-msg__btns {
+  margin-top: 1em;
+}
+
+.Hh3-msg table {
+  width: 100%;
+}
+
+.Hh3-msg__inline,
+.Hh3-msg [class*="Hh3-btn_"],
+.Hh3-msg [class*="Hh3-def_"],
+.Hh3-msg [class*="Hh3-bmp_"] {
+  display: inline-block;
+}
+
+:not(.Hbit-ol__scroll) > .Hh3-msg__inline [class*="Hh3-btn_"],
+:not(.Hbit-ol__scroll) > .Hh3-msg__inline [class*="Hh3-def_"],
+:not(.Hbit-ol__scroll) > .Hh3-msg__inline [class*="Hh3-bmp_"] {
+  /* Not applied to big images that are part of selection lists (like Treasure Chest's. */
+  display: block;
+  margin: 0 auto;
+}
+
+.Hh3-msg__btn {
+  margin: 0 9px;
+}
+
+.Hh3-msg__sel-face {
+  margin: 0 1em .5em;
+}
+
+.Hh3-msg__sel .Hbit-ol__item_cur .Hh3-msg__sel-face {
+  outline: 1px solid #efd77b;
+}
+
+.Hcx_classic_no .Hh3-msg__sel-cancel {
+  display: none;
+}
+
+/** Marketplace **/
+.Hh3-mrk {
+  position: absolute;
+  left: 100px;
+  top: 3px;
+  text-align: center;
+}
+
+.Hh3-mrk > * {
+  position: absolute;
+}
+
+.Hh3-mrk__name {
+  text-align: center;
+  top: 15px;
+  width: 100%;
+}
+
+.Hh3-mrk__t-give,
+.Hh3-mrk__t-take,
+.Hh3-mrk__t-memo {
+  left: 320px;
+  width: 249px;
+}
+
+.Hh3-mrk__t-memo {
+  top: 85px;
+}
+
+.Hh3-mrk__t-give,
+.Hh3-mrk__t-take {
+  top: 141px;
+}
+
+.Hh3-mrk_t_tf .Hh3-mrk__t-memo,
+.Hh3-mrk__t-give {
+  left: 32px;
+}
+
+.Hh3-mrk__max,
+.Hh3-mrk__trade,
+.Hh3-mrk__close,
+.Hh3-mrk__toTransfer {
+  bottom: 41px;
+}
+
+.Hh3-mrk__toTrade,
+.Hh3-mrk__close {
+  right: 22px;
+}
+
+.Hh3-mrk__toTransfer {
+  left: 18px;
+}
+
+html .Hh3-mrk__max {
+  left: 228px;
+  background-image: url(../DEF-PNG/TPMrkB/0-3.png);
+}
+
+.Hh3-mrk__max:active:hover:not(.Hh3-btn_dis) {
+  background-image: url(../DEF-PNG/TPMrkB/0-4.png) !important;
+}
+html .Hh3-mrk__max.Hh3-btn_dis {
+  background-image: url(../DEF-PNG/TPMrkB/0-5.png);
+}
+
+.Hh3-mrk__trade {
+  left: 306px;
+}
+
+.Hh3-mrk .Hslider {
+  bottom: 87px;
+  left: 231px;
+  background: black;
+  height: 16px;
+}
+
+.Hh3-mrk .Hslider__track {
+  width: 89px;
+  text-align: left;
+}
+
+.Hh3-mrk__res {
+  width: 70px;
+  height: 66px;
+}
+
+.Hh3-mrk__res-icon {
+  margin: 8px auto 9px;
+}
+
+.Hh3-mrk__res_hl {
+  outline: 2px solid #ffe794;
+}
+
+.Hh3-mrk__give_wood,
+.Hh3-mrk__give_mercury,
+.Hh3-mrk__give_ore,
+.Hh3-mrk__take_wood,
+.Hh3-mrk__take_mercury,
+.Hh3-mrk__take_ore {
+  top: 182px;
+}
+
+.Hh3-mrk__give_sulfur,
+.Hh3-mrk__give_crystal,
+.Hh3-mrk__give_gems,
+.Hh3-mrk__take_sulfur,
+.Hh3-mrk__take_crystal,
+.Hh3-mrk__take_gems {
+  top: 261px;
+}
+
+.Hh3-mrk__give_gold,
+.Hh3-mrk__take_gold {
+  top: 340px;
+}
+
+.Hh3-mrk__give_wood,
+.Hh3-mrk__give_sulfur {
+  left: 39px;
+}
+
+.Hh3-mrk__give,
+.Hh3-mrk__give_mercury,
+.Hh3-mrk__give_crystal,
+.Hh3-mrk__give_gold {
+  left: 122px;
+}
+
+.Hh3-mrk__give_ore,
+.Hh3-mrk__give_gems {
+  left: 204px;
+}
+
+.Hh3-mrk__take_wood,
+.Hh3-mrk__take_sulfur {
+  right: 204px;
+}
+
+.Hh3-mrk__take,
+.Hh3-mrk__take_mercury,
+.Hh3-mrk__take_crystal,
+.Hh3-mrk__take_gold {
+  right: 121px;
+}
+
+.Hh3-mrk__take_ore,
+.Hh3-mrk__take_gems {
+  right: 38px;
+}
+
+.Hh3-mrk__give,
+.Hh3-mrk__take {
+  bottom: 78px;
+}
+
+.Hh3-mrk_can_no .Hh3-mrk__give,
+.Hh3-mrk_can_no .Hh3-mrk__take {
+  display: none;
+}
+
+.Hh3-mrk_t_tf .Hh3-mrk__t-take {
+  top: 49px;
+}
+
+.Hh3-mrk__toTrade {
+  bottom: 110px;
+}
+
+.Hh3-mrk__players {
+  left: 328px;
+  top: 83px;
+  text-align: left;
+}
+
+.Hh3-mrk__pl:nth-child(7) {
+  margin-left: 83px;
+}
+
+.Hh3-mrk__pl {
+  display: inline-block;
+  margin: 0 15px 31px 0;
+  padding: 1px 5px 0;
+}
+
+.Hh3-mrk__pl-name {
+  margin: 4px 0 3px;
+  text-align: center;
+}
+
+.Hh3-mrk_t_tf .Hh3-mrk__take {
+  right: 127px;
+  bottom: 56px;
+}
+
+/* Combat */
+.Hh3-cm {
+  /* Creatures' DEFs are very large and overflow Screen's el (e.g. into
+     DOM.Controls). */
+  overflow: hidden;
+}
+
+.Hh3-cm > *,
+.Hh3-cm__map > *,
+.Hh3-cm__map-ims * {
+  position: absolute;
+}
+
+.Hh3-cm__cancel {  /* GSPEXIT.DEF */
+  top: 1em;
+  left: 50%;
+  margin-left: calc(-166px / 2);
+  z-index: 7;     /* above .Hh3-cm__map-map and .Hh3-cm__map-keep */
+}
+
+/* T B L R  TL TR BL BR  corners middle spread random */
+.Hh3-cm__hero {
+  margin: -19px -43px;
+  z-index: 2;
+}
+
+.Hh3-cm__hero_pos_t {
+  left: 50%;
+}
+
+.Hh3-cm__hero_pos_b {
+  left: 50%;
+  bottom: 0;
+}
+
+.Hh3-cm__hero_pos_l,
+.Hh3-cm__hero_pos_tl,
+.Hh3-cm__hero_pos_middle,
+.Hh3-cm__hero_pos_spread,
+.Hh3-cm__hero_pos_random {
+  /* Top left corner. */
+}
+
+.Hh3-cm__hero_pos_r,
+.Hh3-cm__hero_pos_tr,
+.Hh3-cm__hero_pos_corners {
+  right: 0;
+}
+
+.Hh3-cm__hero_pos_bl {
+  bottom: 0;
+}
+
+.Hh3-cm__hero_pos_br {
+  right: 0;
+  bottom: 0;
+}
+
+.Hgrid__cell_mirror,    /* TSHRE.DEF */
+.Hh3-cm__hero_pos_r,
+.Hh3-cm__hero_pos_tr,
+.Hh3-cm__hero_pos_br,
+.Hh3-cm__map-im_mirror {
+  transform: scale(-1, 1);
+}
+
+.Hh3-cm__map-keep {   /* the hover region for MiddleTower */
+  z-index: 7;     /* above .Hh3-cm__map-map */
+  width: 66px;    /* 1.5*44px, hexWidth */
+  right: -66px;
+  height: 126px;  /* 3*42px, hexHeight */
+  top: 126px;     /* same */
+}
+
+.Hcx_classic_no .Hh3-cm__map-keep {
+  top: calc(126px - 42px);
+  height: calc(42px + 126px + 105px);
+}
+
+.Hh3-cm__map-ims {
+  position: absolute;
+  z-index: 1;
+    /* This container is necessary to prevent children from overlapping outside
+       content due to their z-index. */
+}
+
+.Hh3-cm__map-ims,
+.Hh3-cm__map-grid {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.Hh3-cm__map-cr {
+  margin-left: -167px;
+  margin-top: -227px;
+}
+
+.Hh3-cm__map-cr.Hh3-cm__map-im_mirror {
+  margin-left: calc(-274px + 40em);   /* XXX+R: fish: fishy calculation */
+}
+
+/* XXX=R:fish: all this shifting smells real peccant */
+.Hh3-cm__map-cr_name_catapult,
+.Hh3-cm__map-cr_name_ballista,
+.Hh3-cm__map-cr_name_ammoCart,
+.Hh3-cm__map-cr_name_firstAidTent {
+  margin-top: calc(-227px + 2px);
+}
+.Hh3-cm__map-cr_name_catapult,
+.Hh3-cm__map-cr_name_ballista,
+.Hh3-cm__map-cr_name_firstAidTent {
+  margin-left: calc(-167px - 44px - 7px);   /* 44 - hex width */
+}
+.Hh3-cm__map-cr_name_ammoCart {
+  margin-left: calc(-167px - 7px);
+}
+.Hh3-cm__map-cr_name_catapult.Hh3-cm__map-im_mirror,
+.Hh3-cm__map-cr_name_firstAidTent.Hh3-cm__map-im_mirror,
+.Hh3-cm__map-cr_name_ballista.Hh3-cm__map-im_mirror {
+  margin-left: calc(-167px + 40em - 44px - 7px);
+}
+.Hh3-cm__map-cr_name_ammoCart.Hh3-cm__map-im_mirror {
+  margin-left: calc(-167px + 40em - 7px);
+}
+/* XXX=R:fish: more peccant shifting, yay */
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleCitadelTrench,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleCastleTrench {
+  margin: 4px 0 0 -22px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleCitadelMiddleTower,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleCastleMiddleTower {
+  margin: -451px 0 0 -170px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleCastleUpperTower {
+  margin: -273px 0 0 -220px;
+    /* in SoD it's shifted a bit further to the right but it looks more like a glitch */
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleCastleLowerTower {
+  margin: -207px 0 0 -214px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleFortLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleCitadelLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleCastleLowerWall {
+  margin: -156px 0 0 -36px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleFortMidLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleCitadelMidLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleCastleMidLowerWall {
+  margin: -89px 0 0 -29px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleFortMidUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleCitadelMidUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleCastleMidUpperWall {
+  margin: -85px 0 0 -28px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleFortUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleCitadelUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleCastleUpperWall {
+  margin: -96px 0 0 -18px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleFortGate,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleCitadelGate,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_castleCastleGate {
+  margin: -20px 0 0 -54px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartCitadelTrench,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartCastleTrench {
+  margin: -9px 0 0 -22px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartCitadelMiddleTower,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartCastleMiddleTower {
+  margin: -449px 0 0 -164px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartCastleUpperTower {
+  margin: -272px 0 0 -223px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartCastleLowerTower {
+  margin: -210px 0 0 -237px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartFortLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartCitadelLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartCastleLowerWall {
+  margin: -55px 0 0 -15px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartFortMidLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartCitadelMidLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartCastleMidLowerWall {
+  margin: -71px 0 0 -29px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartFortMidUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartCitadelMidUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartCastleMidUpperWall {
+  margin: -26px 0 0 -29px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartFortUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartCitadelUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartCastleUpperWall {
+  margin: -71px 0 0 -12px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartFortGate,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartCitadelGate,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_rampartCastleGate {
+  margin: -25px 0 0 -50px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerCitadelMiddleTower,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerCastleMiddleTower {
+  margin: -438px 0 0 -197px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerCastleUpperTower {
+  margin: -261px 0 0 -218px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerCastleLowerTower {
+  margin: -195px 0 0 -253px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerFortLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerCitadelLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerCastleLowerWall {
+  margin: -54px 0 0 -17px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerFortMidLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerCitadelMidLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerCastleMidLowerWall {
+  margin: -82px 0 0 -23px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerFortMidUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerCitadelMidUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerCastleMidUpperWall {
+  margin: -22px 0 0 -10px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerFortUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerCitadelUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerCastleUpperWall {
+  margin: -62px 0 0 5px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerFortGate,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerCitadelGate,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_towerCastleGate {
+  margin: -43px 0 0 -53px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoCitadelTrench,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoCastleTrench {
+  margin: -18px 0 0 -29px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoCitadelMiddleTower,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoCastleMiddleTower {
+  margin: -459px 0 0 -185px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoCastleUpperTower {
+  margin: -273px 0 0 -223px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoCastleLowerTower {
+  margin: -208px 0 0 -239px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoFortLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoCitadelLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoCastleLowerWall {
+  margin: -55px 0 0 -3px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoFortMidLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoCitadelMidLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoCastleMidLowerWall {
+  margin: -64px 0 0 -13px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoFortMidUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoCitadelMidUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoCastleMidUpperWall {
+  margin: -61px 0 0 -18px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoFortUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoCitadelUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoCastleUpperWall {
+  margin: -57px 0 0 -10px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoFortGate,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoCitadelGate,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_infernoCastleGate {
+  margin: -42px 0 0 -45px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisCitadelTrench,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisCastleTrench {
+  margin: -9px 0 0 -26px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisCitadelMiddleTower,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisCastleMiddleTower {
+  margin: -324px 0 0 -195px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisCastleUpperTower {
+  margin: -263px 0 0 -225px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisCastleLowerTower {
+  margin: -203px 0 0 -237px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisFortLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisCitadelLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisCastleLowerWall {
+  margin: -61px 0 0 -28px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisFortMidLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisCitadelMidLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisCastleMidLowerWall {
+  margin: -57px 0 0 -20px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisFortMidUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisCitadelMidUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisCastleMidUpperWall {
+  margin: -48px 0 0 -11px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisFortUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisCitadelUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisCastleUpperWall {
+  margin: -62px 0 0 1px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisFortGate,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisCitadelGate,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_necropolisCastleGate {
+  margin: -34px 0 0 -52px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonCitadelTrench,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonCastleTrench {
+  margin: 8px 0 0 -149px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonCitadelMiddleTower,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonCastleMiddleTower {
+  margin: -472px 0 0 -126px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonCastleUpperTower {
+  margin: -273px 0 0 -183px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonCastleLowerTower {
+  margin: -213px 0 0 -198px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonFortLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonCitadelLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonCastleLowerWall {
+  margin: -58px 0 0 -5px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonFortMidLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonCitadelMidLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonCastleMidLowerWall {
+  margin: -84px 0 0 -27px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonFortMidUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonCitadelMidUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonCastleMidUpperWall {
+  margin: -32px 0 0 -21px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonFortUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonCitadelUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonCastleUpperWall {
+  margin: -72px 0 0 -19px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonFortGate,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonCitadelGate,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_dungeonCastleGate {
+  margin: -36px 0 0 -58px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdCitadelTrench,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdCastleTrench {
+  margin: 4px 0 0 -22px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdCitadelMiddleTower,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdCastleMiddleTower {
+  margin: -467px 0 0 -165px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdCastleUpperTower {
+  margin: -273px 0 0 -222px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdCastleLowerTower {
+  margin: -216px 0 0 -247px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdFortLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdCitadelLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdCastleLowerWall {
+  margin: -66px 0 0 -11px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdFortMidLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdCitadelMidLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdCastleMidLowerWall {
+  margin: -76px 0 0 -15px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdFortMidUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdCitadelMidUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdCastleMidUpperWall {
+  margin: -23px 0 0 -22px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdFortUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdCitadelUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdCastleUpperWall {
+  margin: -59px 0 0 -8px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdFortGate,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdCitadelGate,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_strongholdCastleGate {
+  margin: -29px 0 0 -46px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressCitadelTrench,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressCastleTrench {
+  margin: 9px 0 0 -49px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressCitadelMiddleTower,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressCastleMiddleTower {
+  margin: -459px 0 0 -155px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressCastleUpperTower {
+  margin: -268px 0 0 -238px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressCastleLowerTower {
+  margin: -198px 0 0 -236px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressFortLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressCitadelLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressCastleLowerWall {
+  margin: -65px 0 0 -18px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressFortMidLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressCitadelMidLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressCastleMidLowerWall {
+  margin: -74px 0 0 -11px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressFortMidUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressCitadelMidUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressCastleMidUpperWall {
+  margin: -28px 0 0 0;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressFortUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressCitadelUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressCastleUpperWall {
+  margin: -48px 0 0 -16px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressFortGate,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressCitadelGate,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_fortressCastleGate {
+  margin: -43px 0 0 -61px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxCitadelTrench,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxCastleTrench {
+  margin: -6px 0 0 -25px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxCitadelMiddleTower,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxCastleMiddleTower {
+  margin: -464px 0 0 -167px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxCastleUpperTower {
+  margin: -248px 0 0 -223px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxCastleLowerTower {
+  margin: -198px 0 0 -226px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxFortLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxCitadelLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxCastleLowerWall {
+  margin: -160px 0 0 -55px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxFortMidLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxCitadelMidLowerWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxCastleMidLowerWall {
+  margin: -81px 0 0 -30px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxFortMidUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxCitadelMidUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxCastleMidUpperWall {
+  margin: -65px 0 0 -27px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxFortUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxCitadelUpperWall,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxCastleUpperWall {
+  margin: -87px 0 0 -21px;
+}
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxFortGate,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxCitadelGate,
+.Hh3-cm__map-cr.Hh3-cm__map-cr_name_confluxCastleGate {
+  margin: -42px 0 0 -45px;
+}
+
+/* Must be declared after .Hh3-cm__hero. */
+.Hh3-cm__hero-flag {
+  margin: 20px 0 0 28px;
+}
+
+.Hh3-cm__hero-flag.Hh3-cm__hero_pos_r,
+.Hh3-cm__hero-flag.Hh3-cm__hero_pos_tr,
+.Hh3-cm__hero-flag.Hh3-cm__hero_pos_br {
+  margin-right: 28px;
+  transform: none;
+}
+
+.Hh3-cm__panel,
+.Hh3-cm-btns {
+  bottom: 0;
+  z-index: 5;   /* creature images inside -ims should not overlap buttons */
+}
+
+.Hh3-cm-btns {
+  left: 3px;
+}
+
+.Hh3-cm-btns > * {
+  float: left;
+  margin: 0 3px 3px 0;
+}
+
+.Hh3-cm__tacticsNext {
+  margin: -1px 0 0 6px;
+}
+
+.Hh3-cm__tacticsEnd {
+  margin: -1px 28px 0 8px;
+}
+
+.Hh3-cm__log {
+  height: 32px;
+  width: 396px;
+  margin: 2px 8px 5px;
+  overflow: hidden;
+  text-align: center;
+  line-height: 16px;
+  color: #fff3de; /* toned */
+}
+
+.Hh3-cm__log-slider {
+  margin: 0 3px 0 5px;
+}
+
+.Hh3-cm__log-slider .Hslider__btn_dir_d {
+  margin-top: 2px;
+  background-image: url(../DEF-PNG/ComSlide/0-2.png);
+}
+
+.Hh3-cm__log-slider .Hslider__btn_dir_d:active:hover {
+  background-image: url(../DEF-PNG/ComSlide/0-3.png) !important;
+}
+
+.Hh3-cm__log-alert {
+  position: absolute;
+  background: #312010;
+  border: 3px double red;
+  width: 375px;
+  margin: -18px 3px 6px 6px;
+  z-index: 4;
+  padding: 0 2px;
+}
+
+.Hh3-cm__log_help .Hh3-cm__log-entry {
+  display: none;
+}
+
+.Hcx_classic_no .Hh3-cm__log-entry_of_ally {
+  color: lime;
+}
+
+.Hcx_classic_no .Hh3-cm__log-entry_of_enemy {
+  color: orange;
+}
+
+/* This style is given after entry creation and therefore it should not
+   change boldness or other parameters that can change the entry's visual size
+   (this will break scrolling). */
+.Hcx_classic_no .Hh3-cm__log-entry_past {
+  color: gray;
+}
+
+.Hcx_classic_yes .Hh3-cm__queue {
+  display: none;
+}
+
+.Hh3-cm__queue {
+  left: 100px;
+  height: 80px;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+          mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+html .Hh3-cm__queue-im {
+  float: left;
+  width: 55em;
+  height: 140px;
+  margin: -40px 10px 0 0;
+  background-position: 280px center;
+}
+
+.Hh3-cm__queue-im:nth-child(5) ~ * {
+  display: none;
+}
+
+.Hh3-cm__map {
+  left: 58px;
+  top: 86px;
+  /* Right = width of right edge of the cell that is not included in pattern.
+     Bottom = height of the bottom V-shaped part of the bottom-most cell. */
+  padding: 0 1px 10px 0;
+}
+
+.Hh3-cm__map-grid {
+  border: solid;
+  border-width: 11px 23px 41px 44px;
+  border-image: fill 11 23 41 44 repeat;
+}
+
+.Hh3-cm__map-grid_size_1 {
+  border-image-source: url(custom-graphics/CCELLGRD/1.png);
+}
+.Hh3-cm__map-grid_size_2 {
+  border-image-source: url(custom-graphics/CCELLGRD/2.png);
+}
+.Hh3-cm__map-grid_size_3 {
+  border-image-source: url(custom-graphics/CCELLGRD/3.png);
+}
+.Hh3-cm__map-grid_size_4 {
+  border-image-source: url(custom-graphics/CCELLGRD/4.png);
+}
+
+.Hh3-cm__map:not(.Hh3-cm__map_grid) .Hh3-cm__map-grid {
+  display: none;
+}
+
+.Hh3-cm__map-map {
+  width: 100%;
+  height: 100%;
+  z-index: 6;
+}
+
+.Hh3-cm__grid-cell {
+  opacity: 0;
+  background: url(custom-graphics/CCELLSHD.png);
+  width: 45px;
+  height: 52px;
+}
+
+.Hh3-cm__map_hl-move .Hh3-cm__grid-cell_move-oc {
+  opacity: .2;
+}
+
+.Hcx_classic_no .Hh3-cm__map_hl-hover .Hh3-cm__grid-cell_route,
+.Hcx_classic_no .Hh3-cm__map_hl-move .Hh3-cm__grid-cell_shoot,
+.Hcx_classic_no .Hh3-cm__map_hl-hover .Hh3-cm__grid-cell_attack,
+.Hh3-cm__map_hl-move .Hh3-cm__grid-cell_move,
+.Hh3-cm__map_hl-move .Hh3-cm__grid-cell_starting {
+  opacity: .35;
+}
+
+.Hcx_classic_yes .Hh3-cm__map_hl-move .Hh3-cm__grid-cell_move,
+.Hcx_classic_yes .Hh3-cm__map_hl-move .Hh3-cm__grid-cell_move-oc,
+.Hcx_classic_yes .Hh3-cm__map_hl-move .Hh3-cm__grid-cell_starting,
+.Hcx_classic_yes .Hh3-cm__map_hl-move .Hh3-cm__grid-cell_shoot,
+.Hh3-cm__map_hl-hover .Hh3-cm__grid-cell_hover {
+  opacity: .5;
+}
+
+.Hh3-cm__map_hl-hover.Hh3-cm__map_hl-move .Hh3-cm__grid-cell_hover.Hh3-cm__grid-cell_move,
+.Hh3-cm__map_hl-hover.Hh3-cm__map_hl-move .Hh3-cm__grid-cell_hover.Hh3-cm__grid-cell_move-oc,
+.Hh3-cm__map_hl-hover.Hh3-cm__map_hl-move .Hh3-cm__grid-cell_hover.Hh3-cm__grid-cell_starting {
+  opacity: .7;
+}
+
+.Hcx_classic_no .Hh3-cm__map_hl-hover .Hh3-cm__grid-cell_route {
+  filter: invert(8%) sepia(100%) saturate(1000%) hue-rotate(150deg);
+}
+
+.Hcx_classic_no .Hh3-cm__map_hl-move .Hh3-cm__grid-cell_shoot,
+.Hcx_classic_no .Hh3-cm__map_hl-hover .Hh3-cm__grid-cell_attack {
+  filter: invert(8%) sepia(100%) saturate(1000%);
+}
+
+.Hh3-cm_cursor_tl { /* ↘ */
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom018.cur), se-resize;
+}
+.Hh3-cm_cursor_l {  /* → */
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom017.cur), e-resize;
+}
+.Hh3-cm_cursor_bl { /* ↗ */
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom016.cur), ne-resize;
+}
+.Hh3-cm_cursor_tr { /* ↙ */
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom020.cur), sw-resize;
+}
+.Hh3-cm_cursor_r {  /* ← */
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom021.cur), w-resize;
+}
+.Hh3-cm_cursor_br { /* ↖ */
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom022.cur), nw-resize;
+}
+
+.Hh3-cm_cursor_shoot {
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom023.cur), cell;
+}
+.Hh3-cm_cursor_shootFar {
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom026.cur), crosshair;
+}
+.Hh3-cm_cursor_catapult {
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom034.cur), cell;
+}
+.Hh3-cm__queue,
+.Hh3-cm__bk,
+.Hh3-cm_cursor_deny {
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom006.cur), no-drop;
+}
+.Hweb-top__menu-label {
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom003.cur), help;
+}
+.Hh3-cm_cursor_help {
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom003.cur), pointer;
+}
+.Hh3-cm_cursor_walk {
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom009.cur), default;
+}
+.Hh3-cm_cursor_fly {
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom012.cur), alias;
+}
+.Hh3-cm_cursor_hero {
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom028.cur), pointer;
+}
+.Hh3-cm_cursor_heal {
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom031.cur), pointer;
+}
+.Hh3-cm_cursor_revive {
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom032.cur), pointer;
+}
+.Hh3-cm_cursor_teleport {
+  cursor: url(custom-graphics/DEF-CUR/CRCOMBAT/Crcom033.cur), pointer;
+}
+.Hh3-cm_cursor_cast {  /* + Hh3-anim_id_CRSPELL-0 */
+  animation-iteration-count: infinite;
+  /* Chrome has some bug with keyframes affecting cursor: initially it only updates the mouse pointer's image when you move the mouse but after a few page refreshes it starts playing it properly - not sure why. */
+  /* Keyframe-animated cursors have another issue that is unlikely fixable: their hotspot is in top left corner. It's somewhat an issue with CRSPELL, but thankfully not big. */
+}
+
+.Hh3-cm__map-cr-count {
+  width: 30px;
+  height: 11px;
+  background: url(custom-graphics/CMNUMWIN/purple.png);
+  text-align: center;
+  color: white;
+  font-size: .65em;
+  font-family: sans-serif;
+}
+
+.Hh3-cm__map-cr-count_f_afflicted {
+  background: url(custom-graphics/CMNUMWIN/red.png);
+}
+
+.Hh3-cm__map-cr-count_f_solaced {
+  background: url(custom-graphics/CMNUMWIN/green.png);
+}
+
+.Hh3-cm__map-cr-count_f_confused {
+  background: url(custom-graphics/CMNUMWIN/yellow.png);
+}
+
+.Hcx_classic_no .Hh3-cm__map-cr-count_f_ally {
+  background: url(custom-graphics/CMNUMWIN/purple-cyan.png);
+}
+
+.Hcx_classic_no .Hh3-cm__map-cr-count_f_enemy {
+  background: url(custom-graphics/CMNUMWIN/purple-violet.png);
+}
+
+.Hh3-cm__map-buf_overhead,
+.Hh3-cm__map-buf_center {
+  transform: translate(-50%, -50%);
+}
+
+.Hh3-cm__map-drop,
+.Hh3-cm__map-buf_transparent {
+  opacity: .8;
+}
+
+.Hh3-cm__map-buf_mirror {
+  transform: translateX(-100%) scale(-1, 1);
+}
+
+.Hh3-cm__map-total {
+  z-index: 3;   /* overlay everything in Hh3-cm */
+}
+
+html .Hh3-cm__map-total {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-repeat: repeat;
+  width: auto;    /* override dimensions of DEF */
+  height: auto;
+}
+
+.Hh3-cm__map-drop {
+  transform: translateX(-50%);
+}
+
+.Hh3-cm__map-light {
+  transform: translateY(21px);  /* half hex height, to shine on feet */
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, .5));
+          mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, .5));
+}
+
+.Hh3-cm-info,
+.Hh3-cm-info > * {
+  position: absolute;
+}
+
+.Hh3-cm-info {
+  margin: 0 1px;
+  width: 78px;    /* of CHRPOP.BMP/SPELLINF.BMP/CCRPOP.BMP */
+  pointer-events: none;   /* info box overlaps map edges and gets in the way of interacting with creatures */
+}
+
+.Hh3-cm-pinfo {
+  top: 135px;
+  height: 202px;
+}
+
+.Hh3-cm-info .Hh3-menu__text5 {
+  font-size: .63em;   /* Hh3-menu__text5 = 10.4px, we need 10px */
+}
+
+.Hh3-cm-cinfo {
+  bottom: 45px;
+}
+
+.Hh3-cm-cinfo_sp {
+  height: 126px;
+}
+
+.Hh3-cm-cinfo_full {
+  height: 288px;
+}
+
+.Hh3-cm-info_pos_r,
+.Hh3-cm-info_pos_tr,
+.Hh3-cm-info_pos_br {
+  right: 0;
+}
+
+.Hh3-cm-pinfo__face,
+.Hh3-cm-cinfo__face {
+  margin: 6px 0 0 10px;
+}
+
+.Hh3-cm-cinfo__count {
+  top: 57px;
+  right: 8px;
+}
+
+.Hh3-cm-pinfo__l,
+.Hh3-cm-cinfo__l {
+  top: 75px;
+  left: 8px;
+}
+
+.Hh3-cm-pinfo__attack,
+.Hh3-cm-pinfo__defense,
+.Hh3-cm-pinfo__spellPower,
+.Hh3-cm-pinfo__knowledge,
+.Hh3-cm-cinfo__attack,
+.Hh3-cm-cinfo__defense,
+.Hh3-cm-cinfo__damage,
+.Hh3-cm-cinfo__hitPoints {
+  top: 75px;
+  right: 8px;
+  width: 100%;
+  text-align: right;
+}
+
+.Hh3-cm-pinfo__l_s_defense,
+.Hh3-cm-pinfo__defense,
+.Hh3-cm-cinfo__l_s_defense,
+.Hh3-cm-cinfo__defense {
+  top: 87px;
+}
+
+.Hh3-cm-pinfo__l_s_spellPower,
+.Hh3-cm-pinfo__spellPower,
+.Hh3-cm-cinfo__l_s_damage ,
+.Hh3-cm-cinfo__damage {
+  top: 99px;
+}
+
+.Hh3-cm-pinfo__l_s_knowledge,
+.Hh3-cm-pinfo__knowledge,
+.Hh3-cm-cinfo__l_s_hitPoints,
+.Hh3-cm-cinfo__hitPoints {
+  top: 111px;
+}
+
+.Hh3-cm-pinfo__l_s_morale,
+.Hh3-cm-pinfo__morale,
+.Hh3-cm-pinfo__luck,
+.Hh3-cm-cinfo__l_s_morale,
+.Hh3-cm-cinfo__morale,
+.Hh3-cm-cinfo__luck {
+  top: 131px;
+  right: 9px;
+}
+
+.Hh3-cm-pinfo__l_s_luck,
+.Hh3-cm-pinfo__luck,
+.Hh3-cm-cinfo__l_s_luck,
+.Hh3-cm-cinfo__luck {
+  top: 143px;
+}
+
+.Hcx_classic_no .Hh3-cm-pinfo__morale,
+.Hcx_classic_no .Hh3-cm-pinfo__luck,
+.Hcx_classic_no .Hh3-cm-cinfo__morale,
+.Hcx_classic_no .Hh3-cm-cinfo__luck {
+  right: 6px;
+}
+
+.Hh3-cm-pinfo__l_s_spellPoints,
+.Hh3-cm-pinfo__spellPoints {
+  bottom: 11px;
+  width: 100%;
+  text-align: center;
+}
+
+.Hh3-cm-pinfo__l_s_spellPoints {
+  bottom: 22px;
+}
+
+/* SoD shows empty boxes in places of empty spell slots (up to 3). We don't but need to, in classic mode. XXX=IC */
+.Hh3-cm-cinfo__bufs {
+  top: 5px;
+  padding: 0 15px;
+}
+
+.Hh3-cm-cinfo_full .Hh3-cm-cinfo__bufs {
+  margin-top: 162px;
+}
+
+.Hh3-cm-cinfo__bufs .Hh3-spaf {
+  margin-top: 2px;
+}
+
+.Hh3-cm-cinfo__bufs .Hh3-spafs__none {
+  margin-top: 2px;
+  text-align: center;
+}
+
+/** Game/Combat Options **/
+.Hh3-gop {
+  position: absolute;
+  left: 159px;
+  top: 56px;
+}
+
+.Hh3-gop > * {
+  position: absolute;
+}
+
+.Hh3-gop__t-hspd,
+.Hh3-gop__t-espd,
+.Hh3-gop__t-mspd,
+.Hh3-gop__t-ui,
+.Hh3-gop__t-mvol,
+.Hh3-gop__t-svol,
+.Hh3-gop__t-canim,
+.Hh3-gop__t-cauto,
+.Hh3-gop__t-cinfo {
+  left: 26px;
+  width: 192px;
+  text-align: center;
+}
+
+.Hh3-gop__t-head {
+  top: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.Hh3-gop__t-hspd,
+.Hh3-gop__t-cauto {
+  top: 57px;
+}
+
+.Hh3-gop__t-espd {
+  top: 123px;
+}
+
+.Hh3-gop__t-mspd {
+  top: 189px;
+}
+
+.Hh3-gop__t-ui {
+  top: 255px;
+}
+
+.Hh3-gop__t-mvol {
+  bottom: 129px;
+}
+
+.Hh3-gop__t-svol {
+  bottom: 62px;
+}
+
+.Hh3-gop__heroSpeed1,
+.Hh3-gop__heroSpeed2,
+.Hh3-gop__heroSpeed3,
+.Hh3-gop__heroSpeed4 {
+  top: 77px;
+}
+
+.Hh3-gop__heroSpeed1,
+.Hh3-gop__enemySpeed1,
+.Hh3-gop__mapSpeed1,
+.Hh3-gop__classic,
+.Hh3-gop__animationSpeed1 {
+  left: 28px;
+}
+
+.Hh3-gop__heroSpeed2,
+.Hh3-gop__enemySpeed2 {
+  left: 76px;
+}
+
+.Hh3-gop__heroSpeed3,
+.Hh3-gop__enemySpeed3 {
+  left: 124px;
+}
+
+.Hh3-gop__heroSpeed4,
+.Hh3-gop__enemySpeed4 {
+  left: 172px;
+}
+
+.Hh3-gop__enemySpeed1,
+.Hh3-gop__enemySpeed2,
+.Hh3-gop__enemySpeed3,
+.Hh3-gop__enemySpeed4 {
+  top: 144px;
+}
+
+.Hh3-gop__mapSpeed1,
+.Hh3-gop__mapSpeed2,
+.Hh3-gop__mapSpeed3 {
+  top: 210px;
+}
+
+.Hh3-gop__mapSpeed2,
+.Hh3-gop__animationSpeed2 {
+  left: 92px;
+}
+
+.Hh3-gop__mapSpeed3,
+.Hh3-gop__animationSpeed3 {
+  left: 156px;
+}
+
+.Hh3-gop__classic,
+.Hh3-gop__nonClassic {
+  top: 276px;
+}
+
+.Hh3-gop__nonClassic {
+  left: 124px;
+}
+
+html .Hh3-gop__classic { background: url(custom-graphics/SYSOB12/0.png); }
+.Hh3-gop__classic:active:hover { background: url(custom-graphics/SYSOB12/1.png) !important; }
+html .Hh3-gop__classic.Hh3-btn_cur { background: url(custom-graphics/SYSOB12/2.png); }
+
+html .Hh3-gop__nonClassic { background: url(custom-graphics/SYSOB13/0.png); }
+.Hh3-gop__nonClassic:active:hover { background: url(custom-graphics/SYSOB13/1.png) !important; }
+html .Hh3-gop__nonClassic.Hh3-btn_cur { background: url(custom-graphics/SYSOB13/2.png); }
+
+.Hh3-gop__bgm0,
+.Hh3-gop__bgm1,
+.Hh3-gop__bgm2,
+.Hh3-gop__bgm3,
+.Hh3-gop__bgm4,
+.Hh3-gop__bgm5,
+.Hh3-gop__bgm6,
+.Hh3-gop__bgm7,
+.Hh3-gop__bgm8,
+.Hh3-gop__bgm9 {
+  bottom: 92px;
+}
+
+.Hh3-gop__sfx0,
+.Hh3-gop__sfx1,
+.Hh3-gop__sfx2,
+.Hh3-gop__sfx3,
+.Hh3-gop__sfx4,
+.Hh3-gop__sfx5,
+.Hh3-gop__sfx6,
+.Hh3-gop__sfx7,
+.Hh3-gop__sfx8,
+.Hh3-gop__sfx9 {
+  bottom: 26px;
+}
+
+.Hh3-gop__vol_vol_0:not(.Hh3-btn_cur),
+.Hh3-gop__vol_vol_1:not(.Hh3-btn_cur),
+.Hh3-gop__vol_vol_2:not(.Hh3-btn_cur),
+.Hh3-gop__vol_vol_3:not(.Hh3-btn_cur),
+.Hh3-gop__vol_vol_4:not(.Hh3-btn_cur),
+.Hh3-gop__vol_vol_5:not(.Hh3-btn_cur),
+.Hh3-gop__vol_vol_6:not(.Hh3-btn_cur),
+.Hh3-gop__vol_vol_7:not(.Hh3-btn_cur),
+.Hh3-gop__vol_vol_8:not(.Hh3-btn_cur),
+.Hh3-gop__vol_vol_9:not(.Hh3-btn_cur) {
+  opacity: 0;
+}
+
+.Hh3-gop__vol_vol_0 { left: 29px; }
+.Hh3-gop__vol_vol_1 { left: 48px; }
+.Hh3-gop__vol_vol_2 { left: 67px; }
+.Hh3-gop__vol_vol_3 { left: 86px; }
+.Hh3-gop__vol_vol_4 { left: 105px; }
+.Hh3-gop__vol_vol_5 { left: 124px; }
+.Hh3-gop__vol_vol_6 { left: 143px; }
+.Hh3-gop__vol_vol_7 { left: 162px; }
+.Hh3-gop__vol_vol_8 { left: 181px; }
+.Hh3-gop__vol_vol_9 { left: 200px; }
+
+.Hh3-chkbx .Hh3-btn_id_SYSOPCHK {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.Hh3-chkbx__label {
+  padding: 0 0 0 5px;
+}
+
+.Hh3-gop__movePath,
+.Hh3-gop__heroReminder,
+.Hh3-gop__quickCombat,
+.Hh3-gop__subtitles,
+.Hh3-gop__townOutlines,
+.Hh3-gop_type_map .Hh3-gop__spellAnimation,
+.Hh3-gop__autoCreatures,
+.Hh3-gop__autoSpells,
+.Hh3-gop__autoCatapult,
+.Hh3-gop__autoBallista,
+.Hh3-gop__autoFirstAidTent,
+.Hh3-gop__infoAll,
+.Hh3-gop__infoSpells {
+  left: 246px;
+}
+
+.Hh3-gop__movePath {
+  top: 55px;
+}
+
+.Hh3-gop__heroReminder {
+  top: 87px;
+}
+
+.Hh3-gop__quickCombat {
+  top: 119px;
+}
+
+.Hh3-gop__subtitles {
+  top: 151px;
+}
+
+.Hh3-gop__townOutlines {
+  top: 183px;
+}
+
+.Hh3-gop_type_map .Hh3-gop__spellAnimation {
+  top: 215px;
+}
+
+.Hh3-gop__load,
+.Hh3-gop__restart,
+.Hh3-gop__desktop,
+.Hh3-gop__defaults {
+  right: 135px;
+}
+
+.Hh3-gop__save,
+.Hh3-gop__menu,
+.Hh3-gop__close {
+  right: 24px;
+}
+
+.Hh3-gop__load,
+.Hh3-gop__save {
+  bottom: 141px;
+}
+
+.Hh3-gop__restart,
+.Hh3-gop__menu {
+  bottom: 82px;
+}
+
+.Hh3-gop__desktop,
+.Hh3-gop__close,
+.Hh3-gop__defaults {
+  bottom: 24px;
+}
+
+.Hh3-tavern__thieves,
+.Hh3-gop .Hh3-btn_dis {
+  filter: grayscale(1);
+  opacity: .75;
+}
+
+.Hh3-gop_type_combat {
+  top: 84px;
+}
+
+.Hh3-gop__t-cauto,
+.Hh3-gop__t-cinfo {
+  width: 210px;
+  left: auto;
+  right: 23px;
+}
+
+.Hh3-gop__t-canim {
+  top: 205px;
+}
+
+.Hh3-gop__t-cinfo {
+  bottom: 157px;
+}
+
+.Hh3-gop__grid,
+.Hh3-gop__move,
+.Hh3-gop__hover,
+.Hh3-gop_type_combat .Hh3-gop__spellAnimation {
+  left: 24px;
+}
+
+.Hh3-gop__grid {
+  top: 55px;
+}
+
+.Hh3-gop__move {
+  top: 88px;
+}
+
+.Hh3-gop__hover {
+  top: 122px;
+}
+
+.Hh3-gop_type_combat .Hh3-gop__spellAnimation {
+  top: 154px;
+}
+
+.Hh3-gop__animationSpeed1,
+.Hh3-gop__animationSpeed2,
+.Hh3-gop__animationSpeed3 {
+  top: 225px;
+}
+
+.Hh3-gop__autoCreatures {
+  top: 84px;
+}
+
+.Hh3-gop__autoSpells {
+  top: 114px;
+}
+
+.Hh3-gop__autoCatapult {
+  top: 144px;
+}
+
+.Hh3-gop__autoBallista {
+  top: 174px;
+}
+
+.Hh3-gop__autoFirstAidTent {
+  top: 204px;
+}
+
+.Hh3-gop__infoAll {
+  top: 283px;
+}
+
+.Hh3-gop__infoSpells {
+  top: 313px;
+}
+
+/** Tavern **/
+.Hh3-tavern {
+  position: absolute;
+  left: 202px;
+  top: 48px;
+  text-align: center;
+}
+
+.Hh3-tavern > * {
+  position: absolute;
+}
+
+.Hh3-tavern__name {
+  top: 20px;
+  width: 100%;
+}
+
+.Hh3-tavern__anim {
+  top: 56px;
+  left: 70px;
+  width: 256px;
+  height: 120px;
+  background: url(../BIK-APNG/TAVERN-z2.png);
+}
+
+.Hh3-tavern__rumor-w {
+  left: 32px;
+  top: 189px;
+  width: 330px;
+}
+
+.Hh3-tavern__t-hire,
+.Hh3-tavern__hire,
+.Hh3-tavern__heroes {
+  left: 32px;
+  width: 227px;
+}
+
+.Hh3-tavern__t-hire {
+  bottom: 209px;
+}
+
+.Hh3-tavern__hire {
+  top: 374px;
+  white-space: pre-wrap;
+}
+
+.Hh3-tavern__heroes {
+  bottom: 137px;
+}
+
+.Hh3-tavern__heroes div {
+  display: inline-block;
+}
+
+.Hh3-tavern .Hbit-ol__item + .Hbit-ol__item {
+  margin-left: 30px;
+}
+
+.Hh3-tavern .Hbit-ol__item_cur .Hh3-ol__face {
+  outline-width: 2px;
+  outline-offset: 0;
+}
+
+.Hh3-tavern__cost {
+  right: 61px;
+  bottom: 168px;
+}
+
+.Hh3-tavern .Hh3-bit-res_empty,
+.Hh3-tavern .Hh3-def_frame_SMALRES-0-6 {  /* TPTAVERN.png already has this icon */
+  display: none;
+}
+
+.Hh3-tavern__buy {
+  right: 27px;
+  bottom: 95px;
+}
+
+.Hh3-tavern__thieves {
+  left: 22px;
+  bottom: 44px;
+}
+
+.Hh3-tavern__close {
+  right: 21px;
+  bottom: 46px;
+}
+
+/** Combat results **/
+.Hh3-cm-res {
+  position: absolute;
+  left: 165px;
+  top: 19px;
+  text-align: center;
+}
+
+.Hh3-cm-res > * {
+  position: absolute;
+}
+
+.Hh3-cm-res__t-my,
+.Hh3-cm-res__t-enemy {
+  top: 117px;
+  width: 78px;
+}
+
+.Hh3-cm-res__t-my {
+  left: 20px;
+}
+
+.Hh3-cm-res__t-enemy {
+  right: 22px;
+}
+
+.Hh3-cm-res__t-outcome {
+  left: 70px;
+  top: 236px;
+  width: 328px;
+}
+
+.Hh3-cm-res__t-exp {
+  margin: 1.4em 0 0;
+}
+
+.Hh3-cm-res__t-cas {
+  top: 290px;
+  width: 100%;
+  /* SoD is using font color #efd77b, we're using text2's #efd67b. */
+}
+
+.Hh3-cm-res__t-cas-a {
+  top: 320px;
+  width: 100%;
+}
+
+.Hh3-cm-res__t-cas-b {
+  top: 412px;
+  width: 100%;
+}
+
+.Hh3-cm-res__myObjects,
+.Hh3-cm-res__enemyObjects {
+  top: 38px;
+}
+
+.Hh3-cm-res__myObjects {
+  left: 89px;
+}
+
+.Hh3-cm-res__enemyObjects {
+  right: 89px;
+}
+
+.Hh3-cm-res__myObjectsFace,
+.Hh3-cm-res__enemyObjectsFace {
+  top: 38px;
+}
+
+.Hh3-cm-res__myObjectsFace {
+  left: 21px;
+}
+
+.Hh3-cm-res__enemyObjectsFace {
+  right: 20px;
+}
+
+.Hh3-cm-res__attackers,
+.Hh3-cm-res__defenders {
+  width: 388px;
+  left: 40px;
+}
+
+.Hh3-cm-res__attackers {
+  bottom: 164px;
+}
+
+.Hh3-cm-res__defenders {
+  bottom: 67px;
+}
+
+.Hh3-cm-res__casi {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.Hh3-cm-res__casi-c {
+  margin-top: 7px;
+}
+
+.Hh3-cm-res__casin {
+  position: relative;
+  top: -28px;
+}
+
+.Hh3-cm-res__cas_empty_no .Hh3-cm-res__casin {
+  display: none;
+}
+
+.Hh3-cm-res__hide,
+.Hh3-cm-res__close {
+  bottom: 24px;
+}
+
+.Hh3-cm-res__hide {
+  left: 21px;
+}
+
+.Hh3-cm-res__close {
+  right: 21px;
+}
+
+.Hh3-cm-res_anim {
+  top: 70px;
+  left: 107px;
+  width: 256px;
+  height: 120px;
+}
+
+.Hh3-cm-res_anim_myHeroDefeat {
+  animation: step-end both 3.533333s Hh3-myHeroDefeat;  /* 53 frames, 15 FPS */
+}
+@keyframes Hh3-myHeroDefeat {
+  from { background: url(../BIK-APNG/LBSTART-z2.png); }
+  to   { background: url(../BIK-APNG/LBLOOP-z2.png); }
+}
+
+.Hh3-cm-res_anim_myHeroWin {
+  background: url(../BIK-APNG/WIN3-z2.png); /* 73 frames, 15 FPS */
+}
+
+.Hh3-cm-res_anim_myTownWin {
+  animation: step-end both 6.6s Hh3-myTownWin;  /* 99 frames, 15 FPS */
+}
+@keyframes Hh3-myTownWin {
+  from { background: url(../BIK-APNG/DEFENDALL-z2.png); }
+  to   { background: url(../BIK-APNG/DEFENDLOOP-z2.png); }
+}
+
+.Hh3-cm-res_anim_myTownLose {
+  animation: step-end both 11.666667s Hh3-myTownLose;  /* 175 frames, 15 FPS */
+}
+@keyframes Hh3-myTownLose {
+  from { background: url(../BIK-APNG/LOSECSTL-z2.png); }
+  to   { background: url(../BIK-APNG/LOSECSLP-z2.png); }
+}
+
+.Hh3-cm-res_anim_myHeroRetreat {
+  animation: step-end both 2.666667s Hh3-myHeroRetreat;  /* 40 frames, 15 FPS */
+}
+@keyframes Hh3-myHeroRetreat {
+  from { background: url(../BIK-APNG/RTSTART-z2.png); }
+  to   { background: url(../BIK-APNG/RTLOOP-z2.png); }
+}
+
+.Hh3-cm-res_anim_myHeroSurrender {
+  background: url(../BIK-APNG/SURRENDER-z2.png); /* 100 frames, 15 FPS */
+}
+
+.Hh3-cm-res__art {
+  display: inline-block;
+  margin: 10px 15px;
+  width: 78px;
+  vertical-align: top;
+}
+
+/** Level-Up **/
+.Hh3-levelup {
+  position: absolute;
+  left: 205px;
+  top: 65px;
+  text-align: center;
+}
+
+.Hh3-levelup > * {
+  position: absolute;
+}
+
+.Hh3-levelup__name {
+  top: 24px;
+  width: 100%;
+}
+
+.Hh3-levelup__level {
+  top: 153px;
+  width: 100%;
+}
+
+.Hh3-levelup__face {
+  left: 171px;
+  top: 66px;
+}
+
+.Hh3-levelup__statIcon {
+  left: 174px;
+  top: 190px;
+}
+
+.Hh3-levelup__t-stat {
+  top: 244px;
+  width: 100%;
+}
+
+.Hh3-levelup__skills {
+  top: 316px;
+  width: 100%;
+}
+
+.Hcx_classic_no .Hh3-levelup__skills {
+  margin-top: -25px;
+}
+
+.Hh3-levelup__skills .Hbit-ol__item {
+  display: inline-block;
+  /* margin-left/right depend on .Hh3-levelup__t-or's margin-right. */
+  margin: 10px 23px;
+}
+
+.Hh3-levelup__face {
+  margin: 0 auto 10px;
+}
+
+.Hh3-levelup__t-or {
+  float: right;
+  margin: -68px -30px 0 13px;
+}
+
+.Hbit-ol__item:last-child .Hh3-levelup__t-or {
+  display: none;
+}
+
+.Hh3-levelup__skills .Hbit-ol__item_cur .Hh3-levelup__face {
+  outline: 1px solid #efd77b;
+}
+
+.Hh3-levelup__close {
+  right: 25px;
+  bottom: 27px;
+}
+
+/** Spell Book **/
+.Hh3-spbk {
+  position: absolute;
+  left: 90px;
+  top: 2px;
+}
+
+.Hh3-spbk > * {
+  position: absolute;
+}
+
+.Hh3-spbk__name {
+  top: 24px;
+  width: 100%;
+}
+
+.Hh3-spbk__turn-anim {
+  left: -999px;  /* initially hidden */
+  top: 14px;
+  width: 592px;
+  height: 544px;
+  animation: step-end 0.6s;  /* 9 frames, 15 FPS */
+  z-index: 2;
+}
+.Hh3-spbk__turn-anim_dir_left { animation-name: Hh3-spbkLeft; }
+.Hh3-spbk__turn-anim_dir_right { animation-name: Hh3-spbkRight; }
+@keyframes Hh3-spbkLeft {
+  from { background: url(../BIK-APNG/PGTRNLFT-z2.png); left: 13px; }
+}
+@keyframes Hh3-spbkRight {
+  from { background: url(../BIK-APNG/PGTRNRGH-z2.png); left: 13px; }
+}
+
+.Hh3-spbk__tabs {
+  top: 88px;
+  right: 13px;
+}
+
+.Hh3-spbk__tab-any,
+.Hh3-spbk__tab-earth,
+.Hh3-spbk__tab-water,
+.Hh3-spbk__tab-fire,
+.Hh3-spbk__tab-air {
+  right: 14px;
+  width: 82px;
+  height: 40px;
+}
+
+.Hh3-spbk__page-left,
+.Hh3-spbk__page-right,
+.Hh3-spbk__tab-any,
+.Hh3-spbk__tab-earth,
+.Hh3-spbk__tab-water,
+.Hh3-spbk__tab-fire,
+.Hh3-spbk__tab-air,
+.Hh3-spbk__combat,
+.Hh3-spbk__map,
+.Hh3-spbk__close {
+  z-index: 1;
+}
+
+.Hh3-spbk__tab-air { top: 92px; }
+.Hh3-spbk__tab-earth { top: 147px; }
+.Hh3-spbk__tab-fire { top: 206px; }
+.Hh3-spbk__tab-water { top: 268px; }
+.Hh3-spbk__tab-any { top: 328px; }
+
+.Hh3-spbk__combat,
+.Hh3-spbk__map,
+.Hh3-spbk__close {
+  bottom: 145px;
+  width: 40px;
+  height: 46px;
+}
+
+.Hh3-spbk__combat { left: 218px; }
+.Hh3-spbk__map { left: 352px; }
+.Hh3-spbk__close { left: 475px; }
+
+.Hh3-spbk__spellPoints {
+  width: 28px;
+  left: 420px;
+  bottom: 160px;
+  text-align: center;
+}
+
+.Hh3-spbk__page-left {
+  top: 77px;
+  left: 97px;
+}
+
+.Hh3-spbk__page-right {
+  top: 74px;
+  right: 104px;
+}
+
+.Hh3-spbk__logo {
+  top: 74px;
+  left: 117px;
+}
+
+.Hh3-spbk__spells {
+  left: 117px;
+  top: 93px;
+  width: 416px;
+  height: 320px;
+  column-count: 2;
+  column-fill: auto;
+    /* XXX auto is supposed to fill columns as they go but as of now Chrome has buggy support for this - when there are 8 visible spells, it shows them in columns of 4 rather than two columns 6+2. I say "buggy" because if you add padding-bottom: 100px to the 6th spell and then change 100px to 0px, Chrome rebalances columns to be exactly 6+2. Hopefully this will be fixed soon and we won't have to contrive a workaround. */
+}
+
+.Hh3-spbki {
+  position: relative;
+  display: inline-block;
+  box-sizing: content-box;
+  width: 78px;  /* width of SPLEVW.DEF */
+  padding: 0 8px 0 0;
+  margin-top: -4px;
+  text-align: center;
+}
+
+.Hh3-spbki_pad {
+  padding-top: 96px;
+}
+
+.Hh3-spbki:not(.Hh3-spbki_spell_2):not(.Hh3-spbki_spell_19):not(.Hh3-spbki_spell_37):not(.Hh3-spbki_spell_35):not(.Hh3-spbki_spell_47):not(.Hh3-spbki_spell_16):not(.Hh3-spbki_spell_18):not(.Hh3-spbki_spell_17):not(.Hh3-spbki_spell_15):not(.Hh3-spbki_spell_57):not(.Hh3-spbki_spell_28):not(.Hh3-spbki_spell_41):not(.Hh3-spbki_spell_43):not(.Hh3-spbki_spell_58):not(.Hh3-spbki_spell_51):not(.Hh3-spbki_spell_56):not(.Hh3-spbki_spell_53):not(.Hh3-spbki_spell_49):not(.Hh3-spbki_spell_48):not(.Hh3-spbki_spell_44):not(.Hh3-spbki_spell_30):not(.Hh3-spbki_spell_33):not(.Hh3-spbki_spell_31):not(.Hh3-spbki_spell_32):not(.Hh3-spbki_spell_27):not(.Hh3-spbki_spell_55):not(.Hh3-spbki_spell_46):not(.Hh3-spbki_spell_42):not(.Hh3-spbki_spell_61):not(.Hh3-spbki_spell_52):not(.Hh3-spbki_spell_54):not(.Hh3-spbki_spell_50):not(.Hh3-spbki_spell_45):not(.Hh3-spbki_spell_21):not(.Hh3-spbki_spell_20):not(.Hh3-spbki_spell_22):not(.Hh3-spbki_spell_23):not(.Hh3-spbki_spell_26):not(.Hh3-spbki_spell_24):not(.Hh3-spbki_spell_25):not(.Hh3-spbki_spell_69):not(.Hh3-spbki_spell_67):not(.Hh3-spbki_spell_66):not(.Hh3-spbki_spell_68):not(.Hh3-spbki_spell_34) {
+  opacity: .5;    /* indicate unsupported spells */
+}
+
+.Hh3-spbki * {
+  text-shadow: none;
+  letter-spacing: 0;
+}
+
+.Hh3-spbki__mastery,
+.Hh3-spbki__face {
+  position: absolute;
+}
+
+.Hh3-spbki__name {
+  padding-top: 65px;
+  /* SoD is using font color #efd77b, we're using text2's #efd67b. */
+}
+
+.Hh3-menu__text12.Hh3-spbki__spellPoints,
+.Hh3-menu__text12.Hh3-spbki__level {
+  color: #efba21;
+}
+
+/** Hero Info **/
+.Hh3-hinfo {
+  position: absolute;
+}
+
+.Hh3-hinfo > * {
+  position: absolute;
+}
+
+.Hh3-hinfo__t-atk,
+.Hh3-hinfo__t-def,
+.Hh3-hinfo__t-pow,
+.Hh3-hinfo__t-knw,
+.Hh3-hinfo__attack,
+.Hh3-hinfo__defense,
+.Hh3-hinfo__spellPower,
+.Hh3-hinfo__knowledge {
+  top: 92px;
+  width: 70px;
+  text-align: center;
+}
+
+.Hh3-hinfo__attack,
+.Hh3-hinfo__t-atk {
+  left: 18px;
+}
+
+.Hh3-hinfo__defense,
+.Hh3-hinfo__t-def {
+  left: 88px;
+}
+
+.Hh3-hinfo__spellPower,
+.Hh3-hinfo__t-pow {
+  left: 157px;
+}
+
+.Hh3-hinfo__knowledge,
+.Hh3-hinfo__t-knw {
+  left: 227px;
+}
+
+.Hh3-hinfo__t-spec,
+.Hh3-hinfo__spec,
+.Hh3-hinfo__t-exp,
+.Hh3-hinfo__experience {
+  left: 68px;
+}
+
+.Hh3-hinfo__t-spec {
+  top: 185px;
+  /* SoD is using font color #efd77b, we're using text2's #efd67b for t-spec/t-exp/t-sp. */
+}
+
+.Hh3-hinfo__spec {
+  top: 205px;
+}
+
+.Hh3-hinfo__t-sp,
+.Hh3-hinfo__t-exp {
+  top: 233px;
+}
+
+.Hh3-hinfo__experience,
+.Hh3-hinfo__spellPoints {
+  top: 253px;
+}
+
+.Hh3-hinfo__t-quests,
+.Hh3-hinfo__t-dismiss {
+  top: 431px;
+  width: 50px;
+}
+
+.Hh3-hinfo__t-quests { left: 371px; }
+.Hh3-hinfo__t-dismiss { left: 511px; }
+
+.Hh3-hinfo__face {
+  top: 19px;
+  left: 19px;
+}
+
+.Hh3-hinfo__name,
+.Hh3-hinfo__level {
+  left: 87px;
+  width: 206px;
+  text-align: center;
+}
+
+.Hh3-hinfo__name {
+  top: 30px;
+}
+
+.Hh3-hinfo__level {
+  top: 58px;
+}
+
+.Hh3-hinfo__attackImage,
+.Hh3-hinfo__defenseImage,
+.Hh3-hinfo__spellPowerImage,
+.Hh3-hinfo__knowledgeImage {
+  top: 111px;
+}
+
+.Hh3-hinfo__attackImage { left: 32px; }
+.Hh3-hinfo__defenseImage { left: 102px; }
+.Hh3-hinfo__spellPowerImage { left: 172px; }
+.Hh3-hinfo__knowledgeImage { left: 242px; }
+
+.Hh3-hinfo__attack,
+.Hh3-hinfo__defense,
+.Hh3-hinfo__spellPower,
+.Hh3-hinfo__knowledge {
+  top: 159px;
+}
+
+.Hh3-hinfo__specIcon {
+  left: 18px;
+}
+
+.Hh3-hinfo__experienceImage {
+  left: 19px;
+}
+
+.Hh3-hinfo__specIcon {
+  top: 180px;
+}
+
+.Hh3-hinfo__morale {
+  left: 182px;
+  top: 184px;
+}
+
+.Hh3-hinfo__luck {
+  left: 240px;
+  top: 184px;
+}
+
+.Hh3-hinfo__experienceImage,
+.Hh3-hinfo__spellPointsImage {
+  top: 229px;
+}
+
+.Hh3-hinfo__spellPointsImage {
+  left: 162px;
+}
+
+.Hh3-hinfo__t-sp,
+.Hh3-hinfo__spellPoints {
+  left: 210px;
+}
+
+.Hh3-hinfo__skills {
+  left: 18px;
+  top: 274px;
+  width: 300px;
+}
+
+.Hh3-hinfo__skills .Hbit-ol__item {
+  float: left;
+  width: 143px;
+  margin: 2px 0;
+}
+
+.Hh3-hinfo__skill-face {
+  float: left;
+  margin-right: 6px;
+}
+
+.Hh3-hinfo__skill-mastery {
+  padding: 5px 0;
+}
+
+.Hh3-hinfo__garrison {
+  left: 11px;
+  bottom: 37px;
+}
+
+.Hh3-hinfo__garrison .Hbit-ol__item {
+  margin: 0 4px;
+}
+
+.Hh3-hinfo__split,
+.Hh3-hinfo__groupedFormation {
+  bottom: 35px;
+}
+
+.Hh3-hinfo__tactics,
+.Hh3-hinfo__split {
+  right: 79px;
+}
+
+.Hh3-hinfo__spreadFormation,
+.Hh3-hinfo__groupedFormation {
+  right: 137px;
+}
+
+.Hh3-hinfo__spreadFormation,
+.Hh3-hinfo__tactics {
+  bottom: 71px;
+}
+
+.Hh3-hinfo__log,
+.Hh3-hinfo__dismiss {
+  bottom: 120px;
+}
+
+.Hh3-hinfo__log {
+  left: 315px;
+}
+
+.Hh3-hinfo__dismiss {
+  left: 454px;
+}
+
+.Hh3-hinfo__flag {
+  right: 9px;
+  top: 7px;
+}
+
+.Hh3-hinfo__heroes {
+  right: 12px;
+  top: 33px;
+}
+
+.Hh3-hinfo__heroes .Hbit-ol__item {
+  margin: 22px 0;
+}
+
+.Hh3-hinfo__heroes .Hh3-btn_dis {
+  visibility: hidden;  /* see the comment in source of H3.DOM.UI.HeroInfo */
+}
+
+.Hh3-hinfo__close {
+  right: 10px;
+  bottom: 34px;
+}
+
+.Hh3-hinfo__artifacts {
+  position: absolute;
+  left: 314px;
+  top: 22px;
+}
+
+.Hh3-artifs_equipped > * {
+  position: absolute;
+}
+
+.Hh3-artif_slot_head,
+.Hh3-artif_slot_neck,
+.Hh3-artif_slot_torso {
+  left: 130px;
+}
+
+.Hh3-artif_slot_feet {
+  left: 136px;
+}
+
+.Hh3-artif_slot_rightHand,
+.Hh3-artif_slot_misc1 {
+  left: 4px;
+}
+
+.Hh3-artif_slot_misc5 {
+  left: 2px;
+}
+
+.Hh3-artif_slot_rightRing,
+.Hh3-artif_slot_misc4 {
+  left: 52px;
+}
+
+.Hh3-artif_slot_leftHand {
+  left: 183px;
+}
+
+.Hh3-artif_slot_warMachine1 {
+  left: 185px;
+}
+
+.Hh3-artif_slot_warMachine2,
+.Hh3-artif_slot_warMachine3,
+.Hh3-artif_slot_warMachine4,
+.Hh3-artif_slot_leftRing,
+.Hh3-artif_slot_spellBook {
+  left: 231px;
+}
+
+.Hh3-artif_slot_misc2 {
+  left: 20px;
+}
+
+.Hh3-artif_slot_misc3 {
+  left: 36px;
+}
+
+.Hh3-artif_slot_head,
+.Hh3-artif_slot_warMachine1,
+.Hh3-artif_slot_warMachine2 {
+  top: 0;
+}
+
+.Hh3-artif_slot_rightRing,
+.Hh3-artif_slot_rightHand {
+  top: 39px;
+}
+
+.Hh3-artif_slot_neck {
+  top: 50px;
+}
+
+.Hh3-artif_slot_warMachine3 {
+  top: 46px;
+}
+
+.Hh3-artif_slot_warMachine4 {
+  top: 92px;
+}
+
+.Hh3-artif_slot_torso {
+  top: 101px;
+}
+
+.Hh3-artif_slot_leftRing,
+.Hh3-artif_slot_leftHand {
+  top: 154px;
+}
+
+.Hh3-artif_slot_misc3 {
+  top: 214px;
+}
+
+.Hh3-artif_slot_shoulders {
+  left: 189px;
+  top: 212px;
+}
+
+.Hh3-artif_slot_misc4,
+.Hh3-artif_slot_misc5,
+.Hh3-artif_slot_feet {
+  top: 265px;
+}
+
+.Hh3-artif_slot_misc1 {
+  top: 113px;
+}
+
+.Hh3-artif_slot_misc2 {
+  top: 163px;
+}
+
+.Hh3-artif_slot_spellBook {
+  top: 281px;
+}
+
+.Hh3-artif_empty .Hh3-artif__face {
+  display: none;
+}
+
+.Hh3-artif_moving .Hh3-artif__face {
+  position: fixed;
+  z-index: 2;
+  margin: -22px 0 0 -22px;  /* half size of DEF */
+  pointer-events: none; /* since the movee artifact is hovering under the mouse pointer, all clicks would land on it */
+}
+
+.Hh3-artif_hili {
+  /* Simulating 144th frame in ARTIFACT.DEF. */
+  outline: 1px solid #ffe487;
+  outline-offset: -1px;
+}
+
+.Hcx_classic_yes .Hh3-artifs_backpack .Hh3-artif_hili {
+  outline: none;
+}
+
+.Hh3-artifs_backpack {
+  position: absolute;
+  top: 334px;
+}
+
+.Hh3-artifs_backpack .Hslider__track {
+  overflow: hidden;
+  width: 230px;   /* width of Hh3-artif * 5 */
+  margin: 0 0 -3px 1px;
+}
+
+.Hh3-artifs_backpack .Hslider,
+.Hh3-artifs__backpack-list {
+  white-space: nowrap;
+}
+
+.Hh3-artifs_backpack .Hh3-artif {
+  padding: 0 1px;  /* not using margin because it affects how offsetLeft is calculated */
+}
+
+.Hh3-artif {
+  /* Need explicit size when hili due to face having position: absolute
+    and to be able to click on empty slots. */
+  width: 44px;
+  height: 44px;
+}
+
+/** Hero Trade **/
+.Hh3-htrade,
+.Hh3-htrade > * {
+  position: absolute;
+}
+
+.Hh3-htrade__leftFace,
+.Hh3-htrade__rightFace {
+  top: 13px;
+}
+
+.Hh3-htrade__leftFace {
+  left: 257px;
+}
+
+.Hh3-htrade__rightFace {
+  right: 257px;
+}
+
+.Hh3-htrade__leftName,
+.Hh3-htrade__rightName {
+  top: 18px;
+  width: 200px;
+}
+
+.Hh3-htrade__leftName {
+  text-align: right;
+  left: 44px;
+}
+
+.Hh3-htrade__rightName {
+  right: 45px;
+}
+
+.Hh3-htrade__leftAttack,
+.Hh3-htrade__rightAttack {
+  top: 28px;
+}
+
+.Hh3-htrade__leftDefense,
+.Hh3-htrade__rightDefense {
+  top: 64px;
+}
+
+.Hh3-htrade__leftSpellPower,
+.Hh3-htrade__rightSpellPower {
+  top: 100px;
+}
+
+.Hh3-htrade__leftKnowledge,
+.Hh3-htrade__rightKnowledge {
+  top: 136px;
+}
+
+.Hh3-htrade__leftAttack,
+.Hh3-htrade__leftDefense,
+.Hh3-htrade__leftSpellPower,
+.Hh3-htrade__leftKnowledge,
+.Hh3-htrade__rightAttack,
+.Hh3-htrade__rightDefense,
+.Hh3-htrade__rightSpellPower,
+.Hh3-htrade__rightKnowledge {
+  width: 45px;
+  text-align: center;
+}
+
+.Hh3-htrade__leftAttack,
+.Hh3-htrade__leftDefense,
+.Hh3-htrade__leftSpellPower,
+.Hh3-htrade__leftKnowledge {
+  left: 330px;
+}
+
+.Hh3-htrade__rightAttack,
+.Hh3-htrade__rightDefense,
+.Hh3-htrade__rightSpellPower,
+.Hh3-htrade__rightKnowledge {
+  right: 331px;
+}
+
+.Hcx_classic_yes .Hh3-htrade__rightAttack,
+.Hcx_classic_yes .Hh3-htrade__rightDefense,
+.Hcx_classic_yes .Hh3-htrade__rightSpellPower,
+.Hcx_classic_yes .Hh3-htrade__rightKnowledge {
+  margin-top: -1px;
+}
+
+.Hh3-htrade__attackImage {
+  top: 19px;
+}
+
+.Hcx_classic_yes .Hh3-htrade__attackImage,
+.Hcx_classic_yes .Hh3-htrade__defenseImage,
+.Hcx_classic_yes .Hh3-htrade__spellPowerImage {
+  margin-top: -2px;
+}
+
+.Hh3-htrade__defenseImage {
+  top: 55px;
+}
+
+.Hh3-htrade__spellPowerImage {
+  top: 91px;
+}
+
+.Hh3-htrade__knowledgeImage {
+  top: 125px;
+}
+
+.Hh3-htrade__attackImage,
+.Hh3-htrade__defenseImage,
+.Hh3-htrade__spellPowerImage,
+.Hh3-htrade__knowledgeImage {
+  left: 384px;
+}
+
+.Hh3-htrade__leftLog,
+.Hh3-htrade__rightLog {
+  top: 44px;
+}
+
+.Hh3-htrade__leftSplit,
+.Hh3-htrade__leftLog {
+  left: 10px;
+}
+
+.Hh3-htrade__rightLog {
+  right: 8px;
+}
+
+.Hh3-htrade__leftGarrison,
+.Hh3-htrade__leftSpecIcon {
+  left: 67px;
+}
+
+.Hh3-htrade__rightSpecIcon {
+  right: 210px;
+}
+
+.Hh3-htrade__leftMorale {
+  left: 176px;
+}
+
+.Hh3-htrade__rightMorale {
+  right: 104px;
+}
+
+.Hh3-htrade__leftLuck {
+  left: 212px;
+}
+
+.Hh3-htrade__rightLuck {
+  right: 68px;
+}
+
+.Hh3-htrade__leftLuck,
+.Hh3-htrade__rightLuck,
+.Hh3-htrade__leftSpecIcon,
+.Hh3-htrade__rightSpecIcon,
+.Hh3-htrade__leftMorale,
+.Hh3-htrade__rightMorale,
+.Hh3-htrade__leftSpellPointsImage,
+.Hh3-htrade__rightSpellPointsImage,
+.Hh3-htrade__leftExperienceImage,
+.Hh3-htrade__rightExperienceImage {
+  top: 45px;
+}
+
+.Hh3-htrade__leftExperienceImage {
+  left: 103px;
+}
+
+.Hh3-htrade__rightExperienceImage {
+  right: 175px;
+}
+
+.Hh3-htrade__leftSpellPoints,
+.Hh3-htrade__rightSpellPoints,
+.Hh3-htrade__leftExperience,
+.Hh3-htrade__rightExperience {
+  top: 64px;
+  width: 40px;
+  text-align: center;
+}
+
+.Hh3-htrade__leftExperience {
+  left: 100px;
+}
+
+.Hh3-htrade__rightExperience {
+  right: 170px;
+}
+
+.Hh3-htrade__leftSpellPointsImage {
+  left: 139px;
+}
+
+.Hh3-htrade__rightSpellPointsImage {
+  right: 139px;
+}
+
+.Hh3-htrade__leftSpellPoints {
+  left: 135px;
+}
+
+.Hh3-htrade__rightSpellPoints {
+  right: 135px;
+}
+
+.Hh3-htrade__leftSkills,
+.Hh3-htrade__rightSkills {
+  top: 87px;
+}
+
+.Hh3-htrade__leftSkills .Hbit-ol__item,
+.Hh3-htrade__rightSkills .Hbit-ol__item {
+  display: inline-block;
+  margin: 0 2px;
+}
+
+.Hh3-htrade__skill-mastery,
+.Hh3-htrade__skill-name {
+  display: none;
+}
+
+.Hh3-htrade__leftSkills {
+  left: 28px;
+}
+
+.Hh3-htrade__rightSkills {
+  left: 482px;
+}
+
+.Hh3-htrade__leftGarrison,
+.Hh3-htrade__rightGarrison {
+  top: 131px;
+}
+
+.Hh3-htrade__leftGarrison .Hbit-cr__count,
+.Hh3-htrade__rightGarrison .Hbit-cr__count {
+  text-shadow: none;
+  margin: 0 2px -1px 0;
+  letter-spacing: 0;
+}
+
+.Hh3-htrade__rightGarrison {
+  right: 63px;
+}
+
+.Hh3-htrade__leftSplit,
+.Hh3-htrade__rightSplit {
+  top: 132px;
+}
+
+.Hh3-htrade__rightSplit {
+  right: 12px;
+}
+
+.Hh3-htrade__close {
+  right: 4px;
+  bottom: 3px;
+}
+
+.Hh3-htrade__leftArtifacts,
+.Hh3-htrade__rightArtifacts {
+  position: absolute;
+  top: 180px;
+}
+
+.Hh3-htrade__leftArtifacts {
+  left: 44px;
+}
+
+.Hh3-htrade__rightArtifacts {
+  left: 476px;
+}
+
+.Hh3-htrade .Hh3-artifs_backpack {
+  margin: 1px 0 0 2px;
+}
+
+/* WinLoss */
+.Hh3-am-wal {
+  position: absolute;
+  top: 2em;
+  left: 2em;
+  z-index: 1000;  /* above Windows */
+  background: #000a;
+  color: white;
+  border-radius: .5em;
+  border: .06em solid #bd9439;
+  padding: 1em;
+  text-align: center;
+}
+
+html div.Hh3-am-wal__toggle {
+  display: block;
+  text-align: left;
+  cursor: pointer;
+}
+
+.Hh3-am-wal__toggle:hover {
+  text-decoration: underline;
+}
+
+.Hh3-am-wal_hidden [colspan] ~ *,
+.Hh3-am-wal_hidden tbody {
+  display: none;
+}
+
+.Hh3-am-wal div {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.Hh3-am-wal tbody [colspan] {
+  font-weight: bold;
+  border-bottom: .06em solid gray;
+  padding: .5em 0 .25em;
+  color: #ffe794;
+}
+
+.Hh3-am-wal td,
+.Hh3-am-wal tbody th:first-child {
+  padding: 0 .25em;
+}
+
+.Hh3-am-wal_won_0 {
+  color: red;
+}
+
+.Hh3-am-wal_won_1 {
+  color: lime;
+}
+
+.Hh3-am-wal_imp {
+  border: .06em dashed red;
+}

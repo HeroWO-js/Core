@@ -1,0 +1,41 @@
+.Xt__C > *,
+.Xfilters [name="tag[]"] [value="C"],
+.Xt__ID > *,
+.Xfilters [name="tag[]"] [value="ID"] {
+  background: #fffff2;
+}
+
+.Xt__IC > *,
+.Xfilters [name="tag[]"] [value="IC"],
+.Xt__O > *,
+.Xfilters [name="tag[]"] [value="O"],
+.Xt__RH > *,
+.Xfilters [name="tag[]"] [value="RH"],
+.Xt__R > *,
+.Xfilters [name="tag[]"] [value="R"] {
+  background: #f2f2ff;
+}
+
+.Xt__B > *,
+.Xfilters [name="tag[]"] [value="B"],
+.Xt__I > *,
+.Xfilters [name="tag[]"] [value="I"] {
+  background: #fff2f2;
+}
+
+/* COMPATIBILITY.xxx */
+
+.Xfilters [name="group[]"] [value],
+.Xfilters [name="tag[]"] [value="COMPATIBILITY"] {
+  color: green;
+}
+
+.Xt__COMPATIBILITY > :first-child:before { content: "Unknown/Partial"; }
+
+.Xt__COMPATIBILITY.Xtask_prio_high > :first-child { background: green; }
+.Xt__COMPATIBILITY.Xtask_prio_high > :first-child:before { content: "Done"; }
+.Xt__COMPATIBILITY.Xtask_prio_high > :last-child  { border-right-color: green; }
+
+.Xt__COMPATIBILITY.Xtask_prio_low > :first-child { background: maroon; }
+.Xt__COMPATIBILITY.Xtask_prio_low > :first-child:before { content: "Not Done"; }
+.Xt__COMPATIBILITY.Xtask_prio_low > :last-child  { border-right-color: maroon; }

@@ -1,0 +1,25 @@
+[submodule "client/nodash"]
+	path = client/nodash
+	url = https://github.com/ProgerXP/NoDash.git
+[submodule "client/sqimitive"]
+	path = client/sqimitive
+	url = https://github.com/ProgerXP/Sqimitive.git
+[submodule "client/PathAnimator"]
+	path = client/PathAnimator
+	url = https://github.com/yairEO/pathAnimator.git
+[submodule "client/r.js"]
+	path = client/r.js
+	url = https://github.com/requirejs/r.js.git
+	shallow = 1
+[submodule "databank/h3m2json"]
+	path = databank/h3m2json
+	url = https://github.com/HeroWO-js/h3m2json.git
+[submodule "noXXXep"]
+	path = noXXXep
+	url = https://github.com/ProgerXP/noXXXep.git
+[submodule "Phiws"]
+	path = Phiws
+	url = https://github.com/ProgerXP/Phiws.git
+[submodule "source-map"]
+	path = source-map
+	url = git@github.com:mozilla/source-map.git
