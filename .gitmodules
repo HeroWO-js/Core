@@ -22,4 +22,4 @@
 	url = https://github.com/ProgerXP/Phiws.git
 [submodule "source-map"]
 	path = source-map
-	url = git@github.com:mozilla/source-map.git
+	url = https://github.com/mozilla/source-map.git
