@@ -47,27 +47,30 @@ if (is_dir($bmpPath)) {
     if (!strcasecmp(strrchr($file, '.'), '.bmp')) {
       if ($i % 50 == 0) { echo ++$i, " / ", count($files), PHP_EOL; }
       $id = substr($file, 0, -4);
+      // H3bitmap.lod uses inconsistent casing across different editions;
+      // e.g. all caps in US-SoD but IntroRm2.bmp (among others) in RU-Complete.
+      $norm = strtoupper($id);
 
       $ims = [];
       // Default (non-recolored) image is still produced for use in scenarios
       // requiring no specific player version.
-      $ims[$id] = $im = imagecreatefrombmp("$bmpPath/$file");
+      $ims[''] = $im = imagecreatefrombmp("$bmpPath/$file");
 
       if ($pal and isRecolorableBMP($pal['blue'], $im)) {
         foreach ($pal as $player => $colors) {
-          $ims["$id-$player"] = recolorBMP($colors, imageclone($im));
-          $css .= ".Hrecolor_$player .Hh3-bmp_id_$id {\n".
+          $ims["-$player"] = recolorBMP($colors, imageclone($im));
+          $css .= ".Hrecolor_$player .Hh3-bmp_id_$norm {\n".
                   "  background-image: url($id-$player.png);\n".
                   "}\n";
         }
       }
 
-      foreach ($ims as $id => $im) {
-        list($w, $h) = processBMP($im, "$outPath/$id.png");
+      foreach ($ims as $suffix => $im) {
+        list($w, $h) = processBMP($im, "$outPath/$id$suffix.png");
         imagedestroy($im);
 
-        $css .= ".Hh3-bmp_id_$id {\n".
-                "  background-image: url($id.png);\n".
+        $css .= ".Hh3-bmp_id_$norm$suffix {\n".
+                "  background-image: url($id$suffix.png);\n".
                 "  width: {$w}px;\n".
                 "  height: {$h}px;\n".
                 "}\n";

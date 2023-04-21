@@ -243,7 +243,7 @@ foreach ($towns as $town => $townOverrides) {
 $baseChances = null;
 
 // XXX=C validate actually generated Effects against % in BALLIST.TXT
-foreach (csvFile("$txtPath/BALLIST.TXT") as $line) {
+foreach (csvFile($options, 'BALLIST.TXT') as $line) {
   $chances = $damages = [];
 
   // Shots and canControl are hardcoded in databank-skills.php.

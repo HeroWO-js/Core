@@ -17,11 +17,11 @@ foreach ($objects as $id => $obj) {
   ${"c_{$idName}_$obj->subclass"}[] = $id;
 }
 
-$adve = array_column(csvFile("$txtPath/ADVEVENT.TXT", 0, false), 0);
-$genr = array_column(csvFile("$txtPath/GENRLTXT.TXT", 0, false), 0);
-$seer = csvFile("$txtPath/SEERHUT.TXT", 0);
-$mine = array_column(csvFile("$txtPath/MINENAME.TXT", 0), 0);
-$minc = array_column(csvFile("$txtPath/MINEEVNT.TXT", 0), 0);
+$adve = array_column(csvFile($options, 'ADVEVENT.TXT', 0, false), 0);
+$genr = array_column(csvFile($options, 'GENRLTXT.TXT', 0, false), 0);
+$seer = csvFile($options, 'SEERHUT.TXT', 0);
+$mine = array_column(csvFile($options, 'MINENAME.TXT', 0), 0);
+$minc = array_column(csvFile($options, 'MINEEVNT.TXT', 0), 0);
 $spells = json_decode(file_get_contents("$outPath/spellsID.json"), true);
 $skills = json_decode(file_get_contents("$outPath/skillsID.json"), true);
 $skillStore = ObjectStore::fromFile("$outPath/skills.json");

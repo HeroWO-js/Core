@@ -47,6 +47,7 @@ $o = [
   'audioPaths' => [],
   'audioUrlPrefix' => '',
   'version' => '',
+  'charset' => 'cp1250',
   'targets' => [],
 
   // Written to constants.json in addition to const-s of StoredObject classes.
@@ -291,6 +292,9 @@ function databankTakeOver(array $argv) {
         case '-v':
           $o['version'] = array_shift($argv);
           break;
+        case '-s':
+          $o['charset'] = array_shift($argv);
+          break;
         default:
           throw new Exception("Invalid -option: $arg.");
       }
@@ -325,6 +329,7 @@ Optional options:
   -au URL         as -du but for all -a
   -v VERSION      override constants.json[version]; use when new databank is a
                   fixed or upgraded but compatible variant of an earlier VERSION
+  -s CHARSET      iconv charset for TXTs (e.g. cp1251 for Cyrillic)
 
 output/ may be followed by targets to process (all processed by default):
   $allTargets
@@ -589,11 +594,11 @@ function write_classes(array $options) {
   rewind($handle);
 
   $dwellingNames = [
-    17 => listFile("$txtPath/CRGEN1.TXT"),
-    20 => listFile("$txtPath/CRGEN4.TXT"),
+    17 => listFile($options, 'CRGEN1.TXT'),
+    20 => listFile($options, 'CRGEN4.TXT'),
   ];
 
-  $objectNames = listFile("$txtPath/OBJNAMES.TXT", "\t");
+  $objectNames = listFile($options, 'OBJNAMES.TXT', "\t");
   $animations = ObjectStore::fromFile("$outPath/animations.json");
   $animationToID = json_decode(file_get_contents("$outPath/animationsID.json"), true);
   $objects = [];
@@ -802,7 +807,7 @@ function write_classes(array $options) {
     3 => 'COBBRD',  // 3  Cobblestone
   ];
 
-  $terrname = listFile("$txtPath/TERRNAME.TXT", "\t");
+  $terrname = listFile($options, 'TERRNAME.TXT', "\t");
   $passableSchema = (new Passable)->schema();
 
   foreach (['terrain', 'river', 'road'] as $type) {
@@ -1067,14 +1072,14 @@ function write_misc(array $options) {
   file_put_contents("$outPath/constants.json", encodeJSON($constants));
 
   // Texts for signs (class 91, AVXsn???.def). Support markup.
-  $signs = listFile("$txtPath/RANDSIGN.TXT", "\t");
+  $signs = listFile($options, 'RANDSIGN.TXT', "\t");
   foreach ($signs as &$ref) { $ref .= '`{Audio XXX=ID`}'; }
   file_put_contents("$outPath/randomSigns.json", encodeJSON($signs));
 
-  $rumors = array_column(csvFile("$txtPath/RANDTVRN.TXT"), 0);
+  $rumors = array_column(csvFile($options, 'RANDTVRN.TXT'), 0);
   file_put_contents("$outPath/randomRumors.json", encodeJSON($rumors));
 
-  $players = listFile("$txtPath/PLCOLORS.TXT", "\t");
+  $players = listFile($options, 'PLCOLORS.TXT', "\t");
   $image38 = ['R', 'B', 'Y', 'G', 'O', 'P', 'T', 'S'];
   foreach ($players as $id => &$ref) {
     $ref = new Player([
@@ -1189,10 +1194,10 @@ SHROUD;
   $columns = $edge = [];
 
   foreach (explode("\n", $shroud) as $line) {
-    if (trim($line, ' -') === '') {
+    if (trim($line, " -\r") === '') {
       continue;
     } elseif (!$columns) {
-      $columns = preg_split('/\\s+/', $line, 10, PREG_SPLIT_OFFSET_CAPTURE);
+      $columns = preg_split('/\\s+/', rtrim($line), 10, PREG_SPLIT_OFFSET_CAPTURE);
       array_shift($columns);
     } else {
       $values = ['oddX' => '*', 'oddY' => '*'];
@@ -2209,7 +2214,7 @@ function write_artifactsID(array $options) {
 
   Artifact::unrollKeys('cost', $constants['resources'], 'intval');
 
-  $handle = fopen("$txtPath/ARTRAITS.TXT", 'rb');
+  $handle = fopenTXT($options, 'ARTRAITS.TXT');
   $artifacts = [];
 
   // 'S' evaluates to false - expected.
@@ -2250,7 +2255,7 @@ function write_artifacts(array $options) {
 
   extract(require(__DIR__.'/databank-artifacts.php'), EXTR_SKIP);
 
-  $textHandle = fopen("$txtPath/ARTEVENT.TXT", 'rb');
+  $textHandle = fopenTXT($options, 'ARTEVENT.TXT');
   $backpack = nameToID("$outPath/artifactSlots", 'backpack');
 
   foreach ($artifacts as $id => $obj) {
@@ -2258,7 +2263,7 @@ function write_artifacts(array $options) {
     if (in_array($obj->name, $notTradableArtifact)) {
       $globalStaticEffects[] = H3Effect::fromShort(['artifactTrade', [array_search('const', H3Effect::operation), false], 'ifArtifact' => $id, 'source' => array_search('initial', H3Effect::source)], [], ['priority' => array_search('initial', H3Effect::priority)]);
     }
-    $obj->encounterText = trim(fgetcsv($textHandle, 0, "\t")[0]);
+    $obj->encounterText = readCSV($textHandle, [], 0)[0];
     $obj->icon = $id;
     $obj->combat = $combatOfArtifact[$obj->name] ?? null;
     empty($obj->combat['destroyArtifact']) or $obj->combat['destroyArtifact'] = $id;
@@ -2271,7 +2276,7 @@ function write_artifacts(array $options) {
   $chances = array_fill_keys(array_keys(array_filter($artifacts, function ($obj) use ($noChanceOfArtifact) { return !in_array($obj->name, $noChanceOfArtifact); })), $constants['multiplier']);
   $globalStaticEffects[] = H3Effect::fromShort(['artifactChance', [array_search('const', H3Effect::operation), $chances], 'source' => array_search('initial', H3Effect::source)], [], ['priority' => array_search('initial', H3Effect::priority)]);
 
-  $adve = array_column(csvFile("$txtPath/ADVEVENT.TXT", 0), 0);
+  $adve = array_column(csvFile($options, 'ADVEVENT.TXT', 0), 0);
   $spells = ObjectStore::fromFile("$outPath/spells.json");
 
   for ($spell = 0; $spell < $spells->x(); $spell++) {
@@ -2363,7 +2368,7 @@ class Artifact extends StoredEntity {
 function write_artifactSlots(array $options) {
   extract($options, EXTR_SKIP);
 
-  $artifactSlots = listFile("$txtPath/ARTSLOTS.TXT", "\t");
+  $artifactSlots = listFile($options, 'ARTSLOTS.TXT', "\t");
 
   // ARTSLOTS.TXT seems to have wrong order: in ARTRAITS.TXT Misc 5 is
   // after Misc 4, as expected. Having them properly ordered is more pretty anyway.
@@ -2415,12 +2420,12 @@ function write_heroes(array $options) {
     ]),
   ];
 
-  $specHandle = fopen("$txtPath/HEROSPEC.TXT", 'rb');
+  $specHandle = fopenTXT($options, 'HEROSPEC.TXT');
   fgets($specHandle);
   fgets($specHandle);
 
-  $bioHandle = fopen("$txtPath/HEROBIOS.TXT", 'rb');
-  $handle = fopen("$txtPath/HOTRAITS.TXT", 'rb');
+  $bioHandle = fopenTXT($options, 'HEROBIOS.TXT');
+  $handle = fopenTXT($options, 'HOTRAITS.TXT');
   $heroes = [];
 
   while ($line = readCSV($handle, ['Name'])) {
@@ -2448,7 +2453,7 @@ function write_heroes(array $options) {
 
     $obj->class = array_shift($classOfHero);
     $obj->gender = array_shift($genderOfHero);
-    $obj->biography = trim(fgetcsv($bioHandle, 0, "\t")[0]);
+    $obj->biography = readCSV($bioHandle, [], 0)[0];
     $obj->portrait = array_shift($portraitOfHero);
     $obj->combatImage = $combatImageOfHero["$obj->class $obj->gender"];
 
@@ -2468,7 +2473,7 @@ function write_heroes(array $options) {
     }
 
     list($obj->specName, $obj->specLongName, $obj->specDescription)
-      = array_map('trim', fgetcsv($specHandle, 0, "\t"));
+      = readCSV($specHandle, [], 0);
 
     $obj->specIcon = count($heroes);
 
@@ -2604,7 +2609,7 @@ function write_heroClasses(array $options) {
             $inferno, $inferno, $necropolis, $necropolis, $dungeon, $dungeon,
             $stronghold, $stronghold, $fortress, $fortress, $conflux, $conflux];
 
-  $handle = fopen("$txtPath/HCTRAITS.TXT", 'rb');
+  $handle = fopenTXT($options, 'HCTRAITS.TXT');
   $classes = [];
 
   while ($line = readCSV($handle, ['Name'])) {
@@ -2701,7 +2706,7 @@ function write_skills(array $options) {
   Skill::unrollKeys('description', array_flip(Skill::mastery), 'strval');
   Skill::unrollKeys('effects', array_flip(Skill::mastery), '');
 
-  $handle = fopen("$txtPath/SSTRAITS.TXT", 'rb');
+  $handle = fopenTXT($options, 'SSTRAITS.TXT');
   $skills = [];
 
   while ($line = readCSV($handle, ['Name'])) {
@@ -2785,7 +2790,7 @@ function write_spells(array $options) {
     'Dispel Helpful Spells' => 'dispelHelpful',
   ];
 
-  $handle = fopen("$txtPath/SPTRAITS.TXT", 'rb');
+  $handle = fopenTXT($options, 'SPTRAITS.TXT');
   $spells = $chances = [];
 
   while ($line = readCSV($handle, ['Name', 'Adventure Spells', 'Combat Spells', 'Creature Abilities'])) {
@@ -3135,8 +3140,8 @@ function write_towns(array $options) {
     [$constants['resources']['mercury']],   // Conflux
   ];
 
-  $types = listFile("$txtPath/TOWNTYPE.TXT", "\t");
-  $names = listFile("$txtPath/TOWNNAME.TXT", "\t");
+  $types = listFile($options, 'TOWNTYPE.TXT', "\t");
+  $names = listFile($options, 'TOWNNAME.TXT', "\t");
   $towns = [];
 
   foreach ($types as $id => $name) {
@@ -3207,12 +3212,21 @@ function write_creaturesID(array $options) {
 
   Creature::unrollKeys('cost', $constants['resources'], 'intval');
 
-  $handle = fopen("$txtPath/CRTRAITS.TXT", 'rb');
+  $handle = fopenTXT($options, 'CRTRAITS.TXT');
   $creatures = [];
 
-  while ($line = readCSV($handle, ['Name', 'Singular'])) {
+  while ($line = readCSV($handle, ['Name'])) {
+    if ($line[0] === 'Singular') {
+      for ($plurals = 0; !strncmp($line[$plurals + 2], 'Plural', 6); $plurals++) ;
+      continue;
+    }
     // SoD has a blank line (55th) starting with 35 spaces.
     if (!strlen(trim($line[0]))) { continue; }
+    // Russian version has an extra Plural2 column following Plural.
+    // XXX:I To finish supporting localized HoMM TXTs, must somehow obtain
+    // English names associated with localized entities in order to generate
+    // idName-s (e.g. creaturesID.json).
+    array_splice($line, 1, $plurals);
     array_pop($line);   // attributes, assigned directly
     $obj = new Creature(array_combine(columnsOf(Creature::class, 'abilityText'), $line));
     empty($obj->abilityText) and $obj->abilityText = null;
@@ -3484,7 +3498,7 @@ function write_creatureAnimations(array $options) {
   $animationToID = json_decode(file_get_contents("$outPath/animationsID.json"), true);
   $animations = ObjectStore::fromFile("$outPath/animations.json");
 
-  $handle = fopen("$txtPath/CRANIM.TXT", 'rb');
+  $handle = fopenTXT($options, 'CRANIM.TXT');
   $creatureAnimations = [];
 
   while ($line = readCSV($handle, ['Time between fidgets'])) {
@@ -3627,7 +3641,7 @@ function write_banks(array $options) {
   Bank::unrollKeys('reward', $constants['resources'], 'intval');
   Bank::unrollKeys('artifacts', array_flip(Artifact::rarity), 'intval');
 
-  $handle = fopen("$txtPath/CRBANKS.TXT", 'rb');
+  $handle = fopenTXT($options, 'CRBANKS.TXT');
   $banks = $byLevel = [];
 
   while ($line = readCSV($handle, ['Adventure Object'])) {
@@ -3657,7 +3671,7 @@ function write_banks(array $options) {
   $const = array_search('const', H3Effect::operation);
   $append = array_search('append', H3Effect::operation);
   $randomArray = array_search('randomArray', H3Effect::operation);
-  $adve = array_column(csvFile("$txtPath/ADVEVENT.TXT", 0), 0);
+  $adve = array_column(csvFile($options, 'ADVEVENT.TXT', 0), 0);
   $creatures = ObjectStore::fromFile("$outPath/creatures.json");
 
   $artifacts = [];
@@ -3800,9 +3814,9 @@ function write_buildings(array $options) {
 
   Building::unrollKeys('cost', $constants['resources'], 'intval');
 
-  $neut = csvFile("$txtPath/BLDGNEUT.TXT", 0);
-  $spec = csvFile("$txtPath/BLDGSPEC.TXT", 0);
-  $dwel = csvFile("$txtPath/DWELLING.TXT", 0);
+  $neut = csvFile($options, 'BLDGNEUT.TXT', 0);
+  $spec = csvFile($options, 'BLDGSPEC.TXT', 0);
+  $dwel = csvFile($options, 'DWELLING.TXT', 0);
 
   $buildings = require(__DIR__.'/databank-buildings.php');
   $nameToID = array_keys($buildings);
@@ -4235,6 +4249,14 @@ class CombatLog extends StoredObject {
 
 // --- Functions ---
 
+// Returns a handle for $txtPath/$file with transparent convertion from $charset
+// set up.
+function fopenTXT(array $options, $file) {
+  $handle = fopen("$options[txtPath]/$file", 'rb');
+  stream_filter_append($handle, "convert.iconv.$options[charset].utf-8");
+  return $handle;
+}
+
 // Use this to read SoD's TXT files that have at least 2 columns and may have
 // junk lines (i.e. ones with 0 or 1 columns or headers). A line that starts with
 // empty cell (see e.g. ARTRAITS.TXT) is always considered a header.
@@ -4253,9 +4275,9 @@ function readCSV($handle, array $headers = [], $minLength = 2, $trim = true) {
 }
 
 // Runs readCSV() on the entire file and returns its parsed content.
-function csvFile($file, $minLength = 1, $trim = true) {
+function csvFile(array $options, $file, $minLength = 1, $trim = true) {
   $res = [];
-  $handle = fopen($file, 'rb');
+  $handle = fopenTXT($options, $file);
   while ($line = readCSV($handle, [], $minLength, $trim)) { $res[] = $line; }
   fclose($handle);
   return $res;
@@ -4264,9 +4286,14 @@ function csvFile($file, $minLength = 1, $trim = true) {
 // Returns cleaned lines of a simple (non-CSV) text file.
 //
 // Not trimming \t by default.
-function listFile($file, $trim = '') {
+function listFile(array $options, $file, $trim = '') {
+  $handle = fopenTXT($options, $file);
+  $lines = explode("\n", stream_get_contents($handle));
+  fclose($handle);
+  // Behaviour equals file()'s.
+  end($lines) === '' and array_pop($lines);
   $trim = function ($s) use ($trim) { return trim($s, " \r\n$trim"); };
-  return array_map($trim, file($file, FILE_IGNORE_NEW_LINES));
+  return array_map($trim, $lines);
 }
 
 function removeHeading($str) {

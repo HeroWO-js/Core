@@ -6,7 +6,7 @@ extract($constants['resources']);
 extract(json_decode(file_get_contents("$outPath/townsID.json"), true));
 extract(json_decode(file_get_contents("$outPath/creaturesID.json"), true));
 
-$genr = array_column(csvFile("$txtPath/GENRLTXT.TXT", 0, false), 0);
+$genr = array_column(csvFile($options, 'GENRLTXT.TXT', 0, false), 0);
 $shapes = json_decode(file_get_contents($shapesPath), true);
 
 // Procedure for cross-checking building data:

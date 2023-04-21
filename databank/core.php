@@ -555,6 +555,7 @@ class ObjectStore implements JsonSerializable {
 // Represents a single object residing in an ObjectStore in compact form.
 //
 // JavaScript's ObjectRepresentation is somewhat equivalent to this class. However, this one is oriented at writing new stores, implementing normalization rules and other features.
+#[AllowDynamicProperties]
 abstract class StoredObject implements JsonSerializable {
   // Idempotent transformations applied to properties of this object before their values are put into ObjectStore's layer.
   //
@@ -2706,7 +2707,7 @@ function autoSchema($class, array $options) {
       $types = $lastOType = $skipping = null;
 
       foreach (explode("\n", $comment) as $line) {
-        $line = preg_replace('/^ {4}/u', '', $line, 1, $count);
+        $line = preg_replace('/^ {4}/u', '', rtrim($line), 1, $count);
         if (!$count) {
           continue;
         }

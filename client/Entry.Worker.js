@@ -31,6 +31,7 @@ define(['sqimitive/main', 'Common', 'Context', 'RPC'], function (Sqimitive, Comm
         var locked = lock
         cx.rpcFor(e.data.player)
           .do(e.data.method, e.data.params)
+            .set('errorHandlers', 2)    // silence deferred rethrow()
             .whenComplete(function () {
               if (locked != lock) {
                 return console && console.warn('Worker RPC completed with different lock')

@@ -13,7 +13,7 @@
   $dev = keyValue('production') < 1;
   $minified = (!$dev or array_key_exists('d', $_GET));
 
-  $dev or header('Expires: '.date(DATE_RFC7231, time() + 30));
+  $dev or header('Cache-Control: max-age=30');
 
   // This allows sending  expires max;  in nginx.
   $timeRef = function ($file) use ($databanksURL, $currentDatabank) {

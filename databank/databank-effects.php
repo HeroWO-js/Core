@@ -11,7 +11,7 @@ extract((new Creature)->schema(), EXTR_PREFIX_ALL, 'cr');
 // XXX=C chances of bonuses
 $mul = $constants['multiplier'];
 $monthlyBonuses = $weeklyBonuses = [];
-$handle = fopen("$txtPath/ARRAYTXT.TXT", 'rb');
+$handle = fopenTXT($options, 'ARRAYTXT.TXT');
 $group = null;
 
 while ($line = readCSV($handle, [], 1)) {
