@@ -2942,6 +2942,8 @@ define(['DOM.Common', 'PathAnimator', 'Calculator', 'Effects', 'Map', 'DOM.Slide
         })
       },
 
+      render: '_updateMouseCell',
+
       '+normalize_mouseCreatures': function (res, value) {
         value && (value = this._filterMouseCreatures(value))
         return normalizeCreatureArray(this, value, 'mouseCreatures')
