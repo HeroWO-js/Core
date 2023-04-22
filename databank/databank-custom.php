@@ -5,7 +5,7 @@ $townsID = json_decode(file_get_contents("$outPath/townsID.json"), true);
 
 // XXX+I hide these from H3.DOM.Combat.Queue
 $siegeCreatures = [
-  'Trench' => [
+  'Trench' => [     // XXX localize
     // Trench deals damage direcly, bypassing normal formulas so no attack or absolute is set.
     'damageMin' => 70,
     'damageMax' => 70,

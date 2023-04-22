@@ -12,15 +12,15 @@ $h3Classes = [];    // SoD class => array of AClass->$id
 
 foreach ($objects as $id => $obj) {
   $h3Classes[$obj->class][] = $id;
-  $idName = AClass::makeIdentifier($obj->name);
-  ${"c_$idName"}[] = $id;
-  ${"c_{$idName}_$obj->subclass"}[] = $id;
+  ${"c_$obj->idName"}[] = $id;
+  ${"c_{$obj->idName}_$obj->subclass"}[] = $id;
 }
 
 $adve = array_column(csvFile($options, 'ADVEVENT.TXT', 0, false), 0);
 $genr = array_column(csvFile($options, 'GENRLTXT.TXT', 0, false), 0);
 $seer = csvFile($options, 'SEERHUT.TXT', 0);
-$mine = array_column(csvFile($options, 'MINENAME.TXT', 0), 0);
+$garr = idListFile($options, 'GARRISON.TXT', 'AClass::makeIdentifier');
+$mine = idListFile($options, 'MINENAME.TXT', 'AClass::makeIdentifier');
 $minc = array_column(csvFile($options, 'MINEEVNT.TXT', 0), 0);
 $spells = json_decode(file_get_contents("$outPath/spellsID.json"), true);
 $skills = json_decode(file_get_contents("$outPath/skillsID.json"), true);
@@ -1802,48 +1802,63 @@ return [
   // Sounds according to Sounds.txt.
   'objectOverrides' => $e([
     array_fill_keys($h3Classes[217], [
-      'name' => 'Random Dwelling By Level',
+      'name' => 'Random Dwelling By Level',   // XXX localize
+      'idName' => 'randomDwellingByLevel',
     ]),
     array_fill_keys($h3Classes[218], [
-      'name' => 'Random Dwelling By Town',
+      'name' => 'Random Dwelling By Town',    // XXX localize
+      'idName' => 'randomDwellingByTown',
     ]),
     array_fill_keys($c_mine_0, [
-      'name' => $mine[0],
+      'name' => $mine[0][0],
+      'idName' => $mine[0][1],
       'sound' => 'LOOPLUMB',
     ]),
     array_fill_keys($c_mine_1, [
-      'name' => $mine[1],
+      'name' => $mine[1][0],
+      'idName' => $mine[1][1],
       //'sound' => 'XXX=ID: dbs:',
     ]),
     array_fill_keys($c_mine_2, [
-      'name' => $mine[2],
+      'name' => $mine[2][0],
+      'idName' => $mine[2][1],
       //'sound' => 'XXX=ID:dbs:',
     ]),
     array_fill_keys($c_mine_3, [
-      'name' => $mine[3],
+      'name' => $mine[3][0],
+      'idName' => $mine[3][1],
       'sound' => 'LOOPSULF',
     ]),
     array_fill_keys($c_mine_4, [
-      'name' => $mine[4],
+      'name' => $mine[4][0],
+      'idName' => $mine[4][1],
       'sound' => 'LOOPCRYS',
     ]),
     array_fill_keys($c_mine_5, [
-      'name' => $mine[5],
+      'name' => $mine[5][0],
+      'idName' => $mine[5][1],
       'sound' => 'LOOPGEMP',
     ]),
     array_fill_keys($c_mine_6, [
-      'name' => $mine[6],
+      'name' => $mine[6][0],
+      'idName' => $mine[6][1],
       'sound' => 'LOOPMINE',
     ]),
     array_fill_keys($c_mine_7, [
-      'name' => $mine[7],
+      'name' => $mine[7][0],
+      'idName' => $mine[7][1],
       'sound' => 'LOOPCAVE',
     ]),
-    array_fill_keys($c_garrison_1, [
-      'name' => 'Anti-Magic Garrison',
+    array_fill_keys($c_garrison_0, [
+      'name' => $garr[0][0],
+      'idName' => $garr[0][1],
       //'sound' => 'XXX=ID:dbs:',
     ]),
-    //array_fill_keys($c_garrison_0, ['sound' => 'XXX=ID:dbs:']),
+    array_fill_keys($c_garrison_1, [
+      'name' => $garr[1][0],
+      'idName' => $garr[1][1],
+      //'sound' => 'XXX=ID:dbs:',
+    ]),
     array_fill_keys($c_altarOfAir, ['sound' => 'LOOPAIR']),
     array_fill_keys($c_arena, ['sound' => 'LOOPAREN']),
     array_fill_keys($c_marlettoTower, ['sound' => 'LOOPAREN']),

@@ -37,6 +37,7 @@ $allTargets = [
 $o = [
   // Options that can be overridden via CLI -flags.
   'txtPath' => '',
+  'idTxtPath' => '',
   'pngPath' => '',
   'outPath' => '',
   'shapesPath' => '',
@@ -262,6 +263,9 @@ function databankTakeOver(array $argv) {
         case '-t':
           $o['txtPath'] = array_shift($argv);
           break;
+        case '-ti':
+          $o['idTxtPath'] = array_shift($argv);
+          break;
         case '-d':
           $o['pngPath'] = array_shift($argv);
           break;
@@ -319,6 +323,7 @@ You might need to increase PHP's memory_limit:
   php -d memory_limit=1G databank.php ...
 
 Optional options:
+  -ti DIR         folder with English BMP-TXTs; required if -t holds non-English
   -p              pretty-print produced JSONs; doesn't affect combined.json
   -ts PX          tile size in pixels; default: 32
   -du URL         url() prefix for merged DEF-PNG/*/*.css; relative to databank
@@ -341,8 +346,8 @@ Information about TXT files from SoD:
 | ADVEVENT.TXT | Yes        | Texts for encounters of various map objects
 | ARRAYTXT.TXT | Yes        | Various texts
 | ARTEVENT.TXT | Yes        | Texts for encountering artifacts
-| ARTRAITS.TXT | Yes        | Artifact definitions
-| ARTSLOTS.TXT | Yes        | Texts - names of artifact slots
+| ARTRAITS.TXT | Yes (L)    | Artifact definitions
+| ARTSLOTS.TXT | Yes (L)    | Texts - names of artifact slots
 | BALLIST.TXT  | Yes        | Ballista attack calculation
 | BLDGNEUT.TXT | Yes        | Texts for buildings
 | BLDGSPEC.TXT | Yes        | Texts for buildings
@@ -358,37 +363,37 @@ Information about TXT files from SoD:
 | CMPMOVIE.TXT | No         | Campaign movie names - map finish
 | CMPMUSIC.TXT | No         | Campaign music names
 | CRANIM.TXT   | Yes        | In-combat and Fort creature animation definitions
-| CRBANKS.TXT  | Yes        | Bank building definitions
+| CRBANKS.TXT  | Yes (L)    | Bank building definitions
 | CREDITS.TXT  | No,        | Texts for main menu's Credits screen
 |              | it's used outside of the game subsystem; just copy/pasted it
-| CRGEN1.TXT   | Yes        | Map object names for dwellings of class 17
-| CRGEN4.TXT   | Yes        | ...of class 20
+| CRGEN1.TXT   | Yes (L)    | Map object names for dwellings of class 17
+| CRGEN4.TXT   | Yes (L)    | ...of class 20
 | CRGENERC.TXT | No         | Several names for generic building
-| CRTRAITS.TXT | Yes        | Creature definitions
+| CRTRAITS.TXT | Yes (L)    | Creature definitions
 | DWELLING.TXT | Yes        | Names for buildings that produce creatures
 | EDITOR.TXT   | No         | Map editor texts
 | EDITRCMD.TXT | No         | Map editor texts
-| GARRISON.TXT | No         | Several building names
+| GARRISON.TXT | Yes (L)    | Map object names for Anti-magic/Garrison
 | GENRLTXT.TXT | Yes        | Various texts
 | HALLINFO.TXT | No         | Several text lines
-| HCTRAITS.TXT | Yes        | Hero class definitions
+| HCTRAITS.TXT | Yes (L)    | Hero class definitions
 | HELP.TXT     | No (*)     | Various texts
 | HEROBIOS.TXT | Yes        | Hero biography texts
 | HEROES.TXT   | Yes        | Map object definitions - heroes only
 | HEROSCRN.TXT | No         | Several text lines
 | HEROSPEC.TXT | Yes        | Texts for hero specialties
-| HOTRAITS.TXT | Yes        | Starting hero army definitions
+| HOTRAITS.TXT | Yes (L)    | Starting hero army definitions
 | JKTEXT.TXT   | No         | Several text lines
 | LCDESC.TXT   | No         | Several lose condition texts
 | MINEEVNT.TXT | Yes        | Texts for encountering mines
-| MINENAME.TXT | Yes        | Texts for mine names
+| MINENAME.TXT | Yes (L)    | Texts for mine names
 | MONOLITH.TXT | No (?)     | Something (?) related to teleport stones
 | MOVEMENT.TXT | No (*)     | Hero land and sea movement calculation
 | OBJECTS.TXT  | Yes        | Map object definitions
-| OBJNAMES.TXT | Yes        | Map object names
+| OBJNAMES.TXT | Yes (L)    | Map object names
 | OBJTMPLT.TXT | No         | Dummy map object definitions
 | OVERVIEW.TXT | No         | Several text lines
-| PLCOLORS.TXT | Yes        | Player text names - red, etc.
+| PLCOLORS.TXT | Yes (L)    | Player text names - red, etc.
 | PRISKILL.TXT | No         | Several text lines for each primary skill
 | RAND_TRN.TXT | No         | Random map generator definitions
 | RANDSIGN.TXT | Yes        | Texts for encountering signs
@@ -399,13 +404,13 @@ Information about TXT files from SoD:
 | SEERHUT.TXT  | Yes        | Text for seers' quests and names
 | SERIAL.TXT   | No         | Dummy text lines
 | SKILLLEV.TXT | No         | Several text lines for each skill mastery level
-| SPTRAITS.TXT | Yes        | Spell definitions
-| SSTRAITS.TXT | Yes        | Texts for secondary skill names and descriptions
+| SPTRAITS.TXT | Yes (L)    | Spell definitions
+| SSTRAITS.TXT | Yes (L)    | Texts for secondary skill names and descriptions
 | TCOMMAND.TXT | No         | Several text lines
 | TENTCOLR.TXT | No (*)     | Several text lines for each Border Guard color
-| TERRNAME.TXT | Yes        | Map terrain text names - Dirt, etc.
+| TERRNAME.TXT | Yes (L)    | Map terrain text names - Dirt, etc.
 | TOWNNAME.TXT | Yes        | Random town names, in groups of 16
-| TOWNTYPE.TXT | Yes        | Texts for town type titles - Castle, etc.
+| TOWNTYPE.TXT | Yes (L)    | Texts for town type titles - Castle, etc.
 | TURNDUR.TXT  | No         | Several text lines for map options' turn duration
 | TVRNINFO.TXT | No         | Several text lines
 | VCDESC.TXT   | No         | Several victory condition texts
@@ -414,6 +419,7 @@ Information about TXT files from SoD:
 | XTRAINFO.TXT | No         | Several text lines
 +--------------+------------+--------------------------------------------------
  (*) Likely to be processed in the future
+ (L) If localized, must have an English version in -ti
 HELP;
     exit(1);
   }
@@ -594,11 +600,11 @@ function write_classes(array $options) {
   rewind($handle);
 
   $dwellingNames = [
-    17 => listFile($options, 'CRGEN1.TXT'),
-    20 => listFile($options, 'CRGEN4.TXT'),
+    17 => idListFile($options, 'CRGEN1.TXT', 'AClass::makeIdentifier'),
+    20 => idListFile($options, 'CRGEN4.TXT', 'AClass::makeIdentifier'),
   ];
 
-  $objectNames = listFile($options, 'OBJNAMES.TXT', "\t");
+  $objectNames = idListFile($options, 'OBJNAMES.TXT', 'AClass::makeIdentifier');
   $animations = ObjectStore::fromFile("$outPath/animations.json");
   $animationToID = json_decode(file_get_contents("$outPath/animationsID.json"), true);
   $objects = [];
@@ -632,7 +638,8 @@ function write_classes(array $options) {
       $textureGroup = $constants['animationGroups']['visiting'];
     }
     $obj->texture = "Hh3-def_frame_,$texture,-,,$textureGroup,-,0";
-    $obj->name = $dwellingNames[$obj->class][$obj->subclass] ?? $objectNames[$obj->class];
+    list($obj->name, $obj->idName) =
+      $dwellingNames[$obj->class][$obj->subclass] ?? $objectNames[$obj->class];
     $obj->ownable = array_search(in_array($obj->class, $movableClasses) ? 'movable' : (in_array($obj->class, $ownableClasses) ? 'ownable' : ''), AClass::ownable);
     $obj->miniMapObstacle = in_array($obj->class, $impassableClasses);
     $obj->supportedTerrain = str_split(strrev($supportedTerrain));
@@ -807,7 +814,7 @@ function write_classes(array $options) {
     3 => 'COBBRD',  // 3  Cobblestone
   ];
 
-  $terrname = listFile($options, 'TERRNAME.TXT', "\t");
+  $terrname = idListFile($options, 'TERRNAME.TXT', 'AClass::makeIdentifier');
   $passableSchema = (new Passable)->schema();
 
   foreach (['terrain', 'river', 'road'] as $type) {
@@ -827,7 +834,7 @@ function write_classes(array $options) {
 
         switch ($type) {
           case 'terrain':
-            $obj->name = $terrname[$class];
+            list($obj->name, $obj->idName) = $terrname[$class];
             $obj->miniMap = $class + 1;
             $obj->sound = $soundOfTerrain[$class];
             $obj->soundGroup = 'bgm';
@@ -844,6 +851,7 @@ function write_classes(array $options) {
           case 'river':
           case 'road':
             $obj->name = ucwords(constant("AClass::$type")[$class]." $type");
+            $obj->idName = AClass::makeIdentifier($obj->name);
         }
 
         // [ $terrain/river/road => AClass::terrain/river/road[this] ]
@@ -856,6 +864,8 @@ function write_classes(array $options) {
       }
     }
   }
+
+  // All $objects must have a set $idName by now.
 
   extract(require(__DIR__.'/databank-objects.php'), EXTR_SKIP);
 
@@ -896,10 +906,9 @@ function write_classes(array $options) {
   // a SoD class and subclass.
   $indexes = [];
   foreach ($objects as $id => $obj) {
-    $idName = AClass::makeIdentifier($obj->name);
     // "_" doesn't appear in standard SoD class names so it's safe to use as a separator.
     foreach (['', "_$obj->subclass"] as $suffix) {
-      $ref = &$indexes[$obj->indexName][$idName.$suffix];
+      $ref = &$indexes[$obj->indexName][$obj->idName.$suffix];
       if (!$suffix or $obj->indexName === 'object') {
         $ref[] = $id;
       } else {
@@ -915,13 +924,13 @@ function write_classes(array $options) {
   $index = [];
   foreach ($objects as $obj) {
     if ($obj->indexName === 'object') {
-      $index[AClass::makeIdentifier($obj->name)][] = $obj->class."_$obj->subclass/$obj->id";
+      $index[$obj->idName][] = $obj->class."_$obj->subclass/$obj->id";
     }
   }
   ksort($index);
-  foreach ($index as $name => $classes) {
+  foreach ($index as $idName => $classes) {
     sort($classes, SORT_NATURAL);
-    $text .= sprintf("%-25s %s\n", $name, join(' ', $classes));
+    $text .= sprintf("%-25s %s\n", $idName, join(' ', $classes));
   }
   file_put_contents("$outPath/classes.txt", $text);
 }
@@ -1072,20 +1081,21 @@ function write_misc(array $options) {
   file_put_contents("$outPath/constants.json", encodeJSON($constants));
 
   // Texts for signs (class 91, AVXsn???.def). Support markup.
-  $signs = listFile($options, 'RANDSIGN.TXT', "\t");
+  $signs = listFile($options, 'RANDSIGN.TXT');
   foreach ($signs as &$ref) { $ref .= '`{Audio XXX=ID`}'; }
   file_put_contents("$outPath/randomSigns.json", encodeJSON($signs));
 
   $rumors = array_column(csvFile($options, 'RANDTVRN.TXT'), 0);
   file_put_contents("$outPath/randomRumors.json", encodeJSON($rumors));
 
-  $players = listFile($options, 'PLCOLORS.TXT', "\t");
-  $image38 = ['R', 'B', 'Y', 'G', 'O', 'P', 'T', 'S'];
+  $players = idListFile($options, 'PLCOLORS.TXT', 'Player::makeIdentifier');
+  $image38 = 'RBYGOPTS';
   foreach ($players as $id => &$ref) {
     $ref = new Player([
-      'name' => ucfirst($ref),
+      'name' => mb_convert_case($ref[0], MB_CASE_TITLE),
+      'idName' => $ref[1],
       'image15' => $id,
-      'image38' => 'ADOPFLG'.array_shift($image38),
+      'image38' => 'ADOPFLG'.$image38[$id],
       'image58' => $id,
     ]);
   }
@@ -2214,7 +2224,7 @@ function write_artifactsID(array $options) {
 
   Artifact::unrollKeys('cost', $constants['resources'], 'intval');
 
-  $handle = fopenTXT($options, 'ARTRAITS.TXT');
+  $handles = fopenIdTXT($options, 'ARTRAITS.TXT');
   $artifacts = [];
 
   // 'S' evaluates to false - expected.
@@ -2222,15 +2232,16 @@ function write_artifactsID(array $options) {
 
   // Unfinished SoD artifacts with no effects or images.
   $ignoreArtifacts = [
-    "Diplomat's Suit",
-    "Mired in Neutrality",
-    "Ironfist of the Ogre",
+    'diplomatSuit',
+    'miredInNeutrality',
+    'ironfistOfOgre',
   ];
 
-  while ($line = readCSV($handle, ['Name'])) {
+  while ($line = readCSV($handles, ['Name'])) {
     $obj = new Artifact;
+    $obj->idName = $obj::makeIdentifier(array_shift($line));
     $obj->name = array_shift($line);
-    if (!in_array($obj->name, $ignoreArtifacts)) {
+    if (!in_array($obj->idName, $ignoreArtifacts)) {
       $obj->cost_gold = array_shift($line);
       $obj->description = removeHeading(array_pop($line));
       $obj->rarity = array_search($rarity[array_pop($line)], Artifact::rarity);
@@ -2240,7 +2251,7 @@ function write_artifactsID(array $options) {
     }
   }
 
-  fclose($handle);
+  array_map('fclose', array_filter($handles));
   file_put_contents("$outPath/artifactsID.json", encodeJSON(Artifact::makeIdIndex($artifacts)));
 }
 
@@ -2259,25 +2270,26 @@ function write_artifacts(array $options) {
   $backpack = nameToID("$outPath/artifactSlots", 'backpack');
 
   foreach ($artifacts as $id => $obj) {
-    in_array($obj->name, $noBackpackOfArtifact) or $obj->slots[] = $backpack;
-    if (in_array($obj->name, $notTradableArtifact)) {
+    in_array($obj->idName, $noBackpackOfArtifact) or $obj->slots[] = $backpack;
+    if (in_array($obj->idName, $notTradableArtifact)) {
       $globalStaticEffects[] = H3Effect::fromShort(['artifactTrade', [array_search('const', H3Effect::operation), false], 'ifArtifact' => $id, 'source' => array_search('initial', H3Effect::source)], [], ['priority' => array_search('initial', H3Effect::priority)]);
     }
     $obj->encounterText = readCSV($textHandle, [], 0)[0];
     $obj->icon = $id;
-    $obj->combat = $combatOfArtifact[$obj->name] ?? null;
+    $obj->combat = $combatOfArtifact[$obj->idName] ?? null;
     empty($obj->combat['destroyArtifact']) or $obj->combat['destroyArtifact'] = $id;
     $obj->effects = H3Effect::fromShort(array_shift($effectsOfArtifact), ['ifObject'], ['priority' => array_search('artifact', H3Effect::priority), 'default' => ['source' => [array_search('artifact', H3Effect::source), $id]]]);
-    entityOverrides($obj, $artifactOverrides[$obj->name] ?? []);
+    entityOverrides($obj, $artifactOverrides[$obj->idName] ?? []);
   }
 
   fclose($textHandle);
 
-  $chances = array_fill_keys(array_keys(array_filter($artifacts, function ($obj) use ($noChanceOfArtifact) { return !in_array($obj->name, $noChanceOfArtifact); })), $constants['multiplier']);
+  $chances = array_fill_keys(array_keys(array_filter($artifacts, function ($obj) use ($noChanceOfArtifact) { return !in_array($obj->idName, $noChanceOfArtifact); })), $constants['multiplier']);
   $globalStaticEffects[] = H3Effect::fromShort(['artifactChance', [array_search('const', H3Effect::operation), $chances], 'source' => array_search('initial', H3Effect::source)], [], ['priority' => array_search('initial', H3Effect::priority)]);
 
   $adve = array_column(csvFile($options, 'ADVEVENT.TXT', 0), 0);
   $spells = ObjectStore::fromFile("$outPath/spells.json");
+  $spellIdNames = array_flip(json_decode(file_get_contents("$outPath/spellsID.json"), true));
 
   for ($spell = 0; $spell < $spells->x(); $spell++) {
     if (provided($id = $spells->atCoords($spell, 0, 0, 'scroll'))) {
@@ -2289,7 +2301,8 @@ function write_artifacts(array $options) {
       $artifacts[] = $obj = clone $artifacts[1];
       // XXX=IC SoD shows "Spell Scroll" for all scrolls on ADVMAP and "<spell name>" in message boxes.
       $obj->name = "$name $obj->name";
-      $obj->idName = null;    // regenerate, given new $name
+      $obj->idName = $spellIdNames[$spell].ucfirst($obj->idName);
+      // "[spell name]" is not localized in ARTRAITS.TXT.
       $obj->description = str_replace('[spell name]', $name, $obj->description);
       // SoD shows a different text than written in Spell Scroll's entry in ARTEVENT.TXT.
       $obj->encounterText = sprintf($adve[135], $name);
@@ -2368,20 +2381,21 @@ class Artifact extends StoredEntity {
 function write_artifactSlots(array $options) {
   extract($options, EXTR_SKIP);
 
-  $artifactSlots = listFile($options, 'ARTSLOTS.TXT', "\t");
+  $artifactSlots = idListFile($options, 'ARTSLOTS.TXT', 'ArtifactSlot::makeIdentifier');
 
   // ARTSLOTS.TXT seems to have wrong order: in ARTRAITS.TXT Misc 5 is
   // after Misc 4, as expected. Having them properly ordered is more pretty anyway.
-  if (end($artifactSlots) === 'Misc 5') {
+  if (end($artifactSlots)[1] === 'misc5') {
     array_splice($artifactSlots, 13, 0, [array_pop($artifactSlots)]);
   }
 
   foreach ($artifactSlots as &$ref) {
-    $ref = new ArtifactSlot(['name' => $ref]);
+    $ref = new ArtifactSlot(array_combine(['name', 'idName'], $ref));
   }
 
   // Must be last (artifacts in AObject->$artifacts with n >= n of Backpack are
   // considered part of Backpack).
+  // XXX=R localize $name
   $artifactSlots[] = new ArtifactSlot(['name' => 'Backpack']);
 
   unset($ref);
@@ -2425,11 +2439,13 @@ function write_heroes(array $options) {
   fgets($specHandle);
 
   $bioHandle = fopenTXT($options, 'HEROBIOS.TXT');
-  $handle = fopenTXT($options, 'HOTRAITS.TXT');
+  $handles = fopenIdTXT($options, 'HOTRAITS.TXT');
   $heroes = [];
 
-  while ($line = readCSV($handle, ['Name'])) {
+  while ($line = readCSV($handles, ['Name'])) {
+    $idName = Hero::makeIdentifier(array_shift($line));
     $obj = new Hero(array_combine(columnsOf(Hero::class, 'garrison3'), $line));
+    $obj->idName = $idName;
 
     switch ($obj->garrison2) {
       case 'Ballista':
@@ -2443,11 +2459,12 @@ function write_heroes(array $options) {
         $obj->garrison2Min = $obj->garrison2Max = $obj->garrison2 = false;
     }
 
+    // These columns are not localized in HOTRAITS.TXT.
     $obj->garrison1 = $nameToCreatureID[$obj->garrison1];
     $obj->garrison2 and $obj->garrison2 = $nameToCreatureID[$obj->garrison2];
     $obj->garrison3 and $obj->garrison3 = $nameToCreatureID[$obj->garrison3];
 
-    if ($obj->name === 'Lord Haart' and $obj->garrison1 === nameToID("$outPath/creatures", 'pikeman')) {
+    if ($obj->idName === 'lordHaart' and $obj->garrison1 === nameToID("$outPath/creatures", 'pikeman')) {
       $obj->idName = 'lordHaartGood';
     }
 
@@ -2465,7 +2482,7 @@ function write_heroes(array $options) {
       $obj->skills[] = ['skillMastery', $mastery, true, 'ifSkill' => $skill, 'stack' => array_search('classStats', H3Effect::stack)];
     }
 
-    $obj->spells = $spellsOfHero[$obj->name] ?? [];
+    $obj->spells = $spellsOfHero[$obj->idName] ?? [];
     $obj->artifacts = $catapult;
     if ($obj->spells) {
       $obj->spells = [['hero_spells', array_merge([$append], $obj->spells), true, 'stack' => array_search('classStats', H3Effect::stack)]];
@@ -2480,7 +2497,7 @@ function write_heroes(array $options) {
     $spec = [$obj->specIcon, $obj->specName, $obj->specLongName, $obj->specDescription];
     $obj->specialty[] = ['hero_specialty', [$const, $spec], true];
 
-    entityOverrides($obj, $heroOverrides[$obj->name] ?? []);
+    entityOverrides($obj, $heroOverrides[$obj->idName] ?? []);
 
     // XXX like with Creature->$effects, these 4 can be split into dynamic and static ($ifHero); this will allow faster map initialization since less Effects will be $dynamic (but will also increase the number of static ones, most of which won't be used, just like with Creature - not sure how problematic is that)
     foreach (['skills', 'spells', 'specialty', 'effects'] as $prop) {
@@ -2493,7 +2510,7 @@ function write_heroes(array $options) {
 
   fclose($specHandle);
   fclose($bioHandle);
-  fclose($handle);
+  array_map('fclose', array_filter($handles));
   file_put_contents("$outPath/heroes.json", encodeJSON(Hero::from1D($heroes)));
   file_put_contents("$outPath/heroesID.json", encodeJSON(Hero::makeIdIndex($heroes)));
 }
@@ -2609,10 +2626,10 @@ function write_heroClasses(array $options) {
             $inferno, $inferno, $necropolis, $necropolis, $dungeon, $dungeon,
             $stronghold, $stronghold, $fortress, $fortress, $conflux, $conflux];
 
-  $handle = fopenTXT($options, 'HCTRAITS.TXT');
+  $handles = fopenIdTXT($options, 'HCTRAITS.TXT');
   $classes = [];
 
-  while ($line = readCSV($handle, ['Name'])) {
+  while ($line = readCSV($handles, ['Name'])) {
     // In HCTRAITS.TXT these numbers expectedly sum up to 100, just not by rows (for a given town, all classes have 100 in total).
     // However, the difference between 6 and 5 (the only used values)
     // seems to be way less than it appears in the game (you will hardly see a hero with "chance 5") so we're adjusting 5% to 2.5% and 6 to 8%; given that all classes use exactly ten 6%-s and eight 5%-s, we still get a round number: 10*8+8*2.5.
@@ -2620,8 +2637,10 @@ function write_heroClasses(array $options) {
       return [5 => 2.5, 6 => 8][$v];
     }, array_splice($line, -9));
 
+    $idName = HeroClass::makeIdentifier(array_shift($line));
     $skillChances = array_combine($skills, array_splice($line, 14, -1));
     $obj = new HeroClass(array_combine(columnsOf(HeroClass::class, '*townChances'), $line));
+    $obj->idName = $idName;
 
     $effects = [];
 
@@ -2639,7 +2658,7 @@ function write_heroClasses(array $options) {
     $classes[] = $obj;
   }
 
-  fclose($handle);
+  array_map('fclose', array_filter($handles));
   file_put_contents("$outPath/heroClasses.json", encodeJSON(HeroClass::from1D($classes)));
   file_put_contents("$outPath/heroClassesID.json", encodeJSON(HeroClass::makeIdIndex($classes)));
 }
@@ -2706,12 +2725,14 @@ function write_skills(array $options) {
   Skill::unrollKeys('description', array_flip(Skill::mastery), 'strval');
   Skill::unrollKeys('effects', array_flip(Skill::mastery), '');
 
-  $handle = fopenTXT($options, 'SSTRAITS.TXT');
+  $handles = fopenIdTXT($options, 'SSTRAITS.TXT');
   $skills = [];
 
-  while ($line = readCSV($handle, ['Name'])) {
+  while ($line = readCSV($handles, ['Name'])) {
+    $idName = Skill::makeIdentifier(array_shift($line));
     array_splice($line, 1, 0, [null]);    // $description_0
     $obj = new Skill(array_combine(columnsOf(Skill::class, 'description_expert'), $line));
+    $obj->idName = $idName;
     $obj->description_basic = removeHeading($obj->description_basic);
     $obj->description_advanced = removeHeading($obj->description_advanced);
     $obj->description_expert = removeHeading($obj->description_expert);
@@ -2723,7 +2744,7 @@ function write_skills(array $options) {
     $skills[] = $obj;
   }
 
-  fclose($handle);
+  array_map('fclose', array_filter($handles));
   file_put_contents("$outPath/skills.json", encodeJSON(Skill::from1D($skills)));
   file_put_contents("$outPath/skillsID.json", encodeJSON(Skill::makeIdIndex($skills)));
 }
@@ -2790,10 +2811,11 @@ function write_spells(array $options) {
     'Dispel Helpful Spells' => 'dispelHelpful',
   ];
 
-  $handle = fopenTXT($options, 'SPTRAITS.TXT');
+  $handles = fopenIdTXT($options, 'SPTRAITS.TXT');
   $spells = $chances = [];
 
-  while ($line = readCSV($handle, ['Name', 'Adventure Spells', 'Combat Spells', 'Creature Abilities'])) {
+  while ($line = readCSV($handles, ['Name', 'Adventure Spells', 'Combat Spells', 'Creature Abilities'])) {
+    $idName = array_shift($line);
     $chances[] = array_filter(array_splice($line, 16, 9));
     array_splice($line, 3, 0, [array_keys(array_filter(array_splice($line, 3, 4)))]);
 
@@ -2816,11 +2838,12 @@ function write_spells(array $options) {
     array_pop($line);
 
     $obj = new Spell(array_combine(columnsOf(Spell::class, 'description_expert'), $line));
-    $obj->idName = $aliases[$obj->name] ?? null;
+    $obj->idName = $aliases[$idName] ?? $obj::makeIdentifier($idName);
     $obj->level or $obj->level = null;
     $spells[] = $obj;
   }
 
+  // XXX localize
   $creatureSpells = [
     ['name' => 'Drain Hit Points', 'animation' => 'SP06_'],
     ['name' => 'Ice Ray'],
@@ -2837,7 +2860,7 @@ function write_spells(array $options) {
     ]);
   }
 
-  fclose($handle);
+  array_map('fclose', array_filter($handles));
   file_put_contents("$outPath/spellsID.json", encodeJSON(Spell::makeIdIndex($spells)));
 
   extract(require(__DIR__.'/databank-spells.php'), EXTR_SKIP);
@@ -3022,6 +3045,7 @@ class Spell extends StoredEntity {
 function write_spellSchools(array $options) {
   extract($options, EXTR_SKIP);
 
+  // XXX localize
   $schools = [
     new SpellSchool([
       'name' => 'Earth',
@@ -3140,11 +3164,11 @@ function write_towns(array $options) {
     [$constants['resources']['mercury']],   // Conflux
   ];
 
-  $types = listFile($options, 'TOWNTYPE.TXT', "\t");
-  $names = listFile($options, 'TOWNNAME.TXT', "\t");
+  $types = idListFile($options, 'TOWNTYPE.TXT', 'Town::makeIdentifier');
+  $names = listFile($options, 'TOWNNAME.TXT');
   $towns = [];
 
-  foreach ($types as $id => $name) {
+  foreach ($types as $id => [$name, $idName]) {
     $effects = [];
 
     foreach ($townSpellChances[$id] as $spellID => $chance) {
@@ -3153,6 +3177,7 @@ function write_towns(array $options) {
 
     $obj = new Town([
       'name' => $name,
+      'idName' => $idName,
       'names' => array_splice($names, 0, 16),
       // $source is set by H3.Rules.
       'effects' => H3Effect::fromShort($effects, ['ifObject'], ['priority' => array_search('town', H3Effect::priority)]),
@@ -3212,29 +3237,28 @@ function write_creaturesID(array $options) {
 
   Creature::unrollKeys('cost', $constants['resources'], 'intval');
 
-  $handle = fopenTXT($options, 'CRTRAITS.TXT');
+  $handles = fopenIdTXT($options, 'CRTRAITS.TXT');
   $creatures = [];
 
-  while ($line = readCSV($handle, ['Name'])) {
+  while ($line = readCSV($handles, ['Name'])) {
     if ($line[0] === 'Singular') {
-      for ($plurals = 0; !strncmp($line[$plurals + 2], 'Plural', 6); $plurals++) ;
+      // Russian version has an extra Plural2 column:
+      // | Single from $idTxtPath | Single | Plural [| Plural2] | ...
+      for ($plurals = 0; !strncmp($line[$plurals + 3], 'Plural', 6); $plurals++) ;
       continue;
     }
     // SoD has a blank line (55th) starting with 35 spaces.
     if (!strlen(trim($line[0]))) { continue; }
-    // Russian version has an extra Plural2 column following Plural.
-    // XXX:I To finish supporting localized HoMM TXTs, must somehow obtain
-    // English names associated with localized entities in order to generate
-    // idName-s (e.g. creaturesID.json).
+    $idName = Creature::makeIdentifier(array_shift($line));
     array_splice($line, 1, $plurals);
     array_pop($line);   // attributes, assigned directly
     $obj = new Creature(array_combine(columnsOf(Creature::class, 'abilityText'), $line));
     empty($obj->abilityText) and $obj->abilityText = null;
-    $obj->name = $obj->nameSingular;    // for $idName autogeneration
+    $obj->idName = $idName;
     $creatures[] = $obj;
   }
 
-  fclose($handle);
+  array_map('fclose', array_filter($handles));
   file_put_contents("$outPath/creaturesID.json", encodeJSON(Creature::makeIdIndex($creatures)));
 }
 
@@ -3641,21 +3665,22 @@ function write_banks(array $options) {
   Bank::unrollKeys('reward', $constants['resources'], 'intval');
   Bank::unrollKeys('artifacts', array_flip(Artifact::rarity), 'intval');
 
-  $handle = fopenTXT($options, 'CRBANKS.TXT');
+  $handles = fopenIdTXT($options, 'CRBANKS.TXT');
   $banks = $byLevel = [];
 
-  while ($line = readCSV($handle, ['Adventure Object'])) {
+  while ($line = readCSV($handles, ['Adventure Object'])) {
+    $s = array_shift($line) and $bankIdName = Bank::makeIdentifier($s);
     array_splice($line, 22, 0, [0]);  // $artifacts_special
     $obj = new Bank(array_combine(columnsOf(Bank::class, 'difficultyRatio'), $line));
 
     $obj->name or $obj->name = end($banks)->name;
-    // Don't autogenerate, banks' $name-s are not unique.
-    $obj->idName = Bank::makeIdentifier($obj->name).$obj->level;
+    $obj->idName = $bankIdName.$obj->level;
     $obj->level--;
     $byLevel[$obj->name][] = $obj;
     $obj->classes = $bankClasses[0];
     $obj->level === 3 and array_shift($bankClasses);
 
+    // These columns are not localized in CRBANKS.TXT.
     foreach (['garrison1', 'garrison2', 'garrison3', 'garrison4', 'join'] as $prop) {
       $idName = $nameToCreatureID[$obj->$prop];
       $obj->$prop = $idName ? nameToID("$outPath/creatures", $idName) : null;
@@ -3664,7 +3689,7 @@ function write_banks(array $options) {
     $banks[] = $obj;
   }
 
-  fclose($handle);
+  array_map('fclose', array_filter($handles));
   file_put_contents("$outPath/banks.json", encodeJSON(Bank::from1D($banks)));
   file_put_contents("$outPath/banksID.json", encodeJSON(Bank::makeIdIndex($banks)));
 
@@ -3726,7 +3751,7 @@ function write_banks(array $options) {
         }
 
         // Some bank-specific messages are defined in databank-objects.php.
-        if (!in_array($bank->name, ['Shipwreck', 'Derelict Ship', 'Crypt', 'Dragon Utopia'])) {
+        if (!in_array(rtrim($bank->idName, '0..9'), ['shipwreck', 'derelictShip', 'crypt', 'dragonUtopia'])) {
           $labeled[] = ['quest_message', [$const, [sprintf($adve[33].'`{Audio XXX=ID`}', $bank->name)]]];
         }
 
@@ -4257,6 +4282,15 @@ function fopenTXT(array $options, $file) {
   return $handle;
 }
 
+// Opens a pair of text files: localized and English. If input data is not
+// localized (no -ti), first member is the English file and second is null.
+function fopenIdTXT(array $options, $file) {
+  return [
+    fopenTXT($options, $file),
+    $options['idTxtPath'] ? fopen("$options[idTxtPath]/$file", 'rb') : null,
+  ];
+}
+
 // Use this to read SoD's TXT files that have at least 2 columns and may have
 // junk lines (i.e. ones with 0 or 1 columns or headers). A line that starts with
 // empty cell (see e.g. ARTRAITS.TXT) is always considered a header.
@@ -4265,10 +4299,17 @@ function fopenTXT(array $options, $file) {
 // $minLength of 1+ returns non-empty lines, with first column having non-empty
 // value and also not part of $headers.
 // $minLength of 0 returns empty lines and doesn't check first column's content.
+//
+// If $handle is an array, result will always have one extra member. This allows
+// reading two files in parallel, putting first column from $handle[1] in front
+// of $handle[0]'s columns. If $handle[1] is null, that member is the same as
+// $handle[0]'s first column.
 function readCSV($handle, array $headers = [], $minLength = 2, $trim = true) {
-  while (false !== $line = fgetcsv($handle, 0, "\t")) {
+  while (false !== $line = fgetcsv(((array) $handle)[0], 0, "\t")) {
+    $english = isset($handle[1]) ? fgetcsv($handle[1], 0, "\t") : null;
     if (count($line) >= $minLength and
         (!$minLength or (strlen($line[0] ?? '') and !in_array($line[0], $headers)))) {
+      is_array($handle) and array_unshift($line, $english[0] ?? $line[0]);
       return $trim ? array_map('trim', $line) : $line;
     }
   }
@@ -4284,16 +4325,26 @@ function csvFile(array $options, $file, $minLength = 1, $trim = true) {
 }
 
 // Returns cleaned lines of a simple (non-CSV) text file.
-//
-// Not trimming \t by default.
-function listFile(array $options, $file, $trim = '') {
+function listFile(array $options, $file) {
   $handle = fopenTXT($options, $file);
   $lines = explode("\n", stream_get_contents($handle));
   fclose($handle);
   // Behaviour equals file()'s.
   end($lines) === '' and array_pop($lines);
-  $trim = function ($s) use ($trim) { return trim($s, " \r\n$trim"); };
-  return array_map($trim, $lines);
+  return array_map('trim', $lines);
+}
+
+// Returns an array where each member holds two lines: from localized and
+// English $file-s. If no -ti was given, both lines are the same.
+function idListFile(array $options, $file, $makeIdentifier = null) {
+  $localized = $english = listFile($options, $file);
+
+  if ($options['idTxtPath']) {
+    $english = array_map('trim', file("$options[idTxtPath]/$file", FILE_IGNORE_NEW_LINES));
+  }
+
+  $makeIdentifier and $english = array_map($makeIdentifier, $english);
+  return array_map(null, $localized, $english);
 }
 
 function removeHeading($str) {

@@ -1983,7 +1983,7 @@ define(['Common', 'H3.AI.Nop', 'H3.AI.Trivial.Combat', 'Map', 'Calculator'], fun
               }.bind(this)
               factor += sumStats(garrisoned) / sumStats(hero.get('id'))
             }
-          case 'antiMagicGarrison':
+          case 'antimagicGarrison':
           case 'garrison':
           case 'monster':
           case 'randomMonster':
@@ -2076,7 +2076,7 @@ define(['Common', 'H3.AI.Nop', 'H3.AI.Trivial.Combat', 'Map', 'Calculator'], fun
     crypt:                    {act: 'attack', c: 0, e: 1}, // bank
     derelictShip:             {act: 'attack', c: 0, e: 1}, // bank
     dragonUtopia:             {act: 'attack', c: 0, e: 2}, // bank
-    antiMagicGarrison:        {act: 'attack', c: 2, e: 2}, // garrison
+    antimagicGarrison:        {act: 'attack', c: 2, e: 2}, // garrison
     garrison:                 {act: 'attack', c: 2, e: 2}, // garrison
     hero:                     {act: 'attack', c: 0, e: 3}, // garrison
     heroPlaceholder:          {act: 'attack', c: 0, e: 3}, // garrison

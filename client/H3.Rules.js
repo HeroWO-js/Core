@@ -2280,7 +2280,7 @@ define([
       // XXX=I sirens
       // XXX+I tradingPost
       // XXX=I university
-      var stepOn = 'abandonedMine alchemistLab arena borderGate cartographer corpse coverOfDarkness creatureBank crypt crystalCavern derelictShip dragonUtopia event eyeOfMagi faerieRing fountainOfFortune fountainOfYouth gardenOfRevelation gemPond goldMine hutOfMagi idolOfFortune keymasterTent leanTo learningStone libraryOfEnlightenment lighthouse magicSpring magicWell marlettoTower mercenaryCamp mysticalGarden oasis orePit pillarOfFire pyramid rallyFlag redwoodObservatory sanctuary sawmill schoolOfMagic schoolOfWar seerHut shrineOfMagicGesture shrineOfMagicIncantation shrineOfMagicThought sign stables starAxis sulfurDune swanPond temple treeOfKnowledge wagon warriorTomb wateringHole waterWheel windmill witchHut monolithOneWayExit garrison antiMagicGarrison warMachineFactory shipyard'
+      var stepOn = 'abandonedMine alchemistLab arena borderGate cartographer corpse coverOfDarkness creatureBank crypt crystalCavern derelictShip dragonUtopia event eyeOfMagi faerieRing fountainOfFortune fountainOfYouth gardenOfRevelation gemPond goldMine hutOfMagi idolOfFortune keymasterTent leanTo learningStone libraryOfEnlightenment lighthouse magicSpring magicWell marlettoTower mercenaryCamp mysticalGarden oasis orePit pillarOfFire pyramid rallyFlag redwoodObservatory sanctuary sawmill schoolOfMagic schoolOfWar seerHut shrineOfMagicGesture shrineOfMagicIncantation shrineOfMagicThought sign stables starAxis sulfurDune swanPond temple treeOfKnowledge wagon warriorTomb wateringHole waterWheel windmill witchHut monolithOneWayExit garrison antimagicGarrison warMachineFactory shipyard'
 
       var obstacle = 'artifact borderGuard buoy campfire flotsam mermaids monster oceanBottle pandoraBox prison questGuard randomArtifact randomMajorArtifact randomMinorArtifact randomMonster randomMonster1 randomMonster2 randomMonster3 randomMonster4 randomMonster5 randomMonster6 randomMonster7 randomRelic randomResource randomTreasureArtifact resource scholar seaChest shipwreck shipwreckSurvivor spellScroll treasureChest tavern'
 
@@ -2796,7 +2796,7 @@ define([
             }
           }
         })
-      } else if (_.includes(this.objectsID.garrison, cls) || _.includes(this.objectsID.antiMagicGarrison, cls)) {
+      } else if (_.includes(this.objectsID.garrison, cls) || _.includes(this.objectsID.antimagicGarrison, cls)) {
         enc.on('=promptAnswer', function (sup) {
           if (this.get('state') == 'bonus') {
             this._handle_bonus(_)
@@ -2812,7 +2812,7 @@ define([
             ifObject: id,
             ifBonusObject: actor,
           })
-          res.parties[1].fortificationsTown = _.includes(this.rules.objectsID.antiMagicGarrison, cls) ? this.rules.townsID.tower : this.rules.townsID.castle
+          res.parties[1].fortificationsTown = _.includes(this.rules.objectsID.antimagicGarrison, cls) ? this.rules.townsID.tower : this.rules.townsID.castle
         })
         enc.on('=_handle_bonus', function (sup, arg) {
           if (arg == _) {

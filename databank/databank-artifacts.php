@@ -42,25 +42,25 @@ for ($id = 0; $id < $store->x(); $id++) {
 
 return [
   'combatOfArtifact' => [
-    'Catapult' => [
+    'catapult' => [
       'creature' => $catapult,
       'count' => 1,
       'x' => 7,
       // No $destroyArtifact.
     ],
-    'Ballista' => [
+    'ballista' => [
       'creature' => $ballista,
       'count' => 1,
       'x' => 3,
       'destroyArtifact' => true,
     ],
-    'Ammo Cart' => [
+    'ammoCart' => [
       'creature' => $ammoCart,
       'count' => 1,
       'x' => 1,
       'destroyArtifact' => true,
     ],
-    'First Aid Tent' => [
+    'firstAidTent' => [
       'creature' => $firstAidTent,
       'count' => 1,
       'x' => 9,
@@ -69,30 +69,30 @@ return [
   ],
 
   'noBackpackOfArtifact' => [
-    'Spell Book',
-    'Catapult',
-    'Ballista',
-    'Ammo Cart',
-    'First Aid Tent',
+    'spellBook',
+    'catapult',
+    'ballista',
+    'ammoCart',
+    'firstAidTent',
   ],
 
   'notTradableArtifact' => [
-    'Catapult',
-    'Spell Book',
+    'catapult',
+    'spellBook',
   ],
 
   'noChanceOfArtifact' => [
-    'Spell Book',
-    'Spell Scroll',
-    'The Grail',
-    'Catapult',
-    'Ballista',
-    'Ammo Cart',
-    'First Aid Tent',
+    'spellBook',
+    'spellScroll',
+    'grail',
+    'catapult',
+    'ballista',
+    'ammoCart',
+    'firstAidTent',
   ],
 
   'artifactOverrides' => [
-    'Spell Book' => ['cost_gold' => 500],
+    'spellBook' => ['cost_gold' => 500],
   ],
 
   // Determined empirically using descriptions in ARTRAITS.TXT.

@@ -170,6 +170,7 @@ return [
 
   // Determined empirically. See Images.txt.
   'backgrounds' => [
+    // XXX localize
     // Siege backgrounds.
     ['Castle',        'SGCSBACK', $on($w_castle,     $o_town, $o_randomTown), false, 0, false, $fort, false, 11, $cbs($g_castle)],
     ['Rampart',       'SGRMBACK', $on($w_rampart,    $o_town, $o_randomTown), false, 0, false, $fort, false, 11, $cbs($g_rampart)],

@@ -996,7 +996,7 @@ abstract class StoredEntity extends StoredObject {
     return ObjectStore::from1D($objects, $options);
   }
 
-  // Generates a string of [a-z0-9_] from a human-readable $str, used as default $idName values.
+  // Generates a string of [a-z0-9_] from a human-readable $str, used as default $idName values. Assumes English input.
   //
   // Example: Titan's Lightning Bolt -> titanLightningBolt.
   static function makeIdentifier($str) {
