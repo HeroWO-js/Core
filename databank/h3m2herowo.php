@@ -959,7 +959,6 @@ abstract class Convertor {
         ]);
 
         $object = $this->h3m->objects[$h3mPlayer->startingTown->object];
-        // XXX+R: dor:
         $obj->displayOrder = $this->objectDisplayOrder($obj, $object, $object->index + 1);
         $createInTown->visiting = $obj->id;
       }
@@ -1570,8 +1569,10 @@ abstract class Convertor {
         if (empty($obj->prison)) {
           $obj->x += $map->margin[0];
           $obj->y += $map->margin[1];
-          $obj->displayOrder = $obj->displayOrder & ~(0xFF << 18) |
-                               $obj->y + $obj->height - 1 << 18;
+          if ($obj->displayOrder > 3) {   // not ground
+            $obj->displayOrder = $obj->displayOrder & ~(0xFF << 18) |
+                                 $obj->y + $obj->height - 1 << 18;
+          }
         }
       }
     }
@@ -1852,12 +1853,13 @@ abstract class Convertor {
     // !ground y         actionable  *  h3mID           zero
     // (*) set for objects moved on run-time; h3mID then specifies X (H3.Rules)
     //
-    // If changing this calculation, update addMapMargin() and copies of this in JS.
+    // If changing this calculation, update addMapMargin() and copies of this in JS (XXX+R: dor:).
     return !$object->ground << 26 |
            // Up to map height of 255.
            $object->y + $this->builder->map->margin[1] << 18 |
            (bool) array_filter($object->actionability) << 17 |
-           $h3mID << 2;   // reserve 0-3 for terrain/river/road
+           // Reserve 0-3 for terrain/river/road set by fromH3mTileGeneric().
+           $h3mID << 2;
   }
 
   protected function warnDetails(AObject $obj, $details = null) {

@@ -165,7 +165,7 @@ define(['DOM.Common'], function (Common) {
         // and then we update.
         //
         // owner is needed to determine animation duration (my/enemy's).
-        var atter = this._objectAtter = this.map.objects.atter(reflect.concat('id', 'class', 'duration', 'owner',
+        var atter = this._objectAtter = this.map.objects.atter(reflect.concat('id', 'class', 'type', 'duration', 'owner',
           // Needed for actionableSpot() called by scrollTo() and tick.
           'width', 'height', 'x', 'y', 'z', 'actionable'))
         reflect = reflect.map(this.map.objects.propertyIndex, this.map.objects)
@@ -531,7 +531,9 @@ define(['DOM.Common'], function (Common) {
         toggle(el, show && obj.displayOrder >= 0)
 
         el.style.left = obj.x * this._tileSize + 'px'
-        el.style.top  = obj.y * this._tileSize + 'px'
+        var shift = obj.type == this.map.constants.object.type.road
+          ? this._tileSize / 2 : 0
+        el.style.top  = obj.y * this._tileSize + shift + 'px'
       }
 
       el.style.width  = obj.width  * this._tileSize + 'px'
