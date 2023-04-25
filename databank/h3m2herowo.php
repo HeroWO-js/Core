@@ -2630,20 +2630,21 @@ abstract class Convertor {
   // Determines hero level by the number of experience points.
   protected function fromH3mHeroExperience(AObject $obj, $experience) {
     $obj->experience = $experience;
+    $obj->level = 0;
     $levelUps = $this->const('levelUps');
 
     foreach ($levelUps as $i => $exp) {
       if ($i < count($levelUps) - 1) {
-        $obj->level++;
         if ($experience < $exp) { break; }
+        $obj->level++;
       } else {
         $mul = $exp;
         $exp = $levelUps[$i - 1];
 
         while (true) {
           $exp *= $mul;
+          if ($experience < floor($exp)) { break; }
           $obj->level++;
-          if ($experience < $exp) { break; }
         }
       }
     }

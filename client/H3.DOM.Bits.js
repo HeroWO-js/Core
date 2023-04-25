@@ -107,8 +107,10 @@ define(['DOM.Common', 'Calculator', 'DOM.Bits', 'H3.Rules'], function (Common, C
   // | | +H3.StatImage
   // | |\
   // | | +H3.SpellImage
+  // | |\
+  // | | +H3.ArtifactImage
   // |  \
-  // |   +H3.ArtifactImage
+  // |   +H3.SpecialtyIcon
   // |\
   // | +H3.AffectorList (A)
   // |  \
@@ -216,6 +218,8 @@ define(['DOM.Common', 'Calculator', 'DOM.Bits', 'H3.Rules'], function (Common, C
 
   // Displays an image in `'.bmp (`'.pcx) format provided by a `#Calculator.
   H3Bits.Bitmap.Calculator = H3Bits.Bitmap.extend('HeroWO.H3.DOM.Bits.Bitmap.Calculator', {
+    _calc: null,
+
     //> class class `- the `#Calculator class
     //> * `- options for `#Calculator constructor
     _opt: {
@@ -496,6 +500,8 @@ define(['DOM.Common', 'Calculator', 'DOM.Bits', 'H3.Rules'], function (Common, C
 
   // Displays an image in `'.def format provided by a `#Calculator.
   H3Bits.DefImage.Calculator = H3Bits.DefImage.extend('HeroWO.H3.DOM.Bits.DefImage.Calculator', {
+    _calc: null,
+
     //> class class `- the `#Calculator class
     //> * `- options for `#Calculator constructor
     _opt: {
@@ -552,7 +558,7 @@ define(['DOM.Common', 'Calculator', 'DOM.Bits', 'H3.Rules'], function (Common, C
         ]
       },
 
-      change_large: 'update',
+      change_size: 'update',
       change_skill: 'update',
       change_mastery: 'update',
 
@@ -656,6 +662,25 @@ define(['DOM.Common', 'Calculator', 'DOM.Bits', 'H3.Rules'], function (Common, C
           def: 'ARTIF' + this.get('type'),
           frame: this.rules.artifacts.atCoords(this.get('artifact'), 0, 0, 'icon', 0),
         })
+      },
+    },
+  })
+
+  // Displays specialty icon of a certain hero (like Wyverns).
+  H3Bits.SpecialtyIcon = H3Bits.DefImage.extend('HeroWO.H3.DOM.Bits.SpecialtyIcon', {
+    _calc: null,
+
+    //> * `- options for Rules.HeroSpecialty constructor
+    _opt: {
+    },
+
+    events: {
+      attach: function () {
+        this._calc = this.updateOn(['change_icon'], Rules.HeroSpecialty, this.get())
+      },
+
+      _update: function () {
+        this.assignResp(_.object(['def', 'group', 'frame'], this._calc.get('icon')))
       },
     },
   })
@@ -1915,7 +1940,7 @@ define(['DOM.Common', 'Calculator', 'DOM.Bits', 'H3.Rules'], function (Common, C
       change_mastery: 'update',
 
       _update: function () {
-        var mastery = this._calc ? this._calc.get('value') : this.get('mastery')
+        var mastery = this._mastery()
 
         this.nested('face').assignResp({
           skill: this.get('skill'),
@@ -1931,6 +1956,10 @@ define(['DOM.Common', 'Calculator', 'DOM.Bits', 'H3.Rules'], function (Common, C
         this.nested('mastery').set('value', masteryName[mastery])
         this.nested('name').set('entity', this.get('skill'))
       },
+    },
+
+    _mastery: function () {
+      return this._calc ? this._calc.get('value') : this.get('mastery')
     },
   })
 

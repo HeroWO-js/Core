@@ -13,6 +13,7 @@ $this->directoryMatcher = function ($full, $rel) use ($readOnly) {
     'databank/h3m2json/references',
     'noXXXep',
     'server/node_modules',
+    'source-map',
   ];
   $readOnly and $skip[] = 'server';
   return basename($rel) !== '.git' and !in_array(str_replace('\\', '/', $rel), $skip);

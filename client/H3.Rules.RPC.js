@@ -2351,6 +2351,7 @@ define(['RPC.Common', 'Map', 'Calculator', 'H3.Combat'], function (Common, HMap,
             creature: target._parentKey,
           }, transitionOptions))
             .collect()
+          target.set('perished', target.get('perished') + perishCount, transition.options())
           // Not removing original target immediately because it has associated State (original target of doStrike() is either original command's target creature or its attacker (c.creature) when retaliating).
           if (keepAlive.indexOf(target) != -1) {
             killedKA.push([target, transition._parentKey])
@@ -2366,7 +2367,11 @@ define(['RPC.Common', 'Map', 'Calculator', 'H3.Combat'], function (Common, HMap,
             creature: target._parentKey,
           }, transitionOptions))
             .collect()
-          target.assignResp({count: count, hitPoints: Math.round(hp)}, txHit.options())
+          target.assignResp({
+            count: count,
+            perished: target.get('perished') + perishCount,
+            hitPoints: Math.round(hp),
+          }, txHit.options())
           txHit.collectFinal()
           htr.push(txHit._parentKey)
         }

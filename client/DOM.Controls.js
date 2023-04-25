@@ -27,7 +27,7 @@ define(['DOM.Common', 'Calculator'], function (Common, Calculator) {
     am: null,
 
     _creatureProps: ['maxCombats', 'destroyArtifact', 'origin',
-                     'defending', 'actions', 'hitPoints', 'shots', 'retaliating', 'strikes'],
+                     'defending', 'actions', 'perished', 'hitPoints', 'shots', 'retaliating', 'strikes'],
 
     _creatureTargets: {
       creature_attack: 'i',

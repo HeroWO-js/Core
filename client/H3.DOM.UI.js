@@ -2882,6 +2882,7 @@ define([
             }
             return
           case this.rules.buildingsID.tavern:
+          case this.rules.buildingsID.brotherhoodOfSword:
             var win = this.get('ui').windows.addModule(UI.Townscape.Tavern, {
               withinWindow: this,
               rumor: {
@@ -2959,11 +2960,86 @@ define([
               })
             } else if (this.rules.buildings.atCoords(building, 0, 0, 'produce', 0)) {
               return this.get('ui').showTownHire(this.get('town'), building, this)
+            } else {
+              var productionUpgrades = _.fromEntries([
+                [this.rules.buildingsID.griffinBastion, [
+                  this.rules.buildingsID.griffinTower,
+                  this.rules.buildingsID.griffinTowerU,
+                ]],
+                [this.rules.buildingsID.minerGuild, [
+                  this.rules.buildingsID.dwarfCottage,
+                  this.rules.buildingsID.dwarfCottageU,
+                ]],
+                [this.rules.buildingsID.dendroidSaplings, [
+                  this.rules.buildingsID.dendroidArches,
+                  this.rules.buildingsID.dendroidArchesU,
+                ]],
+                [this.rules.buildingsID.sculptorWings, [
+                  this.rules.buildingsID.parapet,
+                  this.rules.buildingsID.parapetU,
+                ]],
+                [this.rules.buildingsID.birthingPools, [
+                  this.rules.buildingsID.impCrucible,
+                  this.rules.buildingsID.impCrucibleU,
+                ]],
+                [this.rules.buildingsID.cages, [
+                  this.rules.buildingsID.kennels,
+                  this.rules.buildingsID.kennelsU,
+                ]],
+                [this.rules.buildingsID.unearthedGraves, [
+                  this.rules.buildingsID.cursedTemple,
+                  this.rules.buildingsID.cursedTempleU,
+                ]],
+                [this.rules.buildingsID.mushroomRings, [
+                  this.rules.buildingsID.warren,
+                  this.rules.buildingsID.warrenU,
+                ]],
+                [this.rules.buildingsID.messHall, [
+                  this.rules.buildingsID.goblinBarracks,
+                  this.rules.buildingsID.goblinBarracksU,
+                ]],
+                [this.rules.buildingsID.captainQuarters, [
+                  this.rules.buildingsID.gnollHut,
+                  this.rules.buildingsID.gnollHutU,
+                ]],
+                [this.rules.buildingsID.gardenOfLife, [
+                  this.rules.buildingsID.magicLantern,
+                  this.rules.buildingsID.magicLanternU,
+                ]],
+              ])
+              var producing = productionUpgrades[building]
+              var found = _.some(producing || [], function (building) {
+                if (_.includes(value, building)) {
+                  this.get('ui').showTownHire(this.get('town'), building, this)
+                  return true
+                }
+              }, this)
+              if (found) { return }
             }
         }
       }
 
-      // XXX=I show help box for other buildings
+      var box = this.get('ui').windows.addModule(H3Bits.MessageBox, {
+        tooltip: tooltip,
+      })
+      box.addText('Hh3-menu__text9 Hh3-menu__text_toned', this.rules.buildings.atCoords(building, 0, 0, 'name', 0))
+      box.addModule(Bits.String, {
+        elClass: 'Hh3-menu__text11 Hh3-menu__text_toned',
+        format: '%d',
+      })
+        .addCalculator('d', Rules.TownBuildingDescription, {
+          id: this.get('town').get('id'),
+          building: building,
+        })
+      box.addModule(H3Bits.DefImage.Calculator, {
+        class: Rules.BuildingU.Image,
+        id: this.get('town').get('id'),
+        building: building,
+      })
+      box.addText('Hh3-menu__text3 Hh3-menu__text_toned', this.rules.buildings.atCoords(building, 0, 0, 'name', 0))
+      tooltip || box.addButton()
+
+      // XXX=I for producing buildings and production upgrades SoD shows a different box with the creature's animation, cost and available count
     },
   })
 
@@ -4733,9 +4809,9 @@ define([
           .text(_.format(this.cx.s('map', '%s +%d'), statName[this.get('stat')], this.get('statDelta')))
           .appendTo(this.el)
 
-        this.addModule('skills', H3Bits.SkillList, {
+        this.addModule('skills', H3Bits.SkillList.extend({_childClass: UI.Bits.SkillListItem}), {
           elClass: 'Hh3-menu__text3 Hh3-menu__text_toned',
-          sink: {'*': {sink: {face: {elClass: 'Hh3-levelup__face', options: {size: 44}}}}},
+          sink: {'*': {sink: {face: {elClass: 'Hh3-levelup__face', options: {size: 44}}}, options: {clickHelp: false}}},
           // Need to display skills, requiring user to select one of them, at the same time not pre-selecting any one.
           slider: {requireCurrent: false},
         })
@@ -4998,17 +5074,17 @@ define([
             })
         }, this)
 
-        this.addModule('specIcon', H3Bits.DefImage)
+        this.addModule('specIcon', UI.Bits.SpecialtyIcon, {
+          id: this.get('hero').get('id'),
+        })
 
         function update() {
-          this.nested('specIcon').assignResp(_.object(['def', 'group', 'frame'], calc.get('icon')))
           this.$('.Hh3-hinfo__spec').text(calc.get('shortName'))
         }
         var calc = this.cx.calculator(Rules.HeroSpecialty, {
           id: this.get('hero').get('id'),
         })
-        this.autoOff(calc, {'change_shortName': update})
-        calc.whenRenders('change_icon', update, this)
+        this.autoOff(calc, {}).whenRenders('change_shortName', update, this)
 
         this.addModule('morale', H3Bits.Morale, {
           size: 42,
@@ -5020,9 +5096,9 @@ define([
           ifObject: this.get('hero').get('id'),
         })
 
-        this.addModule('experienceImage', H3Bits.StatImage, {
+        this.addModule('experienceImage', UI.Bits.ExperienceImage, {
           size: 42,
-          stat: this.rules.constants.stats.experience,
+          hero: this.get('hero'),
         })
 
         this.addModule('experience', Bits.ObjectRepresentationProperty, {
@@ -5049,7 +5125,7 @@ define([
           ifObject: this.get('hero').get('id'),
         })
 
-        this.addModule('skills', H3Bits.SkillList.Calculator, {
+        this.addModule('skills', H3Bits.SkillList.Calculator.extend({_childClass: UI.Bits.SkillListItem}), {
           elClass: 'Hh3-hinfo__skills Hh3-menu__text3 Hh3-menu__text_toned',
           sink: {'*': {sink: {'*': {elClass: 'Hh3-hinfo__skill-*'}, face: {elClass: 'Hh3-hinfo__skill-face', options: {size: 44}}}}},
           object: this.get('hero').get('id'),
@@ -5168,6 +5244,23 @@ define([
         }
       },
     },
+
+    elEvents: {
+      'mousedown .Hh3-hinfo__face': function (e) {
+        var box = this.sc.modules.nested('HeroWO.H3.DOM.UI').windows.addModule(H3Bits.MessageBox, {
+          tooltip: e.button == 2,
+        })
+        box.addModule(Bits.String, {
+          elClass: 'Hh3-menu__text11 Hh3-menu__text_toned',
+          format: '%b',
+        })
+          .addCalculator('b', Calculator.Effect.GenericString, {
+            target: this.cx.map.constants.effect.target.hero_biography,
+            ifObject: this.get('hero').get('id'),
+          })
+        box.get('tooltip') || box.addButton()
+      },
+    },
   })
 
   // Screen with info on two heroes, with the ability to transfer creatures and artifacts between them.
@@ -5228,15 +5321,10 @@ define([
 
           this.addModule(side + 'Log', H3Bits.Button, {elClass: 'Hh3-btn_id_HSBTNS4 Hh3-btn_dis'})
 
-          this.addModule(side + 'SpecIcon', H3Bits.DefImage)
-
-          var calc = this.cx.calculator(Rules.HeroSpecialty, {
+          this.addModule(side + 'SpecIcon', UI.Bits.SpecialtyIcon, {
             id: obj.get('id'),
             large: false,
           })
-          this.autoOff(calc, {}).whenRenders('change_icon', function () {
-            this.nested(side + 'SpecIcon').assignResp(_.object(['def', 'group', 'frame'], calc.get('icon')))
-          }, this)
 
           this.addModule(side + 'Morale', H3Bits.Morale, {
             size: 30,
@@ -5248,9 +5336,9 @@ define([
             ifObject: obj.get('id'),
           })
 
-          this.addModule(side + 'ExperienceImage', H3Bits.StatImage, {
+          this.addModule(side + 'ExperienceImage', UI.Bits.ExperienceImage, {
             size: 32,
-            stat: this.rules.constants.stats.experience,
+            hero: obj,
           })
 
           this.addModule(side + 'Experience', Bits.ObjectRepresentationProperty, {
@@ -5279,7 +5367,7 @@ define([
             property: 'spellPoints',
           })
 
-          this.addModule(side + 'Skills', H3Bits.SkillList.Calculator, {
+          this.addModule(side + 'Skills', H3Bits.SkillList.Calculator.extend({_childClass: UI.Bits.SkillListItem}), {
             elClass: 'Hh3-htrade__skills',
             sink: {'*': {sink: {'*': {elClass: 'Hh3-htrade__skill-*'}, face: {elClass: 'Hh3-htrade__skill-face', options: {size: 32}}}}},
             object: obj.get('id'),
@@ -5950,7 +6038,7 @@ define([
           // XXX=IC SoD shows this message in the top part of the screen rather than centered
           var box = this.sc.modules.nested('HeroWO.H3.DOM.UI').windows.addModule(H3Bits.MessageBox, {tooltip: true})
           box.addText('Hh3-menu__text9 Hh3-menu__text_toned', this.rules.artifacts.atCoords(this.get('artifact'), 0, 0, 'name', 0))
-          box.addText(this.rules.artifacts.atCoords(this.get('artifact'), 0, 0, 'description', 0))
+          box.addFromMarkup(this.rules.artifacts.atCoords(this.get('artifact'), 0, 0, 'description', 0))
           if (this.rules.artifacts.atCoords(this.get('artifact'), 0, 0, 'spell', 0) !== false || !this.cx.get('classic')) {
             // XXX=RH
             box._markUp_BonusesImages(null, box.el, {bonuses: {heroes: {0: {artifacts: [this.get('artifact')]}}}})
@@ -6351,6 +6439,100 @@ define([
     elEvents: {
       'click .Hh3-am-wal__toggle': function (e) {
         $(e.target).text(this.el[0].classList.toggle('Hh3-am-wal_hidden') ? 'Statistics' : 'Hide')
+      },
+    },
+  })
+
+  // Displays specialty icon of a hero and shows its info on click.
+  UI.Bits.SpecialtyIcon = H3Bits.SpecialtyIcon.extend('HeroWO.H3.DOM.UI.Bits.SpecialtyIcon', {
+    elEvents: {
+      mousedown: function (e) {
+        var box = this.sc.modules.nested('HeroWO.H3.DOM.UI').windows.addModule(H3Bits.MessageBox, {
+          tooltip: e.button == 2,
+        })
+        this.cx.get('classic') || box.addText('Hh3-menu__text9 Hh3-menu__text_toned', this._calc.get('longName'))
+        box.addFromMarkup(this._calc.get('description'))
+        box.get('tooltip') || box.addButton()
+      },
+    },
+  })
+
+  // Displays icon of experience points and shows info about hero's level on click.
+  UI.Bits.ExperienceImage = H3Bits.StatImage.extend('HeroWO.H3.DOM.UI.Bits.ExperienceImage', {
+    _opt: {
+      hero: null,
+    },
+
+    events: {
+      '-attach': function () {
+        this.set('stat', this.rules.constants.stats.experience)
+      },
+    },
+
+    elEvents: {
+      mousedown: function (e) {
+        var box = this.sc.modules.nested('HeroWO.H3.DOM.UI').windows.addModule(H3Bits.MessageBox, {
+          tooltip: e.button == 2,
+        })
+        var template = '<p class="Hh3-menu__text9 Hh3-menu__text_toned">Level %l</p>' +
+                       '<p>' +
+                       '<span class="Hh3-menu__text9 Hh3-menu__text_toned">Next level:</span> <span class="Hh3-menu__text11 Hh3-menu__text_toned">%n</span>' +
+                       '<br>' +
+                       '<span class="Hh3-menu__text9 Hh3-menu__text_toned">Current experience:</span> <span class="Hh3-menu__text11 Hh3-menu__text_toned">%c</span>' +
+                       '</p>'
+        var String = Bits.String.extend({
+          events: {
+            '=_updateEl': function (sup, value) {
+              this.el.html(value)
+            },
+          },
+        })
+        var str = box.addModule(String, {format: this.cx.s('map', template)})
+        str.addModule('l', H3Bits.HeroLevel, {
+          el: false,
+          object: this.get('hero'),
+        })
+        str.addModule('n', Bits.Value, {
+          el: false,
+          value: this.rules.nextLevelUp(this.get('hero').get('experience')),
+        })
+        str.addModule('c', Bits.ObjectRepresentationProperty, {
+          el: false,
+          object: this.get('hero'),
+          property: 'experience',
+        })
+        box.get('tooltip') || box.addButton()
+      },
+    },
+  })
+
+  // Displays a secondary skill list item and shows its info on click.
+  UI.Bits.SkillListItem = H3Bits.SkillList.Item.extend('HeroWO.H3.DOM.UI.Bits.SkillListItem', {
+    _opt: {
+      clickHelp: true,
+    },
+
+    elEvents: {
+      mousedown: function (e) {
+        if (e.button != 2 && !this.get('clickHelp')) {
+          return
+        }
+        var box = this.sc.modules.nested('HeroWO.H3.DOM.UI').windows.addModule(H3Bits.MessageBox, {
+          tooltip: e.button == 2,
+        })
+        box.addText('Hh3-menu__text9 Hh3-menu__text_toned', this.nested('name').get('value'))
+        var mastery = this._mastery()
+        box.addFromMarkup(this.rules.skills.atCoords(this.get('skill'), 0, 0, this.rules.skills.propertyIndex('description') + mastery, 0))
+        // SoD doesn't show skill icon if help is called from LevelUp window.
+        if (this.get('clickHelp')) {
+          box.addModule(H3Bits.SkillImage, {
+            size: 82,
+            skill: this.get('skill'),
+            mastery: mastery,
+          })
+          box.addText('Hh3-menu__text3 Hh3-menu__text_toned', Common.capitalize(_.indexOf(this.map.constants.skill.mastery, mastery)) + ' ' + this.nested('name').get('value'))
+        }
+        box.get('tooltip') || box.addButton()
       },
     },
   })
@@ -6964,12 +7146,17 @@ define([
             ifObject: this.get('hero').get('id'),
           })
 
+          this.addModule('spellPoints', Bits.ObjectStoreProperty, {
+            store: this.cx.map.objects,
+            x: hero,
+            prop: 'spellPoints',
+          })
+
           var stats = {
             attack:      this.cx.map.constants.effect.target.hero_attack,
             defense:     this.cx.map.constants.effect.target.hero_defense,
             spellPower:  this.cx.map.constants.effect.target.hero_spellPower,
             knowledge:   this.cx.map.constants.effect.target.hero_knowledge,
-            spellPoints: this.cx.map.constants.effect.target.hero_spellPoints,
           }
           _.each(stats, function (target, property) {
             this.addModule(property, Bits.String, {format: '%v'})

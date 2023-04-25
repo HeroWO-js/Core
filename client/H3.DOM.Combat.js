@@ -4503,19 +4503,22 @@ define(['DOM.Common', 'PathAnimator', 'Calculator', 'Effects', 'Map', 'DOM.Slide
         })
 
         window.combat.objects.each(function (obj) {
-          if (obj instanceof HMap.Combat.Object.Corpse &&
-              !window.rules.creatures.atCoords(obj.get('creature').get('creature'), 0, 0, 'damageGroup', 0)) {
+          if (obj instanceof HMap.Combat.Object.Corpse) {
+            obj = obj.get('creature')
+          }
+          if (obj instanceof HMap.Combat.Creature && obj.get('perished') &&
+              !window.rules.creatures.atCoords(obj.get('creature'), 0, 0, 'damageGroup', 0)) {
             // Attacker = first party in order.
-            var isAttacker = obj.get('creature').party.player.get('team') == window.combat.parties.first().player.get('team')
+            var isAttacker = obj.party.player.get('team') == window.combat.parties.first().player.get('team')
             // Sorting: [party 1's creature 1] [p1c2] [p1c...] [p2c1] ...
             // where creatures inside parties are ordered by their garrison slot index, i.e. id (as SoD does), and same-type creatures merged into the first occurrence.
-            var pos = obj.get('creature').party._parentKey * 100 + obj.get('creature').get('id')
+            var pos = obj.party._parentKey * 100 + obj.get('id')
             var list = results[isAttacker ? 'attackers' : 'defenders']
             list.some(function (slot) {
-              if (slot.creature == obj.get('creature').get('creature')) {
-                return slot.count += obj.get('creature').get('count')
+              if (slot.creature == obj.get('creature')) {
+                return slot.perished += obj.get('perished')
               }
-            }) || list.push(_.extend(obj.get('creature').get(), {pos: pos}))
+            }) || list.push(_.extend(obj.get(), {pos: pos}))
           }
         })
 
@@ -4546,7 +4549,7 @@ define(['DOM.Common', 'PathAnimator', 'Calculator', 'Effects', 'Map', 'DOM.Slide
         })
 
         $('<div class="Hh3-cm-res__casi-c">')
-          .text(res.child.get('count'))
+          .text(res.child.get('perished'))
           .appendTo(res.child.el)
       },
 
@@ -4815,8 +4818,25 @@ define(['DOM.Common', 'PathAnimator', 'Calculator', 'Effects', 'Map', 'DOM.Slide
         })
           .on({
             'nestExNew, unnested': 'update',
-            '.clicked': function (s) {
-              if (s.get('canCast')) {
+            '.clicked': function (s, e) {
+              if (e.button == 2) {
+                var box = this.sc.modules.nested('HeroWO.H3.DOM.UI').windows.addModule(H3Bits.MessageBox, {
+                  withinWindow: this,
+                  tooltip: true,
+                })
+                var mastery = this.cx.oneShotEffectCalculation(_.extend({
+                  target: this.map.constants.effect.target.spellMastery,
+                  ifSpell: s.get('spell'),
+                }, s.get('calc')))
+                box.addText('Hh3-menu__text9 Hh3-menu__text_toned', (mastery ? Common.capitalize(_.indexOf(this.map.constants.spell.mastery, mastery)) : '') + ' ' + s.nested('name').get('value'))
+                box.addFromMarkup(this.rules.spells.atCoords(s.get('spell'), 0, 0, this.rules.spells.propertyIndex('description') + mastery, 0))
+                // XXX=I add efficiency explanation ("Does X points of damage", "Chances of success are X%", etc.)
+                box.addModule(H3Bits.SpellImage, {
+                  type: 'SCR',
+                  spell: s.get('spell'),
+                })
+                box.addText('Hh3-menu__text3 Hh3-menu__text_toned', s.nested('name').get('value'))
+              } else if (s.get('canCast')) {
                 this.cast(s.get('spell'))
               } else {
                 // XXX=IC don't show in wrong context (combat spell on advmap, etc.); SoD shows spell info in this case
@@ -5023,7 +5043,7 @@ define(['DOM.Common', 'PathAnimator', 'Calculator', 'Effects', 'Map', 'DOM.Slide
           type: 'S',
           spell: this.get('spell'),
         })
-          .el.on('click', Common.ef('clicked', this))
+          .el.on('click mousedown', Common.ef('clicked', this))
 
         this.addModule('name', H3Bits.DatabankProperty, {
           collection: 'spells',
@@ -5073,7 +5093,7 @@ define(['DOM.Common', 'PathAnimator', 'Calculator', 'Effects', 'Map', 'DOM.Slide
         // 1. If spell book is filtered by school (a particular school's tab
         //    is selected) then the type (Air, etc.) of corners is taken of the school which this hero
         //    has the highest mastery at.
-        // 2. The number of corners (Basic, etc.) is taken from the highest-mastered school, regardless if filtering by school. This means if the hero has Expert Air Magic and is browsing Fire school spells, Magic Arrow will be drawn using four Fire corners no matter the hero's mastery of Fire.
+        // 2. The number of corners (Basic, etc.) is taken from the highest-mastered school, regardless of filtering by school. This means if the hero has Expert Air Magic and is browsing Fire school spells, Magic Arrow will be drawn using four Fire corners no matter the hero's mastery of Fire.
         // Calculation of spell cost, level suffix ("/Exp") and strength is done on the highest-mastered school as well.
         var calc = this.cx.listeningEffectCalculator(_.extend({
           update: 'defer',

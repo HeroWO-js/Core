@@ -352,7 +352,7 @@ define(['DOM.Common', 'DOM.Slider', 'Calculator'], function (Common, Slider, Cal
       },
 
       attach: function () {
-        this.autoOff(this.get('store'), ['ochange_' + this._n, function ($1, $2, prop) {
+        this.autoOff(this.get('store'), ['ochange_n_' + this._n, function ($1, $2, prop) {
           this._prop == prop && this.update()
         }])
       },

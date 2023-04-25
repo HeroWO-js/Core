@@ -2903,7 +2903,6 @@ define([
       })
       var tick = 0
 
-      // [1000, 2000, 3200, ...]
       var levelUps = this.constants.levelUps.concat()
       var skills = this.cx.oneShotEffectCalculation({
         class: Calculator.Effect.GenericIntArray,
@@ -2927,20 +2926,11 @@ define([
       var res = delta
 
       while (delta > 0) {
-        // XXX=R duplicates with h3m2herowo.php
-        while (true) {
-          if (levelUps.length == 2) {
-            // Last predetermined level's experience * multiplier.
-            levelUps.splice(1, 0, levelUps[0] * levelUps[1])
-          }
-          if (exp < levelUps[0]) { break }
-          levelUps.shift()
-        }
-        // levelUps[0] = next level's min experience
-        var thisDelta = Math.min(delta, levelUps[0] - exp)
+        var nextMin = this.nextLevelUp(exp, levelUps)
+        var thisDelta = Math.min(delta, nextMin - exp)
         exp += thisDelta
         delta -= thisDelta
-        var level = exp >= levelUps[0] ? hero.get('level') + 1 : null
+        var level = exp >= nextMin ? hero.get('level') + 1 : null
 
         if (level != null) {
           var potential = []
@@ -3050,6 +3040,27 @@ define([
       transition.set('ticks', tick)
       transition.collectFinal()
       return res
+    },
+
+    // Returns the number of experience points needed to obtain the next hero
+    // level, assuming he currently has exp XP.
+    //
+    // levelUps is mutated if given, removing leading entries for levels <= exp.
+    nextLevelUp: function (exp, levelUps) {
+      // [1000, 2000, 3200, ...]
+      levelUps = levelUps || this.constants.levelUps.concat()
+
+      // XXX=R duplicates with h3m2herowo.php
+      while (true) {
+        if (levelUps.length == 2) {
+          // Last predetermined level's experience * multiplier.
+          levelUps.splice(1, 0, Math.floor(levelUps[0] * levelUps[1]))
+        }
+        if (exp < levelUps[0]) { break }
+        levelUps.shift()
+      }
+
+      return levelUps[0]
     },
 
     // Equips `'art'ifact on any empty slot it can be equipped on, or puts it to backpack (which is also a slot).
@@ -5383,6 +5394,8 @@ define([
     //* When hiring a hero, generate a new hero; hero removal (due to regeneration or hiring) is permanent
     //* Even if a player has no towns, if he has two heroes, one is defeated and another immediately captures a town - he can recruit the defeated hero
     // However, sometimes the game breaks these rules. For example, it occasionally randomizes one hero at any day, or defers making a retreated hero available for days or even weeks.
+    //
+    // XXX=IC after buying the first 2 heroes others must start with the garrison consisting of a single creature: https://forum.herowo.net/t/35
     _initializePlayers: function () {
       var size = 2    // XXX=RH to databank
 
@@ -6875,6 +6888,7 @@ define([
 
       this._balanceGarrison(placement)
 
+      // XXX=IC guardians of objects owned by human players must be controlled by the AI and the combat screen shouldn't even be presented to the owning player (currently that player carries the combat as if his town or hero was attacked)
       switch (placement) {
         case 'random':
           var parties = [
@@ -7642,7 +7656,7 @@ define([
     },
   })
 
-  // Provides properties dictated by a hero's specialy (e.g. in Ogres): icon, name, etc.
+  // Provides properties dictated by a hero's specialty (e.g. in Ogres): icon, name, etc.
   Rules.HeroSpecialty = Calculator.extend('HeroWO.H3.Rules.HeroSpecialty', {
     delayRender: false,
     _keyOptions: ['large'],

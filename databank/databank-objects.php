@@ -1445,7 +1445,7 @@ return [
 
     array_fill_keys($c_waterWheel, [
       ['bonus_resource', 1000, 'ifResource' => $gold, 'ifTargetPlayer' => -1],
-      ['bonus_resource', -500, 'ifResource' => $gold, 'ifTargetPlayer' => -1, 'ifDateWeek' => 1],
+      ['bonus_resource', -500, 'ifResource' => $gold, 'ifTargetPlayer' => -1, 'ifDateMax' => 6],
       bonus_effects([[$const, [['quest_fulfilled', $o_false, 'maxDays' => -1, 'ifBonusObject' => true]]]]),
       ['quest_message', [$const, [toMarkup($adve[165], '`{Audio XXX=ID:dbs:`}')]]],
       ['bonus_message', [$const, [toMarkup($adve[164], '`{BonusesImages`}`{Audio XXX=ID:dbs:`}')]]],

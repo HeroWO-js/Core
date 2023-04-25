@@ -1242,7 +1242,7 @@ return [
   'sculptorWings' => [
     'id' => $id++,
     'image' => [
-      $tower  => $image('HALLTOWR', 18, 'TBTWHRD1', 'TOT',  'GAR1H', 6, 232, 0, 'GA1H'),
+      $tower  => $image('HALLTOWR', 18, 'TBTWHRD1', 'TOT',  'GAR1H', 0, 232, 0, 'GA1H'),
     ],
     'imageU' => [
       $tower  => $image('HALLTOWR', 19, 'TBTWHRD2', 'TOT',  'GAR2H', 0, 232, 0, 'GA2H'),
@@ -1253,6 +1253,7 @@ return [
     'cost_gold' => 1000,
     'name' => $spec[23][0],
     'description' => $spec[23][1],
+    'descriptionU' => $spec[24][1],
     'effects' => [
       ['creature_growth', +4, true, 'ifCreature' => $stoneGargoyle],
       ['creature_growth', +4, true, 'ifCreature' => $obsidianGargoyle],
@@ -1533,6 +1534,7 @@ return [
     'cost_gold' => 1000,
     'name' => $spec[34][0],
     'description' => $spec[34][1],
+    'descriptionU' => $spec[35][1],
     'effects' => [
       ['creature_growth', +8, true, 'ifCreature' => $imp],
       ['creature_growth', +8, true, 'ifCreature' => $familiar],
@@ -1552,6 +1554,7 @@ return [
     'cost_gold' => 1000,
     'name' => $spec[40][0],
     'description' => $spec[40][1],
+    'descriptionU' => $spec[41][1],
     'effects' => [
       ['creature_growth', +3, true, 'ifCreature' => $hellHound],
       ['creature_growth', +3, true, 'ifCreature' => $cerberus],
@@ -1830,6 +1833,7 @@ return [
     'cost_gold' => 1000,
     'name' => $spec[45][0],
     'description' => $spec[45][1],
+    'descriptionU' => $spec[46][1],
     'effects' => [
       ['creature_growth', +6, true, 'ifCreature' => $skeleton],
       ['creature_growth', +6, true, 'ifCreature' => $skeletonWarrior],
@@ -2115,6 +2119,7 @@ return [
     'cost_gold' => 1000,
     'name' => $spec[56][0],
     'description' => $spec[56][1],
+    'descriptionU' => $spec[57][1],
     'effects' => [
       ['creature_growth', +7, true, 'ifCreature' => $troglodyte],
       ['creature_growth', +7, true, 'ifCreature' => $infernalTroglodyte],
@@ -2408,6 +2413,7 @@ return [
     'cost_gold' => 1000,
     'name' => $spec[67][0],
     'description' => $spec[67][1],
+    'descriptionU' => $spec[68][1],
     'effects' => [
       ['creature_growth', +8, true, 'ifCreature' => $goblin],
       ['creature_growth', +8, true, 'ifCreature' => $hobgoblin],
@@ -2681,6 +2687,7 @@ return [
     'cost_gold' => 1000,
     'name' => $spec[78][0],
     'description' => $spec[78][1],
+    'descriptionU' => $spec[79][1],
     'effects' => [
       ['creature_growth', +6, true, 'ifCreature' => $gnoll],
       ['creature_growth', +6, true, 'ifCreature' => $gnollMarauder],
@@ -2921,6 +2928,7 @@ return [
     'cost_gold' => 1000,
     'name' => $spec[89][0],
     'description' => $spec[89][1],
+    'descriptionU' => $spec[90][1],
     'effects' => [
       ['creature_growth', +10, true, 'ifCreature' => $pixie],
       ['creature_growth', +10, true, 'ifCreature' => $sprite],

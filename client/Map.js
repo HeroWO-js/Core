@@ -1921,7 +1921,8 @@ define(['Common', 'ObjectStore', 'Effects'], function (Common, ObjectStore, Effe
 
     // Returns true if hero is seen as not yet dealt with during a human's turn.
     canMove: function () {
-      return this.get('actionPoints') > 0 && !this.get('resting') && !this.get('garrisoned')
+      // XXX=IC,R 32 is the cost of moving over cobblestone road, i.e. the fastest terrain (see databank-effects.php); https://forum.herowo.net/t/27
+      return this.get('actionPoints') > 32 && !this.get('resting') && !this.get('garrisoned')
     },
   })
 
@@ -2218,6 +2219,7 @@ define(['Common', 'ObjectStore', 'Effects'], function (Common, ObjectStore, Effe
       defending: false, // defending stance, lasts until next turn of this creature; n in map.effects if creature is defending
       facing: false,  // true if looking left
       actions: 0,   // number of times the creature has moved during this combat round (usually result of high morale)
+      perished: 0,  // number of killed count-s in this stack during this combat
       open: false,  // only for gate; true if passable for enemies
       //mapCountImage*: null, // internal to H3.DOM.Combat
       // Recurring Effect values.

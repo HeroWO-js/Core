@@ -1098,7 +1098,7 @@ define(['Common', 'Map', 'Calculator', 'require'], function (Common, HMap, Calcu
           return async
         }
 
-        return new cls({url: type + '/' + (root || '') + file})
+        return new cls({url: type + (root || '') + file})
       },
     },
 
