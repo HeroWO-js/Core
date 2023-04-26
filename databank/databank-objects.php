@@ -1533,10 +1533,10 @@ return [
     // Can be linked with specific towns.
 
     // No Effects needed.
-    //array_fill_keys($c_randomDwellingByLevel, []),
+    //array_fill_keys($h3Classes[217], []),
 
     // No Effects needed.
-    //array_fill_keys($c_randomDwellingByTown, []),
+    //array_fill_keys($h3Classes[218], []),
 
     // XXX=I a visit to already owned mine allows leaving garrison (for abandoned too)
     //
@@ -1831,7 +1831,8 @@ return [
     ]),
     array_fill_keys($c_mine_4, [
       'name' => $mine[4][0],
-      'idName' => $mine[4][1],
+      // SoD has two Crystal Cavern objects, one being Crystal Dragon dwelling.
+      'idName' => 'crystalMine',
       'sound' => 'LOOPCRYS',
     ]),
     array_fill_keys($c_mine_5, [
@@ -1909,7 +1910,6 @@ return [
     array_fill_keys($c_whirlpool, ['sound' => 'LOOPWHIR']),
     array_fill_keys($c_windmill, ['sound' => 'LOOPWIND']),
 //    array_fill_keys($c_airElementalConflux, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_alchemistLab, ['sound' => 'XXX=ID:dbs:']),
 //    array_fill_keys($c_altarOfEarth, ['sound' => 'XXX=ID:dbs:']),
 //    array_fill_keys($c_altarOfSacrifice, ['sound' => 'XXX=ID:dbs:']),
 //    array_fill_keys($c_altarOfThought, ['sound' => 'XXX=ID:dbs:']),
@@ -2006,7 +2006,6 @@ return [
 //    array_fill_keys($c_oceanBottle, ['sound' => 'XXX=ID:dbs:']),
 //    array_fill_keys($c_ogreFort, ['sound' => 'XXX=ID:dbs:']),
 //    array_fill_keys($c_orcTower, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_orePit, ['sound' => 'XXX=ID:dbs:']),
 //    array_fill_keys($c_pandoraBox, ['sound' => 'XXX=ID:dbs:']),
 //    array_fill_keys($c_parapet, ['sound' => 'XXX=ID:dbs:']),
 //    array_fill_keys($c_pillarOfEyes, ['sound' => 'XXX=ID:dbs:']),
