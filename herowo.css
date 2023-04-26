@@ -662,8 +662,6 @@ html .Hchat-msg_mySeat_yes b {
 
 .Hchat-msg img {
   display: block;
-  max-width: 100%;
-  max-height: 10em;
   margin: .15em 0;
 }
 
@@ -5260,14 +5258,18 @@ html .Hh3-gop__nonClassic.Hh3-btn_cur { background: url(custom-graphics/SYSOB13/
 
 .Hh3-hinfo__specIcon {
   left: 18px;
+  top: 180px;
+}
+
+.Hh3-hinfo__specIcon,
+.Hh3-hinfo__experienceImage {
+  z-index: 1;   /* let the icon overlay the texts */
+  padding-right: 138px;   /* make the entire box clickable */
+  background-repeat: no-repeat;
 }
 
 .Hh3-hinfo__experienceImage {
   left: 19px;
-}
-
-.Hh3-hinfo__specIcon {
-  top: 180px;
 }
 
 .Hh3-hinfo__morale {

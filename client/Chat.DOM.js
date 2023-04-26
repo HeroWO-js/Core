@@ -383,7 +383,14 @@ define(['DOM.Common', 'H3.DOM.Bits'], function (Common, Bits) {
               done(add())
             }
             img.onload = function () {
-              _.extend(data, {width: img.width, height: img.height})
+              // XXX=R 297 corresponds to the inner area of Hchat-room__msgs;
+              // it's hardcoded for now because messages may be incoming before
+              // final node dimensions are known. The general intention is to
+              // create a max-width: 100%; max-height: 10em restriction while
+              // maintaining aspect ratio (something that these combined with
+              // explicit width; height; can't do).
+              var ratio = Math.min(1, 297 / img.width, 160 / img.height)
+              _.extend(data, {width: img.width * ratio, height: img.height * ratio})
               done(add())
             }
             img.src = data.data.data
