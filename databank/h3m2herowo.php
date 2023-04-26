@@ -191,8 +191,9 @@ HELP;
   }
 }
 
+#[\AllowDynamicProperties]
 abstract class Convertor {
-  const VERSION = 1;
+  const VERSION = 2;
 
   public $warner;
   public $isTutorial;
@@ -759,6 +760,10 @@ abstract class Convertor {
       // does because this script is distributed along with databank scripts.
       $this->warning("%s is designed for map version %s but your h3m2json.php produces version %s; this may cause problems",
         (new CLI)->scriptFile, static::VERSION, $h3m->_version);
+    }
+
+    if (!($h3m->specialWeeks ?? true) or isset($h3m->roundLimit)) {
+      $this->warning('unsupported HotA feature(s) of H3M, ignoring');
     }
 
     $this->h3m = $h3m;
@@ -1475,6 +1480,7 @@ abstract class Convertor {
     );
 
     // Ignoring $coast - it might be useful but HeroWO doesn't store it.
+    // Ignoring $favorableWinds - unknown purpose.
   }
 
   protected function fromH3mTileGeneric($index, $z, $type, $className,
@@ -1739,7 +1745,7 @@ abstract class Convertor {
 
     $obj->displayOrder = $this->objectDisplayOrder($obj, $h3mObject, $id);
 
-    // Monsters are 2x2 in SoD, 3x3 in HeroWO (see databank.php).
+    // Monsters are 2x2 in SoD, 3x2 in HotA, 3x3 in HeroWO (see databank.php).
     $adjusted = ($adjusted and $obj->type === $this->const('object.type.monster'));
     // Remember that $h3mObject holds coordinates of its bottom right corner.
     $this->maxX = max($this->maxX, $h3mObject->x + $adjusted);
@@ -1943,6 +1949,11 @@ abstract class Convertor {
   }
 
   protected function fromH3m_QuestGuard(AObject $obj, H3M\ObjectDetails $details, array $options = []) {
+    if (func_num_args() < 3 and
+        !in_array($obj->class, $this->nameToID('objects', 'questGuard'))) {
+      return $this->warnDetails($obj, $details);
+    }
+
     $options += [
       // As per SoD behaviour, there are groups of messages (quest ::class => array of messages), each group having exactly one message in the following 3 arrays. Groups are identified by their index in these arrays. This means all 3 arrays should have sub-arrays with the same length across all main arrays.
       //
@@ -2159,6 +2170,11 @@ abstract class Convertor {
   }
 
   protected function fromH3m_Event(AObject $obj, H3M\ObjectDetails $details) {
+    if (!($details->applyToHuman ?? true)) {
+      $this->warning('unsupported HotA %s value of %s #%d, ignoring',
+        '$applyToHuman', get_class($details), $obj->id);
+    }
+
     $this->fromH3m_PandoraBox(...func_get_args());
   }
 
@@ -2246,6 +2262,11 @@ abstract class Convertor {
   }
 
   protected function fromH3m_Town(AObject $obj, H3M\ObjectDetails $details) {
+    if ($details->spellResearch ?? false) {
+      $this->warning('unsupported HotA %s value of %s #%d, ignoring',
+        '$spellResearch', get_class($details), $obj->id);
+    }
+
     if (isset($details->type)) {
       $obj->subclass = $this->nameToID('towns', $details->type);
     }   // else null - random town
@@ -2651,6 +2672,13 @@ abstract class Convertor {
   }
 
   protected function fromH3m_Monster(AObject $obj, H3M\ObjectDetails $details) {
+    if (isset($details->exactAggression) or isset($details->joinOnlyForMoney) or
+        isset($details->joinPercentage) or isset($details->upgradedStack) or
+        isset($details->splitStack)) {
+      $this->warning('unsupported HotA feature(s) of %s #%d, ignoring',
+        get_class($details), $obj->id);
+    }
+
     if (isset($details->creature)) {
       // Matches Creature->$id.
       $obj->subclass = $details->creature;
@@ -2813,6 +2841,11 @@ abstract class Convertor {
   }
 
   protected function fromH3m_SeerHut(AObject $obj, H3M\ObjectDetails $details) {
+    if (!empty($details->recurring)) {
+      $this->warning('unsupported HotA %s value of %s #%d, ignoring',
+        '$recurring', get_class($details), $obj->id);
+    }
+
     $this->fromH3m_QuestGuard($obj, $details, [
       'quest' => static::$seerHutQuest,
       'progress' => static::$seerHutProgress,
@@ -2934,6 +2967,14 @@ abstract class Convertor {
     }
 
     return [];  // unknown resource, etc.
+  }
+
+  protected function fromH3m_Bank(AObject $obj, H3M\ObjectDetails $details) {
+    if (isset($details->content) or isset($details->upgraded) or
+        isset($details->artifacts)) {
+      $this->warning('unsupported HotA feature(s) of %s #%d, ignoring',
+        get_class($details), $obj->id);
+    }
   }
 }
 
