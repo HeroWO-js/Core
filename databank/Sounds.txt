@@ -79,7 +79,7 @@ BERSERK           ?
 BIND              ?
 BUILDTWN          map: new building constructed in town
 BUTTON            UI button click sound
-CAVEHEAD          map: entered the cave (played even if non-functional)
+CAVEHEAD          map: entered the cave (played even if non-functional), Subterranean Gate, Keymaster Tent
 CHAT              map: new chat message appeared (green text, played even if own)
 CHEST             map: picked up a treasure chest (also if artifact treasure inside), Sea Chest (played even if no reward)
 CLIMAX            x
@@ -110,7 +110,7 @@ FIREWALL          ?
 FLAGMINE          map: owned any Mine except Abandoned
 FLYSPELL          ?
 FORCEFLD          ?
-GAZEBO            map: encountered Star Axis (both unvisited and already-visited)
+GAZEBO            map: encountered Star Axis, Library Of Enlightenment (both unvisited and already-visited)
 GETPROTECTION     map: encountered Sanctuary, Garden of Revelation (both unvisited and already-visited)
 GOGFLAME          ?
 GOODLUCK          combat: good luck on creature
@@ -143,83 +143,83 @@ KILLFADE          map: having defeated a roaming hero or monster, when dis/embar
 LANDKILL          ?
 LANDMINE          ?
 LIGHTHOUSE        map: encountered Lighthouse, Redwood Observatory, Pillar of Fire, Cartographer (both on want-to-buy and already-bought), Cover of Darkness, Eye/Hut of the Magi
-LOOPAIR           map: environment sound: standing near Altar of Air
-LOOPANIM          ? sounds exactly as LOOPBEHE
-LOOPARCH          ? map: environment sound
+LOOPAIR           map: environment sound: standing near Altar of Air, Air Elemental Conflux
+LOOPANIM          map: environment sound: standing near Labyrinth (sounds exactly as LOOPBEHE)
+LOOPARCH          map: environment sound: standing near Archers Tower, Lizard Den
 LOOPAREN          map: environment sound: standing near Arena, Marletto Tower
-LOOPBEHE          ? map: environment sound
-LOOPBIRD          ? map: environment sound
-LOOPBUOY          ? map: environment sound
+LOOPBEHE          map: environment sound: standing near Behemoth Crag, Gorgon Lair
+LOOPBIRD          map: environment sound: stan near Cliff Nest
+LOOPBUOY          map: environment sound: standing near Buoy
 LOOPCAMP          map: environment sound: standing near Campfire
-LOOPCAVE          map: environment sound: standing near Abandoned Mine
-LOOPCRYS          map: environment sound: standing near Crystal Mine
-LOOPCURS          ? map: environment sound
-LOOPDEAD          ? map: environment sound
+LOOPCAVE          map: environment sound: standing near Abandoned Mine, Cyclops Stockpile, Cyclops Cave, Demon Gate, Pillar Of Eyes, Warren
+LOOPCRYS          map: environment sound: standing near Crystal Mine, Crystal Cavern
+LOOPCURS          map: environment sound: standing near Cursed Ground
+LOOPDEAD          map: environment sound: standing near Cover Of Darkness, Estate, Graveyard, Hall Of Darkness, Mausoleum, Tomb Of Souls
 LOOPDEN           map: environment sound: standing near Thieve's Guild (Den of Thieves)
-LOOPDEVL          ? map: environment sound
-LOOPDOG           ? map: environment sound
-LOOPDRAG          ? map: environment sound
-LOOPDWAR          map: environment sound: standing near Dwarven Treasury
-LOOPEART          ? map: environment sound
-LOOPELF           ? map: environment sound
-LOOPFACT          map: environment sound: standing near War Machine Factory
+LOOPDEVL          map: environment sound: standing near Forsaken Palace
+LOOPDOG           map: environment sound: standing near Kennels
+LOOPDRAG          map: environment sound: standing near Dragon Cave, Dragon Cliffs, Dragon Utopia, Dragon Vault
+LOOPDWAR          map: environment sound: standing near Dwarven Treasury, Dwarf Cottage
+LOOPEART          map: environment sound: standing near Altar Of Earth, Earth Elemental Conflux
+LOOPELF           map: environment sound: standing near Homestead
+LOOPFACT          map: environment sound: standing near War Machine Factory, Golem Factory
 LOOPFAER          map: environment sound: standing near Faerie Ring
-LOOPFALL          map: environment sound: standing near Magic Spring
-LOOPFIRE          map: environment sound: standing near Altar of Fire
+LOOPFALL          map: environment sound: standing near Fountain Of Youth
+LOOPFIRE          map: environment sound: standing near Altar of Fire, Imp Cache, Fire Elemental Conflux, Hell Hole, Imp Crucible, Pillar Of Fire
 LOOPFLAG          map: environment sound: standing near Rally Flag
-LOOPFOUN          map: environment sound: standing near Fountain of Fortune, Fountain of Youth
-LOOPGARD          map: environment sound: standing near Garden of Revelation
+LOOPFOUN          map: environment sound: standing near Fountain of Fortune, Altar Of Water, Magic Spring, Water Elemental Conflux
+LOOPGARD          map: environment sound: standing near Garden of Revelation, Dendroid Arches
 LOOPGATE          map: environment sound: standing near Subterranean Gate
 LOOPGEMP          map: environment sound: standing near Gem Mine
-LOOPGOBL          ? map: environment sound
-LOOPGREM          ? map: environment sound
-LOOPGRIF          map: environment sound: standing near Griffin Conservatory
-LOOPHARP          ? map: environment sound
-LOOPHORS          map: environment sound: standing near Stables
-LOOPHYDR          ? map: environment sound
-LOOPLEAR          map: environment sound: standing near Learning Stone
+LOOPGOBL          map: environment sound: standing near Goblin Barracks
+LOOPGREM          map: environment sound: standing near Workshop
+LOOPGRIF          map: environment sound: standing near Griffin Conservatory, Griffin Tower, Parapet
+LOOPHARP          map: environment sound: standing near Harpy Loft
+LOOPHORS          map: environment sound: standing near Stables, Centaur Stables, Training Grounds
+LOOPHYDR          map: environment sound: standing near Hydra Pond
+LOOPLEAR          map: environment sound: standing near Learning Stone, Dragon Fly Hive, Serpent Fly Hive
 LOOPLEPR          map: environment sound: standing near Mystical Garden
 LOOPLUMB          map: environment sound: standing near Sawmill, Shipyard
-LOOPMAGI          map: environment sound: standing near School of Magic
-LOOPMANT          ? map: environment sound
-LOOPMARK          map: environment sound: standing near Trading Post
-LOOPMEDU          ? map: environment sound
+LOOPMAGI          map: environment sound: standing near School of Magic, Altar Of Wishes, Mage Tower, Magic Plains
+LOOPMANT          map: environment sound: standing near Manticore Lair
+LOOPMARK          map: environment sound: standing near Trading Post, Black Market
+LOOPMEDU          map: environment sound: standing near Medusa Stores
 LOOPMERC          map: environment sound: standing near Mercenary Camp
 LOOPMILL          map: environment sound: standing near Water Wheel
 LOOPMINE          map: environment sound: standing near Gold Mine
 LOOPMON1          map: environment sound: standing near Monolith One Way Entrance or Exit
 LOOPMON2          map: environment sound: standing near Monolith Two Way; looks like it isn't used in game - I don't hear it and the file also has a weird "click" at the end
-LOOPMONK          ? map: environment sound
-LOOPMONS          ? map: environment sound
-LOOPNAGA          ? map: environment sound
+LOOPMONK          map: environment sound: standing near Monastery
+LOOPMONS          map: environment sound: standing near Basilisk Pit, Wyvern Nest
+LOOPNAGA          map: environment sound: standing near Naga Bank, Golden Pavilion
 LOOPOCEA          ? map: environment sound
-LOOPOGRE          ? map: environment sound
-LOOPORC           ? map: environment sound
-LOOPPEGA          ? map: environment sound
-LOOPPIKE          ? map: environment sound
-LOOPSANC          map: environment sound: standing near Temple, Sanctuary
+LOOPOGRE          map: environment sound: standing near Ogre Fort
+LOOPORC           map: environment sound: standing near Gnoll Hut, Orc Tower
+LOOPPEGA          map: environment sound: standing near Enchanted Spring
+LOOPPIKE          map: environment sound: standing near Guardhouse
+LOOPSANC          map: environment sound: standing near Temple, Sanctuary, Portal Of Glory
 LOOPSHRIN         map: environment sound: standing near any Shrine
-LOOPSIRE          ? map: environment sound
-LOOPSKEL          ? map: environment sound
-LOOPSTAR          map: environment sound: standing near Star Axis
-LOOPSULF          map: environment sound: standing near Sulfur Mine
-LOOPSWAR          map: environment sound: standing near School of War
-LOOPSWOR          ? map: environment sound
+LOOPSIRE          map: environment sound: standing near Sirens
+LOOPSKEL          map: environment sound: standing near Cursed Temple
+LOOPSTAR          map: environment sound: standing near Star Axis, Alchemist Lab
+LOOPSULF          map: environment sound: standing near Sulfur Mine, Ore Pit
+LOOPSWAR          map: environment sound: standing near School of War, Hill Fort
+LOOPSWOR          map: environment sound: standing near (default for some dwellings) Barracks, Boar Glen, Enchanter's Hollow, Magic Forest, Magic Lantern, Nomad Tent, Pyre, Rogue Cavern, Sulfurous Lair, Thatched Hut, Tomb Of Curses, Treetop Tower, Troll Bridge
 LOOPTAV           map: environment sound: standing near Tavern
-LOOPTITA          ? map: environment sound
-LOOPUNIC          ? map: environment sound
-LOOPVENT          ? map: environment sound
-LOOPVOLC          ? map: environment sound
+LOOPTITA          map: environment sound: standing near Cloud Temple, Elemental Conflux
+LOOPUNIC          map: environment sound: standing near Unicorn Glade
+LOOPVENT          map: environment sound: standing near Fire Lake, Hall Of Sins
+LOOPVOLC          map: environment sound: standing near Volcano
 LOOPWHIR          map: environment sound: standing near Whirlpool
 LOOPWIND          map: environment sound: standing near Windmill
-LOOPWOLF          ? map: environment sound
-LUCK              ?
+LOOPWOLF          map: environment sound: standing near Wolf Pen
+LUCK              map: visiting Fountain Of Fortune, Mermaids
 MAGCAROW          ?
 MAGCHDRN          ?
 MAGCHFIL          ?
 MAGICRES          combat: creature resisting (evading) targeted spell
 MANADRAI          ?
-MILITARY          map: entered School of War (unvisited prompt, can't-pay, learnt)
+MILITARY          map: entered School of War (unvisited prompt, can't-pay, learnt), Hill Fort
 MIRRORIM          ?
 MNRDEATH          ?
 MORALE            ?

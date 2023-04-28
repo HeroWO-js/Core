@@ -402,7 +402,7 @@ return [
     )),
 
     //array_fill_keys($c_blackMarket, [XXX=I]),
-    // Artifacts may be purchased at the Black Market.
+    // Artifacts may be purchased at the Black Market. Encounter sound: MYSTERY
 
     // No Effects needed.
     //array_fill_keys($c_boat, []),
@@ -410,14 +410,14 @@ return [
     array_fill_keys($c_borderGuard, [
       ['quest_fulfilled', $o_false],
       ['quest_choices', [$append, 'remove', 'cancel']],
-      ['quest_message', [$const, [$borderGuard = $adve[18].'`{Audio XXX=ID:dbos:`}']]],
+      ['quest_message', [$const, [$borderGuard = $adve[18].'`{Audio CAVEHEAD`}']]],
     ]),
     // Usually placed at choke points, a hero must visit a Keymaster’s tent of the associated color for the password.
     'remove'  => [['quest_remove', true]],
 
     array_fill_keys($c_borderGate, [
       ['quest_fulfilled', $o_false],
-      ['quest_message', [$const, [$borderGuard]]],
+      ['quest_message', [$const, [$borderGuard]]], // Encounter sound: CAVEHEAD
     ]),
     // Usually placed at choke points, a hero must visit the keymaster of the associated color in order to get the password.  Each player must visit the keymaster, as the Border Gate will not disappear after the first player visits it.
 
@@ -430,8 +430,8 @@ return [
           ['quest_fulfilled', true, 'ifBonusObjectClass' => $c_borderGate[0],  'ifPlayer' => true],
         ],
       ]),
-      $qmsg = ['quest_message', [$const, [$adve[20].'`{Audio XXX=ID:dbos:`}']]],
-      $bmsg = ['bonus_message', [$const, [$adve[19].'`{Audio XXX=ID:dbos:`}']]],
+      $qmsg = ['quest_message', [$const, [$adve[20].'`{Audio CAVEHEAD`}']]],
+      $bmsg = ['bonus_message', [$const, [$adve[19].'`{Audio CAVEHEAD`}']]],
     ]),
     // For a hero to pass a Border Guard, the hero must visit the Keymaster’s tent of the associated color.
     array_fill_keys($c_keymasterTent_1, [
@@ -521,8 +521,8 @@ return [
 
     array_fill_keys($c_buoy, [
       bonus_effects([[$append, ['creature_morale', +1, true, 'maxCombats' => 1]]]),
-      ['quest_message', [$const, [toMarkup($adve[22], '`{Audio XXX=ID:dbos:`}')]]],
-      ['bonus_message', [$const, [toMarkup($adve[21], '`{MoraleImage +1`}`{Audio XXX=ID:dbos:`}')]]],
+      ['quest_message', [$const, [toMarkup($adve[22], '`{Audio MORALE`}')]]],
+      ['bonus_message', [$const, [toMarkup($adve[21], '`{MoraleImage +1`}`{Audio MORALE`}')]]],
     ]),
     // Visiting a Buoy gives a hero +1 morale until the next battle.
 
@@ -606,8 +606,8 @@ return [
     array_fill_keys($c_swanPond, [
       bonus_effects([[$append, ['creature_luck', +2, true, 'maxCombats' => 1]]]),
       ['bonus_actionPoints', 0.0, 'ifTargetObject' => -1],
-      ['quest_message', [$const, [toMarkup($adve[30], '`{Audio XXX=ID:dbos:`}')]]],
-      ['bonus_message', [$const, [toMarkup($adve[29], '`{LuckImage +2`}`{Audio XXX=ID:dbos:`}')]]],
+      ['quest_message', [$const, [toMarkup($adve[30], '`{Audio LUCK`}')]]],
+      ['bonus_message', [$const, [toMarkup($adve[29], '`{LuckImage +2`}`{Audio LUCK`}')]]],
     ]),
     // +2 Luck until the next battle.
     // Lose all current movement.
@@ -633,9 +633,9 @@ return [
     array_fill_keys($c_corpse, [
       ['quest_chances', $chances('nothing/799 artT/67 artM/67 artJ/67')],
       ['quest_fulfilled', $o_false, 'ifGrantedMin' => 1],
-      ['quest_message', [$const, [$msg = toMarkup($adve[38], '`{Audio XXX=ID:dbos:`}')]]],
+      ['quest_message', [$const, [$msg = toMarkup($adve[38], '`{Audio MYSTERY`}')]]],
       ['bonus_message', [$custom, 'rules', 1,
-        toMarkup($adve[37])."`{Bonuses`}.\n\n`{BonusesImages`}`{Audio XXX=ID:dbos:`}",
+        toMarkup($adve[37])."`{Bonuses`}.\n\n`{BonusesImages`}`{Audio MYSTERY`}",
         $msg]],
     ]),
     // 80% chance of finding nothing.
@@ -682,8 +682,8 @@ return [
 
     array_fill_keys($c_faerieRing, [
       bonus_effects([[$append, ['creature_luck', +1, true, 'maxCombats' => 1]]]),
-      ['quest_message', [$const, [toMarkup($adve[50], '`{Audio XXX=ID:dbos:`}')]]],
-      ['bonus_message', [$const, [toMarkup($adve[49], '`{LuckImage +1`}`{Audio XXX=ID:dbos:`}')]]],
+      ['quest_message', [$const, [toMarkup($adve[50], '`{Audio LUCK`}')]]],
+      ['bonus_message', [$const, [toMarkup($adve[49], '`{LuckImage +1`}`{Audio LUCK`}')]]],
     ]),
     // +1 Luck until the next battle.
 
@@ -691,9 +691,9 @@ return [
       ['quest_chances', $chances('nothing wood5 wgold200 wgold500')],
       ['quest_remove', true],
       ['bonus_message', [$custom, 'rules', 2,
-       toMarkup($adve[52], '`{BonusesImages`}`{Audio XXX=ID:dbos:`}'),
-       toMarkup($adve[53], '`{BonusesImages`}`{Audio XXX=ID:dbos:`}'),
-       toMarkup($adve[51], '`{Audio XXX=ID:dbos:`}')]],
+       toMarkup($adve[52], '`{BonusesImages`}`{Audio GENIE`}'),
+       toMarkup($adve[53], '`{BonusesImages`}`{Audio GENIE`}'),
+       toMarkup($adve[51], '`{Audio GENIE`}')]],
     ]),
     // 25% chance of getting nothing.
     // 25% chance of getting 05 Wood.
@@ -722,17 +722,17 @@ return [
           [['creature_luck', +3, true, 'maxCombats' => 1, 'encounterLabel' => 'm']],
         ],
       ]),
-      ['quest_message', [$const, [toMarkup($adve[56], '`{Audio XXX=ID:dbos:`}')]]],
+      ['quest_message', [$const, [toMarkup($adve[56], '`{Audio LUCK`}')]]],
       // XXX=IC Slightly different from SoD: it shows one neutral luck (0) icon for -1 luck or one +1 for others. We in classic mode show 2/3 +1 icons for +2/+3 luck.
-      ['bonus_message', [$const, [toMarkup($adve[55], '`{LuckImage m`}`{Audio XXX=ID:dbos:`}')]]],
+      ['bonus_message', [$const, [toMarkup($adve[55], '`{LuckImage m`}`{Audio LUCK`}')]]],
     ]),
     // -1 to +3 Luck until the next battle.
 
     array_fill_keys($c_fountainOfYouth, [
       bonus_effects([[$append, ['creature_morale', +1, true, 'maxCombats' => 1]]]),
       ['bonus_actionPoints', +4, 'ifTargetObject' => -1],
-      ['quest_message', [$const, [toMarkup($adve[58], '`{Audio XXX=ID:dbos:`}')]]],
-      ['bonus_message', [$const, [toMarkup($adve[57], '`{MoraleImage +1`}`{Audio XXX=ID:dbos:`}')]]],
+      ['quest_message', [$const, [toMarkup($adve[58], '`{Audio MORALE`}')]]],
+      ['bonus_message', [$const, [toMarkup($adve[57], '`{MoraleImage +1`}`{Audio MORALE`}')]]],
     ]),
     // +1 Morale until next battle.
     // +4 Adventure movement until the end of the day.
@@ -750,7 +750,7 @@ return [
     // +1 Knowledge
 
     //array_fill_keys($c_hillFort, [XXX=I]),
-    // Upgrade base grade creatures.
+    // Upgrade base grade creatures. Encounter sound: MILITARY
 
     //array_fill_keys($c_grail, [XXX=I:grl:),
     // Customizable.
@@ -780,14 +780,14 @@ return [
         ],
         'ifDateDay' => 7,
       ]),
-      ['quest_message', [$const, [toMarkup($adve[63], '`{Audio XXX=ID:dbos:`}')]]],
-      ['bonus_message', [$const, [$luck = toMarkup($adve[62], '`{LuckImage +1`}`{Audio XXX=ID:dbos:`}')]], 'ifDateDay' => 1],
+      ['quest_message', [$const, [toMarkup($adve[63], '`{Audio LUCK`}')]]],
+      ['bonus_message', [$const, [$luck = toMarkup($adve[62], '`{LuckImage +1`}`{Audio LUCK`}')]], 'ifDateDay' => 1],
       ['bonus_message', [$const, [$luck]], 'ifDateDay' => 3],
       ['bonus_message', [$const, [$luck]], 'ifDateDay' => 5],
-      ['bonus_message', [$const, [$morale = toMarkup($adve[62], '`{MoraleImage +1`}`{Audio XXX=ID:dbos:`}')]], 'ifDateDay' => 2],
+      ['bonus_message', [$const, [$morale = toMarkup($adve[62], '`{MoraleImage +1`}`{Audio LUCK`}')]], 'ifDateDay' => 2],
       ['bonus_message', [$const, [$morale]], 'ifDateDay' => 4],
       ['bonus_message', [$const, [$morale]], 'ifDateDay' => 6],
-      ['bonus_message', [$const, [toMarkup($adve[62], '`{LuckImage +1`} `{MoraleImage +1`}`{Audio XXX=ID:dbos:`}')]], 'ifDateDay' => 7],
+      ['bonus_message', [$const, [toMarkup($adve[62], '`{LuckImage +1`} `{MoraleImage +1`}`{Audio LUCK`}')]], 'ifDateDay' => 7],
     ]),
     // +1 Luck until the next battle, on odd days of the week not Day7.
     // +1 Morale until next battle, on even days of the week.
@@ -796,8 +796,8 @@ return [
     array_fill_keys($c_leanTo, [
       ['quest_chances', $chances('W M O C S J', 'lean')],
       ['quest_fulfilled', $o_false, 'ifGrantedMin' => 1],
-      ['quest_message', [$const, [toMarkup($adve[65], '`{Audio XXX=ID:dbos:`}')]]],
-      ['bonus_message', [$const, [toMarkup($adve[64], '`{BonusesImages`}`{Audio XXX=ID:dbos:`}')]]],
+      ['quest_message', [$const, [toMarkup($adve[65], '`{Audio GENIE`}')]]],
+      ['bonus_message', [$const, [toMarkup($adve[64], '`{BonusesImages`}`{Audio GENIE`}')]]],
     ]),
     // +1-4 of any resource other than gold.
     'leanW' => [['bonus_resource', [$random, 1, 4], 'ifResource' => $wood,    'ifTargetPlayer' => -1]],
@@ -817,9 +817,9 @@ return [
         ['hero_knowledge',  +2, true],
       ]]),
       ['quest_message', [$custom, 'rules', 3,
-       toMarkup($adve[68], '`{Audio XXX=ID:dbos:`}'),
-       toMarkup($adve[67], '`{Audio XXX=ID:dbos:`}')]],
-      ['bonus_message', [$const, [toMarkup($adve[66], '`{Audio XXX=ID:dbos:`}')]]],
+       toMarkup($adve[68], '`{Audio GAZEBO`}'),
+       toMarkup($adve[67], '`{Audio GAZEBO`}')]],
+      ['bonus_message', [$const, [toMarkup($adve[66], '`{Audio GAZEBO`}')]]],
     ]),
     // Possibly gives visiting hero +2 Attack, +2 Defense, +2 Power, +2 Knowledge.
 
@@ -851,8 +851,8 @@ return [
       ['quest_choices', [$append, 'spellPower', 'knowledge', 'cancel']],
       ['bonus_resource', -1000, 'ifResource' => $gold, 'ifTargetPlayer' => -1],
       ['quest_message', [$custom, 'rules', 3,
-       str_replace('1000 gold', '`{Checks`}', toMarkup($adve[73], '`{Audio XXX=ID:dbos:`}')),
-       toMarkup($adve[72], '`{Audio XXX=ID:dbos:`}')]],
+       str_replace('1000 gold', '`{Checks`}', toMarkup($adve[73], '`{Audio FAERIE`}')),
+       toMarkup($adve[72], '`{Audio FAERIE`}')]],
     ]),
     // Pay 1000 gold to increase the Power or Knowledge of your hero by +1.
 
@@ -863,9 +863,9 @@ return [
       // Magic Spring stops working for everybody if someone visits it, for the week. It's possible to visit two different Magic Springs and both will work.
       bonus_effects([[$append, ['quest_fulfilled', [$check, false], 'ifBonusObject' => true, 'maxDays' => -1]]]),
       ['quest_message', [$custom, 'rules', 2,
-       toMarkup($adve[76], '`{Audio XXX=ID:dbos:`}'),
-       toMarkup($adve[75], '`{Audio XXX=ID:dbos:`}')]],
-      ['bonus_message', [$const, [toMarkup($adve[74], '`{Audio XXX=ID:dbos:`}')]]],
+       toMarkup($adve[76], '`{Audio FAERIE`}'),
+       toMarkup($adve[75], '`{Audio FAERIE`}')]],
+      ['bonus_message', [$const, [toMarkup($adve[74], '`{Audio FAERIE`}')]]],
     ]),
     // Replenishes spell points, then doubles the amount.
 
@@ -874,8 +874,8 @@ return [
         ['quest_fulfilled', [$check, 'spellPointsMax', 0, 1]],
         ['bonus_spellPoints', [$custom, 'rules'], 'ifTargetObject' => -1],
         ['quest_message', [$custom, 'rules', 2,
-         toMarkup($adve[78], '`{Audio XXX=ID:dbos:`}')]],
-        ['bonus_message', [$const, [toMarkup($adve[77], '`{Audio XXX=ID:dbos:`}')]]],
+         toMarkup($adve[78], '`{Audio FAERIE`}')]],
+        ['bonus_message', [$const, [toMarkup($adve[77], '`{Audio FAERIE`}')]]],
       ],
       $e0(
         PHP_INT_MAX,
@@ -897,8 +897,8 @@ return [
 
     array_fill_keys($c_mermaids, [
       bonus_effects([[$append, ['creature_luck', +1, true, 'maxCombats' => 1]]]),
-      ['quest_message', [$const, [toMarkup($adve[82], '`{Audio XXX=ID:dbos:`}')]]],
-      ['bonus_message', [$const, [toMarkup($adve[83], '`{LuckImage +1`}`{Audio XXX=ID:dbos:`}')]]],
+      ['quest_message', [$const, [toMarkup($adve[82], '`{Audio LUCK`}')]]],
+      ['bonus_message', [$const, [toMarkup($adve[83], '`{LuckImage +1`}`{Audio LUCK`}')]]],
     ]),
     // +1 Luck until next battle.
 
@@ -906,8 +906,8 @@ return [
       ['quest_chances', $chances('gold500 gems5')],
       ['quest_reset', [$const, ['R']]],
       bonus_effects([[$const, [['quest_fulfilled', $o_false, 'maxDays' => -1, 'ifBonusObject' => true]]]]),
-      ['quest_message', [$const, [toMarkup($adve[93], '`{Audio XXX=ID:dbos:`}')]]],
-      ['bonus_message', [$const, [toMarkup($adve[92], '`{BonusesImages`}`{Audio XXX=ID:dbos:`}')]]],
+      ['quest_message', [$const, [toMarkup($adve[93], '`{Audio EXPERNCE`}')]]],
+      ['bonus_message', [$const, [toMarkup($adve[92], '`{BonusesImages`}`{Audio EXPERNCE`}')]]],
     ]),
     // 50% chance to get +500 Gold.
     // 50% chance to get 05 Gems.
@@ -918,14 +918,14 @@ return [
     array_fill_keys($c_oasis, [
       bonus_effects([[$append, ['creature_morale', +1, true, 'maxCombats' => 1]]]),
       ['bonus_actionPoints', +8, 'ifTargetObject' => -1],
-      ['quest_message', [$const, [toMarkup($adve[94], '`{Audio XXX=ID:dbos:`}')]]],
-      ['bonus_message', [$const, [toMarkup($adve[95], '`{MoraleImage +1`}`{Audio XXX=ID:dbos:`}')]]],
+      ['quest_message', [$const, [toMarkup($adve[94], '`{Audio MORALE`}')]]],
+      ['bonus_message', [$const, [toMarkup($adve[95], '`{MoraleImage +1`}`{Audio MORALE`}')]]],
     ]),
     // +1 Morale until the next battle.
     // +8 Movement until the end of the day.
 
     //array_fill_keys($c_obelisk, [XXX=I]),
-    // Reveals portion of the Puzzle Map.
+    // Reveals portion of the Puzzle Map. Encounter sound: MYSTERY
 
     array_fill_keys(array_merge($c_redwoodObservatory, $c_pillarOfFire), [
       ['bonus_shroud', [$append, ['WithinCircle', null, null, 20, null, null, $shr_observatory, true]], 'ifTargetPlayer' => -1],
@@ -943,7 +943,7 @@ return [
       ['quest_remove', true],
       ['bonus_message', [$randomSign]],
     ]),
-    // Acts like a Sign, but on the water.
+    // Acts like a Sign, but on the water. Encounter sound: STORE
 
     array_fill_keys($c_starAxis, [
       bonus_effects([[$append, ['hero_spellPower', +1, true]]]),
@@ -984,8 +984,8 @@ return [
         ['creature_morale', +1, true, 'maxCombats' => 1],
       ]]),
       ['bonus_actionPoints', +4, 'ifTargetObject' => -1],
-      ['quest_message', [$const, [toMarkup($adve[110], '`{Audio XXX=ID:dbos:`}')]]],
-      ['bonus_message', [$const, [toMarkup($adve[111], '`{MoraleImage +1`} `{LuckImage +1`}`{Audio XXX=ID:dbos:`}')]]],
+      ['quest_message', [$const, [toMarkup($adve[110], '`{Audio MORALE`}')]]],
+      ['bonus_message', [$const, [toMarkup($adve[111], '`{MoraleImage +1`} `{LuckImage +1`}`{Audio MORALE`}')]]],
     ]),
     // +1 Luck.
     // +1 Morale until the next battle.
@@ -1082,7 +1082,7 @@ return [
     // With this object, a player may choose a specific town type, or let the computer choose it for them.
 
     //array_fill_keys($c_refugeeCamp, [XXX=I]),
-    // Random creature type available for recruiting every 7 days.
+    // Random creature type available for recruiting every 7 days. Encounter sound: MILITARY
 
     // Has entry in spotEffectsOfObject.
     array_fill_keys($c_sanctuary, [
@@ -1106,7 +1106,7 @@ return [
       // The default check of 'S' fails because quest_chances is applied before the check, adding hero_attack Effect to the hero and making the Scholar object "already visited".
       ['quest_fulfilled', [$const, true]],
       ['quest_remove', true],
-      ['bonus_message', [$const, [toMarkup($adve[115], '`{BonusesImages`}`{Audio XXX=ID:dbos:`}')]]],
+      ['bonus_message', [$const, [toMarkup($adve[115], '`{BonusesImages`}`{Audio GAZEBO`}')]]],
     ]),
     // Learn 1 spell, one secondary skill, or one primary skill.
     // Scholar then disappears.
@@ -1161,7 +1161,7 @@ return [
     array_fill_keys($c_questGuard, [
       ['quest_choices', [$append, 'claim', 'cancel']],
       ['quest_remove', true],
-      ['quest_message', [$custom, 'rules', 5, null, $seer[1][4].'`{Audio XXX=ID:dbos:`}'], 'stack' => array_search('quest', H3Effect::stack)],
+      ['quest_message', [$custom, 'rules', 5, null, $seer[1][4].'`{Audio CAVEHEAD`}'], 'stack' => array_search('quest', H3Effect::stack)],
     ]),
     // Usually place at choke points, a hero must complete a quest in order to pass.
 
@@ -1171,7 +1171,7 @@ return [
       ['quest_choices', [$append, 'claim', 'cancel']],
     ]),
     // Heroes may complete a Seer’s Quest for a reward.
-    // Map Makers must specify the quest.
+    // Map Makers must specify the quest. Encounter sound: QUEST
 
     // The following quest_message are defined for Quest Guard and Seer's Hut:
     // - (QG, 0) here - QG deadline (rules/5//msg)
@@ -1215,7 +1215,7 @@ return [
     array_fill_keys($c_shipwreckSurvivor, [
       ['quest_chances', $chances('artT/55 artM/20 artJ/20 artR/5')],
       ['quest_remove', true],
-      ['bonus_message', [$const, [sprintf(toMarkup($adve[127], '`{BonusesImages`}`{Audio XXX=ID:dbos:`}'), '`{Bonuses`}')]]],
+      ['bonus_message', [$const, [sprintf(toMarkup($adve[127], '`{BonusesImages`}`{Audio TREASURE`}'), '`{Bonuses`}')]]],
     ]),
     // Receive 1 random artifact.
     // 55% Treasure Artifact.
@@ -1275,16 +1275,16 @@ return [
       ['bonus_message', [$randomSign]],
     ]),
     // Displays a message when visited.
-    // Customizable.
+    // Customizable. Encounter sound: STORE
 
     //array_fill_keys($c_sirens, [XXX=I]),
-    // Lose 30% of each army and gain 1 experience point for each point of health for the lost creatures.
+    // Lose 30% of each army and gain 1 experience point for each point of health for the lost creatures. Encounter sound: DANGER
 
     array_fill_keys($c_stables, [
       bonus_effects([[$append, ['hero_actionPoints', +268, true, 'ifVehicle' => array_search('horse', AObject::vehicle), 'maxDays' => -1]]]),
       ['bonus_actionPoints', +6, 'ifTargetObject' => -1, 'ifVehicle' => array_search('horse', AObject::vehicle)],
-      ['quest_message', [$const, [toMarkup($adve[136], '`{Audio XXX=ID:dbos:`}')]]],
-      ['bonus_message', [$const, [toMarkup($adve[137], '`{Audio XXX=ID:dbos:`}')]]],
+      ['quest_message', [$const, [toMarkup($adve[136], '`{Audio STORE`}')]]],
+      ['bonus_message', [$const, [toMarkup($adve[137], '`{Audio STORE`}')]]],
       // XXX+I: stcv: upgrade cavaliers
     ]),
     // +6 movement each day until the end of the week.
@@ -1314,8 +1314,8 @@ return [
     array_fill_keys($c_learningStone, [
       ['bonus_experience', 1000, 'ifTargetObject' => -1],
       bonus_effects([[$const, [['quest_fulfilled', $o_false, true, 'ifBonusObject' => true]]]]),
-      ['quest_message', [$const, [toMarkup($adve[144], '`{Audio XXX=ID:dbos:`}')]]],
-      ['bonus_message', [$const, [toMarkup($adve[143], '`{BonusesImages`}`{Audio XXX=ID:dbos:`}')]]],
+      ['quest_message', [$const, [toMarkup($adve[144], '`{Audio GAZEBO`}')]]],
+      ['bonus_message', [$const, [toMarkup($adve[143], '`{BonusesImages`}`{Audio GAZEBO`}')]]],
     ]),
     // +1000 experience points.
 
@@ -1349,8 +1349,8 @@ return [
       ['bonus_experience', [$custom, 'rules'], 'ifTargetObject' => -1],
       bonus_effects([[$const, [['quest_fulfilled', [$check, false], true, 'ifBonusObject' => true]]]]),
       ['quest_message', [$custom, 'rules', 2,
-       str_replace('2000 gold', '`{Checks`}', toMarkup($adve[150], '`{Audio XXX=ID:dbos:`}')),
-       toMarkup($adve[147], '`{Audio XXX=ID:dbos:`}')]],
+       str_replace('2000 gold', '`{Checks`}', toMarkup($adve[150], '`{Audio GAZEBO`}')),
+       toMarkup($adve[147], '`{Audio GAZEBO`}')]],
     ]),
     // 34% Chance of paying 0 gold for a hero to advance to his next level of experience.
     //
@@ -1361,7 +1361,7 @@ return [
       // XXX=I the message should appear before LevelUp window
       //
       // XXX Audio for lupDo is the same as for choices with lupG/J
-      ['bonus_message', [$const, [toMarkup($adve[148], '`<`{StatImage experience`} +1 Level`>`{Audio XXX=ID:dbos:`}')]]],
+      ['bonus_message', [$const, [toMarkup($adve[148], '`<`{StatImage experience`} +1 Level`>`{Audio GAZEBO`}')]]],
     ],
     'lupG' => [
       ['quest_fulfilled', [$check, 'resources_gold', 2000]],
@@ -1383,18 +1383,18 @@ return [
     // Entering the Subterranean Gate leads to the Underground Map, if any.
 
     //array_fill_keys($c_university, [XXX=I]),
-    // Pay 2000g for a 'new' Secondary Skill.
+    // Pay 2000g for a 'new' Secondary Skill. Encounter sound: GAZEBO
 
     array_fill_keys($c_wagon, [
       ['quest_chances', [$const,
         $chances('nothing/10 artT/20 artM/20')[1] +
         $chances('W/8 M/8 O/8 C/8 S/8 J/8', 'wagon')[1]]],
       ['quest_fulfilled', $o_false, 'ifGrantedMin' => 1],
-      ['quest_message', [$const, [toMarkup($adve[156], '`{Audio XXX=ID:dbos:`}')]]],
+      ['quest_message', [$const, [toMarkup($adve[156], '`{Audio GENIE`}')]]],
       ['bonus_message', [$custom, 'rules', 0,
       // XXX=IC Slightly different message from SoD
-      str_replace("the '%s'", '`{Bonuses`}', toMarkup($adve[155], '`{BonusesImages`}`{Audio XXX=ID:dbos:`}')),
-      toMarkup($adve[154], '`{BonusesImages`}`{Audio XXX=ID:dbos:`}')]],
+      str_replace("the '%s'", '`{Bonuses`}', toMarkup($adve[155], '`{BonusesImages`}`{Audio GENIE`}')),
+      toMarkup($adve[154], '`{BonusesImages`}`{Audio GENIE`}')]],
     ]),
     // 10% chance for nothing.
     //
@@ -1456,8 +1456,8 @@ return [
     array_fill_keys($c_wateringHole, [
       bonus_effects([[$append, ['creature_morale', +1, true, 'maxCombats' => 1]]]),
       ['bonus_actionPoints', +4, true, 'ifTargetObject' => -1],
-      ['quest_message', [$const, [toMarkup($adve[167], '`{Audio XXX=ID:dbs:`}')]]],
-      ['bonus_message', [$const, [toMarkup($adve[166], '`{MoraleImage +1`}`{Audio XXX=ID:dbs:`}')]]],
+      ['quest_message', [$const, [toMarkup($adve[167], '`{Audio MORALE`}')]]],
+      ['bonus_message', [$const, [toMarkup($adve[166], '`{MoraleImage +1`}`{Audio MORALE`}')]]],
     ]),
     // +1 Morale until next battle.
     // +4 Adventure movement until the end of the day.
@@ -1480,7 +1480,7 @@ return [
     'windS' => [['bonus_resource', [$random, 3, 6], 'ifResource' => $sulfur,  'ifTargetPlayer' => -1]],
     'windJ' => [['bonus_resource', [$random, 3, 6], 'ifResource' => $gems,     'ifTargetPlayer' => -1]],
 
-    // XXX=C ADVEVENT.TXT[190] suggests that Witch Hut can be deserted
+    // XXX=C ADVEVENT.TXT[190] suggests that Witch Hut can be deserted. Encounter sound: GAZEBO
     array_fill_keys($c_witchHut, [
       [
         'quest_chances',
@@ -1800,6 +1800,7 @@ return [
   ]),
 
   // Sounds according to Sounds.txt.
+  // Objects which has no loop sound on map: altarOfSacrifice, boat, borderGate, borderGuard, cartographer, cloverField, corpse, coverOfDarkness, derelictShip, evilFog, eyeOfMagi, favorableWinds, fieryFields, flotsam, freelancerGuild, frozenLake, garrison, holyGround, hutOfMagi, idolOfFortune, keymasterTent, leanTo, libraryOfEnlightenment, lighthouse, lucidPools, magicClouds, magicWell, mermaids, monster, oasis, obelisk, oceanBottle, pandoraBox, prison, pyramid, questGuard, redwoodObservatory, resource, rocklands, scholar, seaChest, seerHut, shipwreck, shipwreckSurvivor, sign, spellScroll, swanPond, treasureChest, treeOfKnowledge, university, wagon, warriorTomb, wateringHole, witchHut
   'objectOverrides' => $e([
     array_fill_keys($h3Classes[217], [
       'name' => 'Random Dwelling By Level',   // XXX localize
@@ -1809,56 +1810,66 @@ return [
       'name' => 'Random Dwelling By Town',    // XXX localize
       'idName' => 'randomDwellingByTown',
     ]),
+    // Sawmill
     array_fill_keys($c_mine_0, [
       'name' => $mine[0][0],
       'idName' => $mine[0][1],
       'sound' => 'LOOPLUMB',
     ]),
+    // Alchemist's Lab
     array_fill_keys($c_mine_1, [
       'name' => $mine[1][0],
       'idName' => $mine[1][1],
-      //'sound' => 'XXX=ID: dbs:',
+      'sound' => 'LOOPSTAR',
     ]),
+    // Ore Pit
     array_fill_keys($c_mine_2, [
       'name' => $mine[2][0],
       'idName' => $mine[2][1],
-      //'sound' => 'XXX=ID:dbs:',
+      'sound' => 'LOOPSULF',
     ]),
+    // Sulfur Dune
     array_fill_keys($c_mine_3, [
       'name' => $mine[3][0],
       'idName' => $mine[3][1],
       'sound' => 'LOOPSULF',
     ]),
+    // Crystal Cavern
     array_fill_keys($c_mine_4, [
       'name' => $mine[4][0],
       // SoD has two Crystal Cavern objects, one being Crystal Dragon dwelling.
       'idName' => 'crystalMine',
       'sound' => 'LOOPCRYS',
     ]),
+    // Gem Pond
     array_fill_keys($c_mine_5, [
       'name' => $mine[5][0],
       'idName' => $mine[5][1],
       'sound' => 'LOOPGEMP',
     ]),
+    // Gold Mine
     array_fill_keys($c_mine_6, [
       'name' => $mine[6][0],
       'idName' => $mine[6][1],
       'sound' => 'LOOPMINE',
     ]),
+    // Abandoned Mine
     array_fill_keys($c_mine_7, [
       'name' => $mine[7][0],
       'idName' => $mine[7][1],
       'sound' => 'LOOPCAVE',
     ]),
+    // Garrison
     array_fill_keys($c_garrison_0, [
       'name' => $garr[0][0],
       'idName' => $garr[0][1],
-      //'sound' => 'XXX=ID:dbs:',
+      'sound' => 'LOOPSWAR',
     ]),
+    // Anti-magic Garrison
     array_fill_keys($c_garrison_1, [
       'name' => $garr[1][0],
       'idName' => $garr[1][1],
-      //'sound' => 'XXX=ID:dbs:',
+      'sound' => 'LOOPMAGI',
     ]),
     array_fill_keys($c_altarOfAir, ['sound' => 'LOOPAIR']),
     array_fill_keys($c_arena, ['sound' => 'LOOPAREN']),
@@ -1866,26 +1877,26 @@ return [
     array_fill_keys($c_campfire, ['sound' => 'LOOPCAMP']),
     array_fill_keys($c_denOfThieves, ['sound' => 'LOOPDEN']),
     // Cyclops Stockpile
-    //array_fill_keys($c_creatureBank_0, ['sound' => 'XXX=ID:dbs:']),
+    array_fill_keys($c_creatureBank_0, ['sound' => 'LOOPCAVE']),
     // Dwarven Treasury
     array_fill_keys($c_creatureBank_1, ['sound' => 'LOOPDWAR']),
     // Griffin Conservatory
     array_fill_keys($c_creatureBank_2, ['sound' => 'LOOPGRIF']),
     // Imp Cache
-    //array_fill_keys($c_creatureBank_3, ['sound' => 'XXX=ID:dbs:']),
+    array_fill_keys($c_creatureBank_3, ['sound' => 'LOOPFIRE']),
     // Medusa Stores
-    //array_fill_keys($c_creatureBank_4, ['sound' => 'XXX=ID:dbs:']),
+    array_fill_keys($c_creatureBank_4, ['sound' => 'LOOPMEDU']),
     // Naga Bank
-    //array_fill_keys($c_creatureBank_5, ['sound' => 'XXX=ID:dbs:']),
+    array_fill_keys($c_creatureBank_5, ['sound' => 'LOOPNAGA']),
     // Dragon Fly Hive
-    //array_fill_keys($c_creatureBank_6, ['sound' => 'XXX=ID:dbs:']),
+    array_fill_keys($c_creatureBank_6, ['sound' => 'LOOPLEAR']),
     array_fill_keys($c_warMachineFactory, ['sound' => 'LOOPFACT']),
     array_fill_keys($c_faerieRing, ['sound' => 'LOOPFAER']),
-    array_fill_keys($c_magicSpring, ['sound' => 'LOOPFALL']),
+    array_fill_keys($c_magicSpring, ['sound' => 'LOOPFOUN']),
     array_fill_keys($c_altarOfFire, ['sound' => 'LOOPFIRE']),
     array_fill_keys($c_rallyFlag, ['sound' => 'LOOPFLAG']),
     array_fill_keys($c_fountainOfFortune, ['sound' => 'LOOPFOUN']),
-    array_fill_keys($c_fountainOfYouth, ['sound' => 'LOOPFOUN']),
+    array_fill_keys($c_fountainOfYouth, ['sound' => 'LOOPFALL']),
     array_fill_keys($c_gardenOfRevelation, ['sound' => 'LOOPGARD']),
     array_fill_keys($c_subterraneanGate, ['sound' => 'LOOPGATE']),
     array_fill_keys($c_stables, ['sound' => 'LOOPHORS']),
@@ -1898,7 +1909,7 @@ return [
     array_fill_keys($c_waterWheel, ['sound' => 'LOOPMILL']),
     array_fill_keys($c_monolithOneWayEntrance, ['sound' => 'LOOPMON1']),
     array_fill_keys($c_monolithOneWayExit, ['sound' => 'LOOPMON1']),
-    //array_fill_keys($c_monolithTwoWay, ['sound' => 'LOOPMON2']), XXX=ID:dbs:
+    array_fill_keys($c_monolithTwoWay, ['sound' => 'LOOPMON2']),
     array_fill_keys($c_temple, ['sound' => 'LOOPSANC']),
     array_fill_keys($c_sanctuary, ['sound' => 'LOOPSANC']),
     array_fill_keys($c_shrineOfMagicIncantation, ['sound' => 'LOOPSHRIN']),
@@ -1909,147 +1920,147 @@ return [
     array_fill_keys($c_tavern, ['sound' => 'LOOPTAV']),
     array_fill_keys($c_whirlpool, ['sound' => 'LOOPWHIR']),
     array_fill_keys($c_windmill, ['sound' => 'LOOPWIND']),
-//    array_fill_keys($c_airElementalConflux, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_altarOfEarth, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_altarOfSacrifice, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_altarOfThought, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_altarOfWater, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_altarOfWishes, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_archersTower, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_barracks, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_basiliskPit, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_behemothCrag, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_blackMarket, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_boarGlen, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_boat, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_borderGate, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_borderGuard, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_buoy, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_cartographer, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_centaurStables, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_chapelOfStilledVoices, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_cliffNest, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_cloudTemple, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_cloverField, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_corpse, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_coverOfDarkness, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_crypt, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_crystalCavern, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_cursedGround, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_cursedTemple, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_cyclopsCave, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_demonGate, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_dendroidArches, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_derelictShip, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_dragonCave, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_dragonCliffs, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_dragonUtopia, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_dragonVault, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_dwarfCottage, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_earthElementalConflux, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_elementalConflux, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_enchantedSpring, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_enchanterHollow, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_estate, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_evilFog, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_eyeOfMagi, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_favorableWinds, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_fieryFields, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_fireElementalConflux, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_fireLake, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_flotsam, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_forsakenPalace, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_freelancerGuild, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_frozenLake, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_garrison, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_gnollHut, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_goblinBarracks, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_goldenPavilion, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_golemFactory, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_gorgonLair, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_graveyard, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_griffinTower, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_guardhouse, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_hallOfDarkness, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_hallOfSins, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_harpyLoft, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_hellHole, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_hillFort, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_holyGround, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_homestead, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_hutOfMagi, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_hydraPond, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_idolOfFortune, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_impCrucible, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_kennels, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_keymasterTent, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_labyrinth, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_leanTo, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_libraryOfEnlightenment, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_lighthouse, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_lizardDen, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_lucidPools, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_mageTower, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_magicClouds, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_magicForest, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_magicLantern, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_magicPlains, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_magicWell, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_manticoreLair, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_mausoleum, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_mermaids, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_monastery, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_monster, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_nomadTent, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_oasis, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_obelisk, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_oceanBottle, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_ogreFort, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_orcTower, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_pandoraBox, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_parapet, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_pillarOfEyes, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_pillarOfFire, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_portalOfGlory, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_prison, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_pyramid, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_pyre, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_questGuard, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_redwoodObservatory, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_refugeeCamp, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_resource, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_rocklands, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_rogueCavern, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_scholar, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_seaChest, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_seerHut, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_serpentFlyHive, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_shipwreck, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_shipwreckSurvivor, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_sign, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_sirens, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_spellScroll, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_sulfurousLair, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_swanPond, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_thatchedHut, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_tombOfCurses, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_tombOfSouls, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_trainingGrounds, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_treasureChest, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_treeOfKnowledge, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_treetopTower, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_trollBridge, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_unicornGlade, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_university, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_volcano, ['sound' => 'XXX=ID:dbs:']),  LOOPVOLC?
-//    array_fill_keys($c_wagon, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_warren, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_warriorTomb, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_waterElementalConflux, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_wateringHole, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_witchHut, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_wolfPen, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_workshop, ['sound' => 'XXX=ID:dbs:']),
-//    array_fill_keys($c_wyvernNest, ['sound' => 'XXX=ID:dbs:']),
+    array_fill_keys($c_airElementalConflux, ['sound' => 'LOOPAIR']), 
+    array_fill_keys($c_altarOfEarth, ['sound' => 'LOOPEART']),
+//    array_fill_keys($c_altarOfSacrifice, ['sound' => '']),
+    array_fill_keys($c_altarOfThought, ['sound' => 'LOOPSWOR']),
+    array_fill_keys($c_altarOfWater, ['sound' => 'LOOPFOUN']),
+    array_fill_keys($c_altarOfWishes, ['sound' => 'LOOPMAGI']),
+    array_fill_keys($c_archersTower, ['sound' => 'LOOPARCH']),
+    array_fill_keys($c_barracks, ['sound' => 'LOOPSWOR']),
+    array_fill_keys($c_basiliskPit, ['sound' => 'LOOPMONS']),
+    array_fill_keys($c_behemothCrag, ['sound' => 'LOOPBEHE']),
+    array_fill_keys($c_blackMarket, ['sound' => 'LOOPMARK']),
+    array_fill_keys($c_boarGlen, ['sound' => 'LOOPSWOR']),
+//    array_fill_keys($c_boat, ['sound' => '']),
+//    array_fill_keys($c_borderGate, ['sound' => '']),
+//    array_fill_keys($c_borderGuard, ['sound' => '']),
+    array_fill_keys($c_buoy, ['sound' => 'LOOPBUOY']),
+//    array_fill_keys($c_cartographer, ['sound' => '']),
+    array_fill_keys($c_centaurStables, ['sound' => 'LOOPHORS']),
+    array_fill_keys($c_chapelOfStilledVoices, ['sound' => 'LOOPMEDU']),
+    array_fill_keys($c_cliffNest, ['sound' => 'LOOPBIRD']),
+    array_fill_keys($c_cloudTemple, ['sound' => 'LOOPTITA']), 
+//    array_fill_keys($c_cloverField, ['sound' => '']),
+//    array_fill_keys($c_corpse, ['sound' => '']),
+//    array_fill_keys($c_coverOfDarkness, ['sound' => '']),
+    array_fill_keys($c_crypt, ['sound' => 'LOOPDEAD']),
+    array_fill_keys($c_crystalCavern, ['sound' => 'LOOPCRYS']),
+    array_fill_keys($c_cursedGround, ['sound' => 'LOOPCURS']),
+    array_fill_keys($c_cursedTemple, ['sound' => 'LOOPSKEL']),
+    array_fill_keys($c_cyclopsCave, ['sound' => 'LOOPCAVE']),
+    array_fill_keys($c_demonGate, ['sound' => 'LOOPCAVE']),
+    array_fill_keys($c_dendroidArches, ['sound' => 'LOOPGARD']),
+//    array_fill_keys($c_derelictShip, ['sound' => '']),
+    array_fill_keys($c_dragonCave, ['sound' => 'LOOPDRAG']),
+    array_fill_keys($c_dragonCliffs, ['sound' => 'LOOPDRAG']),
+    array_fill_keys($c_dragonUtopia, ['sound' => 'LOOPDRAG']),
+    array_fill_keys($c_dragonVault, ['sound' => 'LOOPDRAG']),
+    array_fill_keys($c_dwarfCottage, ['sound' => 'LOOPDWAR']),
+    array_fill_keys($c_earthElementalConflux, ['sound' => 'LOOPEART']),
+    array_fill_keys($c_elementalConflux, ['sound' => 'LOOPTITA']),
+    array_fill_keys($c_enchantedSpring, ['sound' => 'LOOPPEGA']),
+    array_fill_keys($c_enchanterHollow, ['sound' => 'LOOPSWOR']),
+    array_fill_keys($c_estate, ['sound' => 'LOOPDEAD']),
+//    array_fill_keys($c_evilFog, ['sound' => '']),
+//    array_fill_keys($c_eyeOfMagi, ['sound' => '']),
+//    array_fill_keys($c_favorableWinds, ['sound' => '']),
+//    array_fill_keys($c_fieryFields, ['sound' => '']),
+    array_fill_keys($c_fireElementalConflux, ['sound' => 'LOOPFIRE']),
+    array_fill_keys($c_fireLake, ['sound' => 'LOOPVENT']),
+//    array_fill_keys($c_flotsam, ['sound' => '']),
+    array_fill_keys($c_forsakenPalace, ['sound' => 'LOOPDEVL']),
+//    array_fill_keys($c_freelancerGuild, ['sound' => '']),
+//    array_fill_keys($c_frozenLake, ['sound' => '']),
+//    array_fill_keys($c_garrison, ['sound' => '']),
+    array_fill_keys($c_gnollHut, ['sound' => 'LOOPORC']),
+    array_fill_keys($c_goblinBarracks, ['sound' => 'LOOPGOBL']),
+    array_fill_keys($c_goldenPavilion, ['sound' => 'LOOPNAGA']),
+    array_fill_keys($c_golemFactory, ['sound' => 'LOOPFACT']),
+    array_fill_keys($c_gorgonLair, ['sound' => 'LOOPBEHE']),
+    array_fill_keys($c_graveyard, ['sound' => 'LOOPDEAD']),
+    array_fill_keys($c_griffinTower, ['sound' => 'LOOPGRIF']),
+    array_fill_keys($c_guardhouse, ['sound' => 'LOOPPIKE']),
+    array_fill_keys($c_hallOfDarkness, ['sound' => 'LOOPDEAD']),
+    array_fill_keys($c_hallOfSins, ['sound' => 'LOOPVENT']),
+    array_fill_keys($c_harpyLoft, ['sound' => 'LOOPHARP']),
+    array_fill_keys($c_hellHole, ['sound' => 'LOOPFIRE']),
+    array_fill_keys($c_hillFort, ['sound' => 'LOOPSWAR']),
+//    array_fill_keys($c_holyGround, ['sound' => '']),
+    array_fill_keys($c_homestead, ['sound' => 'LOOPELF']),
+//    array_fill_keys($c_hutOfMagi, ['sound' => '']),
+    array_fill_keys($c_hydraPond, ['sound' => 'LOOPHYDR']),
+//    array_fill_keys($c_idolOfFortune, ['sound' => '']),
+    array_fill_keys($c_impCrucible, ['sound' => 'LOOPFIRE']),
+    array_fill_keys($c_kennels, ['sound' => 'LOOPDOG']),
+//    array_fill_keys($c_keymasterTent, ['sound' => '']),
+    array_fill_keys($c_labyrinth, ['sound' => 'LOOPANIM']),
+//    array_fill_keys($c_leanTo, ['sound' => '']),
+//    array_fill_keys($c_libraryOfEnlightenment, ['sound' => '']),
+//    array_fill_keys($c_lighthouse, ['sound' => '']),
+    array_fill_keys($c_lizardDen, ['sound' => 'LOOPARCH']),
+//    array_fill_keys($c_lucidPools, ['sound' => '']),
+    array_fill_keys($c_mageTower, ['sound' => 'LOOPMAGI']),
+//    array_fill_keys($c_magicClouds, ['sound' => '']),
+    array_fill_keys($c_magicForest, ['sound' => 'LOOPSWOR']),
+    array_fill_keys($c_magicLantern, ['sound' => 'LOOPSWOR']),
+    array_fill_keys($c_magicPlains, ['sound' => 'LOOPMAGI']),
+//    array_fill_keys($c_magicWell, ['sound' => '']),
+    array_fill_keys($c_manticoreLair, ['sound' => 'LOOPMANT']),
+    array_fill_keys($c_mausoleum, ['sound' => 'LOOPDEAD']),
+//    array_fill_keys($c_mermaids, ['sound' => '']),
+    array_fill_keys($c_monastery, ['sound' => 'LOOPMONK']),
+//    array_fill_keys($c_monster, ['sound' => '']),
+    array_fill_keys($c_nomadTent, ['sound' => 'LOOPSWOR']),
+//    array_fill_keys($c_oasis, ['sound' => '']),
+//    array_fill_keys($c_obelisk, ['sound' => '']),
+//    array_fill_keys($c_oceanBottle, ['sound' => '']),
+    array_fill_keys($c_ogreFort, ['sound' => 'LOOPOGRE']),
+    array_fill_keys($c_orcTower, ['sound' => 'LOOPORC']),
+//    array_fill_keys($c_pandoraBox, ['sound' => '']),
+    array_fill_keys($c_parapet, ['sound' => 'LOOPGRIF']),
+    array_fill_keys($c_pillarOfEyes, ['sound' => 'LOOPCAVE']),
+    array_fill_keys($c_pillarOfFire, ['sound' => 'LOOPFIRE']),
+    array_fill_keys($c_portalOfGlory, ['sound' => 'LOOPSANC']),
+//    array_fill_keys($c_prison, ['sound' => '']),
+//    array_fill_keys($c_pyramid, ['sound' => '']),
+    array_fill_keys($c_pyre, ['sound' => 'LOOPSWOR']),
+//    array_fill_keys($c_questGuard, ['sound' => '']),
+//    array_fill_keys($c_redwoodObservatory, ['sound' => '']),
+    array_fill_keys($c_refugeeCamp, ['sound' => 'LOOPMERC']),
+//    array_fill_keys($c_resource, ['sound' => '']),
+//    array_fill_keys($c_rocklands, ['sound' => '']),
+    array_fill_keys($c_rogueCavern, ['sound' => 'LOOPSWOR']),
+//    array_fill_keys($c_scholar, ['sound' => '']),
+//    array_fill_keys($c_seaChest, ['sound' => '']),
+//    array_fill_keys($c_seerHut, ['sound' => '']),
+    array_fill_keys($c_serpentFlyHive, ['sound' => 'LOOPLEAR']),
+//    array_fill_keys($c_shipwreck, ['sound' => '']),
+//    array_fill_keys($c_shipwreckSurvivor, ['sound' => '']),
+//    array_fill_keys($c_sign, ['sound' => '']),
+    array_fill_keys($c_sirens, ['sound' => 'LOOPSIRE']),
+//    array_fill_keys($c_spellScroll, ['sound' => '']),
+    array_fill_keys($c_sulfurousLair, ['sound' => 'LOOPSWOR']),
+//    array_fill_keys($c_swanPond, ['sound' => '']),
+    array_fill_keys($c_thatchedHut, ['sound' => 'LOOPSWOR']),
+    array_fill_keys($c_tombOfCurses, ['sound' => 'LOOPSWOR']),
+    array_fill_keys($c_tombOfSouls, ['sound' => 'LOOPDEAD']),
+    array_fill_keys($c_trainingGrounds, ['sound' => 'LOOPHORS']),
+//    array_fill_keys($c_treasureChest, ['sound' => '']),
+//    array_fill_keys($c_treeOfKnowledge, ['sound' => '']),
+    array_fill_keys($c_treetopTower, ['sound' => 'LOOPSWOR']),
+    array_fill_keys($c_trollBridge, ['sound' => 'LOOPSWOR']),
+    array_fill_keys($c_unicornGlade, ['sound' => 'LOOPUNIC']),
+//    array_fill_keys($c_university, ['sound' => '']),
+    array_fill_keys($c_volcano, ['sound' => 'LOOPVOLC']),
+//    array_fill_keys($c_wagon, ['sound' => '']),
+    array_fill_keys($c_warren, ['sound' => 'LOOPCAVE']),
+//    array_fill_keys($c_warriorTomb, ['sound' => '']),
+    array_fill_keys($c_waterElementalConflux, ['sound' => 'LOOPFOUN']),
+//    array_fill_keys($c_wateringHole, ['sound' => '']),
+//    array_fill_keys($c_witchHut, ['sound' => '']),
+    array_fill_keys($c_wolfPen, ['sound' => 'LOOPWOLF']),
+    array_fill_keys($c_workshop, ['sound' => 'LOOPGREM']),
+    array_fill_keys($c_wyvernNest, ['sound' => 'LOOPMONS']),
   ]),
 ];
