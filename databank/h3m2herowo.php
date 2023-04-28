@@ -2179,7 +2179,7 @@ abstract class Convertor {
   }
 
   protected function fromH3m_Sign(AObject $obj, H3M\ObjectDetails $details) {
-    $this->effects($this->bonusEffects(['message' => $details->message.'`{Audio XXX=ID`}'], $obj->id));
+    $this->effects($this->bonusEffects(['message' => $details->message.'`{Audio STORE`}'], $obj->id));
   }
 
   protected function fromH3m_Garrison(AObject $obj, H3M\ObjectDetails $details) {

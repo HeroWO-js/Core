@@ -1082,7 +1082,7 @@ function write_misc(array $options) {
 
   // Texts for signs (class 91, AVXsn???.def). Support markup.
   $signs = listFile($options, 'RANDSIGN.TXT');
-  foreach ($signs as &$ref) { $ref .= '`{Audio XXX=ID`}'; }
+  foreach ($signs as &$ref) { $ref .= '`{Audio STORE`}'; }
   file_put_contents("$outPath/randomSigns.json", encodeJSON($signs));
 
   $rumors = array_column(csvFile($options, 'RANDTVRN.TXT'), 0);
@@ -3752,7 +3752,7 @@ function write_banks(array $options) {
 
         // Some bank-specific messages are defined in databank-objects.php.
         if (!in_array(rtrim($bank->idName, '0..9'), ['shipwreck', 'derelictShip', 'crypt', 'dragonUtopia'])) {
-          $labeled[] = ['quest_message', [$const, [sprintf($adve[33].'`{Audio XXX=ID`}', $bank->name)]]];
+          $labeled[] = ['quest_message', [$const, [sprintf($adve[33].'`{Audio ROGUE`}', $bank->name)]]];
         }
 
         $creature = key($garrison);

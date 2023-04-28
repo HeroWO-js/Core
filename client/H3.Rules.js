@@ -2521,7 +2521,7 @@ define([
             }, this)
 
             // GENRLTXT.TXT[422]
-            var msg = _.format(this.rules.cx.s('map', '`{Audio XXX=ID`}Much to your dismay, the %s is guarded by %s %s.\n\nDo you wish to fight the guards?'), this.rules.classes.atCoords(this.map.objects.atCoords(this.get('bonus'), 0, 0, 'class', 0), 0, 0, 'name', 0), count, name)
+            var msg = _.format(this.rules.cx.s('map', '`{Audio LOOPSWOR`}Much to your dismay, the %s is guarded by %s %s.\n\nDo you wish to fight the guards?'), this.rules.classes.atCoords(this.map.objects.atCoords(this.get('bonus'), 0, 0, 'class', 0), 0, 0, 'name', 0), count, name)
 
             this.messageTransition({
               type: 'encounterPrompt',
@@ -2558,7 +2558,7 @@ define([
               }, this)
 
             // ADVEVENT.TXT[112] and 35, 36
-            var msg = _.format(this.rules.cx.s('map', '`{Audio XXX=ID`}`## %s\n\nWould you like to recruit %s?'), this.rules.classes.atCoords(this.map.objects.atCoords(this.get('bonus'), 0, 0, 'class', 0), 0, 0, 'name', 0), wordJoin(names, ', or '))
+            var msg = _.format(this.rules.cx.s('map', '`{Audio LOOPSWOR`}`## %s\n\nWould you like to recruit %s?'), this.rules.classes.atCoords(this.map.objects.atCoords(this.get('bonus'), 0, 0, 'class', 0), 0, 0, 'name', 0), wordJoin(names, ', or '))
 
             // XXX=IC SoD shows the message on ADVMAP's background, we show on combat
             this.messageTransition({

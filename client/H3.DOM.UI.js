@@ -762,15 +762,15 @@ define([
                   var choices = view.get('choices')
                   if (_.includes(this.rules.objectsID.arena, cls)) {
                     // ADVEVENT.TXT[0]
-                    box.addFromMarkup(this.cx.s('map', '`{Audio XXX=ID`}You enter the arena and face a pack of vicious lions.  You handily defeat them, to the wild cheers of the crowd.  Impressed by your skill, the aged trainer of gladiators agrees to train you in a skill of your choice.'))
+                    box.addFromMarkup(this.cx.s('map', '`{Audio NOMAD`}You enter the arena and face a pack of vicious lions.  You handily defeat them, to the wild cheers of the crowd.  Impressed by your skill, the aged trainer of gladiators agrees to train you in a skill of your choice.'))
                     buttons = 'sel'
                   } else if (_.includes(this.rules.objectsID.borderGuard, cls)) {
                     // ADVEVENT.TXT[17]
-                    box.addFromMarkup(this.cx.s('map', '`{Audio XXX=ID`}As you reign in your horse, a guard steps up to you, "Welcome.  I have received word of your arrival.  Do you wish to pass at this time?"'))
+                    box.addFromMarkup(this.cx.s('map', '`{Audio CAVEHEAD`}As you reign in your horse, a guard steps up to you, "Welcome.  I have received word of your arrival.  Do you wish to pass at this time?"'))
                     buttons = true
                   } else if (_.includes(this.rules.objectsID.warMachineFactory, cls)) {
                     // ADVEVENT.TXT[157]
-                    box.addFromMarkup(this.cx.s('map', '`{Audio XXX=ID`}`## War Machine Factory\n\nWould you like to purchase War Machines?'))
+                    box.addFromMarkup(this.cx.s('map', '`{Audio STORE`}`## War Machine Factory\n\nWould you like to purchase War Machines?'))
                     buttons = true
                   } else if (_.includes(this.rules.objectsID.cartographer, cls)) {
                     var messages = {
@@ -785,7 +785,7 @@ define([
                     buttons = true
                   } else if (_.includes(this.rules.objectsID.schoolOfMagic, cls)) {
                     // ADVEVENT.TXT[71]
-                    var msg = '`{Audio XXX=ID`}`## School of Magic\n\nThe tingle of magic fills the air of this school of mystical arts.  An acolyte offers to sign you up for the next class for `{Checks`}.  You will have your choice of increasing your knowledge, or learning to better focus your powers.'
+                    var msg = '`{Audio FAERIE`}`## School of Magic\n\nThe tingle of magic fills the air of this school of mystical arts.  An acolyte offers to sign you up for the next class for `{Checks`}.  You will have your choice of increasing your knowledge, or learning to better focus your powers.'
                     box.addFromMarkup(this.cx.s('map', msg), view.get())
                     buttons = 'sel'
                   } else if (_.includes(this.rules.objectsID.treasureChest, cls)) {
@@ -795,7 +795,7 @@ define([
                     buttons = 'sel'
                   } else if (_.includes(this.rules.objectsID.treeOfKnowledge, cls)) {
                     // ADVEVENT.TXT[149]
-                    var msg = '`{Audio XXX=ID`}`## Tree of Knowledge\n\nUpon your approach, the tree opens its eyes in delight.  "Ahh, an adventurer! I will be happy to teach you a little of what I have learned over the ages for a mere `{Checks`}."  (Just bury it around my roots.)\n\n`< `{StatImage experience`} +1 Level `>'
+                    var msg = '`{Audio GAZEBO`}`## Tree of Knowledge\n\nUpon your approach, the tree opens its eyes in delight.  "Ahh, an adventurer! I will be happy to teach you a little of what I have learned over the ages for a mere `{Checks`}."  (Just bury it around my roots.)\n\n`< `{StatImage experience`} +1 Level `>'
                     box.addFromMarkup(this.cx.s('map', msg), view.get())
                     buttons = true
                   } else if (_.includes(this.rules.objectsID.schoolOfWar, cls)) {
