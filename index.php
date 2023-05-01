@@ -54,13 +54,13 @@
           <?php if ($dev) {?>
             <p><a href="https://herowo.game">Main gaming website</a></p>
             <p class="Hweb-top__menu-forum"><a href="https://herowo.io/forum">Community forum</a></p>
-            <p><a href="#XXX=:url:">Modding samples</a></p>
+            <p><a href="https://forum.herowo.net/t/introduction-to-modifications/48">Modding samples</a></p>
           <?php } else {?>
             <p class="Hweb-top__menu-forum"><a href="https://herowo.io/forum">Community forum</a></p>
             <p><a href="https://herowo.io">Modding platform</a></p>
           <?php }?>
           <p><a href="maps.php">Maps (+ upload)</a></p>
-          <p><a href="#XXX=:url:">Documentation</a></p>
+          <p><a href="https://forum.herowo.net/t/how-to-help/14#doc">Documentation</a></p>
           <p><a href="noXXXep/?tag=COMPATIBILITY">What’s done?</a></p>
           <p><a href="https://herowo.io/dl">Downloads</a></p>
           <p><a href="https://github.com/HeroWO-js">GitHub</a></p>
