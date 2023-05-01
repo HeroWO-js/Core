@@ -1447,8 +1447,8 @@ return [
       ['bonus_resource', 1000, 'ifResource' => $gold, 'ifTargetPlayer' => -1],
       ['bonus_resource', -500, 'ifResource' => $gold, 'ifTargetPlayer' => -1, 'ifDateMax' => 6],
       bonus_effects([[$const, [['quest_fulfilled', $o_false, 'maxDays' => -1, 'ifBonusObject' => true]]]]),
-      ['quest_message', [$const, [toMarkup($adve[165], '`{Audio XXX=ID:dbs:`}')]]],
-      ['bonus_message', [$const, [toMarkup($adve[164], '`{BonusesImages`}`{Audio XXX=ID:dbs:`}')]]],
+      ['quest_message', [$const, [toMarkup($adve[165], '`{Audio GENIE`}')]]],
+      ['bonus_message', [$const, [toMarkup($adve[164], '`{BonusesImages`}`{Audio GENIE`}')]]],
     ]),
     // Week 1 gives 500 gold.
     // Each subsequent week is set to give 1000 gold.
@@ -1470,8 +1470,8 @@ return [
       ['quest_chances', $chances('M O C S J', 'wind')],
       ['quest_reset', [$const, ['R']]],
       bonus_effects([[$const, [['quest_fulfilled', $o_false, 'maxDays' => -1, 'ifBonusObject' => true]]]]),
-      ['quest_message', [$const, [toMarkup($adve[169], '`{Audio XXX=ID:dbs:`}')]]],
-      ['bonus_message', [$const, [toMarkup($adve[170], '`{BonusesImages`}`{Audio XXX=ID:dbs:`}')]]],
+      ['quest_message', [$const, [toMarkup($adve[169], '`{Audio GENIE`}')]]],
+      ['bonus_message', [$const, [toMarkup($adve[170], '`{BonusesImages`}`{Audio GENIE`}')]]],
     ]),
     // +03-06 of any random resource other than Wood or Gold.
     'windM' => [['bonus_resource', [$random, 3, 6], 'ifResource' => $mercury,  'ifTargetPlayer' => -1]],
