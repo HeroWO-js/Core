@@ -713,7 +713,6 @@ return [
     'name' => $dwel[7][0],
     'description' => $dwel[7][1],
   ],
-  // XXX=B has some problems with the outline (geojson?) in the townscape
   'archerTower' => [
     'id' => $id++,
     'image' => [
