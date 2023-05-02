@@ -2059,7 +2059,7 @@ class H3Effect extends Effect {
   //> canCombat bool `- whether it's allowed to start new combat (Sanctuary)
   //> hero_shroud int `- number of tiles
   //> town_shroud int `- number of tiles
-  //> ownable_shroud int `- number of tiles around owned non-hero/town objects (e.g. mine)
+  //> ownable_shroud int `- number of tiles around owned non-hero/town objects (e.g. mine); XXX=R merge with *_shroud?
   //> creature_reanimate int `- number of new creatures to create after combat (XXX+I)
   //> creature_reanimateAs int Creature->$id `- type of creatures; defaults to
   //  the original (fallen) creature

@@ -560,6 +560,7 @@ return [
       ['bonus_resource', -1000, 'ifResource' => $gold, 'ifTargetPlayer' => -1],
       ['bonus_shroudTerrain', [$append, ['AtCoords', null, null, null, null, $shr_cartographer, true]], 'ifTerrain' => $t_water, 'ifTargetPlayer' => -1],
       $msg = ['quest_message', [$custom, 'rules', 2,
+        // XXX=I: dlc: the replaced substring is not found in localized TXTs
         str_replace('1000 gold', '`{Checks`}`{Audio LIGHTHOUSE`}', $adve[28]),
         $adve[24].'`{Audio LIGHTHOUSE`}',
       ]],
@@ -853,6 +854,7 @@ return [
       ['quest_choices', [$append, 'spellPower', 'knowledge', 'cancel']],
       ['bonus_resource', -1000, 'ifResource' => $gold, 'ifTargetPlayer' => -1],
       ['quest_message', [$custom, 'rules', 3,
+       // XXX=I:dlc:
        str_replace('1000 gold', '`{Checks`}', toMarkup($adve[73], '`{Audio FAERIE`}')),
        toMarkup($adve[72], '`{Audio FAERIE`}')]],
     ]),
@@ -1148,6 +1150,7 @@ return [
       ['quest_chances', $chances('nothing/2 gold1500/7 gartT/1')],
       ['quest_remove', true],
       ['bonus_message', [$custom, 'rules', 1,
+       // XXX=I:dlc:
        str_replace('1500 gold', '`{Bonuses`}', toMarkup($adve[118], '`{BonusesImages`}`{Audio CHEST`}')),
        toMarkup($adve[116], '`{Audio CHEST`}')]],
     ]),
@@ -1354,6 +1357,7 @@ return [
       ['bonus_experience', [$custom, 'rules'], 'ifTargetObject' => -1],
       bonus_effects([[$const, [['quest_fulfilled', [$check, false], true, 'ifBonusObject' => true]]]]),
       ['quest_message', [$custom, 'rules', 2,
+       // XXX=I:dlc:
        str_replace('2000 gold', '`{Checks`}', toMarkup($adve[150], '`{Audio GAZEBO`}')),
        toMarkup($adve[147], '`{Audio GAZEBO`}')]],
     ]),
@@ -1399,6 +1403,7 @@ return [
       ['quest_message', [$const, [toMarkup($adve[156], '`{Audio GENIE`}')]]],
       ['bonus_message', [$custom, 'rules', 0,
       // XXX=IC Slightly different message from SoD
+      // XXX=I:dlc:
       str_replace("the '%s'", '`{Bonuses`}', toMarkup($adve[155], '`{BonusesImages`}`{Audio GENIE`}')),
       toMarkup($adve[154], '`{BonusesImages`}`{Audio GENIE`}')]],
     ]),
@@ -1424,6 +1429,7 @@ return [
       ['quest_choices', [$append, 'attack', 'defense', 'cancel']],
       ['bonus_resource', -1000, 'ifResource' => $gold, 'ifTargetPlayer' => -1],
       ['quest_message', [$custom, 'rules', 3,
+      // XXX=I:dlc:
       str_replace('1000 gold', '`{Checks`}', toMarkup($adve[160], '`{Audio MILITARY`}')),
       toMarkup($adve[159], '`{Audio MILITARY`}')]],
     ]),
