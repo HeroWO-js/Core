@@ -300,7 +300,6 @@ return [
       ['creature_morale', +1, 'ifContext' => $combat, 'ifVisiting' => true],
     ],
   ],
-  // XXX=B in Castle on-hover is handled by Hall even though Blacksmith overlaps it
   'blacksmith' => [
     'id' => $id++,
     'image' => [
@@ -1817,7 +1816,6 @@ return [
     'name' => $spec[49][0],
     'description' => $spec[49][1],
   ],
-  // XXX=B overlays cursedTempleU/U, preventing on-click event (in SoD click on unearthedGraves acts as a click on cursedTempleU)
   'unearthedGraves' => [
     'id' => $id++,
     'image' => [
@@ -2103,7 +2101,6 @@ return [
       ['bonus_message', [$const, [toMarkup($genr[584], '`<`{StatImage experience`} 1000`>')]], 'ifBonusObject' => true, 'ifBuilding' => true],
     ],
   ],
-  // XXX=B overlays warren/U, preventing on-click event
   'mushroomRings' => [
     'id' => $id++,
     'image' => [
@@ -2126,7 +2123,6 @@ return [
   ],
   'warren' => [
     'id' => $id++,
-    // XXX=IC warren/U border the screen edge and have outline partially cropped (not so in SoD)
     'image' => [
       $dungeon => $image('HALLDUNG', 30, 'TBDNDW_0', 'TOD',  'TRG1A', 0, 0, 4, 'TROG1'),
     ],
@@ -2397,7 +2393,6 @@ return [
     'name' => $spec[71][0],
     'description' => $spec[71][1],
   ],
-  // XXX=B overlays goblinBarracks/U, preventing on-click event
   'messHall' => [
     'id' => $id++,
     'image' => [
@@ -2671,7 +2666,6 @@ return [
       ['hero_attack', +2, 'ifContext' => $combat, 'ifVisiting' => true],
     ],
   ],
-  // XXX=B overlays gnollHut/U, preventing on-click event
   'captainQuarters' => [
     'id' => $id++,
     'image' => [
@@ -2912,7 +2906,6 @@ return [
     'name' => $spec[92][0],
     'description' => $spec[92][1],
   ],
-  // XXX=B overlays magicLantern/U, preventing on-click event
   'gardenOfLife' => [
     'id' => $id++,
     'image' => [
