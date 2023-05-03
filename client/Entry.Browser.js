@@ -101,7 +101,7 @@ define(
         var profiler = window.profiler = new Debug.Profiler
         //profiler.attach()
 
-        var seed = location.search.match(/[?&]s=(\d+)/)
+        var seed = location.search.match(/[?&]s=(\d*)/)
         if (!seed) {
           _.seed(+('' + (new Date).getDate() + (new Date).getHours()))
         } else if (seed[1]) {   // ?s= w/o value forces random seed in debug mode
