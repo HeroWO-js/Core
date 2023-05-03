@@ -5128,8 +5128,8 @@ define([
             var raceChances = _.filter(chances, function (c, hero) {
               return race == self.heroClasses.atCoords(self.heroes.atCoords(hero, 0, 0, 'class', 0), 0, 0, 'town', 0)
             })
-            raceChances.length || (raceChances = chances)
-            var hero = self._pickFromChances(_.sum(chances), _.entries(chances))
+            _.isEmpty(raceChances) && (raceChances = chances)
+            var hero = self._pickFromChances(_.sum(raceChances), _.entries(raceChances))
             if (!hero) {
               if (player.get('startingHero') == id) {
                 player.set('startingHeroClasses', null)
