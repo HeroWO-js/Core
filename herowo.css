@@ -779,6 +779,14 @@ html .Hchat-msg_mySeat_yes b {
   }
 }
 
+.Hcontrols-mod .eff-ins {
+  float: right;
+}
+
+.Hcontrols-mod .eff-ins a {
+  margin-right: .25em;
+}
+
 .Hcontrols-mod .trans,
 .Hcontrols-mod .eff {
   margin-top: 2em;

@@ -427,6 +427,17 @@
           <button type="button" class="eff-delete">Delete</button>
           <button type="button" class="eff-add">Create:</button>
 
+          <span class="eff-ins">
+            <a title='See the definition of "class Effect" and the preceding comment for operators and other info' href="https://github.com/HeroWO-js/Core/blob/master/databank/core.php" target="_blank">general help</a>
+            <a title='See comments within the definition of "class H3Effect" for info on selectors and targets' href="https://github.com/HeroWO-js/Core/blob/master/databank/databank.php" target="_blank">selectors/targets</a>
+            <select>
+              <option>-- Insert --</option>
+              {{for effectSchema}}
+                <option>{{ m }}</option>
+              {{/for}}
+            </select>
+          </span>
+
           <textarea>{{ effectCode }}</textarea>
 
           <table>

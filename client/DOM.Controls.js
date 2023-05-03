@@ -625,6 +625,7 @@ define(['DOM.Common', 'Calculator'], function (Common, Calculator) {
     el: {class: 'Hcontrols-mod'},
     _template: null,
     _effectAtter: null,
+    _effectConstants: null,
     _effectCode: null,
     _deletedTransitions: [],
     _debouncedUpdate: Common.stub,
@@ -645,6 +646,40 @@ define(['DOM.Common', 'Calculator'], function (Common, Calculator) {
 
       attach: function () {
         this._effectAtter = this.map.effects.atter()
+
+        var consts = this.map.constants
+        this._effectConstants = {
+          ifObjectType:               consts.object.type,
+          ifVehicle:                  consts.object.vehicle,
+          ifWorldBonus:               consts.map.bonus,
+          target:                     consts.effect.target,
+          source:                     consts.effect.source,     // int/array[0]
+          stack:                      consts.effect.stack,      // int/array[0]
+          modifier:                   consts.effect.operation,  // any/array[0]
+          ifResource:                 consts.resources,
+          ifResourceReceive:          consts.resources,
+          ifAggression:               consts.effect.aggression,
+          ifContext:                  consts.effect.context,
+          ifContextAggression:        consts.effect.aggression,
+          ifTerrain:                  consts.class.terrain,
+          ifRiver:                    consts.class.river,
+          ifRoad:                     consts.class.road,
+          ifCreatureAlignment:        consts.creature.alignment,
+          ifCreatureUndead:           consts.creature.undead,
+          ifTargetCreatureAlignment:  consts.creature.alignment,
+          ifTargetCreatureUndead:     consts.creature.undead,
+          isTargetAdjacent:           consts.effect.isAdjacent,
+          whileOwnedPlayer:           this.rules.playersID,
+          ifPlayer:                   this.rules.playersID,
+          ifSkill:                    this.rules.skillsID,
+          ifSpell:                    this.rules.spellsID,
+          ifSpellSchool:              this.rules.spellSchoolsID,
+          ifCreature:                 this.rules.creaturesID,
+          ifTargetPlayer:             this.rules.playersID,
+          ifArtifact:                 this.rules.artifactsID,
+          ifBuilding:                 this.rules.buildingsID,
+          ifHero:                     this.rules.heroesID,
+        }
 
         this.autoOff(this.map.effects, {
           oadd: function (n, $, props) {
@@ -755,6 +790,13 @@ define(['DOM.Common', 'Calculator'], function (Common, Calculator) {
 
         var vars = this.get()
         vars.scripts.permalink = vars.scripts.some(Common.p('permalink'))
+
+        var schema = _.entries(this.map.effects.schema())
+          .filter(function (a) { return a[0][0] != '_' })
+          .sort(function (a, b) {
+            return a[1] - b[1] || Common.compare(a[0], b[0])
+          })
+        vars.effectSchema = _.pluck(schema, 0)
 
         var tr = this.map.transitions.map(function (tr) {
           return _.extend(tr.get(), {_view: tr._view})
@@ -1029,9 +1071,9 @@ define(['DOM.Common', 'Calculator'], function (Common, Calculator) {
 
         _.each(code.split(/\}\s*$/m), function (str) {
           try {
-            items.push(JSON.parse(str + '}'))
+            items.push(this.parseEffectJSON(str + '}'))
           } catch (e) {}
-        })
+        }, this)
 
         if (!items.length) {
           this._effectCode[0].select()
@@ -1042,6 +1084,20 @@ define(['DOM.Common', 'Calculator'], function (Common, Calculator) {
           })
 
           this.set('effectCode', '')
+        }
+      },
+
+      'click .eff-ins select': function (e) {
+        if (e.target.selectedIndex > 0) {
+          var start = this._effectCode.prop('selectionStart')
+          var end = this._effectCode.prop('selectionEnd')
+          this._effectCode.val(function (i, s) {
+            return s.substr(0, start) + e.target.value + s.substr(end)
+          })
+          this._effectCode.prop('selectionStart', start + (start == end && e.target.value.length))
+          this._effectCode.prop('selectionEnd', start + e.target.value.length)
+          this._effectCode[0].focus()
+          e.target.selectedIndex = 0
         }
       },
 
@@ -1141,15 +1197,77 @@ define(['DOM.Common', 'Calculator'], function (Common, Calculator) {
         return k[0] != '_' && v !== false
       })
 
-      this.getSet('effectCode', function (cur) {
-        if (cur.match(/\S/)) {
-          cur = _.trimEnd(cur) + '\n\n'
+      var unique = '\x05\x52\x24\x75'
+      var re = new RegExp('"?' + _.escapeRegExp(_.initial(JSON.stringify(unique).substr(1))) + '"?', 'g')
+
+      function ref(values, v) {
+        var name = _.indexOf(values, v)
+        return name == null ? v : unique + name + unique
+      }
+
+      effect = _.map(effect, function (v, k) {
+        var values
+        if ((k != 'modifier' || _.isArray(v)) && (values = this._effectConstants[k])) {
+          v = _.isArray(v) ? [ref(values, v[0])].concat(v.slice(1)) : ref(values, v)
         }
+        return v
+      }, this)
 
-        return cur + JSON.stringify(effect) + '\n'
-      })
+      var cur = this._effectCode.val()
 
+      if (cur.match(/\S/)) {
+        cur = _.trimEnd(cur) + '\n\n'
+      }
+
+      // We want single-line output for compactness but with spaces near
+      // punctuation.
+      cur += JSON.stringify(effect, null, 1)
+        .replace(/\n\s*/g, ' ')
+        .replace(re, '')
+
+      cur += '\n'
+      this.set('effectCode', cur)
       this._effectCode[0].focus()
+    },
+
+    // Replaces unquoted names in recognized _effectConstants properties.
+    // Throws if str is malformed.
+    parseEffectJSON: function (str) {
+      var inString = false
+      var string
+      var json = ''
+
+      for (var i = 0; i < str.length; i++) {
+        switch (str[i]) {
+          case '"':
+            if (!inString) { string = '' }
+            inString = !inString
+          case '\\':
+            if (inString && string /*not case '"'*/ && str[i + 1] == '"') {
+              i++
+              string += '\\"'
+              json += '\\"'
+              break
+            }
+          default:
+            if (inString) {
+              string += str[i]
+            } else {
+              var name = (str.substr(i).match(/^(\w+)/) || '')[0] || ''
+              var values
+              if (name.match(/[_a-z]/i) &&
+                  (values = this._effectConstants[string.substr(1)]) &&
+                  _.has(values, name)) {
+                json += values[name]
+                i += name.length - 1
+                break
+              }
+            }
+            json += str[i]
+        }
+      }
+
+      return JSON.parse(json)
     },
   })
 
