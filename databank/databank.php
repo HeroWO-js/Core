@@ -788,16 +788,16 @@ function write_classes(array $options) {
 
   // Determined empirically.
   $soundOfTerrain = [
-    'DIRT',
-    'SAND',
-    'GRASS',
-    'SNOW',
-    'SWAMP',
-    'ROUGH',
-    'UNDERGROUND',
-    'LAVA',
-    'WATER',
-    null,
+    [['DIRT', 'bgm']],
+    [['SAND', 'bgm']],
+    [['GRASS', 'bgm']],
+    [['SNOW', 'bgm']],
+    [['SWAMP', 'bgm']],
+    [['ROUGH', 'bgm']],
+    [['UNDERGROUND', 'bgm']],
+    [['LAVA', 'bgm']],
+    [['WATER', 'bgm'], ['LOOPOCEA', null]],
+    [],
   ];
 
   // From h3m_description.english.txt.
@@ -836,8 +836,9 @@ function write_classes(array $options) {
           case 'terrain':
             list($obj->name, $obj->idName) = $terrname[$class];
             $obj->miniMap = $class + 1;
-            $obj->sound = $soundOfTerrain[$class];
-            $obj->soundGroup = 'bgm';
+            foreach ($soundOfTerrain[$class] as $props) {
+              $obj->sounds[] = new ClassSound(array_combine(['sound', 'group'], $props));
+            }
             if (in_array($class, [array_search('rock', AClass::terrain)])) {
               $obj->passable = [false];
             } else {
@@ -1001,8 +1002,7 @@ class AClass extends StoredEntity {
     'actionableFromTop' => 'boolval',
     'ownable' => 'intval',
     'miniMapObstacle' => 'boolval',
-    'sound' => 'strval',
-    'soundGroup' => 'strval',
+    'sounds' => '',
     'spotEffects' => '',
     '*produce' => 'intval',
   ];
@@ -1012,6 +1012,7 @@ class AClass extends StoredEntity {
     'actionable',
     'supportedTerrain' => 'intval',
     'editorTerrain' => 'intval',
+    'sounds' => 'ClassSound',
     'spotEffects' => 'H3Effect',
   ];
 
@@ -1036,10 +1037,8 @@ class AClass extends StoredEntity {
   public $actionableFromTop;
   public $ownable;    // ::ownable
   public $miniMapObstacle;    // affects $miniMap, doesn't necessary match with $passable
-  // XXX make $sound/Group part of AObject similarly to $texture?
-  public $sound;    // looped environmental sound; distance from hero/town is calculated based on this object's actionable spot(s) (if any), or impassable spot(s) (if any), or full box (if neither)
-  // Tells how all environmental sounds taken together combine with each other. If set, of all sounds with the same $soundGroup value only one is played, with volume of the closest to hero/town (with lowest AObject->$id in case distance is the same). When these play, there is normally no background or other music except as indicated by $sound. Standard group 'bgm' is used for terrain (as in SoD). If unset, sound doesn't combine with any group. However, in the end if two identical $sound are to be played (even if one has unset $soundGroup) only one of them is played (closest/loudest).
-  public $soundGroup;
+  // XXX make part of AObject similarly to $texture?
+  public $sounds;
   // _initializeEffectsSpot() duplicates these Effects for every object's actionable point (or passable point if there are no actionable), setting $ifX/Y/Z to those coordinates.
   public $spotEffects;
   public $produce;    // array of Creature->$id; for dwellings; only informational, mainly for map convertors for filtering "dwelling" classes
@@ -1051,6 +1050,17 @@ class AClass extends StoredEntity {
   function compact_actionable(array $value) {
     return (new AObject(['actionable' => $value]))->normalize(true)->actionable;
   }
+}
+
+class ClassSound extends StoredObject {
+  static $normalize = [
+    'sound' => 'strval',
+    'group' => 'strval',
+  ];
+
+  public $sound;    // looped environmental sound; distance from hero/town is calculated based on this object's actionable spot(s) (if any), or impassable spot(s) (if any), or full box (if neither)
+  // Tells how all environmental sounds taken together combine with each other. If set, of all sounds with the same $group value only one is played, with volume of the closest to hero/town (with lowest AObject->$id in case distance is the same). When these play, there is normally no background or other music except as indicated by $sound. Standard group 'bgm' is used for terrain (as in SoD). If unset, sound doesn't combine with any group. However, in the end if two identical $sound are to be played (even if one has unset $group) only one of them is played (closest/loudest).
+  public $group;
 }
 
 function write_misc(array $options) {

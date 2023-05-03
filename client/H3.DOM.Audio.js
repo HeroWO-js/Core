@@ -411,9 +411,10 @@ define(['DOM.Common', 'Calculator', 'ObjectStore'], function (Common, Calculator
                         ? this.atContiguous(n + this.propertyIndex('actionable'), l) == top.rules.constants.spotObject.actionable.impassable
                         : true
                     if (!heard) { return }
-                    var s = top.rules.classes.atCoords(obj.class, 0, 0, 'sound', 0)
-                    if (s) {
-                      var group = top.rules.classes.atCoords(obj.class, 0, 0, 'soundGroup', 0)
+                    var sub = top.rules.classes.readSubAtCoords(obj.class, 0, 0, 'sounds', 0)
+                    sub.find(0, function ($1, i) {
+                      var s = sub.atCoords(i, 0, 0, 'sound', 0)
+                      var group = sub.atCoords(i, 0, 0, 'group', 0)
                       var dist = Math.max(Math.abs(x - pos[0]), Math.abs(y - pos[1]))
                       _.log && _.log('Audio %s bgs of %d, class %d, %d tiles away : %s : %s', group || '', this.atContiguous(n + this.propertyIndex('id'), l), obj.class, dist, s, top.map.objects.atCoords(this.atContiguous(n + this.propertyIndex('id'), l), 0, 0, 'texture', 0))
                       // 3 = 25% volume
@@ -432,7 +433,7 @@ define(['DOM.Common', 'Calculator', 'ObjectStore'], function (Common, Calculator
                             groups[group] = [s, dist, obj._n]
                         }
                       }
-                    }
+                    }, this)
                   }
                 )
                 _.each(groups, function (g, group) {
