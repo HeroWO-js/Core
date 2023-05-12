@@ -3,6 +3,7 @@ require __DIR__.'/core.php';
 
 $bmpPath = $geojsonPath = $outPath = $visualPath = '';
 $mask = 'TZ*.BMP';
+$addX = $addY = 0;
 
 array_shift($argv);
 
@@ -24,6 +25,12 @@ while (null !== $arg = array_shift($argv)) {
       case '-v':
         $visualPath = array_shift($argv);
         break;
+      case '-x':
+        $addX = (int) array_shift($argv);
+        break;
+      case '-y':
+        $addY = (int) array_shift($argv);
+        break;
       default:
         throw new Exception("Invalid -option: $arg.");
     }
@@ -37,11 +44,12 @@ $geojsonPath or $geojsonPath = $bmpPath;
 
 if (!file_exists($bmpPath) or ($dir and (!is_dir($geojsonPath) or !$outPath))) {
   echo 'Usage: bmp2shape.php -b BMPs/ [-g GEOJSONs/] -o output.json [-m *mask.b?p] [-v visualize/]', PHP_EOL;
-  echo 'Usage: bmp2shape.php -b BMPs/TZFAIDA.bmp [-g GEOJSONs/TZFAIDA.geojson] [-v visualize.png]', PHP_EOL;
+  echo 'Usage: bmp2shape.php -b BMPs/TZFAIDA.bmp [-g GEOJSONs/TZFAIDA.geojson] [-v visualize.png] [-x N] [-y N]', PHP_EOL;
   echo PHP_EOL;
   echo 'Source files can be either BMP or PNG (after bmp2png.php).', PHP_EOL;
   echo 'All paths (-b -g -o -v) may be the same directory.', PHP_EOL;
   echo '-g defaults to -b. -m defaults to TZ*.BMP.', PHP_EOL;
+  echo '-x/-y increment displayed coordinates in the manner of databank-buildings.php.', PHP_EOL;
   echo 'Only X.bmp that have matching X.geojson or X.bmp.geojson in -g are processed.', PHP_EOL;
   echo 'Generate .geojson using potrace: http://potrace.sourceforge.net', PHP_EOL;
   echo PHP_EOL;
@@ -99,6 +107,13 @@ if ($dir) {
   $visualPath and visualizeTo($visualPath, $bmpPath, $res);
 
   foreach ($res as $i => $coords) {
+    foreach ($coords as &$ref) {
+      for ($i = 0; isset($ref[$i]); $i += 2) {
+        $ref[$i] += $addX;
+        $ref[$i + 1] += $addY;
+      }
+    }
+
     printf('Exterior %d (%d):%s', $i + 1, count($coords[0]) / 2, PHP_EOL);
     echo PHP_EOL;
     echo join(' ', $coords[0]), PHP_EOL;

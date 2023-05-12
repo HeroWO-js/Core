@@ -3422,7 +3422,7 @@ class Creature extends StoredEntity {
     'regenerating' => 'boolval',
     'undead' => 'intval',
     'background' => 'strval',
-    'terrain' => 'strval',
+    'terrain' => 'intval',
     'win' => 'boolval',
     'absolute' => 'boolval',
     'special' => 'intval',
@@ -3492,7 +3492,7 @@ class Creature extends StoredEntity {
   public $win = true;   // combat party loses if its garrison is empty or composed of Creatures with $win = false
   public $absolute;  // damage ignores defense; see creature_absolute
   public $special;  // ::special
-  public $sound;
+  public $sound;  // prefix for entries in audio.json
 
   // Attack-related properties.
   public $shooting;    // attribute: SHOOTING_ARMY; bool, null (=false)

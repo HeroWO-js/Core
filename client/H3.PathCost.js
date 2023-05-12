@@ -635,26 +635,13 @@ define(['Common', 'ObjectStore', 'Calculator'], function (Common, ObjectStore, C
       if (options.isDestination || !this._flying.updateIfNeeded()._opt.value) {
         var sn = n
         var stride = this._combat._opt.width - (this._creature._opt.width - 1)
-        var me = this._creature._parentKey
-        var myTeam = this._creature.party.player._opt.team
-
-        function cannotStep(cr) {
-          if (cr != me) {
-            cr = this._combat.objects.nested(cr)
-
-            if (cr._opt.special != this.map.constants.creature.special.gate ||
-                (!cr._opt.open && cr.party.player._opt.team != myTeam)) {
-              return true
-            }
-          }
-        }
 
         this.map.walkObjectBox(this._creature._opt, 0, function (o) {
           if (!o.ox && o.on) {
             sn += stride
           }
           if (this._creature._opt.passable[o.on] == '0' &&
-              this._combat.bySpot.findAtContiguous(sn++, cannotStep, this)) {
+              this._combat.bySpot.findAtContiguous(sn++, this._cannotStep, this)) {
             return sn = true
           }
         }, this)
@@ -665,6 +652,21 @@ define(['Common', 'ObjectStore', 'Calculator'], function (Common, ObjectStore, C
       }
 
       return 1    // movement cost of 1 along any combat terrain
+    },
+
+    // Checks if this._creature's position may overlap with cr's (_creature
+    // is being moved somewhere to cr's current position). Returns null if the
+    // the move is disallowed, else truthyness.
+    _cannotStep: function (cr) {
+      if (cr != this._creature._parentKey) {
+        cr = this._combat.objects.nested(cr)
+        var myTeam = this._creature.party.player._opt.team
+
+        if (cr._opt.special != this.map.constants.creature.special.gate ||
+            (!cr._opt.open && cr.party.player._opt.team != myTeam)) {
+          return true
+        }
+      }
     },
 
     // No calculatorAt() because this class is used on the combat map for

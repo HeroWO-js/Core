@@ -84,7 +84,7 @@ if (!file_exists($hdlPath) or !$outPath) {
   echo 'For proper convertion of creature images (type $42) each HDL must be', PHP_EOL;
   echo 'accompanied with H3L in new format. Use DefPreview to obtain it.', PHP_EOL;
   echo PHP_EOL;
-  echo 'Use Bulk-export.ahk to automate these operations in DefPreview.', PHP_EOL;
+  echo 'Use the AutoHotKey script provided by Workbench\'s update.php to automate these operations in DefPreview.', PHP_EOL;
   exit(1);
 }
 

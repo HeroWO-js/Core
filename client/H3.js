@@ -1,11 +1,9 @@
 define(
   [
-    'require', 'Common', 'PathFind.AStar',
-    'H3.Rules', 'H3.PathCost',
+    'Common', 'PathFind.AStar', 'H3.Rules', 'H3.PathCost',
   ],
   function (
-    require, Common, PathFind,
-    Rules, PathCost
+    Common, PathFind, Rules, PathCost
   ) {
     "use strict"
 
