@@ -1,4 +1,4 @@
-define(['DOM.Common', 'Calculator'], function (Common, Calculator) {
+define(['DOM.Common', 'Calculator', 'H3.Databank'], function (Common, Calculator, Databank) {
   "use strict"
   var _ = Common._
   var $ = Common.$
@@ -1073,7 +1073,19 @@ define(['DOM.Common', 'Calculator'], function (Common, Calculator) {
 
         _.each(code.split(/\}\s*$/m), function (str) {
           try {
-            items.push(this.parseEffectJSON(str + '}'))
+            // Supports generic placeholders of parseJSON(), property-specific
+            // _effectConstants ("target": shroud) and the short form of
+            // effect.priority.of... for "priority": append[.default].
+            items.push(Databank.parseJSON(str + '}', function (path, prop) {
+              if (prop == 'priority' && !_.startsWith(path, 'effect.')) {
+                path = 'effect.priority.of.' + path
+              }
+              if (_.includes(path, '.')) {
+                return this.rules.fixupResolver(path)
+              } else {
+                return this._effectConstants[prop][path]
+              }
+            }, this))
           } catch (e) {}
         }, this)
 
@@ -1230,46 +1242,6 @@ define(['DOM.Common', 'Calculator'], function (Common, Calculator) {
       cur += '\n'
       this.set('effectCode', cur)
       this._effectCode[0].focus()
-    },
-
-    // Replaces unquoted names in recognized _effectConstants properties.
-    // Throws if str is malformed.
-    parseEffectJSON: function (str) {
-      var inString = false
-      var string
-      var json = ''
-
-      for (var i = 0; i < str.length; i++) {
-        switch (str[i]) {
-          case '"':
-            if (!inString) { string = '' }
-            inString = !inString
-          case '\\':
-            if (inString && string /*not case '"'*/ && str[i + 1] == '"') {
-              i++
-              string += '\\"'
-              json += '\\"'
-              break
-            }
-          default:
-            if (inString) {
-              string += str[i]
-            } else {
-              var name = (str.substr(i).match(/^(\w+)/) || '')[0] || ''
-              var values
-              if (name.match(/[_a-z]/i) &&
-                  (values = this._effectConstants[string.substr(1)]) &&
-                  _.has(values, name)) {
-                json += values[name]
-                i += name.length - 1
-                break
-              }
-            }
-            json += str[i]
-        }
-      }
-
-      return JSON.parse(json)
     },
   })
 

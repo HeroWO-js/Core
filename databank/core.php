@@ -234,8 +234,6 @@ function unrollStores(array $options) {
   extract($options, EXTR_SKIP);
 
   MapPlayer::unrollKeys('resources', $constants['resources'], 'intval');
-  AObject::$compact['artifacts']['strideX'] = max($artifactSlotsID) + 1;
-  AObject::$compact['available']['strideX'] = max($buildingsID) + 1;
 
   $print = fopen('php://temp', 'w+');
 
@@ -366,6 +364,23 @@ class ObjectStore implements JsonSerializable {
           }
         }
       }
+    }
+
+    // If there were no objects on any layer but at least one layer array was
+    // supplied (albeit empty), return a store filled with null-s rather than
+    // []. This allows propagating stride info on the per-store basis without
+    // using $options.
+    //
+    // For example, AObject->$available for towns is 1D without a fixed strideX
+    // (in $compact) where X = Building->$id; it must have strideX of at least
+    // the highest erected building's ID. One town may have X and Y erected
+    // while other has Y and Z; given X < Y < Z, the first's $available may be
+    // defined as from1D([Y => []]) while the second's as [Z => []] to create an
+    // empty preallocated store of [0 => null, ..., Y => null], in contrast with
+    // from1D([]) that would return [], and from1D([], ['strideX' => Z]) that
+    // would always return [..., Z => null], even if Z isn't erected.
+    if (!$layerCount and isset($xs)) {
+      $layerCount = 1;
     }
 
     // Imagine calling from1D([], Some::class); $strideX retains default value
@@ -587,18 +602,18 @@ abstract class StoredObject implements JsonSerializable {
   //
   // As usual, a sub-store null/false property is not normalized or compacted.
   // This works as expected for sub-stores with no minimal strideX but if it
-  // must have some minimal length (like artifacts) then the property must be
+  // must have some minimal length (like a per-resource store where resource types are known and fixed) then the property must be
   // set to an array (even if an empty one). This is because sub-stores can be
   // part of a union and two properties of one union cannot both have values simultaneously, so we
   // cannot make sub-store properties default to anything or they would clash with
   // other union members. We could implement defaulting for sub-stores that are
   // not union members but for uniformity and discipline this is not done.
   //
-  // Example to demonstrate a need for specific dimensions: consider two sub-stores: of Effect-s and of ObjectArtifact-s.
+  // Example to demonstrate a need for specific dimensions: consider two sub-stores: of Effect-s and of ObjectArtifact-s (this is a historical example; the engine no longer uses fixed dimensions for the latter to allow 3rd party modifications create new artifact slots).
   // First is a simple list of objects where X is a unique ID, manipulated with
   // append() but not addAtContiguous(). Second is an "associative" array where X is slot identifier
-  // (artifactSlotsID.json) and append() is not used (it's not possible to
-  // create new artifact slots on run-time) - instead, artifacts are put to specific slots using addAtContiguous() (but never to an already occupied slot) and removed using removeAtContiguous(). This means the sub-store must have preallocated strideX = max(slotID) + 1 even if there are no artifacts in the last slot by the time such StoredObject is serialized (see the comment in Effect::makeIndexes() for details).
+  // (artifactSlotsID.json) and append() is not used -
+  // instead, artifacts are put to specific slots using addAtContiguous() (but never to an already occupied slot) and removed using removeAtContiguous(). This means the sub-store must have preallocated strideX = max(slotID) + 1 even if there are no artifacts in the last slot by the time such StoredObject is serialized (see the comment in Effect::makeIndexes() for details).
   // As a result, first's $normalize entry is 'prop' => 'Effect' and second's
   // is 'prop' => ['class' => 'ObjectArtifact', 'strideX' => max(slotID) + 1].
   // Or, if the client manually pads artifact properties of all serialized objects to max slotID,
@@ -872,7 +887,7 @@ abstract class StoredObject implements JsonSerializable {
             // Empty store. Could leave [] but null/false is better since it doesn't
             // create new objects on run-time.
             //
-            // Note that non-empty store without objects (like [null, null, null]) is still an array to preserve the correct strideX, as with ObjectArtifact.
+            // Note that non-empty store without objects (like [null, null, null]) is still an array to preserve the correct strideX, as it was the case with ObjectArtifact in the past.
             $obj->$prop = null;
           }
         } elseif ($obj->$prop and !is_string($obj->$prop)) {
@@ -3061,13 +3076,10 @@ class AObject extends StoredObject {
     'actionable',
     'initialized' => 'intval',
     'extra' => 'Extra',
-    // The client must set 'strideX' to max artifact slot ID + 1.
-    'artifacts' => ['class' => 'ObjectArtifact'],
+    'artifacts' => 'ObjectArtifact',
     'garrison' => 'Garrison',
     'route' => 'Route',
-    // The client must set 'strideX' to max Building ID + 1 for towns,
-    // to 1 for dwellings, to XXX=I for heroes.
-    'available' => ['class' => 'StoredNumber'],
+    'available' => 'StoredNumber',
   ];
 
   // Universal properties.
@@ -3308,7 +3320,7 @@ class AObject extends StoredObject {
   public $level;
 
   /**
-    `> hero non-layered 1D sub-store `- `'X is ArtifactSlot->$id; when >= `'$id of `'backpack, means the artifact is not equipped; may have gaps
+    `> hero non-layered 1D sub-store `- `'X is ArtifactSlot->$id; when >= `'$id of `'backpack, means the artifact is not equipped (XXX=R: arbp: this usage prevents modifications from adding new artifactSlotsID as they'd be considered part of backpack); may have gaps
   */
   public $artifacts;
 

@@ -1307,7 +1307,7 @@ define(['sqimitive/main'], function (Sqimitive) {
     // (no Sqimitive's `'normalize_OPT). Fails if `'value is `'null/`'undefined.
     //
     // Fails if `'n is a sub-store that was already initialized with a call to
-    // `#sub().
+    // `#subAtContiguous().
     //
     // Does nothing if `'value is the same as `'old.
     //
@@ -1466,13 +1466,7 @@ define(['sqimitive/main'], function (Sqimitive) {
     //    sub.addAtContiguous(0, {})
     // `]
     addAtContiguous: function (n, props, options) {
-      if (!_.isArray(props)) {
-        var list = _.fill(Array(this._schemaLength), false)
-        _.each(props, function (value, name) {
-          list[this.propertyIndex(name)] = value
-        }, this)
-        props = list
-      }
+      props = this.pack(props)
       if (props.length != this._schemaLength) {
         throw new Error('Added object has number of properties mismatching the schema.')
       }
@@ -1503,6 +1497,25 @@ define(['sqimitive/main'], function (Sqimitive) {
       this._maxLayer++
       this._layers.push(Array(this._layerLength))
       this._subStores.push({})
+    },
+
+    // Returns object of this store in array form, with props values.
+    //
+    //> props array returned as is`, object keys are property names/indexes, result is array in schema order, with missing properties set to false `- sub-stores (`#subAtContiguous) are left as is, not packed
+    //
+    //?`[
+    //    store.schema()                  //=> {a: 0, b: 1, c: 2}
+    //    store.pack(['A', 'B', false])   //=> the array itself (not cloned)
+    //    store.pack({a: 'A', '1': 'B'})  //=> ['A', 'B', false]
+    // `]
+    pack: function (props) {
+      if (!_.isArray(props)) {
+        var list = _.fill(Array(this._schemaLength), false)
+        _.each(props, function (value, name) {
+          list[this.propertyIndex(name)] = value
+        }, this)
+      }
+      return list || props
     },
 
     // Creates a new object in a `#is1D store.

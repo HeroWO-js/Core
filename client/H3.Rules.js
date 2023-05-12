@@ -1176,8 +1176,23 @@ define([
               }, this)
 
               props.push('fixup')
+              props.push('effects')
               var extending = {}
-              var async = this.cx.queueLoading(this.databank.load(props))
+              var databankAsync = this.databank.load(props)
+              var async = this.cx.queueLoading(databankAsync)
+
+              var resolveID = function (ref) {
+                return this.databank[ref[0]].size().x + ref[1]
+              }.bind(this)
+
+              var resolver = function (path) {
+                if (_.startsWith(path, 'new.')) {
+                  var parts = path.split('.')
+                  return resolveID([parts[1], parts[2] - 1 || 0])
+                } else {
+                  return this.fixupResolver(path)
+                }
+              }.bind(this)
 
               _.log && _.log('Fetching databank extensions (disregard the following 404s/ENOENTs)')
 
@@ -1187,38 +1202,58 @@ define([
                   .whenSuccess(function (async) {
                     if (async.get('status')) {    // ignore ignoreError
                       extending[prop] = async.response
-
-                      if (prop == 'constants' && map.get('databank') != extending.constants.version && console) {
-                        console.warn(_.format('Map built with databank %s but loaded with %s. No telling how this will play along.',
-                          map.get('databank'), extending.constants.version))
-                      }
+                    } else {
+                      // Fetching .json-s first because they're part of combined.json so may be instantly available.
+                      async.nest(map.fetch('databank/' + prop + '.txt')
+                        .set('ignoreError', true)
+                        .whenSuccess(function (async) {
+                          if (async.get('status')) {
+                            databankAsync.whenSuccess(function () {
+                              extending[prop] = Databank.parseJSON(async.response, resolver)
+                            })
+                          }
+                        }))
                     }
                   }))
               })
 
               async.whenSuccess(function () {
+                if (map.get('databank') != this.databank.constants.version && console) {
+                  console.warn(_.format('Map built with databank %s but loaded with %s. No telling how this will play along.',
+                    map.get('databank'), this.databank.constants.version))
+                }
+
                 if (!_.isEmpty(extending)) {
                   _.log && _.log('Fetched databank extensions: %s', _.keys(extending))
                   // When adding new entities to databank (e.g. new creatures), their run-time IDs are unknown because extensions are dynamic and others may add their own entities. fixup.json indicates which values in the extension's data should be replaced with final run-time IDs.
                   //
-                  // fixup is an array of arrays. Each array's first member is property name (e.g. 'buildings'), last but one is extension's property ('creatures') and the last is the index of extension's added object in it (0). Items in between (at least one) are keys descending into the property; special value null indicates that two following items are extension's property and object index. If null appears as the last but two then the key itself is renamed (fixup entries are applied one after another so subsequent entries may reference the renamed key by its new name).
+                  // Fixup is an array of arrays. Each array's first member is property name (e.g. 'buildings'), last but one is extension's property ('creatures') and the last is the index of extension's added object in it (0). Items in between (at least one) are keys descending into the property; special value null indicates that two following items are extension's property and object index. If null appears as the last but two then the key itself is renamed (fixup entries are applied one after another so subsequent entries may reference the renamed key by its new name).
                   //
                   // For example, adding a new creature with a building that produces it requires defining the two in their stores (creatures.json, buildings.json) and replacing $produce value with the creature's actual ID using fixup.json:
                   //
                   //   [
                   //     "buildings",   // property being fixed-up
-                  //     null, "buildings", 0,  // key = ID of added building 0
-                  //     0, 0,  // Y/Z, not used since buildings is 1D
+                  //     0, 0,  // Z/Y, not used since buildings is 1D
+                  //     -1,  // X = temporary ID of added building 0
                   //     11,  // schema index of $produce
                   //     0,   // replace its first member...
                   //     "creatures", 0   // with index of added creature 0
                   //   ]
                   //
-                  // producers.json should be also updated, first by renaming the key, then by writing new creature's ID:
+                  // The above assumes databank/buildings.json exists and holds packed objects:
+                  //
+                  //   {"-1": ["My Building", "Its description...", ...]}
+                  //
+                  // More convenient (but tad slower) definition is using buildings.txt, also eliminating the need for fixup.json:
+                  //
+                  //   {"-1": {"name": "My Building", "produce": [new.creatures], ...}}
+                  //
+                  // If sticking to the JSON format, producers.json should be fixed-up as well, first by renaming the key, then by writing new creature's ID (or in the opposite order):
                   //
                   //   [
                   //     "producers",
                   //     3,   // Town->$id of our new building, let's say Inferno
+                  //          // in fixup.txt we could simply write townsID.inferno
                   //     "temporary unique building key placeholder",
                   //     null,   // rename the key...
                   //     "buildings", 0,  // to new building's ID
@@ -1226,7 +1261,7 @@ define([
                   //   [
                   //     "producers",
                   //     3,
-                  //     null, "buildings", 0,  // new building's ID (renamed)
+                  //     null, "buildings", 0,  // new building's ID (now renamed)
                   //     0,   // replace first member...
                   //     "creatures", 0   // with new creature's ID
                   //   ]
@@ -1239,12 +1274,12 @@ define([
                   //     }
                   //   }
                   //
-                  // JSON extensions cannot handle all cases. For example, it's impossible to add a creature to an existing building's $produce because fixup only affects extension's data, not databank (albeit after doing the fixup that data is merged into databank) and other extensions may have changed that building so their changes would be overridden. Such cases should be addressed by JavaScript code as JSONs intend to be simple, declarative and easy to load patches.
+                  // Again, using producers.txt would be more intuitive:
+                  //
+                  //   {$"{townsID.inferno}": {$"{new.buildings}": [new.creatures]}}
+                  //
+                  // Extensions cannot handle all cases. For example, it's impossible to add a creature to an existing building's $produce because fixup only affects extension's data, not databank (albeit after doing the fixup that data is merged into databank) and other extensions may have changed that building so their changes would be overridden. Such cases should be addressed by JavaScript code as JSONs intend to be simple, declarative and easy to load patches.
                   if (extending.fixup) {
-                    // XXX fixups untested
-                    var resolveID = function (ref) {
-                      return this.databank[ref[0]].size().x + ref[1]
-                    }.bind(this)
                     _.each(extending.fixup, function (fixup) {
                       var store = extending[fixup.shift()]
                       var value = resolveID(fixup.splice(-2))
@@ -1269,7 +1304,25 @@ define([
 
                 _.each(props, function (prop) {
                   if (extending[prop]) {
-                    this.databank.appendTo(prop, extending[prop])
+                    switch (prop) {
+                      default:
+                        this.databank.appendTo(prop, extending[prop])
+                        break
+                      case 'effects':
+                        var label = map.effects.propertyIndex('label')
+                        map.effects.batch(null, function () {
+                          _.each(extending[prop], function (effect) {
+                            effect = map.effects.pack(effect)
+                            if (effect[label] === false) {
+                              map.effects.append(effect)
+                            } else {
+                              map.effects.byLabel[effect[label]] = effect
+                            }
+                          })
+                        })
+                        break
+                      case 'fixup':
+                    }
                   }
 
                   this._initializeDatabank(props)
@@ -1555,6 +1608,26 @@ define([
           clearInterval(this._heartbeatTimer)
         }
       },
+    },
+
+    // Resolves a constant allowed in map/databank/*.txt extensions. Returns null if unknown.
+    //
+    // Can be used as H3.Databank.parseJSON()'s resolver.
+    //
+    // Recognizes effect.priority.of.OPERATION[.PRIORITY] (effect.priority.of.append.combat), collectionsID.IDNAME (townsID.castle) and map.constant.value (object.type.hero).
+    fixupResolver: function (path) {
+      // May be called during databank loading (but after map data has been
+      // loaded) when this.map and this.xxxID (which are just shortcuts) are
+      // unavailable.
+      var parts = path.split('.')
+      if (_.startsWith(path, 'effect.priority.of.')) {
+        var operation = this.cx.map.constants.effect.operation[parts[3]]
+        if (typeof operation == 'number') {
+          return this.cx.map.effects.priority(operation, this.cx.map.constants.effect.priority[parts[4] || 'default'])
+        }
+      } else {
+        return _.at(/^\w+sID\./.test(path) ? this.databank : this.cx.map.constants, parts)
+      }
     },
 
     // Called by environment from dataReady.
@@ -3067,9 +3140,9 @@ define([
                  !sub.anyAtCoords(slot, 0, 0)
         }, this)
 
-      if (slot == null) {
-        sub.extendTo(this.artifactSlotsID.backpack)
+      sub.extendTo(slot == null ? this.artifactSlotsID.backpack : slot)
 
+      if (slot == null) {
         // Find first free backpack slot.
         for (var slot = this.artifactSlotsID.backpack; slot < sub.size().x; slot++) {
           if (!sub.anyAtCoords(slot, 0, 0)) {
@@ -3151,6 +3224,7 @@ define([
       //
       // Doing this after changing Effects so that buildings' Effects are updated, including hireAvailable.
       var sub = map.objects.subAtCoords(town, 0, 0, 'available', 0)
+      sub.extendTo(_.max(buildings))
       _.each(buildings, function (id) {
         if (!sub.anyAtCoords(id, 0, 0)) {
           var available = this.cx.oneShotEffectCalculation({
@@ -3327,6 +3401,8 @@ define([
 
         var sub = this.map.objects.subAtCoords(town, 0, 0, 'available', 0)
         try {
+          buildings.length && sub.extendTo(_.max(buildings))
+
           buildings.forEach(function (building) {
             var available = this.cx.oneShotEffectCalculation({
               class: Calculator.Effect.GenericIntArray,
@@ -3376,6 +3452,8 @@ define([
             target: this.constants.effect.target.hireAvailable,
             ifBonusObject: dwelling,
           })
+
+          available.length && sub.extendTo(_.max(available))
 
           available.forEach(function (creature) {
             var growth = this.cx.oneShotEffectCalculation({
@@ -5044,6 +5122,9 @@ define([
         },
         this.constants.object.initialized.buildings,
         function (id, props) {
+          var sub = self.map.objects.subAtContiguous(n + objects.available, 0)
+          sub.extendTo(self.buildingsID.hall)
+          sub.release()
           self.map.effects.append({
             source: self.constants.effect.source.initialize,
             target: self.constants.effect.target.town_buildings,
@@ -5459,8 +5540,6 @@ define([
               z: 0,
               owner: 0,   // neutral
               level: 0,
-              // XXX=R need to ensure artifacts has minimal strideX; this is set in core.php's AObject::$compact but we have to duplicate it here
-              artifacts: Array((_.max(this.artifactSlotsID) + 1) * this.map.objects.readSub('artifacts').schemaLength()),
               formation: this.constants.object.formation.spread,  // default in SoD
               tactics: true,  // default in SoD
               resting: false,  // default in SoD

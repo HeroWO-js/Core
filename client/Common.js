@@ -5,6 +5,12 @@ define(['nodash/main', 'nodash/extra', 'sqimitive/main', 'sqimitive/async'], fun
 
   Async.Fetch.defaultFunction = _.ajax
 
+  var FetchAsync = Async.Fetch.extend('HeroWO.Sqimitive.Async.Fetch', {
+    _opt: {
+      headers: {},    // don't require preflight request for CORS
+    },
+  })
+
   //! +cl=Common
   //
   // Collection of base library classes and utility functions used throughout
@@ -26,11 +32,12 @@ define(['nodash/main', 'nodash/extra', 'sqimitive/main', 'sqimitive/async'], fun
         owning: '._owning',
       },
     }),
+    // Performs asynchronous loading of a generic remote resource.
+    FetchAsync: FetchAsync,
     // Performs asynchronous loading of a remote JSON resource.
-    JsonAsync: Async.Fetch.extend('HeroWO.Sqimitive.Async.JSON', {
+    JsonAsync: FetchAsync.extend('HeroWO.Sqimitive.Async.JSON', {
       _opt: {
         dataType: 'json',
-        headers: {},    // don't require preflight request for CORS
       },
     }),
     // Stub (no-op) method for marking potential events and abstract methods.

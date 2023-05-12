@@ -1160,6 +1160,7 @@ define(['RPC.Common', 'Calculator', 'ObjectStore', 'Map'], function (Common, Cal
         // XX replace with _equipTrophy()?
         var sub = map.objects.subAtCoords(obj.get('id'), 0, 0, 'artifacts', 0)
         try {
+          sub.extendTo(this.rules.artifactsID.spellBook)
           sub.addAtCoords(this.rules.artifactSlotsID.spellBook, 0, 0, {artifact: this.rules.artifactsID.spellBook})
         } finally {
           sub.release()

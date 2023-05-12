@@ -2411,9 +2411,6 @@ function write_artifactSlots(array $options) {
   unset($ref);
   file_put_contents("$outPath/artifactSlots.json", encodeJSON(ArtifactSlot::from1D($artifactSlots)));
   file_put_contents("$outPath/artifactSlotsID.json", encodeJSON(ArtifactSlot::makeIdIndex($artifactSlots)));
-
-  Hero::$compact['artifacts']['strideX'] =
-    max(array_column($artifactSlots, 'id')) + 1;
 }
 
 // Pieces of hero's body or party that may receive an artifact to make it "equipped" (effective): Torso, Head, etc.
@@ -2568,8 +2565,7 @@ class Hero extends StoredEntity {
 
   static $compact = [
     'skills' => 'H3Effect',
-    // The client must set 'strideX' to max artifact slot ID + 1.
-    'artifacts' => ['class' => 'ObjectArtifact'],
+    'artifacts' => 'ObjectArtifact',
     'spells' => 'H3Effect',
     'effects' => 'H3Effect',
     'specialty' => 'H3Effect',

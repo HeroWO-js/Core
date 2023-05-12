@@ -89,6 +89,9 @@ define(['Common', 'ObjectStore'], function (Common, ObjectStore) {
           }
           extend(current, values)
           break
+        case 'audio':
+          _.extend(current, values)
+          break
         case 'randomSigns':
         case 'randomRumors':
           // Old strings are kept. To override them use Effects.
@@ -108,14 +111,17 @@ define(['Common', 'ObjectStore'], function (Common, ObjectStore) {
             _.extend(current, values)
           } else if (this._stores.concat(this._storesWithIdIndex).indexOf(prop) != -1) {
             // {z: {y: {x: null | obj}}}
-            // This is assuming non-layered store, i.e. where there's only 0 or 1
-            // objects per layer. New object (obj) may be either object or array.
-            // If x is negative then the object is
-            // appended with X (ID) = original store's max X + -x; negative x-s should start at -1 and not have gaps.
+            // This is assuming non-layered store, i.e. where there's only 0 or
+            // 1 objects per layer. New object (obj) may be either object or
+            // array. If x is negative then the object is appended with X (ID) =
+            // original store's max X + -x; negative x-s should start at -1 and
+            // not have gaps.
+            var self = this
             var append = []
             _.each(values, function (ys, z) {
               _.each(ys, function (xs, y) {
                 _.each(xs, function (obj, x) {
+                  obj = obj && self._packObject(current, obj)
                   if (x < 0) {
                     // JS objects are unordered so force order on append().
                     append[~x] = obj
@@ -127,10 +133,58 @@ define(['Common', 'ObjectStore'], function (Common, ObjectStore) {
                 })
               })
             })
+            if (append.length) {
+              switch (prop) {
+                case 'artifactSlots':
+                  // XXX=R:arbp:
+                  throw new Error('Extending ' + prop + ' is currently disallowed.')
+              }
+            }
             _.each(append, function (obj) { current.append(obj) })
           } else {
             throw new Error('Unknown Databank property to append to: ' + prop)
           }
+      }
+    },
+
+    // Returns obj in embedded format of store (readSub allowed), or obj itself
+    // if it's already in this form (array). Unlike ObjectStorage.pack(),
+    // recursively packs sub-stores.
+    _packObject: function (store, obj) {
+      if (_.isArray(obj)) {
+        return obj
+      } else {
+        return store.pack(obj).map(function (value, prop) {
+          if (value && store.isSubProperty(prop)) {
+            var mz = 0
+            var my = 0
+            var mx = 0
+            _.each(value, function (ys, z) {
+              _.each(ys, function (xs, y) {
+                mz = Math.max(mz, +z + 1)
+                my = Math.max(my, +y + 1)
+                mx = _.max([mx - 1].concat(_.keys(xs))) + 1
+              })
+            })
+            var sub = store.readSub(prop)
+            var len = sub.schemaLength()
+            var res = Array(len * mz * my * mx)
+            for (var z = 0; z < mz; z++) {
+              for (var y = 0; y < my; y++) {
+                for (var x = 0; x < mx; x++) {
+                  var obj = ((value[z] || {})[y] || {})[x]
+                  // null is useful to only define the strides (extendTo()).
+                  if (obj) {
+                    var n = (z * my * mx + y * mx + x) * len
+                    res.splice.apply(res, [n, len].concat(this._packObject(sub, obj)))
+                  }
+                }
+              }
+            }
+            value = res
+          }
+          return value
+        }, this)
       }
     },
 
@@ -172,5 +226,87 @@ define(['Common', 'ObjectStore'], function (Common, ObjectStore) {
     // function (file)
     // Returns an `#Async whose `'response is set to the retrieved content of `'file.
     fetch: Common.stub,
+  }, {
+    // Replaces constants (unquoted pa.th.key) and $"interpolates {pa.th.key}".
+    // Values are inserted raw: {x: y} is incorrect (JSON keys must be quoted),
+    // {$"{x}": y} (integer y) and {$"{x}": $"{y}"} (string y) are correct.
+    // Implements and removes single-line comments: //.*$
+    // Returns the parsed value. Throws if str is malformed.
+    parseJSON: function (str, resolver, cx) {
+      // path is { \w[\w.]* and not \d+|true|false|null } or [^}]* (if within $"{...}").
+      // lastString is verbatim from str sans wrapping quotes: x\ny\"\\z.
+      // If inside $"...", lastString is the part before path's '{'.
+      // If outside and no string started yet, lastString is null.
+      // Result is cast to string. If undefined/null, no replacement is done.
+      resolver = resolver || function (path, lastString) {
+        throw new Error('No resolver given.')
+      }
+
+      var inString = 0  // 0 = outside, 1 = regular string, 2 = $"interpolating"
+      var string        // [start, end] within json
+      var json = ''
+
+      for (var i = 0; i < str.length; i++) {
+        if (str[i] == '$' && !inString && str[i + 1] == '"') {
+          continue  // skip copying '$'
+        } else if (str[i] == '"') {
+          if (inString) {
+            string.push(json.length)
+            inString = 0
+          } else {
+            string = [json.length + 1]
+            inString = 1 + (str[i - 1] == '$')
+          }
+        } else if (str[i] == '\\' && inString && str[i + 1] == '"') {
+          json += '\\'
+          i++
+        } else if (str[i] == '/' && !inString && str[i + 1] == '/') {
+          do {
+            i++
+          } while (str[i + 1] != '\r' && str[i + 1] != '\n' && i + 1 < str.length)
+          continue
+        }
+
+        var name = null
+        var replace = true
+
+        switch (inString) {
+          case 0:
+            if ((str[i] >= 'a' && str[i] <= 'z') ||
+                (str[i] >= 'A' && str[i] <= 'Z') ||
+                (str[i] >= '0' && str[i] <= '9') ||
+                str[i] == '_') {
+              name = str.substr(i).match(/^\w[\w.]*/)
+              switch (name && name[0]) {
+                default:
+                  if (name[0].match(/\D/)) { break }
+                case 'null':
+                case 'true':
+                case 'false':
+                  replace = false
+                case null:
+              }
+            }
+            break
+
+          case 2:
+            if (str[i] == '{') {
+              name = str.substr(i).match(/\{(.*?)\}/)
+            }
+        }
+
+        if (name) {
+          var value = !replace ? null :
+            resolver.call(cx, _.last(name), string && ''.substring.apply(json, string))
+          json += value == null ? name[0] : value
+          i += name[0].length - 1
+          continue
+        }
+
+        json += str[i]
+      }
+
+      return JSON.parse(json)
+    },
   })
 })

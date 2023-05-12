@@ -625,12 +625,7 @@ abstract class Convertor {
     if (!isset(Map::$unrolled['resources'])) {
       unrollStores([
         'constants' => $this->constants,
-        'artifactSlotsID' => $this->nameToID('artifactSlots'),
-        'buildingsID' => $this->nameToID('buildings'),
       ]);
-
-      // Part of databank.php, not handled by unrollStores().
-      Hero::$compact['artifacts']['strideX'] = max($this->nameToID('artifactSlots')) + 1;
     }
 
     $this->hallBuildings = [
@@ -1528,15 +1523,10 @@ abstract class Convertor {
     is_string($obj->passable)   and $obj->passable   = str_split($obj->passable);
     is_string($obj->actionable) and $obj->actionable = str_split($obj->actionable);
 
-    switch ($obj->type) {
-      case $this->const('object.type.town'):
-      case $this->const('object.type.dwelling'):
-        $obj->available = [];   // strideX
-        break;
-      case $this->const('object.type.hero'):
-        $obj->artifacts = [];   // strideX
-        break;
-    }
+    //switch ($obj->type) {
+    //  case $this->const('object.type.town'):
+    //    break;
+    //}
 
     if ($obj->type === $this->const('object.type.hero') and
         in_array($obj->class, $this->nameToID('objects', 'hero'))) {
@@ -2404,6 +2394,8 @@ abstract class Convertor {
         'ifDateMax' => 0,
       ]));
     } else {
+      $obj->available = [max($buildings) => []];
+
       $this->effect([
         'town_buildings',
         $this->o_append($buildings),
