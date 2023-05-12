@@ -5272,7 +5272,7 @@ html .Hh3-gop__nonClassic.Hh3-btn_cur { background: url(custom-graphics/SYSOB13/
 .Hh3-hinfo__specIcon,
 .Hh3-hinfo__experienceImage {
   z-index: 1;   /* let the icon overlay the texts */
-  padding-right: 138px;   /* make the entire box clickable */
+  padding-right: 94px;   /* make the entire box clickable */
   background-repeat: no-repeat;
 }
 
