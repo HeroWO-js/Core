@@ -692,7 +692,7 @@ define(['DOM.Common', 'DOM.Slider', 'Calculator'], function (Common, Slider, Cal
           },
           '.change_listOrder': function (obj, now) {
             if (this.get('persistentPosition')) {
-              this.nest(obj.get('id'), this.nested(obj.get('id')), {pos: now})
+              this.nest(obj.get('id'), this.nested(obj.get('id')), {pos: now[obj.get('owner')]})
             }
           },
         })
@@ -712,7 +712,7 @@ define(['DOM.Common', 'DOM.Slider', 'Calculator'], function (Common, Slider, Cal
     _add: function (object) {
       var options = {
         object: object,
-        pos: this.get('persistentPosition') ? object.get('listOrder') : this._nextPosition++,
+        pos: this.get('persistentPosition') ? object.get('listOrder')[object.get('owner')] : this._nextPosition++,
       }
 
       this.addModule(object.get('id'), this._childClass, options)

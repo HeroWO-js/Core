@@ -1068,8 +1068,6 @@ define([
     _encounters: {},
     fortBuildings: null,
     hallBuildings: null,
-    _townListOrder: 0,  // no need to persist, max values are determined in _initializeObjects()
-    _heroListOrder: 0,
     _runningPending: null,    // Set
 
     events: {
@@ -1335,17 +1333,14 @@ define([
               // SoD puts newly joined or un-garrisoned hero to the end of the hero list. We preserve the hero's original position. Same with captured towns.
               switch (obj.type) {
                 case this.map.constants.object.type.hero:
-                  var counter = '_heroListOrder'
                   // Reorder only when un-garrisoned... though user won't see this either way because in classic mode garrisoned heroes are hidden from UI lists, but less changes in the store is good.
                   if (prop == objectSchema.garrisoned && now) { break }
                 case this.map.constants.object.type.town:
-                  if (!counter) {
-                    if (prop == objectSchema.garrisoned) { break }
-                    counter = '_townListOrder'
+                  if (obj.type == this.map.constants.object.type.town &&
+                      prop == objectSchema.garrisoned) {
+                    break
                   }
-                  if (this.cx.get('classic')) {
-                    this.map.objects.setAtContiguous(n + objectSchema.listOrder, 0, this[counter]++)
-                  }
+                  this._bumpListOrder(this.map.objects.fromContiguous(n).x, null, this.cx.get('classic'))
                 default:
               }
               switch (prop) {
@@ -5315,10 +5310,10 @@ define([
           order[subclass] ? order[subclass].push(id) : order[subclass] = [id]
         })
         self.map.objects.batch(null, function () {
-          order = _.flat(order)
-          self['_' + type + 'ListOrder'] = order.length
-          _.each(order, function (id, i) {
-            self.map.objects.setAtCoords(id, 0, 0, 0, 'listOrder', i)
+          _.each(order, function (ids) {
+            _.each(ids, function (id) {
+              self._bumpListOrder(id)
+            })
           })
         })
       })
@@ -5451,6 +5446,8 @@ define([
             delete chances[+hero[1]]
             var cls = _.sample(this.objectsID['hero_' + this.heroes.atCoords(hero[1], 0, 0, 'class', 0)])
             var props = atter(cls, 0, 0, 0)
+            props.listOrder = []
+            props.listOrder[player.get('player')] = this.map.getSet('-listOrder', Common.inc())
             _.extend(props, {
               class: cls,
               subclass: +hero[1],
@@ -5468,7 +5465,6 @@ define([
               tactics: true,  // default in SoD
               resting: false,  // default in SoD
               vehicle: this.constants.object.vehicle.horse,
-              listOrder: this._heroListOrder++,
               // Set by _initializeObjects(): initialized, experience, garrison.
               // Leaving defaults for: route, actionPoints, spellPoints.
             })
@@ -5675,6 +5671,21 @@ define([
             })
           }, this)
         }
+      }
+    },
+
+    // Updates AObject->$listOrder for player (id's owner if null) so that the
+    // id object becomes last in the player's list unless it was part of that
+    // list before and forceBump isn't given.
+    _bumpListOrder: function (id, player, forceBump) {
+      if (player == null) {
+        player = this.map.objects.atCoords(id, 0, 0, 'owner', 0)
+      }
+      var cur = this.map.objects.atCoords(id, 0, 0, 'listOrder', 0) || []
+      if (cur[player] == null || forceBump) {
+        cur = cur.concat()
+        cur[player] = this.map.getSet('-listOrder', Common.inc())
+        this.map.objects.setAtCoords(id, 0, 0, 0, 'listOrder', cur)
       }
     },
 

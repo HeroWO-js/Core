@@ -944,6 +944,8 @@ define(['DOM.Common', 'Calculator'], function (Common, Calculator) {
             })
           case 'experience':
             return this.rules._grantExperience(obj, +prop[0])
+          case 'listOrder':
+            return this.rules._bumpListOrder(obj.get('id'), null, true)
           case 'artifacts':
             var sub = this.map.objects.subAtCoords(obj.get('id'), 0, 0, 'artifacts', 0)
             try {

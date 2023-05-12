@@ -302,7 +302,7 @@
               <button type="button" data-Hresobject="-3spellPoints">-SP</button>
               <button type="button" data-Hresobject="+1combatCasts">casts</button>
               <button type="button" data-Hresobject="+10available">grow</button>
-              <button type="button" data-Hresobject="+1listOrder">order</button>
+              <button type="button" data-Hresobject="listOrder">order</button>
               <button type="button" data-Hresobject="hasBuilt">built</button>
             </p>
 

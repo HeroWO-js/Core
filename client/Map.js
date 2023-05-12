@@ -180,6 +180,7 @@ define(['Common', 'ObjectStore', 'Effects'], function (Common, ObjectStore, Effe
       private: false,   // multi-player only
       finished: false,
       bonus: false,
+      listOrder: 0,
     },
 
     // assignResp() schema used when unserializing a Map from JSON.

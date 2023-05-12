@@ -1267,6 +1267,7 @@ class Map extends StoredObject {
     'private' => 'boolval',
     'finished' => 'boolval',
     'bonus' => 'strval',
+    'listOrder' => 'intval',
   ];
 
   static $compact = ['modules'];
@@ -1300,6 +1301,7 @@ class Map extends StoredObject {
   public $private;    // used in the lobby; if true, game is not listed in SSE's lobbyStats and player must know the PIN to connect
   public $finished = false;   // set to true once $won of all MapPlayer-s (except neutral) become non-false; nothing can be done by players anymore if set
   public $bonus;  // non-empty string in worldBonusChances format; ''/null/false if never picked yet
+  public $listOrder = 0;  // internal; number for next item in AObject->$listOrder
 
   // These fields are set when storing a single map to avoid
   // creating new files or ObjectStore-s, treating them as part of map "header" (part of map list and put into replay file's first line).
@@ -3375,7 +3377,7 @@ class AObject extends StoredObject {
   public $visiting;
 
   /**
-    `> town int `- ascending position in various hero/town lists in the UI
+    `> town array of int `- index is Player->$id (not preallocated), value is ascending position in various hero/town lists in the UI
     `> hero ditto
   */
   public $listOrder;
