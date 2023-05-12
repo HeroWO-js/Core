@@ -1208,7 +1208,7 @@ define(
               var el = $('<link>')
                 .attr({
                   rel: 'stylesheet',
-                  href: cx.databankURL() + 'combined.css',
+                  href: cx.url('HeroWO.H3.Databank', cx.map.get('databank') + '/', 'combined.css'),
                 })
                 .appendTo('body')
                 .on('load error', function () {

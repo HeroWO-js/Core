@@ -566,6 +566,7 @@ define(['Common', 'Map', 'Calculator', 'require'], function (Common, HMap, Calcu
       var failed = []
 
       if (modules.length) {
+        modules = modules.map(this.expandModuleURL, this)
         _.each(modules, function (url) {
           require([url], loaded(successful, url), loaded(failed, url))
         })
@@ -593,6 +594,12 @@ define(['Common', 'Map', 'Calculator', 'require'], function (Common, HMap, Calcu
           }
         }
       }
+    },
+
+    // Resolves special syntax in a JavaScript module url for passing to require().
+    // Overridden in Context.Fetching to replace leading './' with map's URL.
+    expandModuleURL: function (url) {
+      return url
     },
 
     // Entices the environment to display the main menu. Takes arbitrary arguments,
@@ -1059,6 +1066,12 @@ define(['Common', 'Map', 'Calculator', 'require'], function (Common, HMap, Calcu
     },
 
     events: {
+      '+expandModuleURL': function (res, url) {
+        if (_.startsWith(url, './')) {
+          return this.url('HeroWO.Map', this.map.get('url'), url.substr(2))
+        }
+      },
+
       change_loading: function () {
         // If now loading - remove old data, if !now - remove already unneeded data to allow GC.
         this._combined = {}
@@ -1070,25 +1083,15 @@ define(['Common', 'Map', 'Calculator', 'require'], function (Common, HMap, Calcu
           return sup(this, arguments)
         }
 
-        // In server mode, non-standard type raises an error since server doesn't allow reading arbitrary files. But in client mode we treat type as an URL prefix which can be useful when tinkering around without the need to update the source code.
-        switch (type) {
-          case 'HeroWO.Map':
-            type = this.get('mapsURL')
-            break
-          case 'HeroWO.H3.Databank':
-            type = this.get('databanksURL')
-            break
-        }
-
         if (!file.match(/\.json$/)) {
-          throw new Error('Fetching of non-.json files is not implemented yet.')
+          var cls = Common.FetchAsync
         } else if (!this.get('fetchCombined')) {
           var cls = Common.JsonAsync
         } else {
           var key = type + ':' + root
           var combined = this._combined[key] ||
             (this._combined[key] = new Common.JsonAsync({
-              url: type + (root || '') + 'combined.json',
+              url: this.url(type, root, 'combined.json'),
             }))
           var async = new Common.Async({type: type, root: root, file: file})
           combined.whenComplete(function () {
@@ -1098,15 +1101,24 @@ define(['Common', 'Map', 'Calculator', 'require'], function (Common, HMap, Calcu
           return async
         }
 
-        return new cls({url: type + (root || '') + file})
+        return new cls({url: this.url(type, root, file)})
       },
     },
 
-    // Returns normalized URL of the databank used by current `#map, with trailing slash.
-    databankURL: function () {
-      // Chrome doesn't normalize path separators in URL (foo//bar => foo/bar). With such a path in <link href>, relative url() is resolved incorrectly: href=a//b/c/d.css, url(../../foo.png) resolves to a/b/foo.png, not a/foo.png. Same with AJAX: /foo//../bar is /foo/bar, not /bar.
-      return this.get('databanksURL').replace(/\/+$/, '') +
-             '/' + this.map.get('databank') + '/'
+    // Returns URL of a game resource relative to current page.
+    // See Context.fetch() for the explanation of arguments.
+    url: function (type, root, file) {
+      // In server mode, non-standard type raises an error since server doesn't allow reading arbitrary files. But in client mode we treat type as an URL prefix which can be useful when tinkering around without the need to update the source code.
+      switch (type) {
+        case 'HeroWO.Map':
+          type = this.get('mapsURL')
+          break
+        case 'HeroWO.H3.Databank':
+          type = this.get('databanksURL')
+          break
+      }
+
+      return type + (root || '') + file
     },
   })
 

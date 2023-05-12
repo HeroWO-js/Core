@@ -86,7 +86,7 @@ define([
         this.get('haveStyles') || $('<link>')
           .attr({
             rel: 'stylesheet',
-            href: this.cx.databankURL() + 'combined.css',
+            href: this.cx.url('HeroWO.H3.Databank', this.map.get('databank') + '/', 'combined.css'),
           })
           .appendTo(this.el)
 

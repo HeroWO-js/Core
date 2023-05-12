@@ -39,13 +39,15 @@ define(['require', 'DOM.Common'], function (require, Common) {
 
     run: function (urls) {
       var modules = urls.map(function (url) {
+        url = this.get('context').expandModuleURL(url)
         return {
-          host: url.match(/\/\/([^\/]+)/)[1],
+          host: (url.match(/\/\/([^\/]+)/) || [, location.host])[1]
+            .replace(/[^\w.-]/g, '!'),  // stuff non-ASCII
           url: url,
           urlShort: url.length > 30 ? '…' + url.substr(-25) : url,
           hash: '',
         }
-      })
+      }, this)
 
       this.set('modules', modules)
 

@@ -610,18 +610,25 @@ define(['DOM.Common', 'Calculator', 'ObjectStore'], function (Common, Calculator
     // Returns absolute URL for an audio `'file.
     //> file string `- URL or name in databank
     //= null if no databank or missing file`, str
+    // `'file may resolve to an absolute URL (starting with `'/ or containing
+    // `[//`]) or to an URL relative to map's path if starts with `[./`], else to
+    // databank's path (`[../../WAV-OGG/FOO.ogg`]).
     url: function (file) {
       if (file && !/[.\/]/.test(file)) {
         if (this.get('ui')) {
           var bank = this.get('ui').rules.audio
-          var path = this.cx.databankURL()
         } else {
           var bank = this.get('audio')
-          var path = bank && bank['']
         }
-        file = file.toUpperCase()   // databank.php normalizes keys in audio.json
         if (bank && _.has(bank, file)) {
-          file = path + bank[file]
+          file = bank[file]
+          if (_.startsWith(file, './')) {
+            file = this.cx.url('HeroWO.H3.Map', this.cx.map.get('url'), file.substr(2))
+          } else if (!/^\/|\/\//.test(file)) {
+            file = this.get('ui')
+              ? this.cx.url('HeroWO.H3.Databank', this.cx.map.get('databank') + '/', file)
+              : bank[''] + file
+          }
         } else {
           file = null
         }
@@ -1010,7 +1017,7 @@ define(['DOM.Common', 'Calculator', 'ObjectStore'], function (Common, Calculator
           cur = _.ajax({
             url: this.get('url'),
             dataType: 'arraybuffer',
-            headers: {},
+            headers: {},    // no preflight
             success: function (xhr) {
               // No need to decode if this Buffer child was deleted while it was
               // fetching the file.

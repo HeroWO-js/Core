@@ -1278,7 +1278,7 @@ class Map extends StoredObject {
   public $format = self::FORMAT_VERSION;    // version of data in the map file
   public $id;   // unique map identifier, used to determine if two maps are the "same"; set by this class' constructor
   public $revision = 1; // map author's version number; two maps with the same `'id and `'revision are essentially identical while different `'revision indicates two different versions of the "same" map
-  public $modules;    // module names (`[Foo.Bar`]), relative or absolute URIs (`[./map-module.js`], `[/module.js`], `[//module.js`])
+  public $modules;    // module names (`[Foo.Bar`]), absolute URIs (`[/module.js`], `[//module.js`]) or URIs relative to map's path (`[./map-module.js`])
   public $databank; // value of 'version' from constants.json; used to ensure an external databank is the one this map was built against
   public $width;    // map's width in cells
   public $height;   // map's height in cells
