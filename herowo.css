@@ -342,6 +342,11 @@ noscript {
   color: #c1b279;
 }
 
+.Hweb-top svg {
+  height: .81em;
+  margin: 0 .2em -.06em 0;
+}
+
 .Hweb-top__conn {
   color: red;
   font-weight: bold;

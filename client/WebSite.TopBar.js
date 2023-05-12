@@ -24,6 +24,7 @@ define(['DOM.Common'], function (Common) {
       onlineCount: 0,    // coming from server
       popularMapsURL: '',
       popularMapText: '',   // coming from server
+      discordURL: '',
       forumURL: '',
       lastForumURL: '',   // coming from server
       lastForumText: '',  // coming from server

@@ -581,6 +581,7 @@ define(
           updateURL: 'statistics.php',
           updateInterval: 10000,
           popularMapsURL: 'maps.php',
+          discordURL: 'https://discord.gg/UcGCNhJEUx',
           forumURL: 'https://herowo.io/forum',
         })
       }
