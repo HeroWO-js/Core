@@ -808,9 +808,10 @@ abstract class Convertor {
 
     $onlyHuman = $otherHuman = null;
 
-    if (!array_filter(array_column($h3m->players, 'canBeHuman'))) {
-      $this->warning('no human players, enabling $canBeHuman for Red');
-      $h3m->players['red']->canBeHuman = true;
+    if (!array_filter(array_column($h3m->players, 'canBeHuman')) and $h3m->players) {
+      reset($h3m->players)->canBeHuman = true;
+      $this->warning('no human players, enabling $canBeHuman for %s',
+        ucfirst(key($h3m->players)));
     }
 
     foreach ($h3m->players as $color => $player) {
