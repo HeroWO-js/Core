@@ -1228,6 +1228,7 @@ define(['DOM.Common', 'DOM.Slider', 'Map', 'Calculator', 'Chat.Server'], functio
 
         this.autoOff(this.cx.players.nested(this.get('player')), {
           change_host: '_updateHost',
+          change_bonusGiven: 'update',
         })
       },
 
@@ -1262,10 +1263,11 @@ define(['DOM.Common', 'DOM.Slider', 'Map', 'Calculator', 'Chat.Server'], functio
         this.$('.Hh3-menu-ns__tl').text(len)
 
         var diff = this.cx.map.get('difficultyMode')
+        var disabled = !vars.editable || this.cx.players.nested(this.get('player')).get('bonusGiven')
         this.$('[data-Hdiff]').each(function () {
           var el = $(this)
           el.toggleClass('Hh3-btn_cur', el.attr('data-Hdiff') == diff)
-          el.toggleClass('Hh3-btn_dis', !vars.editable)
+          el.toggleClass('Hh3-btn_dis', disabled)
         })
 
         this._turnLengthSlider.el.toggle(vars.editable)
@@ -1289,7 +1291,9 @@ define(['DOM.Common', 'DOM.Slider', 'Map', 'Calculator', 'Chat.Server'], functio
       },
 
       'click .Hh3-menu-ns__d-btn': function (e) {
-        this.rpc.do('configure', {do: 'difficultyMode', value: $(e.target).attr('data-Hdiff')})
+        if (!$(e.target).hasClass('Hh3-btn_dis')) {
+          this.rpc.do('configure', {do: 'difficultyMode', value: $(e.target).attr('data-Hdiff')})
+        }
       },
     },
 
