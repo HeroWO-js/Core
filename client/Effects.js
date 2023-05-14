@@ -130,6 +130,7 @@ define(['Common', 'ObjectStore'], function (Common, ObjectStore) {
       },
 
       '-_fire_oremove': function (options, args) {
+        _.log && _.log('E reuse oremove %s/%s, batch %s : %s', args[0], this.fromContiguous(args[0]).x, this._batchID || 'NEW', this._freeRemoved)
         // No need to check for uniqueness since the same Effect (n) cannot be removed twice per batch.
         this._freeRemoved.splice(indexFor(this._freeRemoved, args[0]), 0, args[0])
       },
@@ -142,7 +143,7 @@ define(['Common', 'ObjectStore'], function (Common, ObjectStore) {
       next:
       while ((free = this.advance(free, +1)) != -1) {
         if (!this.anyAtContiguous(free)) {
-          while (removed[ri] < free) {
+          while (removed[ri] <= free) {
             if (removed[ri++] == free) { continue next }
           }
           return free
@@ -310,11 +311,13 @@ define(['Common', 'ObjectStore'], function (Common, ObjectStore) {
           //
           // But there's a catch - we have to keep n removed until the batch drains (all hooks were called, i.e. _processBatch() returned). When adding, we just skip over these when scanning but when the batch's over, we have to back-track to determine the correct _free by choosing the smallest of current _free and all removed n. If there was no batch, doing just the same. Outside of batch, _free is updated only when adding and it may only increase (or become null).
           var min = this._freeRemoved[0]
-          this._freeRemoved = []
 
           if (this._free == null || (this._free >= 0 ? this._free : ~this._free) > min) {
             this._free = min
           }
+
+          _.log && _.log('E reuse flush, _free = %s : [] <- %s', this._free, this._freeRemoved)
+          this._freeRemoved = []
         },
 
         objectAdded: function (now, n, options) {
@@ -554,15 +557,13 @@ define(['Common', 'ObjectStore'], function (Common, ObjectStore) {
 
         if (_.log && !this._opt.store._opt.cleaning) {
           var id = event[1] + '/' + this._opt.store.fromContiguous(event[1]).x
-          var transition = (event[event[0][1] == 'c' ? 6 : 4] || {}).transition
-          transition = transition ? ' T' + transition : ''
+          var thisOptions = event[event[0][1] == 'c' ? 6 : 4] || {}
+          var transition = ', batch ' + thisOptions.batchID + (thisOptions.transition ? ', transition ' + thisOptions.transition : '')
 
           switch (event[0]) {
             case 'oadd':
-              _.log('%s+ %s%s', this._opt.logPrefix, id, transition)
-              break
             case 'oremove':
-              _.log('%s- %s%s', this._opt.logPrefix, id, transition)
+              _.log('%s%s %s%s : %j', this._opt.logPrefix, event[0][1] == 'a' ? '+' : '-', id, transition, _.filter(this._opt.store.atter()(event[3]), function (v) { return v !== false }))
               break
             case 'ochange':
               var names = _.intersection(this._opt.store.schema(), [event[3]])
@@ -822,7 +823,7 @@ define(['Common', 'ObjectStore'], function (Common, ObjectStore) {
     appendEffects: function (effects, member) {
       var ns = []
       var chunk = effects.length && this._effects.schemaLength()
-      this._effects.batch(null, function () {
+      this._effects.batch(null, function (batchID) {
         for (var i = 0; i < effects.length; i += chunk) {
           var effect = effects.slice(i, i + chunk)
           if (effect[this._labelIndex] !== false) {
@@ -831,6 +832,7 @@ define(['Common', 'ObjectStore'], function (Common, ObjectStore) {
           if (effect = this.expandEffect(effect, member)) {
             var free = this._effects._free
             if (free < 0) {   // last added there, look for gaps on the right
+              _.log && _.log('E reuse appendEffects, batch %s, _free = %s <- ~%s', batchID, this._effects._scanForFree(~free), ~free)
               free = this._effects._scanForFree(~free)
             }
             if (free == null) {   // dang, no gaps
