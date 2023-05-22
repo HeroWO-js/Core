@@ -1722,8 +1722,8 @@ define([
               if (controller.type == 'neutralAI') {
                 cx.addModule(AI.Neutral, options)
               } else {
-                //return cx.addModule(AI_Nop, options)
-                controller.behavior == 'nop' ? cx.addModule(AI_Nop, options)
+                controller.behavior == 'nop' || cx.get('noAI')
+                  ? cx.addModule(AI_Nop, options)
                   : cx.addModule(AI, options)
               }
             case 'human':

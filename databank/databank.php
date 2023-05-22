@@ -243,6 +243,51 @@ $o = [
       //'edge' => ...,
       //'edgeKey' => ...,
     ],
+
+    // Key = {MiniMapTile::type}_{subtype} where subtype = AClass->$idName for
+    // $type = terrain if ::type is im/passable, else Player->$idName.
+    // write_misc() replaces named values in keys with numeric constants.
+    // Value = RRGGBB.
+    'miniMapColors' => [
+      'passable_dirt'           => '523908',
+      'passable_desert'         => 'dece8c',
+      'passable_grass'          => '004200',
+      'passable_snow'           => 'b5c6c6',
+      'passable_swamp'          => '4a846b',
+      'passable_rough'          => '847331',
+      'passable_subterranean'   => '843100',
+      'passable_lava'           => '4a4a4a',
+      'passable_water'          => '085294',
+      'passable_rock'           => '000000',
+      'impassable_dirt'         => '392908',
+      'impassable_desert'       => 'a59c6b',
+      'impassable_grass'        => '003100',
+      'impassable_snow'         => '8c9c9c',
+      'impassable_swamp'        => '215a42',
+      'impassable_rough'        => '635221',
+      'impassable_subterranean' => '5a0800',
+      'impassable_lava'         => '292929',
+      'impassable_water'        => '00286b',
+      'impassable_rock'         => '332e2e',
+      'ownable_neutral'         => '848484',
+      'ownable_red'             => 'ff0000',
+      'ownable_blue'            => '3152ff',
+      'ownable_tan'             => '9c7352',
+      'ownable_green'           => '429429',
+      'ownable_orange'          => 'ff8400',
+      'ownable_purple'          => '8c29a5',
+      'ownable_teal'            => '089ca5',
+      'ownable_pink'            => 'c67b8c',
+      'movable_neutral'         => '848484',
+      'movable_red'             => 'ff0000',
+      'movable_blue'            => '3152ff',
+      'movable_tan'             => '9c7352',
+      'movable_green'           => '429429',
+      'movable_orange'          => 'ff8400',
+      'movable_purple'          => '8c29a5',
+      'movable_teal'            => '089ca5',
+      'movable_pink'            => 'c67b8c',
+    ],
   ],
 ];
 
@@ -1066,30 +1111,6 @@ class ClassSound extends StoredObject {
 function write_misc(array $options) {
   extract($options, EXTR_SKIP);
 
-  foreach (get_declared_classes() as $class) {
-    if (is_a($class, StoredObject::class, true) and $class !== Effect::class) {
-      // AObject -> object, not aObject.
-      $classKey = lcfirst(preg_replace('/^A([A-Z])/', '\1', substr(strrchr("\\$class", '\\'), 1)));
-      $classKey === 'h3Effect' and $classKey = 'effect';
-      if (isset($constants[$classKey])) {
-        throw new Exception("Duplicate constants class key $classKey coming from $class.");
-      }
-      foreach ((new ReflectionClass($class))->getConstants() as $property => $values) {
-        if (is_array($values) and preg_match('/^[a-z]/', $property)) {
-          foreach ($values as $valueNumber => $valueName) {
-            $constants[$classKey][$property][$valueName] = $valueNumber;
-          }
-        }
-      }
-    }
-  }
-
-  $constants['shroud'] += shroudEdgeFrames();
-  $constants['animation']['group'] = $constants['animationGroups'];
-  $constants['effect']['multiplier'] = $constants['multiplier'];
-  $constants = array_diff_key($constants, array_flip(['animationGroups', 'multiplier']));
-  file_put_contents("$outPath/constants.json", encodeJSON($constants));
-
   // Texts for signs (class 91, AVXsn???.def). Support markup.
   $signs = listFile($options, 'RANDSIGN.TXT');
   foreach ($signs as &$ref) { $ref .= '`{Audio STORE`}'; }
@@ -1133,7 +1154,48 @@ function write_misc(array $options) {
   // Doing unset($a); before $arr2 = $arr; converts $arr[0] from a reference slot to an immediate value slot and the subsequent assignment copies $arr members, all of which are now immediate values. Then $arr2[0]++ changes the value in its own immediate value slot, not the shared value pointed by reference slots in $arr and $arr2.
   unset($ref);
   file_put_contents("$outPath/players.json", encodeJSON(Player::from1D($players)));
-  file_put_contents("$outPath/playersID.json", encodeJSON(Player::makeIdIndex($players)));
+  file_put_contents("$outPath/playersID.json", encodeJSON($playersID = Player::makeIdIndex($players)));
+
+  foreach (get_declared_classes() as $class) {
+    if (is_a($class, StoredObject::class, true) and $class !== Effect::class) {
+      // AObject -> object, not aObject.
+      $classKey = lcfirst(preg_replace('/^A([A-Z])/', '\1', substr(strrchr("\\$class", '\\'), 1)));
+      $classKey === 'h3Effect' and $classKey = 'effect';
+      if (isset($constants[$classKey])) {
+        throw new Exception("Duplicate constants class key $classKey coming from $class.");
+      }
+      foreach ((new ReflectionClass($class))->getConstants() as $property => $values) {
+        if (is_array($values) and preg_match('/^[a-z]/', $property)) {
+          foreach ($values as $valueNumber => $valueName) {
+            $constants[$classKey][$property][$valueName] = $valueNumber;
+          }
+        }
+      }
+    }
+  }
+
+  $keys = array_keys($constants['miniMapColors']);
+
+  foreach ($keys as &$ref) {
+    $type = array_search(strtok($ref, '_'), MiniMapTile::type);
+    switch (strtok($ref, '_')) {
+      case 'passable':
+      case 'impassable':
+        $subtype = array_search(strtok(''), AClass::terrain) + 1;
+        break;
+      default:
+        $subtype = $playersID[strtok('')];
+    }
+    $ref = "{$type}_$subtype";
+  }
+
+  $constants['miniMapColors'] = array_combine($keys, $constants['miniMapColors']);
+
+  $constants['shroud'] += shroudEdgeFrames();
+  $constants['animation']['group'] = $constants['animationGroups'];
+  $constants['effect']['multiplier'] = $constants['multiplier'];
+  $constants = array_diff_key($constants, array_flip(['animationGroups', 'multiplier']));
+  file_put_contents("$outPath/constants.json", encodeJSON($constants));
 }
 
 // Playable map player: Red, Blue, etc.

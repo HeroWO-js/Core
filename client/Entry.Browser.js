@@ -5,7 +5,7 @@ define(
     'module', 'sqimitive/main',
     'DOM.Common', 'DOM.Context', 'Strings', 'Templates', 'Screen.Tracker',
     'Debug', 'WebSite.TopBar', 'WebSite.GrantModules', 'Chat.DOM', 'Chat.Server',
-    'Screen', 'DOM.UI', 'DOM.Map', 'DOM.MiniMap', 'DOM.Controls',
+    'Screen', 'DOM.UI', 'DOM.Map', 'DOM.MiniMap', 'Canvas.MiniMap', 'DOM.Controls',
     'H3.DOM.Audio', 'H3.DOM.MainMenu', 'H3.DOM.Loading', 'H3.DOM.UI',
     'H3.Combat', 'H3.DOM.Combat',
     'RPC.Common', 'RPC', 'RPC.WebSocket',
@@ -14,7 +14,7 @@ define(
     module, Sqimitive,
     Common, Context, Strings, Templates, Screen_Tracker,
     Debug, WebSite_TopBar, WebSite_GrantModules, Chat_DOM, Chat_Server,
-    Screen, DOM_UI, DOM_Map, DOM_MiniMap, DOM_Controls,
+    Screen, DOM_UI, DOM_Map, DOM_MiniMap, Canvas_MiniMap, DOM_Controls,
     H3_DOM_Audio, H3_DOM_MainMenu, H3_DOM_Loading, H3_DOM_UI,
     H3_Combat, H3_DOM_Combat,
     RPC_Common, RPC, RPC_WebSocket
@@ -91,6 +91,8 @@ define(
         databanksURL: config.databanksURL,
         allowUserModules: config.allowUserModules,
         classic: !!location.search.match(/[?&]classic\b/),
+        // Read by H3.Rules.
+        noAI: !!location.search.match(/[?&]noai\b/),
       })
 
       var loading = new H3_DOM_Loading({context: cx})
@@ -482,11 +484,18 @@ define(
             sc.addModule('-', DOM_Map.Edge, options)
               .on('change', storeOption.bind(_, DOM_Map.Edge.name))
 
-            var miniMap = sc.addModule('-', DOM_MiniMap, {
-              el: miniMapEl || DOM_MiniMap.prototype.el,
-              sharedEl: hotSeat ? !miniMapEl : null,
-              attachPath: ui.miniMapEl,
-            })
+            if (location.search.match(/[?&]dom\b/)) {
+              var miniMap = sc.addModule('-', DOM_MiniMap, {
+                el: miniMapEl || DOM_MiniMap.prototype.el,
+                sharedEl: hotSeat ? !miniMapEl : null,
+                attachPath: ui.miniMapEl,
+              })
+            } else {
+              var miniMap = sc.addModule('-', Canvas_MiniMap, {
+                attachPath: ui.miniMapEl,
+                alpha: debug,
+              })
+            }
 
             if (hotSeat) {
               mapEl = map.el
@@ -966,7 +975,7 @@ define(
 
             connector.set('active', true)
           } else {    // single player or hotseat
-            var worker = !debug && typeof Worker != 'undefined'
+            var worker = (location.search.match(/[?&]worker=(\d)(&|$)/) || [, !debug && typeof Worker != 'undefined'])[1] != '0'
             var workerRPC
 
             if (worker) {

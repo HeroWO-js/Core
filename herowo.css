@@ -64,13 +64,17 @@ noscript {
   display: none;
 }
 
+.Hroot__mmap canvas,
 .Hcx_scale {
-  display: inline-block;  /* can't calculate contents width as div takes it all */
   -ms-interpolation-mode: nearest-neighbor;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   image-rendering: -moz-crisp-edges;
+}
+
+.Hcx_scale {
+  display: inline-block;  /* can't calculate contents width as div takes it all */
   transform-origin: 0 0;
   /* transform: scale() must be set by JS. */
 }
@@ -1562,7 +1566,7 @@ html .Hh3-menu_loading,
 }
 
 .Hroot__mmap,
-.Hroot__mmap > *,   /* .Hmmap_rect, <div>s with .Hmmap__cell */
+.Hroot__mmap > *,   /* .Hmmap_rect, <div>s with .Hmmap__cell (DOM.MiniMap) or <canvas>s (Canvas.MiniMap) */
 .Hmmap__cell,
 .Hmmap_rect {
   position: absolute;
@@ -1609,63 +1613,6 @@ html .Hh3-menu_loading,
     filter: grayscale(1);
   }
 }
-
-/*
-  Rules below depend on resolved constants and databank values:
-
-  ..._subtype_N_... = MiniMapTile::type:
-     [0 = passable, 1 = impassable, 2 = ownable, 3 = movable]
-
-  ..._subtype_3_N (movable) and
-  ..._subtype_2_N (ownable) = Player->$id + 1 (0 = unowned):
-     [1 red, 2 blue, 3 tan, 4 green, 5 orange, 6 purple, 7 teal, 8 pink]
-
-  ..._subtype_..._N (other) = AClass->$class + 1 for classes with $type = terrain:
-     [0 dirt, 1 desert, 2 grass, 3 snow, 4 swamp, 5 rough, 6 subterranean,
-      7 lava, 8 water, 9 rock]
-
-  Note: values listed above are subject to change.
-*/
-.Hh3-root .Hmmap__cell_subtype_0_1  { background-color: #523908; }
-.Hh3-root .Hmmap__cell_subtype_0_2  { background-color: #dece8c; }
-.Hh3-root .Hmmap__cell_subtype_0_3  { background-color: #004200; }
-.Hh3-root .Hmmap__cell_subtype_0_4  { background-color: #b5c6c6; }
-.Hh3-root .Hmmap__cell_subtype_0_5  { background-color: #4a846b; }
-.Hh3-root .Hmmap__cell_subtype_0_6  { background-color: #847331; }
-.Hh3-root .Hmmap__cell_subtype_0_7  { background-color: #843100; }
-.Hh3-root .Hmmap__cell_subtype_0_8  { background-color: #4a4a4a; }
-.Hh3-root .Hmmap__cell_subtype_0_9  { background-color: #085294; }
-.Hh3-root .Hmmap__cell_subtype_0_10 { background-color: #000000; }
-
-.Hh3-root .Hmmap__cell_subtype_1_1  { background-color: #392908; }
-.Hh3-root .Hmmap__cell_subtype_1_2  { background-color: #a59c6b; }
-.Hh3-root .Hmmap__cell_subtype_1_3  { background-color: #003100; }
-.Hh3-root .Hmmap__cell_subtype_1_4  { background-color: #8c9c9c; }
-.Hh3-root .Hmmap__cell_subtype_1_5  { background-color: #215a42; }
-.Hh3-root .Hmmap__cell_subtype_1_6  { background-color: #635221; }
-.Hh3-root .Hmmap__cell_subtype_1_7  { background-color: #5a0800; }
-.Hh3-root .Hmmap__cell_subtype_1_8  { background-color: #292929; }
-.Hh3-root .Hmmap__cell_subtype_1_9  { background-color: #00286b; }
-.Hh3-root .Hmmap__cell_subtype_1_10 { background-color: #332e2e; }
-
-.Hh3-root .Hmmap__cell_subtype_3_0,
-.Hh3-root .Hmmap__cell_subtype_2_0  { background-color: #848484; }
-.Hh3-root .Hmmap__cell_subtype_3_1,
-.Hh3-root .Hmmap__cell_subtype_2_1  { background-color: #ff0000; }
-.Hh3-root .Hmmap__cell_subtype_3_2,
-.Hh3-root .Hmmap__cell_subtype_2_2  { background-color: #3152ff; }
-.Hh3-root .Hmmap__cell_subtype_3_3,
-.Hh3-root .Hmmap__cell_subtype_2_3  { background-color: #9c7352; }
-.Hh3-root .Hmmap__cell_subtype_3_4,
-.Hh3-root .Hmmap__cell_subtype_2_4  { background-color: #429429; }
-.Hh3-root .Hmmap__cell_subtype_3_5,
-.Hh3-root .Hmmap__cell_subtype_2_5  { background-color: #ff8400; }
-.Hh3-root .Hmmap__cell_subtype_3_6,
-.Hh3-root .Hmmap__cell_subtype_2_6  { background-color: #8c29a5; }
-.Hh3-root .Hmmap__cell_subtype_3_7,
-.Hh3-root .Hmmap__cell_subtype_2_7  { background-color: #089ca5; }
-.Hh3-root .Hmmap__cell_subtype_3_8,
-.Hh3-root .Hmmap__cell_subtype_2_8  { background-color: #c67b8c; }
 
 /*** Adventure Map - CombatList ***/
 .Hh3-am-combats {
