@@ -5313,6 +5313,11 @@ define([
               count: _.random(hero.garrison3Min, hero.garrison3Max),
             })
           }
+          var g = self.map.objects.atContiguous(n + objects.garrison, 0)
+          if (g && g.withoutArmy) {
+            garrison.splice(1)
+            garrison[0].count = 1
+          }
           var sub = self.map.objects.subAtContiguous(n + objects.garrison, 0)
           try {
             sub.batch(null, function () {
@@ -5464,14 +5469,12 @@ define([
     //* Available hero pool is one for all taverns for a given player
     //* Standalone taverns on the map use the pool of the visiting player
     //* Keep at least 2 heroes available for hire at all times, and ensure no two identical Hero->$id are offered
-    //  (for one player or for all players as one, it's not clear)
+    //  (for all players)
     //* Randomize heroes every 7 days (on Mondays); nevermind if a hero is removed and random immediately selects adding another hero of the same class (Hero->$id)
     //* When own hero surrenders or retreats, replace a random available hero in the pool (most of the time 2nd) with the defeated one
     //* When hiring a hero, generate a new hero; hero removal (due to regeneration or hiring) is permanent
     //* Even if a player has no towns, if he has two heroes, one is defeated and another immediately captures a town - he can recruit the defeated hero
     // However, sometimes the game breaks these rules. For example, it occasionally randomizes one hero at any day, or defers making a retreated hero available for days or even weeks.
-    //
-    // XXX=IC after buying the first 2 heroes others must start with the garrison consisting of a single creature: https://forum.herowo.net/t/35
     _initializePlayers: function () {
       var size = 2    // XXX=RH to databank
 
@@ -5511,22 +5514,53 @@ define([
         })
 
         player.getSet('availableHeroes', function (cur) {
+          var hired = []
+          var native = false
+
+          var town = this.cx.oneShotEffectCalculation({
+            target: this.constants.effect.target.player_town,
+            ifPlayer: player.get('player'),
+          })
+
           // Remove already unavailable heroes. This also clones cur.
           // normalize_availableHeroes() ensures getSet() with unchanged cur doesn't cause another round of change_availableHeroes.
-          cur = (cur || []).filter(function (hero) {
-            return this.map.objects.atCoords(hero, 0, 0, 'owner', 0) === 0
+          cur = (cur || []).filter(function (hero, i) {
+            switch (this.map.objects.atCoords(hero, 0, 0, 'owner', 0)) {
+              case 0:
+                if (town != null && this.heroClasses.atCoords(this.heroes.atCoords(this.map.objects.atCoords(hero, 0, 0, 'subclass', 0), 0, 0, 'class', 0), 0, 0, 'town', 0) == town) {
+                  native = true
+                }
+                return true
+              case player.get('player'):
+                // Record hero(es) just hired by the player in whose pool they appeared.
+                var count = 0
+                hired.push([
+                  i,
+                  this.map.objects.readSubAtCoords(hero, 0, 0, 'garrison', 0)
+                    .find('count', function (c) { return (count += c) > 1 || null }),
+                ])
+            }
           }, this)
 
-          var total = 0
-          chances = _.filter(chances, function (c) { return c > 0 && (total += c) })
+          chances = _.filter(chances, function (c) { return c > 0 })
 
           while (cur.length < size) {
-            var hero = this._pickFromChances(total, _.entries(chances))
+            var filtered = chances
+            if (!native && town != null) {
+              filtered = _.filter(chances, function (c, hero) {
+                return this.heroClasses.atCoords(this.heroes.atCoords(hero, 0, 0, 'class', 0), 0, 0, 'town', 0) == town
+              }, this)
+              _.isEmpty(filtered) ? filtered = chances : native = true
+            }
+            var hero = this._pickFromChances(_.sum(filtered), _.entries(filtered))
             if (!hero) { break }
-            total = hero[0]
             delete chances[+hero[1]]
+            var nextHired = hired.shift() || []
             var cls = _.sample(this.objectsID['hero_' + this.heroes.atCoords(hero[1], 0, 0, 'class', 0)])
             var props = atter(cls, 0, 0, 0)
+            // XXX=R this is an ugly way to pass data to the garrison initializer (executed during the same tick); an oadd option would be more fit but forExistingAndNew() is hooking oadd on byType and it doesn't receive options given to oadd on map.objects (see the comment in Effects.BatchIndexUpdater._processBatch())
+            props.garrison = []
+            props.garrison.withoutArmy = nextHired[1]
             props.listOrder = []
             props.listOrder[player.get('player')] = this.map.getSet('-listOrder', Common.inc())
             _.extend(props, {
@@ -5547,7 +5581,8 @@ define([
               // Set by _initializeObjects(): initialized, experience, garrison.
               // Leaving defaults for: route, actionPoints, spellPoints.
             })
-            cur.push(this.createObject(props))
+            var n = this.createObject(props)
+            nextHired.length ? cur.splice(nextHired[0], 0, n) : cur.push(n)
           }
 
           return cur

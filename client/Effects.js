@@ -630,7 +630,10 @@ define(['Common', 'ObjectStore'], function (Common, ObjectStore) {
           }
 
           // A batch should have the same transition options for the same object
-          // so we're examining the last event only.
+          // so we're examining the last event only. Non-transition keys in
+          // options are not propagated because it may be unpredictable which
+          // the listener will get as they may originate from different events
+          // (e.g. oadd + ochange in one batch or in two batches).
           var event = events[i - 2]
           var options = event[event[0][1] == 'c' ? 6 : 4]
           var transition = !options.transition ? {} :
