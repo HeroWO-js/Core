@@ -1,4 +1,4 @@
-define(['DOM.Common'], function (Common) {
+define(['DOM.Common', 'Canvas.DOM.Map'], function (Common, CanvasMap) {
   "use strict"
   var _ = Common._
   var $ = Common.$
@@ -31,6 +31,7 @@ define(['DOM.Common'], function (Common) {
     _gridEl: null,
     _levelEls: null,  // array z => Element
     _cellEls: null,   // array x*y => Element
+    _renderer: null,
     _objectEls: null,
     _tileSize: 0,
     _mapWidth: 0,
@@ -68,9 +69,15 @@ define(['DOM.Common'], function (Common) {
           var scOpt = this.sc._opt
           var random = this._gridEl.firstElementChild
             .getAttribute('onmouseenter').match(/^E([^(]+)/)[1]
-          window['E' + random] = function (el) { self._gridMouseEnter(el, scOpt) }
+          window['E' + random] = function (el) {
+            self._gridMouseEnter(el, scOpt)
+          }
           window['L' + random] = this._gridMouseLeave.bind(this, scOpt, this._gridEl)
         }
+      },
+
+      remove() {
+        this._renderer?.destroy();
       },
 
       '=attach': function (sup) {
@@ -78,12 +85,12 @@ define(['DOM.Common'], function (Common) {
       },
 
       attach: function () {
-        this._tileSize = this.map.constants.tileSize
-
+        this._renderer = new CanvasMap.CanvasMapRenderer(this.el, this.rules, this.map, this.sc, this.cx, this.pl, _);
+        this._renderer.drawMap();
+        this._tileSize = this.map.constants.tileSize;
         this.autoOff(this.sc, {
           change_z: function (now) {
             this._updateZ(now)
-            this.map.shroud && this._updateShroudAll()
           },
           change_mapShroud: '_updateShroudAll',
           change_classic: '_updateShroudAll',
@@ -102,13 +109,12 @@ define(['DOM.Common'], function (Common) {
         var info = this.map.get()
         this._mapWidth = info.width
         this._mapsEl = this.el.children('.Hmaps')[0]
-
         if (this._mapsEl) {
           this._gridEl = this.el.children('.Hgrid')[0]
         } else {
           // Should go before Hgrid so that the latter has higher z-index.
           this._mapsEl = $('<div class=Hmaps>')
-            .append(_.repeat('<div class=Hmap></div>', info.levels))
+            .append(_.repeat('<div class=Hmap style="display: none"></div>', info.levels))
             .appendTo(this.el)
             [0]
 
@@ -117,7 +123,9 @@ define(['DOM.Common'], function (Common) {
           var self = this
           var scOpt = this.sc._opt
           var random = '$' + Common.Sqimitive.unique('wr')
-          window['E' + random] = function (el) { self._gridMouseEnter(el, scOpt) }
+          window['E' + random] = function (el) {
+            self._gridMouseEnter(el, scOpt)
+          }
           window['L' + random] = this._gridMouseLeave.bind(this, scOpt, this._gridEl)
           this.once('unnest', function () {
             delete window['E' + random]
@@ -136,13 +144,13 @@ define(['DOM.Common'], function (Common) {
             for (var y = 0; y < info.height; y++) {
               html[x + y * info.width] =
                 '<div class="Hgrid__cell' +
-                  (x < info.margin[0] || x >= info.width  - info.margin[2] ||
-                   y < info.margin[1] || y >= info.height - info.margin[3]
-                    ? ' Hgrid__cell_margin' : '') +
+                (x < info.margin[0] || x >= info.width - info.margin[2] ||
+                y < info.margin[1] || y >= info.height - info.margin[3]
+                  ? ' Hgrid__cell_margin' : '') +
                 '" style="' +
                 'left:' + x * this._tileSize + 'px;' +
-                'top:'  + y * this._tileSize + 'px;' +
-                'width:'  + this._tileSize + 'px;' +
+                'top:' + y * this._tileSize + 'px;' +
+                'width:' + this._tileSize + 'px;' +
                 'height:' + this._tileSize + 'px' +
                 '" data-Hxy=' + x + ',' + y +
                 listeners +
@@ -158,16 +166,14 @@ define(['DOM.Common'], function (Common) {
         this._objectEls = Array(this.map.objects * 1.1 | 0)
 
         var reflect = ['x', 'y', 'z', 'width', 'height', 'displayOrder',
-                       'mirrorX', 'mirrorY', 'texture', 'animation']
+          'mirrorX', 'mirrorY', 'texture', 'animation']
 
         // Not updating the UI when 'duration' changes since it specifies just the
         // starting animation-delay. It certainly changes together with 'animation'
         // and then we update.
         //
         // owner is needed to determine animation duration (my/enemy's).
-        var atter = this._objectAtter = this.map.objects.atter(reflect.concat('id', 'class', 'type', 'duration', 'owner',
-          // Needed for actionableSpot() called by scrollTo() and tick.
-          'width', 'height', 'x', 'y', 'z', 'actionable'))
+        var atter = this._objectAtter = this.map.objects.atter(Object.keys(this.map.objects._schema))
         reflect = reflect.map(this.map.objects.propertyIndex, this.map.objects)
 
         if (this.get('sharedEl') !== false) {
@@ -175,17 +181,18 @@ define(['DOM.Common'], function (Common) {
             this._add(atter(n, 0))
           }, this)
         }
-
         this.autoOff(this.sc.transitions, {
           '+select_mapMove': function (res, tr) {
             return this.get('sharedEl') !== false && 'map'
           },
           '+select_mapDisembark, +select_mapEmbark, +select_mapTeleport': function (res, tr) {
             return this.get('sharedEl') !== false &&
-                   /*this.pl.heroes.nested(tr.get('object')) &&*/ 'map'
+              /*this.pl.heroes.nested(tr.get('object')) &&*/ 'map'
           },
           'nest_mapDisembark, nest_mapEmbark, nest_mapMove, nest_mapTeleport': function (view) {
-            var props = []
+            var props = [];
+            const movingPath = [];
+            let movingObj;
             view.set(this._cid, true)
             this.autoOff(view, {
               collect: function (tr, tick) {
@@ -194,12 +201,16 @@ define(['DOM.Common'], function (Common) {
                     var path = tr.get('path')[tick]
                     if (path) {   // not first or last tick
                       var pos = this.map.actionableSpot(tr.get('object'), true)
+                      movingPath.push(_.extend(atter(tr.get('object'), 0, 0, 0), path));
                       path = {x: path[0] - pos[0], y: path[1] - pos[1]}
                     }
                 }
-                props.push(_.extend(atter(tr.get('object'), 0, 0, 0), path))
+                movingObj = atter(tr.get('object'), 0, 0, 0)
+                props.push(_.extend(movingObj, path))
+                this._renderer.prepareObjectForAnimation(movingObj);
               },
               final: function (tr) {
+                // this._renderer.animateObjectMoving(props, this.sc.get('z'))
                 switch (view.get('type')) {
                   case 'mapMove':
                     return view.set('ticks', props.length - 1)
@@ -207,11 +218,13 @@ define(['DOM.Common'], function (Common) {
               },
               tick: function (async, tick) {
                 var obj = props[tick]
+                const prevObj = props[tick - 1];
                 switch (view.get('type')) {
                   case 'mapMove':
-                    var el = this._objectEls[view.get('object')]
                     // Not animating original position.
-                    if (!tick || !el) { return }
+                    if (!tick) {
+                      return
+                    }
                     // mapMove collect and play tick: 0 = original position,
                     // zero or more {after spot effects but before position
                     // change}, last = after all changes (has no associated path
@@ -228,7 +241,7 @@ define(['DOM.Common'], function (Common) {
                         var vis = this.map.shroud.atCoords(pos[0], pos[1], pos[2], this.pl.get('player'))
                         if (!(vis >= 0) || !_.includes(visible, vis)) {
                           // Don't show or animate if original and new object spots are not revealed.
-                          return this._set(obj, el, {shroudState: false})
+                          return this._set(obj, {shroudState: false})
                         }
                       }
                     }
@@ -260,16 +273,16 @@ define(['DOM.Common'], function (Common) {
                         var dx = heroSpot[0] - boatSpot[0]
                         var dy = heroSpot[1] - boatSpot[1]
                         var group = this.rules.constants.animation.group[
-                          (dy < 0 ? 'up' : dy > 0 ? 'down' : '') +
-                          (!dx ? '' : dy ? 'Right' : 'right')
-                        ]
+                        (dy < 0 ? 'up' : dy > 0 ? 'down' : '') +
+                        (!dx ? '' : dy ? 'Right' : 'right')
+                          ]
                         boat.mirrorX = dx < 0
                         boat.texture = Common.alterStringifiedArray(boat.texture, 4, group)
                         boat.animation = Common.alterStringifiedArray(boat.animation, 4, group)
-                        this._set(boat, this._objectEls[boat.id], {animating: 'mapEmbark'})
+                        this._set(boat, {animating: 'mapEmbark'})
                       }
                     }
-                    this._transition(obj, el, async)
+                    this._transition(prevObj, obj, async)
                     return
                   case 'mapTeleport':
                     if (this.pl.heroes.nested(view.get('object'))) {
@@ -279,13 +292,14 @@ define(['DOM.Common'], function (Common) {
                 }
               },
               end: function () {
+                this._renderer.finishObjectAnimation(movingObj.id);
                 // Apply final properties to el, in case somebody changed el
                 // while animation was running (as H3.DOM.UI does).
                 var el = this._objectEls[view.get('object')]
                 // el could have been removed by oremove that wasn't part of any transition.
                 // This is technically incorrect but XXX+I transitions currently don't
                 // cover most of the code so doing nothing if this has happened.
-                el && this._set(props.pop(), el, {})
+                // el && this._set(props.pop(), el, {})
               },
             })
           },
@@ -296,18 +310,19 @@ define(['DOM.Common'], function (Common) {
             if (this.get('sharedEl') !== false) {
               this._add(atter(props), this._opt.rendered)
               var el = this._objectEls[props[atter.idIndex]]
-              el.style.visibility = 'hidden'
-              this.sc.transitions.updateUsing(null, options, this, function () {
-                el.style.visibility = ''
-              })
+              // el.style.visibility = 'hidden'
+              // this.sc.transitions.updateUsing(null, options, this, function () {
+              //   el.style.visibility = ''
+              // })
             }
           },
           '^oremove': function ($1, $2, props, options) {
             if (this.get('sharedEl') !== false) {
               this.sc.transitions.updateUsing(null, options, this, function () {
-                var el = this._objectEls[props[atter.idIndex]]
-                el.parentNode.removeChild(el)
-                delete this._objectEls[props[atter.idIndex]]
+                const margin = this.map.get('margin');
+                const x = props[atter.xIndex] - 1;
+                const y = props[atter.yIndex] - 1;
+                this._renderer.drawTiles(x, y, props[atter.widthIndex] + x, props[atter.heightIndex] + y)
               })
               var view = this.sc.transitions.of(options.transition, this._cid)
               if (view && view.get('type') == 'mapEmbark') {
@@ -326,11 +341,11 @@ define(['DOM.Common'], function (Common) {
             options.batch
               .forEach(function (event) {
                 if (event[0] == 'ochange' &&
-                    reflect.indexOf(event[3]) != -1 &&
-                    !this.sc.transitions.of(event[6].transition, this._cid) &&
-                    objects.size != objects.add(event[1]).size) {
+                  reflect.indexOf(event[3]) != -1 &&
+                  !this.sc.transitions.of(event[6].transition, this._cid) &&
+                  objects.size != objects.add(event[1]).size) {
                   var obj = atter(event[1], 0)
-                  this._set(obj, this._objectEls[obj.id], {})
+                  this._set(obj, {})
                 }
               }, this)
           }),
@@ -349,8 +364,8 @@ define(['DOM.Common'], function (Common) {
           this._foggedClasses = new Set
           _.each(names.split(' '), function (name) {
             _.each(rules.objectsID[name],
-                   this._foggedClasses.add, this._foggedClasses)
-           }, this)
+              this._foggedClasses.add, this._foggedClasses)
+          }, this)
 
           var all = this._shroudAll = Array(mapWidth * mapHeight)
           var n = 0
@@ -411,7 +426,7 @@ define(['DOM.Common'], function (Common) {
         }
 
         this.el
-          .toggleClass('Hroot__map_grid',   this.sc.get('mapGrid'))
+          .toggleClass('Hroot__map_grid', this.sc.get('mapGrid'))
           .toggleClass('Hroot__map_margin', this.sc.get('mapMargin'))
 
         this.el.toggleClass('Hroot__map_anim_no', !this.sc.get('mapAnimate'))
@@ -420,13 +435,13 @@ define(['DOM.Common'], function (Common) {
         var margin = this.sc.invisibleMapMargin()
 
         this.el.css({
-          width:  (this.map.get('width')  - margin[0] - margin[2]) * this._tileSize,
+          width: (this.map.get('width') - margin[0] - margin[2]) * this._tileSize,
           height: (this.map.get('height') - margin[1] - margin[3]) * this._tileSize,
         })
 
         function setMargin(el, tile) {
           el.style.marginLeft = margin[0] * -tile + 'px'
-          el.style.marginTop  = margin[1] * -tile + 'px'
+          el.style.marginTop = margin[1] * -tile + 'px'
         }
 
         setMargin(this._gridEl, this._tileSize)
@@ -443,9 +458,9 @@ define(['DOM.Common'], function (Common) {
 
     _click: function (e) {
       if (this.get('sharedEl') === false ||
-          // DOM.UI enables scroll-by-dragging in non-classic mode. In this case we can't react to mousedown and have to wait until click (when it's clear that mousedown is not a drag). In classic mode react to mousedown immediately.
-          (!e.button && (e.type == 'mousedown') != this.cx.get('classic')) ||
-          (e.button && e.button != 2)) {
+        // DOM.UI enables scroll-by-dragging in non-classic mode. In this case we can't react to mousedown and have to wait until click (when it's clear that mousedown is not a drag). In classic mode react to mousedown immediately.
+        (!e.button && (e.type == 'mousedown') != this.cx.get('classic')) ||
+        (e.button && e.button != 2)) {
         return
       }
       var xy = e.target.getAttribute('data-Hxy').split(',')
@@ -463,111 +478,31 @@ define(['DOM.Common'], function (Common) {
     },
 
     _add: function (obj, rendered) {
-      var el = this._objectEls[obj.id] = document.createElement('div')
-      el.setAttribute('data-Hid', obj.id)   // used if sharedEl
-      this._set(obj, el, {add: true, shroudState: rendered ? null : 0})
+      this._renderer.drawObject(obj);
     },
 
     // Must not access data outside of obj (used in transition).
-    _set: function (obj, el, options) {
+    _set: function (obj, options) {
       if (this.get('sharedEl') === false) {
         return
       }
-
-      if (el.parentNode != this._levelEls[obj.z]) {
-        if (!options.add && !el.parentNode) { return }    // removed while in transition
-        this._levelEls[obj.z].appendChild(el)
-      }
-
       if (options.animating) {
-        toggle(el, true)
-      } else {
-        // Hide objects fully covered in shroud, for performance. Show objects
-        // on the shroud edge since edge is partially visible.
-        //
-        // If fog (partial shroud) is enabled, still hide fully shrouded objects,
-        // but if some parts are visible, check their bits: if any set bit is
-        // part of revealed bit list then show the object in full, else check
-        // _foggedClasses and hide it if not listed, or show as neutral if it is.
-        if (this.map.shroud) {
-          var show = options.shroudState
-
-          if (show != null) {
-            // Use the provided value.
-          } else if (!this.sc.get('mapShroud')) {
-            show = 2
-          } else {
-            var visible = this.cx.get('classic') ? null : this.map.constants.shroud.visible
-            var player = this.pl.get('player')
-
-            this._walkAroundObjectBox(_.extend({}, obj), function (o) {
-              var vis = this.map.shroud.atCoords(o.mx, o.my, o.mz, player)
-              if (!(vis >= 0)) {
-                // Invisible.
-              } else if (!visible || visible.indexOf(vis) != -1) {
-                return show = 2   // fully visible spot, break
-              } else {
-                show = 1          // explored
-              }
-            })
-          }
-
-          if (show === 1) {
-            if (this._foggedClasses.has(obj.class)) {
-              show = 0
-            } else {    // explored at most, show object as owned by neutral
-              // XXX=R duplicates with H3.Rules
-              obj = _.extend({}, obj, {
-                texture: Common.alterStringifiedArray(obj.texture, 3, function (s) { return s.replace(/(^|-)\w+Owner-/, '$1') }),
-                animation: Common.alterStringifiedArray(obj.animation, 3, function (s) { return s.replace(/(^|-)\w+Owner-/, '$1') }),
-                // Assuming all possible owners' animations have the same duration.
-              })
-            }
-          }
-        } else {
-          var show = true
-        }
-
-        toggle(el, show && obj.displayOrder >= 0)
-
-        el.style.left = obj.x * this._tileSize + 'px'
-        var shift = obj.type == this.map.constants.object.type.road
-          ? this._tileSize / 2 : 0
-        el.style.top  = obj.y * this._tileSize + shift + 'px'
+        return;
       }
-
-      el.style.width  = obj.width  * this._tileSize + 'px'
-      el.style.height = obj.height * this._tileSize + 'px'
-      el.style.zIndex = obj.displayOrder
-
-      el.style.transform = !obj.mirrorX && !obj.mirrorY ? ''
-        : 'scale(' + (obj.mirrorX ? '-' : '') + '1,' +
-                     (obj.mirrorY ? '-' : '') + '1)'
-
-      el.style.setProperty('--Hh', '')
-
-      var cls = 'Hmap__obj ' + ((obj.texture || '') + ' ' + (obj.animation || '')).replace(/,/g, '')
-      // Change animation-delay only if texture or animation changed to avoid
-      // leaps in playing animation. duration by itself cannot change.
-      if (el.className != cls) {
-        el.style.animationDelay = obj.duration && !options.animating ? _.random(obj.duration - 1) + 'ms' : ''
-        el.className = cls
-      }
+      this._renderer.drawObject(obj);
     },
 
     _walkAroundObjectBox: function (obj, func) {
       obj.x > 0 && (obj.x--, obj.width++)
       obj.y > 0 && (obj.y--, obj.height++)
-      obj.x + obj.width  < this._mapWidth && obj.width++
+      obj.x + obj.width < this._mapWidth && obj.width++
       obj.y + obj.height < this.map.get('height') && obj.height++
       return this.map.walkObjectBox(obj, 1, func, this)
     },
 
-    _transition: function (obj, el, async) {
-      this._set(obj, el, {animating: 'mapMove'})
-      var options = this._transitionOptions(obj)
-      options.complete = async.nestDoner()
-      $(el).css('--Hh', options.scale).animate(options.properties, options)
+    _transition: function (from, to, async) {
+      this._renderer.animateObjectMoving(from,to, this.sc.get('z'))
+        .then(async.nestDoner())
     },
 
     _transitionOptions: function (obj) {
@@ -575,8 +510,8 @@ define(['DOM.Common'], function (Common) {
       var scale = 0.67 * this.sc.get(obj.owner == this.pl.get('player') ? 'mapOwnSpeed' : 'mapEnemySpeed')
       return {
         properties: {
-          left:       obj.x * this._tileSize,
-          top:        obj.y * this._tileSize,
+          left: obj.x * this._tileSize,
+          top: obj.y * this._tileSize,
         },
         scale: scale,
         duration: obj.duration * scale,
@@ -604,6 +539,7 @@ define(['DOM.Common'], function (Common) {
       if (this.get('sharedEl') === false) {
         return
       }
+      this._renderer.setActiveLayer(this.sc.get('z'))
       _.each(this._levelEls, function (el, z) {
         //toggle(el, z == now)
         // If invisible, make -1. If visible, make 0 to be overlaid by Hgrid.
@@ -612,7 +548,7 @@ define(['DOM.Common'], function (Common) {
     },
 
     _updateShroudAll: function () {
-      this.get('rendered') && this._updateShroudSorted(this._shroudAll, [])
+      this.get('rendered') && this._renderer.drawMap();
     },
 
     _updateShroud: function (tiles) {
@@ -626,7 +562,6 @@ define(['DOM.Common'], function (Common) {
         ;(byRow[tile[1]] || (byRow[tile[1]] = [])).push(tile)
         visibility[tile[2]] = tile[4] === undefined ? -1 /*no bits set*/ : tile[4]
       }
-
       i && this._updateShroudSorted(byRow, visibility)
     },
 
@@ -646,14 +581,14 @@ define(['DOM.Common'], function (Common) {
       var rules = this.cx.modules.nested('HeroWO.H3.Rules')
       var repeatFrames = rules.animations.atCoords(rules.animationsID.TSHRC_0, 0, 0, 'frameCount', 0)
 
-      var repeat  = this.map.constants.shroud.repeat
-      var edge    = this.map.constants.shroud.edge
-      var key     = this.map.constants.shroud.edgeKey
+      var repeat = this.map.constants.shroud.repeat
+      var edge = this.map.constants.shroud.edge
+      var key = this.map.constants.shroud.edgeKey
 
       var objects = new Map
-
-      if (this.sc.get('mapShroud')) {
-        var isVisible = function (tile, dx, dy) {
+      let isVisible;
+      if (this.sc.get('mapShroud') && false) {
+        isVisible = function (tile, dx, dy) {
           var x = dx + tile[0]
           var y = dy + tile[1]
 
@@ -670,14 +605,16 @@ define(['DOM.Common'], function (Common) {
 
           if (vis == null) {
             vis = this.atCoords(x, y, z, player)
-            if (vis === undefined) { vis = -1 }
+            if (vis === undefined) {
+              vis = -1
+            }
             visibility[n] = vis
           }
 
           return vis
         }.bind(this.map.shroud)
       } else {
-        var isVisible = new Function('return ' + (fog ? visible[0] : 0))
+        isVisible = () => fog ? visible[0] : 0;
       }
 
       for (var y = 0; y < byRow.length; y++) {
@@ -697,17 +634,17 @@ define(['DOM.Common'], function (Common) {
             fogClass = fog && visible.indexOf(vis) == -1
           } else {
             var frame = edge[
-              (isVisible(tile,  0, -1) >= 0) << key.t  |
-              (isVisible(tile,  0, +1) >= 0) << key.b  |
-              (isVisible(tile, -1,  0) >= 0) << key.l  |
-              (isVisible(tile, -1, -1) >= 0) << key.tl |
-              (isVisible(tile, -1, +1) >= 0) << key.bl |
-              (isVisible(tile, +1,  0) >= 0) << key.r  |
-              (isVisible(tile, +1, -1) >= 0) << key.tr |
-              (isVisible(tile, +1, +1) >= 0) << key.br |
-              tile[0] & 1 << key.oddX |
-              tile[1] & 1 << key.oddY
-            ]
+            (isVisible(tile, 0, -1) >= 0) << key.t |
+            (isVisible(tile, 0, +1) >= 0) << key.b |
+            (isVisible(tile, -1, 0) >= 0) << key.l |
+            (isVisible(tile, -1, -1) >= 0) << key.tl |
+            (isVisible(tile, -1, +1) >= 0) << key.bl |
+            (isVisible(tile, +1, 0) >= 0) << key.r |
+            (isVisible(tile, +1, -1) >= 0) << key.tr |
+            (isVisible(tile, +1, +1) >= 0) << key.br |
+            tile[0] & 1 << key.oddX |
+            tile[1] & 1 << key.oddY
+              ]
 
             if (frame == null) {    // fully shrouded
               if (classic) {
@@ -731,7 +668,7 @@ define(['DOM.Common'], function (Common) {
 
           // Make sure not to touch classes if they don't need to be changed. Every touched class adds new node to browser's recalculation list, considerably slowing up over/underworld switching.
           var el = this._cellEls[tile[2]]
-          el.classList[fogClass    ? 'add' : 'remove']('Hgrid__cell_fog')
+          el.classList[fogClass ? 'add' : 'remove']('Hgrid__cell_fog')
           el.classList[mirrorClass ? 'add' : 'remove']('Hgrid__cell_mirror')
           Common.oneClass(el, 'Hh3-def_frame_TSHR', frameClass)   // TSHRC/TSHRE
 
@@ -748,27 +685,28 @@ define(['DOM.Common'], function (Common) {
 
       objects.forEach(function (fullyVisible, id) {
         var obj = this._objectAtter(id, 0, 0, 0)
-        var el = this._objectEls[id]
-        var show = fullyVisible ? 2 : 0
-
-        show || this._walkAroundObjectBox(_.extend({}, obj), function (o) {
-          var vis = isVisible([o.mx, o.my, o.mx + o.my * mapWidth], 0, 0)
-          if (!(vis >= 0)) {
-            // Invisible.
-          } else if (!fog || visible.indexOf(vis) != -1) {
-            return show = 2
-          } else {
-            show = 1
-          }
-        })
-
-        if (fog && show === 1) {
-          // Fully refresh the element because partial shroud affects multiple attributes.
-          this._set(obj, el, {shroudState: show})
-        } else {
-          // If partial shroud is not used can refresh just 'display'.
-          toggle(el, show && obj.displayOrder >= 0)
-        }
+        this._renderer.drawObject(obj)
+        // var el = this._objectEls[id]
+        // var show = fullyVisible ? 2 : 0
+        //
+        // show || this._walkAroundObjectBox(_.extend({}, obj), function (o) {
+        //   var vis = isVisible([o.mx, o.my, o.mx + o.my * mapWidth], 0, 0)
+        //   if (!(vis >= 0)) {
+        //     // Invisible.
+        //   } else if (!fog || visible.indexOf(vis) != -1) {
+        //     return show = 2
+        //   } else {
+        //     show = 1
+        //   }
+        // })
+        //
+        // if (fog && show === 1) {
+        //   // Fully refresh the element because partial shroud affects multiple attributes.
+        //   this._set(obj, el, {shroudState: show})
+        // } else {
+        //   // If partial shroud is not used can refresh just 'display'.
+        //   toggle(el, show && obj.displayOrder >= 0)
+        // }
       }, this)
     },
   })
